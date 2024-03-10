@@ -1,0 +1,16 @@
+{
+  "id": 1,
+  "name": "abracadabra",
+  "coordinates": {
+    "x": 1.1,
+    "y": 2.5
+  },
+  "creationDate": 123,
+  "annualTurnover": 666,
+  "fullName": "AAA",
+  "type": "GOVERNMENT",
+  "postalAddress": {
+    "street": "xxx",
+    "zipCode": "qwerty"
+  }
+}

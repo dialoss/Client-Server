@@ -1,5 +1,6 @@
 package Client;
 
-public interface IUserInterface {
-    void start();
+public abstract class IUserInterface {
+    ClientCommandManager manager;
+    abstract void start();
 }

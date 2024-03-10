@@ -1,16 +1,30 @@
 package Client;
 
+import Server.Response;
 
-public class CommandLineInterface implements IUserInterface {
-    CommandManager commandManager;
+public class CommandLineInterface extends IUserInterface {
     Shell shell;
 
-    CommandLineInterface(CommandManager commandManager) {
-        this.commandManager = commandManager;
-        this.shell = new Shell(commandManager);
+    CommandLineInterface() {
+        this.manager = new ClientCommandManager(this::processOutput);
+        this.shell = new Shell();
+    }
+
+    private void processOutput(Object data) {
+        Response response = (Response) data;
+        this.shell.print(response.getBody());
+    }
+
+    private void processInput(String[] tokens) {
+        String commandName = tokens[0];
+        try {
+            this.manager.execute(commandName);
+        } catch (RuntimeException e) {
+            this.shell.error(e.toString());
+        }
     }
 
     public void start() {
-//        this.shell.start();
+        this.shell.start(this::processInput);
     }
 }

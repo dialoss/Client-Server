@@ -1,17 +1,51 @@
 package Client;
 
-public class Shell {
-    CommandManager commandManager;
+import Server.Commands.ICallback;
 
-    Shell(CommandManager commandManager) {
-        this.commandManager = commandManager;
+import java.util.Scanner;
+
+enum ShellColors {
+    ANSI_RESET("\u001B[0m"),
+    ANSI_RED("\u001B[31m");
+
+    final String code;
+
+    ShellColors(String code) {
+        this.code = code;
     }
 
-    void out(String data) {
+    @Override
+    public String toString() {
+        return this.code;
+    }
+}
+
+public class Shell {
+    public void start(ICallback<String[]> callback) {
+        while (true) {
+            String input = this.input();
+            String[] tokens = input.split(" ");
+            callback.call(tokens);
+        }
+    }
+
+    public String[] continuousInput(int count) {
+        String[] input = new String[count];
+        for (int i = 0; i < count; i++) {
+            input[i] = this.input();
+        }
+        return input;
+    }
+
+    public void print(String data) {
         System.out.println(data);
     }
 
-    String input() {
-        return "";
+    public String input() {
+        return new Scanner(System.in).nextLine();
+    }
+
+    public void error(String data) {
+        System.out.println(ShellColors.ANSI_RED + data + ShellColors.ANSI_RESET);
     }
 }

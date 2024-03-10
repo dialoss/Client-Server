@@ -1,4 +1,4 @@
-package Server;
+package Server.Storage;
 
 interface ICollectionManager {
 //    boolean delete();

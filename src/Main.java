@@ -1,20 +1,12 @@
-//import Client.Client;
-//import Server.Server;
-
-import Client.Commands.Info;
+import Client.Client;
+import Server.Server;
 
 public class Main {
-    public static void main() {
-//        Server server = new Server();
-//        Client client = new Client();
-//
-//        server.run();
-//        client.run();
-        Class<Info> s = Info.class;
-        try {
-            s.getDeclaredConstructor().newInstance();
-        } catch (Exception ignored) {
+    public static void main(String[] args) {
+        Server server = new Server();
+        Client client = new Client();
 
-        }
+        server.run();
+        client.run();
     }
 }

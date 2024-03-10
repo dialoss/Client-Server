@@ -1,4 +1,4 @@
-package Models;
+package Server.Models;
 
 public class Location {
     private double x;

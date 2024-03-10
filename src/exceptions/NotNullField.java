@@ -1,7 +1,7 @@
 package exceptions;
 
 public class NotNullField extends RuntimeException {
-    NotNullField() {
+    public NotNullField() {
         super("Поле не может быть NULL");
     }
 }

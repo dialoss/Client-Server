@@ -9,26 +9,31 @@ import Server.Request;
 import Server.Response;
 import exceptions.CommandNotFound;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class ClientCommandManager {
     Map<String, ClientCommand> commands;
+    List<ClientCommand> history;
 
     ClientCommandManager(Callback callback) {
-        EventBus.on("response", callback);
+        EventBus.on("response", (Object data) -> {
+            Response response = (Response) data;
+            callback.call(response.getBody());
+        });
         this.commands = CommandManager.getClientCommands();
+        this.history = new ArrayList<>();
     }
 
-    public String execute(String commandName) throws CommandNotFound {
+    public void execute(String commandName) throws CommandNotFound {
         ClientCommand command = this.commands.get(commandName);
         if (command == null) throw new CommandNotFound();
-        if (command instanceof IRequestCommand) {
-            return this.request(new Request(commandName));
-        }
-        return command.getDescription();
+        this.request(new Request(commandName));
+        this.history.add(command);
     }
 
-    private Response request(Request request) {
+    private void request(Request request) {
         EventBus.emit("request", request);
     }
 }

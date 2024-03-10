@@ -11,8 +11,7 @@ public class CommandLineInterface extends IUserInterface {
     }
 
     private void processOutput(Object data) {
-        Response response = (Response) data;
-        this.shell.print(response.getBody());
+        this.shell.print((String) data);
     }
 
     private void processInput(String[] tokens) {

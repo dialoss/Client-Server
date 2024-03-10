@@ -1,4 +1,4 @@
-package Models;
+package Server.Models;
 
 public enum OrganizationType {
     COMMERCIAL,

@@ -28,9 +28,9 @@ public class CommandManager {
         return CommandManager.clientCommands;
     }
 
-    static public Response execute(String commandName) {
-        Command command = commands.get(commandName);
-        return new Response(command.execute(CommandManager.collectionManager));
+    static public Response execute(Request request) {
+        Command command = commands.get(request.getName());
+        return new Response(command.execute(CommandManager.collectionManager, request.getArguments()));
     }
 }
 

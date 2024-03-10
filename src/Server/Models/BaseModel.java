@@ -3,57 +3,37 @@ package Server.Models;
 import Server.Storage.OrderedItem;
 import org.json.simple.JSONObject;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
 import static Server.Models.FieldParameters.*;
-import static Server.Models.FieldParameters.AUTO_GENERATE;
-
-@FunctionalInterface
-interface IValidated {
-    boolean validate(Object value, Object limit);
-}
-
-enum FieldParameters {
-    NOT_NULL((value, limit) -> !(value == null)),
-    NOT_EMPTY((value, limit) -> ((String) value).length() > 0),
-    MIN((value, limit) -> ((Number) value).doubleValue() > ((Number) limit).doubleValue()),
-    MAX((value, limit) -> ((Number) value).doubleValue() < ((Number) limit).doubleValue()),
-    UNIQUE((value, limit)  -> ((Number) value).doubleValue() > ((Number) limit).doubleValue()),
-    AUTO_GENERATE((value, limit)  -> ((Number) value).doubleValue() > ((Number) limit).doubleValue());
-//    MIN_LENGTH,
-//    MAX_LENGTH;
-
-    final IValidated validator;
-
-    FieldParameters(IValidated validator) {
-        this.validator = validator;
-    }
-}
 
 class OrderedModel extends OrderedItem {
-    private final ModelField<Long> id = new ModelField<>((long) Math.floor(Math.random() * 10000), Map.of(
-            NOT_NULL, true,
-            MIN, 0,
-            UNIQUE, true,
-            AUTO_GENERATE, true
-    ));
+    public Map<String, ModelField<?>> fields;
+
+    public OrderedModel() {
+        this.fields = new HashMap<>();
+        this.fields.put("id", new ObjectBuilder<>(new ModelField<>(0L))
+                .set(NULL, true)
+                .set(MIN, 0)
+                .set(UNIQUE, true)
+                .set(AUTO_GENERATE, true).get());
+    }
 
     @Override
     public Integer getId() {
-        return Math.toIntExact(this.id.value);
+        return Math.toIntExact((long) this.fields.get("id").value);
     }
 }
 
-public class BaseModel extends OrderedModel {
+public class BaseModel extends OrderedModel implements IObjectBuilder {
 
-    public Map<String, ModelField<?>> fields;
     JSONObject raw;
 
     public BaseModel() {
-        this.fields = new HashMap<>();
+        super();
     }
+
     public BaseModel from(JSONObject object) {
         this.raw = object;
         return this;
@@ -91,4 +71,11 @@ public class BaseModel extends OrderedModel {
         }
         return result;
     }
+
+    @Override
+    public void addParameter(Object parameter, Object value) {
+        this.fields.put((String) parameter, (ModelField<?>) value);
+    }
 }
+
+

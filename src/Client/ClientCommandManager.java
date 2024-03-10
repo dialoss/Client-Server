@@ -25,10 +25,10 @@ public class ClientCommandManager {
         this.history = new ArrayList<>();
     }
 
-    public void execute(String commandName) throws CommandNotFound {
+    public void execute(String commandName, String[] arguments) throws CommandNotFound {
         ClientCommand command = this.commands.get(commandName);
         if (command == null) throw new CommandNotFound();
-        this.request(new Request(commandName));
+        this.request(new Request(commandName, arguments));
         this.history.add(command);
     }
 

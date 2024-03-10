@@ -10,7 +10,7 @@ public class Help extends Command {
 
 
     @Override
-    public String execute(CollectionManager collectionManager) {
+    public String execute(CollectionManager collectionManager, String[] args) {
         String info = "";
         for (Command command : CommandManager.get().values()) {
             info = info.concat(command.getDescription() + "\n");

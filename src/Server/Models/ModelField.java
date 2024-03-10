@@ -1,20 +1,19 @@
 package Server.Models;
 
-import java.util.Map;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-public class ModelField<T> {
-    Map<FieldParameters, Object> parameters;
-    public T value;
-
-    ModelField(T defaultValue, Map<FieldParameters, Object> parameters) {
-        this.parameters = parameters;
-        this.value = defaultValue;
-    }
-
-    public boolean validate(Object value) {
-        for (FieldParameters param : this.parameters.keySet()) {
-//            if (!param.validate(value)) return false;
-        }
-        return true;
-    }
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface ModelField {
+    boolean NULL() default false;
+    int MIN() default Integer.MIN_VALUE;
+    int MAX() default Integer.MAX_VALUE;
+    boolean AUTO_GENERATE() default false;
+    boolean UNIQUE() default false;
+    boolean NOT_EMPTY() default false;
+    int MAX_LENGTH() default Integer.MAX_VALUE;
+    int MIN_LENGTH() default Integer.MIN_VALUE;
 }

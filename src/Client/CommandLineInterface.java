@@ -2,6 +2,8 @@ package Client;
 
 import Server.Response;
 
+import java.util.Arrays;
+
 public class CommandLineInterface extends IUserInterface {
     Shell shell;
 
@@ -15,9 +17,8 @@ public class CommandLineInterface extends IUserInterface {
     }
 
     private void processInput(String[] tokens) {
-        String commandName = tokens[0];
         try {
-            this.manager.execute(commandName);
+            this.manager.execute(tokens[0], Arrays.copyOfRange(tokens, 1, tokens.length));
         } catch (RuntimeException e) {
             this.shell.error(e.toString());
         }

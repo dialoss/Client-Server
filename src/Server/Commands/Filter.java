@@ -13,7 +13,7 @@ public class Filter extends Command {
     }
 
     @Override
-    public String execute(CollectionManager manager) {
+    public String execute(CollectionManager manager, String[] args) {
         String result = "";
 //        for (Organization org : Stream.of(manager.getAll()).filter((Organization item) ->
 //                item.fields.get("name").value.toString().startsWith("hello"))) {

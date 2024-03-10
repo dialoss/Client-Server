@@ -8,7 +8,7 @@ public class Insert extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager) {
+    public String execute(CollectionManager collectionManager, String[] args) {
         return null;
     }
 }

@@ -1,37 +1,17 @@
 package Server.Models;
 
-import Server.Storage.OrderedItem;
-import org.json.simple.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static Server.Models.FieldParameters.*;
-
 public class Organization extends BaseModel {
-    public Organization() {
-        super();
-        this.fields = Map.of(
-                "name", new ModelField<>("", Map.of(
-                        NOT_NULL, true,
-                        NOT_EMPTY, true
-                )),
-                "coordinates", new ModelField<>(null, Map.of(
-                        NOT_NULL, true
-                )),
-                "creationDate", new ModelField<>(null, Map.of(
-                        NOT_NULL, true,
-                        AUTO_GENERATE, true
-                )),
-                "annualTurnover", new ModelField<>(0F, Map.of(
-                        MIN, 1
-                )),
-                "postalAddress", new ModelField<Address>(null, Map.of(
-                        NOT_NULL, true
-                ))
-        );
-//    private final ModelField<OrganizationType> type = new ModelField<>(null, Map.of(
-//            NOT_NULL, true
-//    ));
-    }
+    @ModelField(MIN = 0, UNIQUE = true, AUTO_GENERATE = true)
+    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    @ModelField(NOT_EMPTY = true)
+    private String name; //Поле не может быть null, Строка не может быть пустой
+    @ModelField(NULL = true)
+    private Coordinates coordinates; //Поле не может быть null
+    @ModelField(AUTO_GENERATE = true)
+    private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    @ModelField(MIN = 0)
+    private Integer annualTurnover; //Поле не может быть null, Значение поля должно быть больше 0
+    private String fullName; //Поле не может быть null
+    private OrganizationType type; //Поле не может быть null
+    private Address postalAddress; //Поле не может быть null
 }

@@ -1,80 +1,74 @@
 package Server.Models;
 
+import Server.Serializer.Serializer;
 import Server.Storage.OrderedItem;
+import exceptions.InvalidModelException;
+import exceptions.InvalidValue;
 import org.json.simple.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.Field;
 
-import static Server.Models.FieldParameters.*;
-
-class OrderedModel extends OrderedItem {
-    public Map<String, ModelField<?>> fields;
-
-    public OrderedModel() {
-        this.fields = new HashMap<>();
-        this.fields.put("id", new ObjectBuilder<>(new ModelField<>(0L))
-                .set(NULL, true)
-                .set(MIN, 0)
-                .set(UNIQUE, true)
-                .set(AUTO_GENERATE, true).get());
-    }
-
-    @Override
-    public Integer getId() {
-        return Math.toIntExact((long) this.fields.get("id").value);
+class Model {
+    Field[] getFields() {
+        return this.getClass().getDeclaredFields();
     }
 }
 
-public class BaseModel extends OrderedModel implements IObjectBuilder {
+class OrderedModel extends Model implements OrderedItem {
+    @ModelField(MIN = 0, UNIQUE = true, AUTO_INCREMENT = true)
+    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
 
+    @Override
+    public Integer getId() {
+        return this.id;
+    }
+}
+
+public class BaseModel extends OrderedModel {
     JSONObject raw;
+    Serializer serializer;
 
     public BaseModel() {
-        super();
+        this.serializer = new Serializer(this);
     }
 
     public BaseModel from(JSONObject object) {
         this.raw = object;
+        Class<? extends BaseModel> cl = this.getClass();
+        for (Object key : object.keySet()) {
+            try {
+                Field f = cl.getDeclaredField(key.toString());
+                f.setAccessible(true);
+                Object value = object.get(key);
+                if (value instanceof JSONObject) {
+                    f.set(this, );
+                } else {
+                    f.set(this, value);
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        this.isValid();
         return this;
     }
 
-    public boolean validate() {
-        for (Object key : this.raw.keySet()) {
-//            try {
-////                allFields[0].setAccessible(true);
-////                Object value = this.raw.get(key);
-////                ModelField<Object> val = (ModelField<Object>) allFields[0].get(this);
-////                if (!val.validate(value)) {
-////                    return false;
-//                }
-//            } catch (IllegalAccessException e) {
-//                throw new RuntimeException(e);
-//            }
-        }
-        return true;
+    public boolean isValid() throws InvalidModelException {
+        return this.serializer.validate();
     }
 
     @Override
     public String toString() {
-//        Field[] allFields = this.fields;
         String result = "";
-
-        for (String key : this.fields.keySet()) {
+        for (Field f : this.getFields()) {
             try {
-//                f.setAccessible(true);
-//                ModelField<Object> val = (ModelField<Object>) allFields[0].get(this);
-                result = result.concat(String.format("Поле: %s Значение: %s\n", key, this.fields.get(key).value));
+                f.setAccessible(true);
+                Object value = f.get(this);
+                result = result.concat(String.format("Поле: %s Значение: %s\n", f.getName(), value));
             } catch (Exception e) {
-
             }
         }
         return result;
-    }
-
-    @Override
-    public void addParameter(Object parameter, Object value) {
-        this.fields.put((String) parameter, (ModelField<?>) value);
     }
 }
 

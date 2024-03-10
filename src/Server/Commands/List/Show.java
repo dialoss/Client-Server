@@ -1,5 +1,6 @@
-package Server.Commands;
+package Server.Commands.List;
 
+import Server.Commands.Command;
 import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 

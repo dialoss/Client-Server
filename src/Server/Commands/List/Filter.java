@@ -1,9 +1,7 @@
-package Server.Commands;
+package Server.Commands.List;
 
-import Server.Models.Organization;
+import Server.Commands.Command;
 import Server.Storage.CollectionManager;
-
-import java.util.stream.Stream;
 
 public class Filter extends Command {
     public Filter() {

@@ -1,7 +1,8 @@
 package exceptions;
 
-public class NotNullField extends RuntimeException {
-    public NotNullField() {
-        super("Поле не может быть NULL");
+public class NotNullField extends InvalidModelException {
+
+    public NotNullField(String message) {
+        super(message);
     }
 }

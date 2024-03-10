@@ -1,4 +1,4 @@
-package Server.Commands;
+package Server.Commands.List;
 
 public class CommandArgument {
     private final String name;

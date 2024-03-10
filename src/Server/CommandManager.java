@@ -1,6 +1,7 @@
 package Server;
 
 import Server.Commands.*;
+import Server.Commands.List.*;
 import Server.Storage.CollectionManager;
 
 import java.util.HashMap;
@@ -32,14 +33,18 @@ public class CommandManager {
         Command command = commands.get(request.getName());
         return new Response(command.execute(CommandManager.collectionManager, request.getArguments()));
     }
-}
 
-class CommandManagerBuilder {
-    public static void build() {
-       CommandManager.add(Info.class);
-       CommandManager.add(Show.class);
-       CommandManager.add(Insert.class);
-       CommandManager.add(Help.class);
-        CommandManager.add(Filter.class);
+    static class CommandManagerBuilder {
+        public static void build() {
+            CommandManager.add(Info.class);
+            CommandManager.add(Show.class);
+            CommandManager.add(Insert.class);
+            CommandManager.add(Help.class);
+            CommandManager.add(Filter.class);
+        }
+    }
+
+    static {
+        CommandManagerBuilder.build();
     }
 }

@@ -2,29 +2,15 @@ package Server;
 
 
 import Common.EventBus.EventBus;
-import Server.Models.ModelBuilder;
-//import Server.Models.Organization;
+import Server.Models.Organization;
 import Server.Storage.ServerStorage;
-import org.json.simple.JSONObject;
-
-import java.util.Date;
-import java.util.Map;
-
-import static Server.Models.FieldParameters.*;
 
 public class Server {
     ServerStorage storage;
 
     public Server() {
         this.storage = new ServerStorage();
-        CommandManagerBuilder.build();
-        Organization org = new Organization()
-//        Organization test = new Organization(new JSONObject(Map.of(
-//                "name", "qweqweq",
-//                "annualTurnover", 1.4f,
-//                "type", "GOVERNMENT"
-//        )));
-//        test.validate();
+        this.storage.initialize();
     }
 
     private void request(Object data) {

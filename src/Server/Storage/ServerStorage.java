@@ -1,9 +1,17 @@
 package Server.Storage;
 
+import Server.Models.Organization;
+
 public class ServerStorage extends JSONStorage {
     CollectionManager manager;
     public ServerStorage() {
-        super("data/data.json");
+        super("data.json");
         this.manager = new CollectionManager();
+    }
+
+    public void initialize() {
+        Organization[] items = new Organization[1];
+        items[0] = (Organization) new Organization().from(this.read());
+        this.manager.init(items);
     }
 }

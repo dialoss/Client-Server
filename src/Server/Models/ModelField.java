@@ -15,5 +15,6 @@ public @interface ModelField {
     boolean UNIQUE() default false;
     boolean NOT_EMPTY() default false;
     int MAX_LENGTH() default Integer.MAX_VALUE;
-    int MIN_LENGTH() default Integer.MIN_VALUE;
+    int MIN_LENGTH() default 0;
+    boolean AUTO_INCREMENT() default false;
 }

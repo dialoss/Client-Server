@@ -1,7 +1,8 @@
 package exceptions;
 
-public class InvalidValue extends RuntimeException {
-    InvalidValue() {
-        super("Значение поля должно быть больше 0");
+public class InvalidValue extends InvalidModelException {
+
+    public InvalidValue(String message) {
+        super(message);
     }
 }

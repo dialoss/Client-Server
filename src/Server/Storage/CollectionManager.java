@@ -72,6 +72,7 @@ public class CollectionManager extends BaseCollectionManager<Organization> {
         }
         return items;
     }
+
     public Organization[] query(Predicate<Organization> predicate) {
         return (Organization[]) Stream.of(this.getAll()).filter(predicate).toArray();
     }
@@ -79,12 +80,15 @@ public class CollectionManager extends BaseCollectionManager<Organization> {
     public CollectionManager() {
         this.collection = new LinkedHashMap<>();
         this.info = new CollectionManager.Info();
-        this.fill();
     }
 
     public void fill() {
         for (int i = 0; i < 5; i++) {
             this.insert(new Organization());
         }
+    }
+
+    public void init(Organization[] items) {
+        for (Organization it : items) this.insert(it);
     }
 }

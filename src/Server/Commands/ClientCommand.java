@@ -1,5 +1,7 @@
 package Server.Commands;
 
+import Server.Commands.List.CommandArgument;
+
 public class ClientCommand {
     private final String name;
     private final String description;

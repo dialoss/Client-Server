@@ -1,12 +1,14 @@
 package Server.Commands;
 
-public class Info extends Command implements IOutputCommand {
+import Server.Storage.CollectionManager;
+
+public class Info extends Command {
     public Info() {
         super("info", "Выводит информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)");
     }
 
     @Override
-    public String execute() {
-        return "HELLO";
+    public String execute(CollectionManager collectionManager) {
+        return collectionManager.info.getInfo();
     }
 }

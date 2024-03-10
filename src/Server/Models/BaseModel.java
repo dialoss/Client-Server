@@ -1,14 +1,10 @@
 package Server.Models;
 
 import Server.Storage.OrderedItem;
-import exceptions.NotNullField;
 import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.RecordComponent;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import static Server.Models.FieldParameters.*;
@@ -36,25 +32,8 @@ enum FieldParameters {
     }
 }
 
-class ModelField<T> {
-    Map<FieldParameters, Object> parameters;
-    T value;
-
-    ModelField(T defaultValue, Map<FieldParameters, Object> parameters) {
-        this.parameters = parameters;
-        this.value = defaultValue;
-    }
-
-    public boolean validate(Object value) {
-        for (FieldParameters param : this.parameters.keySet()) {
-//            if (!param.validate(value)) return false;
-        }
-        return true;
-    }
-}
-
-class OrderedModel implements OrderedItem {
-    private final ModelField<Long> id = new ModelField<>(0L, Map.of(
+class OrderedModel extends OrderedItem {
+    private final ModelField<Long> id = new ModelField<>((long) Math.floor(Math.random() * 10000), Map.of(
             NOT_NULL, true,
             MIN, 0,
             UNIQUE, true,
@@ -69,26 +48,47 @@ class OrderedModel implements OrderedItem {
 
 public class BaseModel extends OrderedModel {
 
+    public Map<String, ModelField<?>> fields;
     JSONObject raw;
+
+    public BaseModel() {
+        this.fields = new HashMap<>();
+    }
     public BaseModel from(JSONObject object) {
         this.raw = object;
         return this;
     }
 
     public boolean validate() {
-        Field[] allFields = this.getClass().getDeclaredFields();
         for (Object key : this.raw.keySet()) {
-            try {
-                allFields[0].setAccessible(true);
-                Object value = this.raw.get(key);
-                ModelField<Object> val = (ModelField<Object>) allFields[0].get(this);
-                if (!val.validate(value)) {
-                    return false;
-                }
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
+//            try {
+////                allFields[0].setAccessible(true);
+////                Object value = this.raw.get(key);
+////                ModelField<Object> val = (ModelField<Object>) allFields[0].get(this);
+////                if (!val.validate(value)) {
+////                    return false;
+//                }
+//            } catch (IllegalAccessException e) {
+//                throw new RuntimeException(e);
+//            }
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+//        Field[] allFields = this.fields;
+        String result = "";
+
+        for (String key : this.fields.keySet()) {
+            try {
+//                f.setAccessible(true);
+//                ModelField<Object> val = (ModelField<Object>) allFields[0].get(this);
+                result = result.concat(String.format("Поле: %s Значение: %s\n", key, this.fields.get(key).value));
+            } catch (Exception e) {
+
+            }
+        }
+        return result;
     }
 }

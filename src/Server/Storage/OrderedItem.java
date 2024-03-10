@@ -1,5 +1,5 @@
 package Server.Storage;
 
-public interface OrderedItem {
-    Integer getId();
+public abstract class OrderedItem {
+    public abstract Integer getId();
 }

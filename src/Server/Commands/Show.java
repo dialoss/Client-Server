@@ -1,14 +1,19 @@
 package Server.Commands;
 
-import Server.Request;
+import Server.Models.Organization;
+import Server.Storage.CollectionManager;
 
-public class Show extends Command implements IRequestCommand {
+public class Show extends Command {
     public Show() {
         super("show", "Выводит все элементы коллекции в строковом представлении");
     }
 
     @Override
-    public Request execute() {
-        return null;
+    public String execute(CollectionManager manager) {
+        String result = "";
+        for (Organization org : manager.getAll()) {
+            result = result.concat(org.toString() + "\n");
+        }
+        return result;
     }
 }

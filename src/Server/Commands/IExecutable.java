@@ -1,5 +1,7 @@
 package Server.Commands;
 
+import Server.Storage.CollectionManager;
+
 public interface IExecutable {
-    Object execute();
+    String execute(CollectionManager collectionManager);
 }

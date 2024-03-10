@@ -4,7 +4,6 @@ import Common.EventBus.Callback;
 import Common.EventBus.EventBus;
 import Server.CommandManager;
 import Server.Commands.ClientCommand;
-import Server.Commands.IRequestCommand;
 import Server.Request;
 import Server.Response;
 import exceptions.CommandNotFound;

@@ -62,7 +62,7 @@ class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager
 
         Info() {
             this.initializationDate = new Date();
-            this.type = String.format("LinkedHashMap<Integer, %s>", "org");
+            this.type = BaseCollectionManager.this.collection.getClass().getAnnotation();
         }
 
         public Integer getSize() {
@@ -70,7 +70,7 @@ class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager
         }
 
         public String getInfo() {
-            return String.format("%s %s %s", this.type, this.initializationDate, this.getSize());
+            return String.format("Тип: %s\nДата: %s\nРазмер: %s", this.type, this.initializationDate, this.getSize());
         }
     }
 }

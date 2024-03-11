@@ -1,7 +1,9 @@
 package Server.Models;
 
+import Common.Tools;
 import Server.Serializer.Serializer;
 import Server.Storage.OrderedItem;
+import com.google.gson.Gson;
 import exceptions.InvalidModelException;
 import exceptions.InvalidValue;
 import org.json.simple.JSONObject;
@@ -24,7 +26,7 @@ public class BaseModel extends OrderedModel {
 
     public BaseModel() {
         this.serializer = new Serializer();
-        this.raw = JSONObject.
+        this.raw = new JSONObject();
     }
 
     public BaseModel from(JSONObject object, boolean validate) {

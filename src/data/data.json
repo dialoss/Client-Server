@@ -9,7 +9,11 @@
   "annualTurnover": 666,
   "type": "GOVERNMENT",
   "postalAddress": {
-    "street": "xxx",
+    "town": {
+      "x": 1.5,
+      "y": 2.2,
+      "z": 5.5
+    },
     "zipCode": "qwerty"
   }
 }

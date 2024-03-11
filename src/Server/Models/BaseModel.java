@@ -40,21 +40,29 @@ public class BaseModel extends OrderedModel {
                 Field f = cl.getDeclaredField(key.toString());
                 f.setAccessible(true);
                 Object value = object.get(key);
+                Class<?> valueType = f.getType();
+                boolean isInstance = BaseModel.class.isAssignableFrom(valueType);
+                boolean isObject = value instanceof JSONObject;
+                if (isInstance && !isObject) {
+                    throw new InvalidModelException(String.format("Значение %s не может быть присвоено полю %s", value, f.getName()));
+                }
+
                 if (value instanceof JSONObject) {
-                    f.set(this, );
+                    BaseModel m = (BaseModel) valueType.getDeclaredConstructor().newInstance();
+                    m = m.from((JSONObject) value);
+                    f.set(this, m);
                 } else {
+                    if (value instanceof Double && Float.class.isAssignableFrom(valueType)) {
+                        value = ((Double) value).floatValue();
+                    }
+                    this.serializer.validateField(f, value);
                     f.set(this, value);
                 }
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
-        this.isValid();
         return this;
-    }
-
-    public boolean isValid() throws InvalidModelException {
-        return this.serializer.validate();
     }
 
     @Override

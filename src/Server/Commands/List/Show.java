@@ -10,7 +10,7 @@ public class Show extends Command {
     }
 
     @Override
-    public String execute(CollectionManager manager, String[] args) {
+    public String execute(CollectionManager manager, CommandArgument[] args) {
         String result = "";
         for (Organization org : manager.getAll()) {
             result = result.concat(org.toString() + "\n");

@@ -1,10 +1,12 @@
 package Server;
 
+import Server.Commands.List.CommandArgument;
+
 public class Request {
-    private final String[] arguments;
+    private final CommandArgument[] arguments;
     private final String name;
 
-    public Request(String name, String[] arguments) {
+    public Request(String name, CommandArgument[] arguments) {
         this.name = name;
         this.arguments = arguments;
     }
@@ -13,7 +15,7 @@ public class Request {
         return this.name;
     }
 
-    public String[] getArguments() {
+    public CommandArgument[] getArguments() {
         return this.arguments;
     }
 }

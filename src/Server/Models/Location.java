@@ -1,9 +1,9 @@
 package Server.Models;
 
-public class Location {
+public class Location extends BaseModel {
     @ModelField(NULL = true)
-    private double x;
+    private Double x;
     @ModelField(NULL = true)
-    private float y;
+    private Float y;
     private Float z; //Поле не может быть null
 }

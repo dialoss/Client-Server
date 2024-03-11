@@ -4,11 +4,14 @@ import Common.EventBus.Callback;
 import Common.EventBus.EventBus;
 import Server.CommandManager;
 import Server.Commands.ClientCommand;
+import Server.Commands.List.CommandArgument;
 import Server.Request;
 import Server.Response;
 import exceptions.CommandNotFound;
 
+import java.lang.invoke.TypeDescriptor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +28,13 @@ public class ClientCommandManager {
         this.history = new ArrayList<>();
     }
 
-    public void execute(String commandName, String[] arguments) throws CommandNotFound {
+    public void execute(String commandName, Shell shell) throws CommandNotFound {
         ClientCommand command = this.commands.get(commandName);
         if (command == null) throw new CommandNotFound();
-        this.request(new Request(commandName, arguments));
+        for (CommandArgument arg : command.getArguments()) {
+            Object value = arg.type.cast(new Form(arg, shell).get());
+        }
+        this.request(new Request(commandName, new CommandArgument[]{}));
         this.history.add(command);
     }
 

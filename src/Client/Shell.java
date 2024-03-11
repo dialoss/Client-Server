@@ -21,20 +21,12 @@ enum ShellColors {
 }
 
 public class Shell {
-    public void start(ICallback<String[]> callback) {
+    public void start(ICallback<String> callback) {
         while (true) {
             String input = this.input();
             String[] tokens = input.split(" ");
-            callback.call(tokens);
+            callback.call(tokens[0]);
         }
-    }
-
-    public String[] continuousInput(int count) {
-        String[] input = new String[count];
-        for (int i = 0; i < count; i++) {
-            input[i] = this.input();
-        }
-        return input;
     }
 
     public void print(String data) {

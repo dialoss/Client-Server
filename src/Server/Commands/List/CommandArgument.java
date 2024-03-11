@@ -2,25 +2,28 @@ package Server.Commands.List;
 
 public class CommandArgument {
     private final String name;
-    private final String valueType;
+    public final Class<?> type;
+    private Object value;
 
-    CommandArgument(String name, String valueType) {
+    CommandArgument(String name, Class<?> type) {
         this.name = name;
-        this.valueType = valueType;
+        this.type = type;
     }
 
     public String getName() {
         return this.name;
     }
 
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    public Object getValue() {
+        return this.value;
+    }
+
     @Override
     public String toString() {
-        return this.name + " - " + this.valueType;
-    }
-}
-
-class ItemArgument extends CommandArgument {
-    ItemArgument() {
-        super("element", "Organization");
+        return this.name + " - " + this.type.getName();
     }
 }

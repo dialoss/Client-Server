@@ -9,7 +9,7 @@ public class Info extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, String[] args) {
+    public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         return collectionManager.info.getInfo();
     }
 }

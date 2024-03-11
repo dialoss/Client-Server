@@ -20,13 +20,14 @@ class FileStorage {
 
     String _read() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(this.source.toString());
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, 200);
+            FileInputStream f = new FileInputStream(this.source.toString());
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(f, 200);
             String data = "";
             int i;
             while((i = bufferedInputStream.read())!= -1){
                 data += (char)i;
             }
+            f.close();
             return data;
         } catch (FileNotFoundException e) {
         } catch (IOException e) {
@@ -36,11 +37,11 @@ class FileStorage {
 
     void _write(String data) {
         try {
-            FileOutputStream fos = new FileOutputStream(this.source.toFile());
-            PrintStream printStream = new PrintStream(fos);
+            FileOutputStream f = new FileOutputStream(this.source.toFile());
+            PrintStream printStream = new PrintStream(f);
             printStream.print(data);
-            fos.flush();
-            fos.close();
+            f.flush();
+            f.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -59,7 +60,6 @@ class JSONStorage extends FileStorage {
             return (JSONObject) parser.parse(text);
         } catch (ParseException e) {
             System.out.println(e);
-//            throw new RuntimeException(e);
         }
         return new JSONObject();
     }

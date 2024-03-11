@@ -4,7 +4,7 @@ import Server.Commands.List.CommandArgument;
 
 public class ClientCommand {
     private final String name;
-    private final String description;
+    public final String description;
     private final CommandArgument[] arguments;
 
     public ClientCommand(String name, String description) {
@@ -34,6 +34,10 @@ public class ClientCommand {
         }
 
         return description;
+    }
+
+    public CommandArgument[] getArguments() {
+        return this.arguments;
     }
 
     public String getName() {

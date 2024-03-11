@@ -1,6 +1,6 @@
 package Server.Commands.List;
 
-import Server.CommandManager;
+import Server.Commands.CommandManager;
 import Server.Commands.Command;
 import Server.Storage.CollectionManager;
 

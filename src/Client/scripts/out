@@ -1,0 +1,31 @@
+-> insert
+Заполните объект Server.Models.Organization
+Введите поле annualTurnover тип class java.lang.Float
+-> 2.2
+Введите поле name тип class java.lang.String
+-> privet
+Заполните объект Server.Models.Coordinates
+Введите поле x тип class java.lang.Double
+-> 12
+Введите поле y тип class java.lang.Double
+-> 13
+Введите поле type тип class Server.Models.OrganizationType
+Возможные значения:
+COMMERCIAL
+PUBLIC
+GOVERNMENT
+OPEN_JOINT_STOCK_COMPANY
+$VALUES
+-> PUBLI
+-> xx
+-> 1
+-> 1
+-> 2
+-> show
+Заполните объект Server.Models.Address
+Введите поле zipCode тип class java.lang.String
+Заполните объект Server.Models.Location
+Введите поле x тип class java.lang.Double
+Введите поле y тип class java.lang.Float
+Введите поле z тип class java.lang.Float
+

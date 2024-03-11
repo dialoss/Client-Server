@@ -3,7 +3,6 @@ package Server.Storage;
 import Server.Models.Organization;
 import org.json.simple.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -11,12 +10,15 @@ import java.util.stream.Stream;
 
 interface ICollectionManager<T> {
     void delete(T item);
+    void delete(Integer id);
 
     void update(T item);
 
     void insert(T item);
 
     T get(Integer id);
+
+    void clear();
 }
 
 class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager<T> {
@@ -27,6 +29,12 @@ class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager
     public void delete(T item) {
         this.collection.remove(item.getId());
     }
+
+    @Override
+    public void delete(Integer id) {
+        this.collection.remove(id);
+    }
+
 
     @Override
     public void update(T item) {
@@ -41,6 +49,11 @@ class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager
     @Override
     public T get(Integer id) {
         return this.collection.get(id);
+    }
+
+    @Override
+    public void clear() {
+        this.collection.clear();
     }
 
     public class Info {
@@ -62,7 +75,6 @@ class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager
     }
 }
 
-
 public class CollectionManager extends BaseCollectionManager<Organization> {
     public Organization[] getAll() {
         Organization[] items = new Organization[this.collection.size()];
@@ -73,19 +85,9 @@ public class CollectionManager extends BaseCollectionManager<Organization> {
         return items;
     }
 
-    public Organization[] query(Predicate<Organization> predicate) {
-        return (Organization[]) Stream.of(this.getAll()).filter(predicate).toArray();
-    }
-
     public CollectionManager() {
         this.collection = new LinkedHashMap<>();
         this.info = new CollectionManager.Info();
-    }
-
-    public void fill() {
-        for (int i = 0; i < 5; i++) {
-            this.insert(new Organization());
-        }
     }
 
     public void init(Organization[] items) {

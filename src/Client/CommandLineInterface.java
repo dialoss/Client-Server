@@ -1,5 +1,7 @@
 package Client;
 
+import Client.Shell.Shell;
+
 public class CommandLineInterface extends IUserInterface {
     Shell shell;
 

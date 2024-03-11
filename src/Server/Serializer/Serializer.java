@@ -41,25 +41,32 @@ class VMin extends Validator {
     @Override
     void validate(Field f, Object value, Object declaredValue) {
         if (!Double.class.isAssignableFrom(value.getClass())) return;
-        if ((Double) value <= (Double) declaredValue) throw new InvalidModelException("Значение поля должно быть больше 0");
+        if ((Double) value <= (Double) declaredValue)
+            throw new InvalidModelException("Значение поля должно быть больше 0");
     }
 }
 
 class VMaxLength extends Validator {
-    VMaxLength(){super("MAX_LENGTH");}
+    VMaxLength() {
+        super("MAX_LENGTH");
+    }
 
     @Override
     void validate(Field f, Object value, Object declaredValue) throws InvalidModelException {
-        if (((String)value).length() >= (Integer) declaredValue) throw new InvalidModelException("Слишком длинный поле");
+        if (((String) value).length() >= (Integer) declaredValue)
+            throw new InvalidModelException("Слишком длинный поле");
     }
 }
 
 class VMinLength extends Validator {
-    VMinLength(){super("MIN_LENGTH");}
+    VMinLength() {
+        super("MIN_LENGTH");
+    }
 
     @Override
     void validate(Field f, Object value, Object declaredValue) throws InvalidModelException {
-        if (((String)value).length() <= (Integer) declaredValue) throw new InvalidModelException("Слишком короткая поле");
+        if (((String) value).length() <= (Integer) declaredValue)
+            throw new InvalidModelException("Слишком короткая поле");
     }
 }
 
@@ -71,14 +78,9 @@ class VNotEmpty extends Validator {
 
     @Override
     void validate(Field f, Object value, Object declaredValue) throws InvalidModelException {
-        if (((String)value).length() == 0) throw new InvalidModelException("Пустая строка");
+        if (((String) value).length() == 0) throw new InvalidModelException("Пустая строка");
     }
 }
-
-//         UNIQUE,
-//         AUTO_GENERATE,
-//         MIN_LENGTH,
-//         ;
 
 class Validators {
     static HashMap<String, Validator> validators = new HashMap<>();
@@ -89,6 +91,7 @@ class Validators {
         Validators.add(new VMaxLength());
         Validators.add(new VMinLength());
         Validators.add(new VNotEmpty());
+
     }
 
     static Validator get(String name) {
@@ -105,20 +108,22 @@ class Validators {
 }
 
 public class Serializer {
-    public void serializeValue(Class<?> type, Object value) throws NoSuchMethodException {
+    public Object serializeValue(Class<?> type, Object value) throws NoSuchMethodException {
         if (!value.getClass().isAssignableFrom(type)) {
             Method method = type.getDeclaredMethod("valueOf", String.class);
             try {
-                Object obj = method.invoke(null, value);
+                return method.invoke(null, value);
             } catch (Exception e) {
                 throw new InvalidValue(value, type.getName());
             }
         }
+        return value;
     }
 
-    public void serializeField(Field f, Object value) throws Exception {
-        this.serializeValue(f.getType(), value);
+    public Object serializeField(Field f, Object value) throws Exception {
+        Object typedValue = this.serializeValue(f.getType(), value);
         this.validateField(f, value);
+        return typedValue;
     }
 
     public ModelField getParameters(Field f) {
@@ -140,6 +145,7 @@ public class Serializer {
                             params.getClass().getDeclaredMethod(param).invoke(params));
                 }
             }
+        } catch (ClassCastException e) {
         } catch (Exception e) {
             throw e;
         }

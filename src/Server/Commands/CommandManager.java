@@ -1,7 +1,9 @@
-package Server;
+package Server.Commands;
 
-import Server.Commands.*;
 import Server.Commands.List.*;
+import Server.Request;
+import Server.Response;
+import Server.Status;
 import Server.Storage.CollectionManager;
 
 import java.util.HashMap;
@@ -47,6 +49,9 @@ public class CommandManager {
             CommandManager.add(Help.class);
             CommandManager.add(Filter.class);
             CommandManager.add(ExecuteScript.class);
+            CommandManager.add(Clear.class);
+            CommandManager.add(Save.class);
+            CommandManager.add(Fill.class);
         }
     }
 

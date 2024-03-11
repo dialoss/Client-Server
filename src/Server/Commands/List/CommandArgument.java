@@ -2,12 +2,20 @@ package Server.Commands.List;
 
 public class CommandArgument {
     private final String name;
+    private final boolean required;
     public final Class<?> type;
     private Object value;
 
     CommandArgument(String name, Class<?> type) {
         this.name = name;
         this.type = type;
+        this.required = true;
+    }
+
+    CommandArgument(String name, Class<?> type, boolean required) {
+        this.name = name;
+        this.type = type;
+        this.required = required;
     }
 
     public String getName() {

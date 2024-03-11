@@ -8,13 +8,7 @@ import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
 
-class Model {
-    Field[] getFields() {
-        return this.getClass().getDeclaredFields();
-    }
-}
-
-class OrderedModel extends Model implements OrderedItem {
+class OrderedModel implements OrderedItem {
     @ModelField(MIN = 0, UNIQUE = true, AUTO_INCREMENT = true)
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
 
@@ -25,11 +19,12 @@ class OrderedModel extends Model implements OrderedItem {
 }
 
 public class BaseModel extends OrderedModel {
-    JSONObject raw;
+    public JSONObject raw;
     Serializer serializer;
 
     public BaseModel() {
         this.serializer = new Serializer();
+        this.raw = JSONObject.
     }
 
     public BaseModel from(JSONObject object, boolean validate) {
@@ -71,17 +66,7 @@ public class BaseModel extends OrderedModel {
 
     @Override
     public String toString() {
-        String result = "";
         return this.raw.toString();
-//        for (Field f : this.getFields()) {
-//            try {
-//                f.setAccessible(true);
-//                Object value = f.get(this);
-////                result = result.concat(String.format("Поле: %s Значение: %s\n", f.getName(), value));
-//            } catch (Exception e) {
-//            }
-//        }
-//        return result;
     }
 }
 

@@ -15,6 +15,7 @@ public class Show extends Command {
         for (Organization org : manager.getAll()) {
             result = result.concat(org.toString() + "\n");
         }
+        if (result.equals("")) return "Нет элементов";
         return result;
     }
 }

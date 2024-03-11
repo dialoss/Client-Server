@@ -1,8 +1,10 @@
 package Client;
 
+import Client.Shell.Shell;
 import Common.EventBus.Callback;
 import Common.EventBus.EventBus;
-import Server.CommandManager;
+import Common.Form;
+import Server.Commands.CommandManager;
 import Server.Commands.ClientCommand;
 import Server.Commands.List.CommandArgument;
 import Server.Models.Organization;
@@ -11,7 +13,6 @@ import Server.Response;
 import exceptions.CommandNotFound;
 import org.json.simple.JSONObject;
 
-import java.lang.invoke.TypeDescriptor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,8 +40,6 @@ public class ClientCommandManager {
             Object value = new Form(arg, shell).get();
             if (value instanceof JSONObject) {
                 value = new Organization().from((JSONObject) value, false);
-            } else {
-                value = arg.type.cast(value);
             }
             arguments[i++].setValue(value);
         }

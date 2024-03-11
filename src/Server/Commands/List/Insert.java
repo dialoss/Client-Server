@@ -13,6 +13,6 @@ public class Insert extends Command {
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         collectionManager.insert((Organization) args[0].getValue());
-        return "";
+        return "Ёлемент добавлен";
     }
 }

@@ -1,5 +1,7 @@
-package Client;
+package Common;
 
+import Client.Shell.Shell;
+import Client.Shell.ShellColors;
 import Server.Commands.List.CommandArgument;
 import Server.Models.BaseModel;
 import Server.Models.ModelField;
@@ -12,7 +14,7 @@ public class Form {
     Shell shell;
     CommandArgument argument;
 
-    Form(CommandArgument argument, Shell shell) {
+    public Form(CommandArgument argument, Shell shell) {
         this.shell = shell;
         this.argument = argument;
     }
@@ -26,13 +28,14 @@ public class Form {
         Serializer s = new Serializer();
         while (true) {
             String val = this.shell.input();
+            if (val == null) break;
             try {
-                s.serializeValue(type, val);
-                return val;
+                return s.serializeValue(type, val);
             } catch (Exception e) {
                 this.shell.error(e.toString());
             }
         }
+        return null;
     }
 
     private Object getModel(Class<?> cl) {
@@ -69,13 +72,14 @@ public class Form {
         }
         while (true) {
             String val = this.shell.input();
+            if (val == null) break;
             try {
-                s.serializeField(f, val);
-                return val;
+                return s.serializeField(f, val);
             } catch (Exception e) {
                 this.shell.error(e.toString());
             }
         }
+        return null;
     }
 
     public Object get() {

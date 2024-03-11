@@ -29,11 +29,10 @@ public class BaseModel extends OrderedModel {
     Serializer serializer;
 
     public BaseModel() {
-        this.serializer = new Serializer(this);
+        this.serializer = new Serializer();
     }
 
-    public BaseModel from(JSONObject object) {
-        this.raw = object;
+    public BaseModel from(JSONObject object, boolean validate) {
         Class<? extends BaseModel> cl = this.getClass();
         for (Object key : object.keySet()) {
             try {
@@ -49,34 +48,40 @@ public class BaseModel extends OrderedModel {
 
                 if (value instanceof JSONObject) {
                     BaseModel m = (BaseModel) valueType.getDeclaredConstructor().newInstance();
-                    m = m.from((JSONObject) value);
+                    m = m.from((JSONObject) value, true);
                     f.set(this, m);
                 } else {
                     if (value instanceof Double && Float.class.isAssignableFrom(valueType)) {
                         value = ((Double) value).floatValue();
                     }
-                    this.serializer.validateField(f, value);
+                    if (validate) this.serializer.validateField(f, value);
                     f.set(this, value);
                 }
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
+        this.raw = object;
         return this;
+    }
+
+    public static boolean isModel(Class<?> type) {
+        return BaseModel.class.isAssignableFrom(type);
     }
 
     @Override
     public String toString() {
         String result = "";
-        for (Field f : this.getFields()) {
-            try {
-                f.setAccessible(true);
-                Object value = f.get(this);
-                result = result.concat(String.format("Поле: %s Значение: %s\n", f.getName(), value));
-            } catch (Exception e) {
-            }
-        }
-        return result;
+        return this.raw.toString();
+//        for (Field f : this.getFields()) {
+//            try {
+//                f.setAccessible(true);
+//                Object value = f.get(this);
+////                result = result.concat(String.format("Поле: %s Значение: %s\n", f.getName(), value));
+//            } catch (Exception e) {
+//            }
+//        }
+//        return result;
     }
 }
 

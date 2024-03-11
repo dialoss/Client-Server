@@ -5,9 +5,11 @@ import Common.EventBus.EventBus;
 import Server.CommandManager;
 import Server.Commands.ClientCommand;
 import Server.Commands.List.CommandArgument;
+import Server.Models.Organization;
 import Server.Request;
 import Server.Response;
 import exceptions.CommandNotFound;
+import org.json.simple.JSONObject;
 
 import java.lang.invoke.TypeDescriptor;
 import java.util.ArrayList;
@@ -31,10 +33,18 @@ public class ClientCommandManager {
     public void execute(String commandName, Shell shell) throws CommandNotFound {
         ClientCommand command = this.commands.get(commandName);
         if (command == null) throw new CommandNotFound();
+        CommandArgument[] arguments = Arrays.copyOf(command.getArguments(), command.getArguments().length);
+        int i = 0;
         for (CommandArgument arg : command.getArguments()) {
-            Object value = arg.type.cast(new Form(arg, shell).get());
+            Object value = new Form(arg, shell).get();
+            if (value instanceof JSONObject) {
+                value = new Organization().from((JSONObject) value, false);
+            } else {
+                value = arg.type.cast(value);
+            }
+            arguments[i++].setValue(value);
         }
-        this.request(new Request(commandName, new CommandArgument[]{}));
+        this.request(new Request(commandName, arguments));
         this.history.add(command);
     }
 

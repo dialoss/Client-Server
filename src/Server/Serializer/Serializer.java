@@ -105,35 +105,39 @@ class Validators {
 }
 
 public class Serializer {
-    BaseModel model;
+    public void serializeValue(Class<?> type, Object value) throws NoSuchMethodException {
+        if (!value.getClass().isAssignableFrom(type)) {
+            Method method = type.getDeclaredMethod("valueOf", String.class);
+            try {
+                Object obj = method.invoke(null, value);
+            } catch (Exception e) {
+                throw new InvalidValue(value, type.getName());
+            }
+        }
+    }
 
-    public Serializer(BaseModel model) {
-        this.model = model;
+    public void serializeField(Field f, Object value) throws Exception {
+        this.serializeValue(f.getType(), value);
+        this.validateField(f, value);
+    }
+
+    public ModelField getParameters(Field f) {
+        if (f.isAnnotationPresent(ModelField.class)) {
+            return f.getAnnotation(ModelField.class);
+        }
+        return null;
     }
 
     public void validateField(Field f, Object value) throws Exception {
         try {
-            if (!value.getClass().isAssignableFrom(f.getType())) {
-                Method method = f.getType().getDeclaredMethod("valueOf", String.class);
-                if (method != null) {
-                    try {
-                        Object obj = method.invoke(null, value);
-                    } catch (Exception e) {
-                        throw new InvalidValue(value, f.getName());
-                    }
-                }
-            }
-
-
-            if (f.isAnnotationPresent(ModelField.class)) {
-                ModelField params = f.getAnnotation(ModelField.class);
-                for (String param : Validators.getParams()) {
-                    if (Validators.get(param) != null) {
-                        Validators.get(param).validate(
-                                f,
-                                value,
-                                params.getClass().getDeclaredMethod(param).invoke(params));
-                    }
+            ModelField params = this.getParameters(f);
+            if (params == null) return;
+            for (String param : Validators.getParams()) {
+                if (Validators.get(param) != null) {
+                    Validators.get(param).validate(
+                            f,
+                            value,
+                            params.getClass().getDeclaredMethod(param).invoke(params));
                 }
             }
         } catch (Exception e) {

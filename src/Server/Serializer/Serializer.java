@@ -10,7 +10,16 @@ import java.util.Date;
 
 
 public class Serializer {
-    public Object serializeValue(Class<?> type, Object value) throws NoSuchMethodException {
+    public Object serializeValue(Class<?> type, Object value) {
+        return this.serializeValue(type, value, type.getName());
+    }
+
+    public Object serializeValue(Field f, Object value) {
+        Class<?> type = f.getType();
+        return this.serializeValue(type, value, f.getName() + " " + type.getName());
+    }
+
+    private Object serializeValue(Class<?> type, Object value, String out) {
         if (!value.getClass().isAssignableFrom(type)) {
             try {
                 if (Date.class.isAssignableFrom(type)) {
@@ -19,7 +28,7 @@ public class Serializer {
                 Method method = type.getDeclaredMethod("valueOf", String.class);
                 return method.invoke(null, value);
             } catch (Exception e) {
-                throw new InvalidValue(value, type.getName());
+                throw new InvalidValue(value, out);
             }
         }
         return value;
@@ -27,7 +36,7 @@ public class Serializer {
 
     public Object serializeField(Field f, Object value) throws Exception {
         this.validateField(f, value);
-        return this.serializeValue(f.getType(), value);
+        return this.serializeValue(f, value);
     }
 
     public ModelField getParameters(Field f) {

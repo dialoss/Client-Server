@@ -40,7 +40,7 @@ public class BaseModel extends OrderedModel {
                     m = m.from((JSONObject) value);
                     f.set(this, m);
                 } else {
-                    value = this.serializer.serializeField(f, value.toString());
+                    value = this.serializer.serializeField(f, String.valueOf(value));
                     f.set(this, value);
                 }
             } catch (Exception e) {

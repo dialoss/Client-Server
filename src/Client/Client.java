@@ -1,7 +1,7 @@
 package Client;
 
 public class Client {
-    IUserInterface userInterface;
+    UserInterface userInterface;
 
     public Client() {
         this.userInterface = new CommandLineInterface();

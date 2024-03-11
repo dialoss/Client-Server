@@ -1,18 +1,19 @@
-package Server;
+package Server.Connection;
 
+import Server.Commands.Command;
 import Server.Commands.List.CommandArgument;
 
 public class Request {
     private final CommandArgument[] arguments;
-    private final String name;
+    private final Command command;
 
-    public Request(String name, CommandArgument[] arguments) {
-        this.name = name;
+    public Request(Command command, CommandArgument[] arguments) {
+        this.command = command;
         this.arguments = arguments;
     }
 
     public String getName() {
-        return this.name;
+        return this.command.getName();
     }
 
     public CommandArgument[] getArguments() {

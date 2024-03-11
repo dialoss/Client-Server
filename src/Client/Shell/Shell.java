@@ -4,14 +4,10 @@ import Common.FileStorage;
 import Server.Commands.ICallback;
 
 import java.util.Scanner;
-
-enum ShellMode {
-    INTERACTIVE,
-    SCRIPT,
-}
+import java.util.concurrent.Callable;
 
 public class Shell {
-    ShellMode mode = ShellMode.INTERACTIVE;
+    public ShellMode mode = ShellMode.INTERACTIVE;
     Scanner scanner;
     FileStorage storage;
 
@@ -29,6 +25,7 @@ public class Shell {
         this.success("Скрипт исполнен!");
         this.storage._close();
         this.scanner = new Scanner(System.in);
+        this.mode = ShellMode.INTERACTIVE;
     }
 
     public void start(ICallback<String> callback) {
@@ -36,7 +33,7 @@ public class Shell {
             String input = this.input();
             if (input == null) {
                 this.stopScript();
-                return;
+                input = "";
             }
             String[] tokens = input.split(" ");
             callback.call(tokens[0]);
@@ -48,11 +45,22 @@ public class Shell {
         else this.storage._add(data.replaceAll("\u001B\\[[\\d;]*[^\\d;]",""));
     }
 
-    public String input() {
+    private String shellInput(Callable<?> method) {
         if (!this.scanner.hasNext()) return null;
-        String value = this.scanner.nextLine();
-        if (this.mode == ShellMode.SCRIPT) this.print("-> " + value);
-        return value;
+        try {
+            String value = (String) method.call();
+            if (this.mode == ShellMode.SCRIPT) this.print("-> " + value);
+            return value;
+        } catch (Exception e) {}
+        return "";
+    }
+
+    public String inputLine() {
+        return this.shellInput(this.scanner::nextLine);
+    }
+
+    public String input() {
+        return this.shellInput(this.scanner::next);
     }
 
     public void error(String data) {

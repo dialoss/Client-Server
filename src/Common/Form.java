@@ -2,10 +2,12 @@ package Common;
 
 import Client.Shell.Shell;
 import Client.Shell.ShellColors;
+import Client.Shell.ShellMode;
 import Server.Commands.List.CommandArgument;
 import Server.Models.BaseModel;
 import Server.Models.ModelField;
 import Server.Serializer.Serializer;
+import Common.Exceptions.ScriptRuntimeException;
 import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
@@ -26,14 +28,12 @@ public class Form {
 
     private Object getValue(Class<?> type) {
         Serializer s = new Serializer();
-        while (true) {
-            String val = this.shell.input();
-            if (val == null) break;
-            try {
-                return s.serializeValue(type, val);
-            } catch (Exception e) {
-                this.shell.error(e.toString());
-            }
+        String val = this.shell.input();
+        if (val == null) return null;
+        try {
+            return s.serializeValue(type, val);
+        } catch (Exception e) {
+            this.shell.error(e.toString());
         }
         return null;
     }
@@ -77,6 +77,9 @@ public class Form {
                 return s.serializeField(f, val);
             } catch (Exception e) {
                 this.shell.error(e.toString());
+            }
+            if (this.shell.mode == ShellMode.SCRIPT) {
+                throw new ScriptRuntimeException();
             }
         }
         return null;

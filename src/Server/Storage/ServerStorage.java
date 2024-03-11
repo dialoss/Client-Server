@@ -5,7 +5,7 @@ import Server.Models.Organization;
 public class ServerStorage extends JSONStorage {
     CollectionManager manager;
     public ServerStorage() {
-        super("data.json");
+        super("Common.data.json");
         this.manager = new CollectionManager();
     }
 

@@ -1,9 +1,14 @@
 package Server.Commands.List;
 
+import Common.Tools;
 import Server.Commands.Command;
+import Server.Commands.ServerCommand;
+import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 
-public class Filter extends Command {
+import java.util.stream.Stream;
+
+public class Filter extends ServerCommand {
     public Filter() {
         super("filter_starts_with_name",
                 "¬ыводит элементы, значение пол€ name которых начинаетс€ с заданной подстроки",
@@ -12,11 +17,8 @@ public class Filter extends Command {
 
     @Override
     public String execute(CollectionManager manager, CommandArgument[] args) {
-        String result = "";
-//        for (Organization org : Stream.of(manager.getAll()).filter((Organization item) ->
-//                item.fields.get("name").value.toString().startsWith("hello"))) {
-//            result = result.concat(org.toString() + "\n");
-//        }
-        return result;
+        return Tools.itemsToString(
+                Stream.of(manager.getAll()).filter((Organization item) ->
+                        item.name.startsWith("hello")).toArray());
     }
 }

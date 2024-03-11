@@ -3,9 +3,7 @@ package Server.Models;
 import Common.Tools;
 import Server.Serializer.Serializer;
 import Server.Storage.OrderedItem;
-import com.google.gson.Gson;
-import exceptions.InvalidModelException;
-import exceptions.InvalidValue;
+import Common.Exceptions.InvalidValue;
 import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
@@ -68,7 +66,8 @@ public class BaseModel extends OrderedModel {
 
     @Override
     public String toString() {
-        return this.raw.toString();
+        System.out.println(this.raw.toString());
+        return Tools.beautifyJSON(this.raw.toString());
     }
 }
 

@@ -1,3 +1,4 @@
+Скрипт запущен
 -> insert
 Заполните объект Server.Models.Organization
 Введите поле annualTurnover тип class java.lang.Float
@@ -16,16 +17,17 @@ PUBLIC
 GOVERNMENT
 OPEN_JOINT_STOCK_COMPANY
 $VALUES
--> PUBLI
--> xx
--> 1
--> 1
--> 2
--> show
+-> PUBLIC
 Заполните объект Server.Models.Address
 Введите поле zipCode тип class java.lang.String
+-> xx
 Заполните объект Server.Models.Location
 Введите поле x тип class java.lang.Double
+-> 1
 Введите поле y тип class java.lang.Float
+-> 1
 Введите поле z тип class java.lang.Float
-
+-> 2
+Элемент добавлен
+-> show
+com.google.gson.stream.MalformedJsonException: Unterminated object at line 1 column 159 path $.creationDate

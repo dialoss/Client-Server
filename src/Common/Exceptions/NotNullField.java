@@ -1,4 +1,4 @@
-package exceptions;
+package Common.Exceptions;
 
 public class NotNullField extends InvalidModelException {
 

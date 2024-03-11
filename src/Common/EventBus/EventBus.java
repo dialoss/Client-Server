@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EventBus {
-    private static final HashMap<String, Callback> callbacks = new HashMap<>();
+    public static final HashMap<String, Callback> callbacks = new HashMap<>();
 
     public static void on(String event, Callback callback) {
         EventBus.callbacks.put(event, callback);

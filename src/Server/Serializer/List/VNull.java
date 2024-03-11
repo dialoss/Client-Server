@@ -1,6 +1,6 @@
 package Server.Serializer.List;
 
-import exceptions.NotNullField;
+import Common.Exceptions.NotNullField;
 
 import java.lang.reflect.Field;
 

@@ -1,21 +1,28 @@
 package Server.Commands.List;
 
+enum ArgumentPosition {
+    LINE,
+    COMPLEX,
+}
+
 public class CommandArgument {
     private final String name;
     private final boolean required;
     public final Class<?> type;
     private Object value;
+    public ArgumentPosition position = ArgumentPosition.LINE;
 
-    CommandArgument(String name, Class<?> type) {
+    CommandArgument(String name, Class<?> type, ArgumentPosition position) {
         this.name = name;
         this.type = type;
         this.required = true;
+        this.position = position;
     }
 
-    CommandArgument(String name, Class<?> type, boolean required) {
+    public CommandArgument(String name, Class<?> type) {
         this.name = name;
         this.type = type;
-        this.required = required;
+        this.required = true;
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-package exceptions;
+package Common.Exceptions;
 
 public class InvalidStringLength extends RuntimeException {
     InvalidStringLength() {

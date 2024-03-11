@@ -1,6 +1,6 @@
 package Server.Serializer.List;
 
-import exceptions.InvalidModelException;
+import Common.Exceptions.InvalidModelException;
 
 import java.lang.reflect.Field;
 

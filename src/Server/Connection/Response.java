@@ -1,4 +1,4 @@
-package Server;
+package Server.Connection;
 
 public class Response {
     private final String body;

@@ -1,15 +1,11 @@
 package Server.Storage;
 
 import Server.Models.Organization;
-import org.json.simple.JSONObject;
-
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-
 
 interface ICollectionManager<T> {
     void delete(T item);
+
     void delete(Integer id);
 
     void update(T item);
@@ -19,6 +15,7 @@ interface ICollectionManager<T> {
     T get(Integer id);
 
     void clear();
+    void update(Integer id, T item);
 }
 
 class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager<T> {
@@ -35,10 +32,14 @@ class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager
         this.collection.remove(id);
     }
 
-
     @Override
     public void update(T item) {
         this.collection.replace(item.getId(), item);
+    }
+
+    @Override
+    public void update(Integer id, T item) {
+        this.collection.replace(id, item);
     }
 
     @Override
@@ -62,7 +63,7 @@ class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager
 
         Info() {
             this.initializationDate = new Date();
-            this.type = BaseCollectionManager.this.collection.getClass().getAnnotation();
+            this.type = BaseCollectionManager.this.collection.getClass().getName() + Organization.class;
         }
 
         public Integer getSize() {

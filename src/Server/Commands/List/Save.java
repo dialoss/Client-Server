@@ -1,6 +1,7 @@
 package Server.Commands.List;
 
 import Server.Commands.Command;
+import Server.Commands.ServerCommand;
 import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 import Server.Storage.JSONStorage;
@@ -8,7 +9,7 @@ import org.json.simple.JSONObject;
 
 import java.util.stream.Stream;
 
-public class Save extends Command {
+public class Save extends ServerCommand {
     public Save() {
         super("save", "Сохраняет коллекцию в файл",
                 new CommandArgument[]{new CommandArgument("filename", String.class)});

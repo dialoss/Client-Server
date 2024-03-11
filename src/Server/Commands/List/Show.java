@@ -1,10 +1,11 @@
 package Server.Commands.List;
 
 import Server.Commands.Command;
+import Server.Commands.ServerCommand;
 import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 
-public class Show extends Command {
+public class Show extends ServerCommand {
     public Show() {
         super("show", "Выводит все элементы коллекции в строковом представлении");
     }

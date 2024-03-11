@@ -10,7 +10,7 @@ import org.json.simple.parser.ParseException;
 
 public class JSONStorage extends FileStorage {
     public JSONStorage(String filename) {
-        super("src/data/" + filename);
+        super("src/Common/data/" + filename);
     }
 
     public JSONObject read() {

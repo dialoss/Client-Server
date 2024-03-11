@@ -1,14 +1,10 @@
 package Server.Serializer;
 
-import Server.Models.BaseModel;
 import Server.Models.ModelField;
-import exceptions.InvalidModelException;
-import exceptions.InvalidValue;
-import exceptions.NotNullField;
+import Common.Exceptions.InvalidValue;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 
 public class Serializer {
     public Object serializeValue(Class<?> type, Object value) throws NoSuchMethodException {

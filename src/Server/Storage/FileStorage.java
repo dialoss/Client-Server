@@ -6,16 +6,14 @@ import java.nio.file.Paths;
 
 public class FileStorage {
     protected Path source;
-    protected FileAppend fileAppend;
     private static String BASE_PATH = "src/Common/data/";
 
     public FileStorage() {
-        this.changeSource(BASE_PATH + "data.json");
+        this.changeSource("data.json");
     }
 
     public FileStorage changeSource(String path) {
-        this.source = Paths.get(path).toAbsolutePath();
-        this.fileAppend = new FileAppend(this.source);
+        this.source = Paths.get(BASE_PATH + path).toAbsolutePath();
         return this;
     }
 
@@ -46,9 +44,5 @@ public class FileStorage {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-    }
-
-    public void _close() {
-        this.fileAppend.out.close();
     }
 }

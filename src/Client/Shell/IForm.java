@@ -1,7 +1,7 @@
 package Client.Shell;
 
 public abstract class IForm {
-    protected IOdevice device;
+    public IOdevice device;
 
     public IForm(IOdevice device) {
         this.device = device;

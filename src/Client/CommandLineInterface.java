@@ -1,10 +1,8 @@
 package Client;
 
-import Client.Shell.Shell;
-import Client.Shell.ShellForm;
+import Client.Shell.*;
 import Common.EventBus.Callback;
 import Common.Exceptions.CommandNotFound;
-import Client.Shell.Form;
 import Server.Commands.Command;
 import Server.Commands.CommandManager;
 import Server.Commands.List.CommandArgument;
@@ -13,13 +11,13 @@ import Server.Connection.Request;
 import java.util.Arrays;
 
 public class CommandLineInterface implements UserInterface {
-    private final ShellForm shellForm;
-    private final Shell shell;
+    private final IForm shellForm;
+    private final IOdevice shell;
     private Callback<Request> APICallback;
 
-    CommandLineInterface() {
-        this.shell = new Shell();
-        this.shellForm = new ShellForm(shell);
+    public CommandLineInterface(IForm shellForm) {
+        this.shell = shellForm.device;
+        this.shellForm = shellForm;
     }
 
     private CommandArgument[] getArguments(Command command) {

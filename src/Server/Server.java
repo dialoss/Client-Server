@@ -3,6 +3,7 @@ package Server;
 
 import Common.EventBus.EventBus;
 import Server.Commands.CommandManager;
+import Server.Commands.List.CommandArgument;
 import Server.Connection.Request;
 import Server.Connection.Response;
 import Server.Storage.StorageConnector;
@@ -16,6 +17,9 @@ public class Server {
 
     public void run() {
         EventBus.on("request", this::request);
-        StorageConnector.init();
+        CommandArgument a = new CommandArgument("", String.class);
+        a.setValue("test");
+        CommandManager.get("script").execute(StorageConnector.manager,
+                new CommandArgument[]{a});
     }
 }

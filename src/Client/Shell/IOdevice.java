@@ -1,5 +1,7 @@
 package Client.Shell;
 
+import Server.Commands.ICallback;
+
 import java.util.Scanner;
 import java.util.concurrent.Callable;
 
@@ -23,7 +25,7 @@ public abstract class IOdevice {
         return this.processInput(this.scanner::next);
     }
 
-    protected abstract void error(String message);
+    public abstract void error(String message);
 
     private String processInput(Callable<?> method) {
         if (!this.scanner.hasNext()) return null;
@@ -32,5 +34,16 @@ public abstract class IOdevice {
         } catch (Exception e) {
         }
         return "";
+    }
+
+    public void start(ICallback<String> callback) {
+        while (true) {
+            String input = this.input();
+            if (input == null) {
+                break;
+            }
+            String[] tokens = input.split(" ");
+            callback.call(tokens[0]);
+        }
     }
 }

@@ -8,14 +8,6 @@ public class Shell extends IOdevice {
         super(new Scanner(System.in));
     }
 
-    public void start(ICallback<String> callback) {
-        while (true) {
-            String input = this.input();
-            String[] tokens = input.split(" ");
-            callback.call(tokens[0]);
-        }
-    }
-
     public void print(String data) {
         System.out.print(data);
     }

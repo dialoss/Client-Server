@@ -36,7 +36,7 @@ public class JSONStorage extends FileStorage {
     public String write(JSONObject[] data) {
         super._write(Tools.itemsToString(data,
                 (Object t) -> Tools.beautifyJSON(((JSONObject) t).toJSONString())));
-        return this.fileAppend.path.toString();
+        return this.source.toString();
     }
 }
 

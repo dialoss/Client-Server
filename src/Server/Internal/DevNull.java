@@ -18,7 +18,7 @@ public class DevNull extends IOdevice {
     }
 
     @Override
-    protected void error(String message) {
+    public void error(String message) {
 
     }
 }

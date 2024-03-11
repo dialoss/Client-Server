@@ -1,7 +1,7 @@
 package Client.Shell;
 
 public class ShellForm extends IForm {
-    public ShellForm(Shell shell) {
+    public ShellForm(IOdevice shell) {
         super(shell);
     }
 

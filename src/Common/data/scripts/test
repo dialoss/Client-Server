@@ -1,10 +1,17 @@
+info
+show
+help
 insert
+$annualTurnover
 2.2
 privet
+$postalAddress
 12
 13
+$type
 PUBLIC
 xx
+$coordinates
 1
 1
 2

@@ -6,6 +6,7 @@ import Server.Commands.Command;
 import Server.Commands.List.CommandArgument;
 import Server.Internal.DevNull;
 import Server.Internal.FileForm;
+import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 import Server.Storage.StorageConnector;
 
@@ -19,9 +20,10 @@ public class ExecuteScript extends Command {
 
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
-        Form f = new Form(null,
-                new FileForm(new DevNull(new Scanner(StorageConnector.storage.changeSource("scripts/test")._read()))));
-        f.get();
-        return "Скрипт запущен";
+        String filename = (String) args[0].getValue();
+        String text = StorageConnector.storage.changeSource("scripts/" + filename)._read();
+        CommandLineInterface virtual = new CommandLineInterface(new FileForm(new DevNull(new Scanner(text))));
+        virtual.start();
+        return "";
     }
 }

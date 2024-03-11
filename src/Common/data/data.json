@@ -1,13 +1,12 @@
 {
   "id": 1,
-  "name": "abracadabra",
+  "type": "PUBLIC",
+  "name": "effwfwef",
   "coordinates": {
     "x": 1.1,
     "y": 2.5
   },
-  "creationDate": 123,
   "annualTurnover": 666,
-  "type": "GOVERNMENT",
   "postalAddress": {
     "town": {
       "x": 1.5,
@@ -15,5 +14,6 @@
       "z": 5.5
     },
     "zipCode": "qwerty"
-  }
+  },
+  "creationDate": "23 January 2023"
 }

@@ -1,10 +1,10 @@
 package Server.Commands.List;
 
-import Server.Commands.ServerCommand;
+import Server.Commands.Command;
 import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 
-public class RemoveGreater extends ServerCommand {
+public class RemoveGreater extends Command {
     public RemoveGreater() {
         super("remove_greater", "Удаляет из коллекции все элементы, превышающие заданный",
                 new CommandArgument[]{new CommandArgument("element", Organization.class)});

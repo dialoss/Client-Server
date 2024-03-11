@@ -1,6 +1,11 @@
 package Client;
 
-public abstract class UserInterface {
-    public ClientAPI api;
-    abstract void start();
+import Common.EventBus.Callback;
+import Server.Connection.Request;
+import Server.Connection.Response;
+
+public interface UserInterface {
+    void start();
+    Callback<Response> getInterface();
+    void setRequestCallback(Callback<Request> callback);
 }

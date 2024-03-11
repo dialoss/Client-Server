@@ -1,11 +1,10 @@
 package Server.Commands.List;
 
 import Server.Commands.Command;
-import Server.Commands.ServerCommand;
 import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 
-public class Update extends ServerCommand {
+public class Update extends Command {
     public Update() {
         super("update", "Обновляет значение элемента коллекции, id которого равен заданному",
                 new CommandArgument[]{

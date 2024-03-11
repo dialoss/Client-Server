@@ -1,11 +1,10 @@
 package Server.Commands.List;
 
 import Server.Commands.Command;
-import Server.Commands.ServerCommand;
 import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 
-public class Fill extends ServerCommand {
+public class Fill extends Command {
     public Fill() {
         super("fill", "Заполняет коллекцию случайными значениями",
                 new CommandArgument[]{new CommandArgument("amount", Integer.class)});

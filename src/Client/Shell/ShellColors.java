@@ -16,4 +16,8 @@ public enum ShellColors {
     public String toString() {
         return this.code;
     }
+
+    static public String format(ShellColors color, String data) {
+        return color + data + ShellColors.RESET;
+    }
 }

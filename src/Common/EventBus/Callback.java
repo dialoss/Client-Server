@@ -1,6 +1,6 @@
 package Common.EventBus;
 
 @FunctionalInterface
-public interface Callback {
-    void call(Object data);
+public interface Callback<T> {
+    void call(T data);
 }

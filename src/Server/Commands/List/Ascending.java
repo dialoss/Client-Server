@@ -1,7 +1,7 @@
 package Server.Commands.List;
 
 import Common.Tools;
-import Server.Commands.ServerCommand;
+import Server.Commands.Command;
 import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Ascending extends ServerCommand {
+public class Ascending extends Command {
     public Ascending() {
         super("print_field_ascending",
                 "Выводит значения поля field всех элементов в порядке возрастания",

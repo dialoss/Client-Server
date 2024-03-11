@@ -2,13 +2,12 @@ package Server.Commands.List;
 
 import Common.Tools;
 import Server.Commands.Command;
-import Server.Commands.ServerCommand;
 import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 
 import java.util.stream.Stream;
 
-public class Filter extends ServerCommand {
+public class Filter extends Command {
     public Filter() {
         super("filter_starts_with_name",
                 "¬ыводит элементы, значение пол€ name которых начинаетс€ с заданной подстроки",

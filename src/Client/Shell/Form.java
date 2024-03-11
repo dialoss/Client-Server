@@ -1,23 +1,24 @@
-package Common;
+package Client.Shell;
 
-import Client.Shell.Shell;
-import Client.Shell.ShellColors;
-import Client.Shell.ShellMode;
 import Server.Commands.List.CommandArgument;
 import Server.Models.BaseModel;
 import Server.Models.ModelField;
+import Server.Models.Organization;
+import Server.Models.OrganizationType;
 import Server.Serializer.Serializer;
-import Common.Exceptions.ScriptRuntimeException;
+import Server.Storage.OrderedItem;
 import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class Form {
-    Shell shell;
+    IForm form;
     CommandArgument argument;
 
-    public Form(CommandArgument argument, Shell shell) {
-        this.shell = shell;
+    public Form(CommandArgument argument, IForm form) {
+        this.form = form;
         this.argument = argument;
     }
 
@@ -28,20 +29,20 @@ public class Form {
 
     private Object getValue(Class<?> type) {
         Serializer s = new Serializer();
-        String val = this.shell.input();
+        String val = this.form.input();
         if (val == null) return null;
         try {
             return s.serializeValue(type, val);
         } catch (Exception e) {
-            this.shell.error(e.toString());
+            this.form.validationError(e.toString());
         }
         return null;
     }
 
-    private Object getModel(Class<?> cl) {
+    private JSONObject getModel(Class<?> cl) {
         Field[] fields = cl.getDeclaredFields();
         JSONObject result = new JSONObject();
-        shell.print(String.format("Заполните объект %s", ShellColors.BLUE + cl.getName() + ShellColors.RESET));
+        this.form.out("Заполните объект %s".formatted(ShellColors.format(ShellColors.BLUE, cl.getName())));
 
         for (Field f : fields) {
             result.put(f.getName(), this.awaitInput(f));
@@ -63,29 +64,36 @@ public class Form {
                 System.out.println(e);
             }
         }
-        shell.print(String.format("Введите поле %s тип %s", ShellColors.BLUE + f.getName() + ShellColors.RESET, f.getGenericType()));
+        this.form.out("Введите поле %s тип %s".formatted(ShellColors.format(ShellColors.BLUE, f.getName()), f.getGenericType()));
         if (Enum.class.isAssignableFrom(f.getType())) {
-            shell.print("Возможные значения:");
-            for (Field enumField : f.getType().getDeclaredFields()) {
-                shell.print(enumField.getName());
+            this.form.out("Возможные значения:");
+            try {
+                Method method = f.getType().getDeclaredMethod("values");
+                Object[] obj = (Object[]) method.invoke(f);
+                for (Object enumField : obj) {
+                    this.form.out(enumField.toString());
+                }
+            } catch (Exception e) {
+                this.form.validationError(e.toString());
             }
         }
         while (true) {
-            String val = this.shell.input();
+            String val = this.form.input();
             if (val == null) break;
             try {
                 return s.serializeField(f, val);
             } catch (Exception e) {
-                this.shell.error(e.toString());
-            }
-            if (this.shell.mode == ShellMode.SCRIPT) {
-                throw new ScriptRuntimeException();
+                this.form.validationError(e.toString());
             }
         }
         return null;
     }
 
     public Object get() {
-        return this.processInput(this.argument.type);
+        Object value = this.processInput(this.argument.type);
+        if (value instanceof JSONObject) {
+            value = new Organization().from((JSONObject) value);
+        }
+        return value;
     }
 }

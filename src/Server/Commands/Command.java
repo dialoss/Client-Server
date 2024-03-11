@@ -2,12 +2,13 @@ package Server.Commands;
 
 import Client.Shell.ShellColors;
 import Server.Commands.List.CommandArgument;
+import Server.Storage.CollectionManager;
 
 interface IExecutable {
-    String execute(Object...args);
+    String execute(CollectionManager collectionManager, CommandArgument[] arguments);
 }
 
-public abstract class Command  {
+public abstract class Command implements IExecutable  {
     private final String name;
     public final String description;
     private final CommandArgument[] arguments;

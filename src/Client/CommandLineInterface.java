@@ -1,67 +1,52 @@
 package Client;
 
-import Client.Commands.ClientCommand;
-import Client.Commands.HistoryEntry;
 import Client.Shell.Shell;
-import Common.Form;
+import Client.Shell.ShellForm;
+import Common.EventBus.Callback;
+import Common.Exceptions.CommandNotFound;
+import Client.Shell.Form;
 import Server.Commands.Command;
 import Server.Commands.CommandManager;
 import Server.Commands.List.CommandArgument;
-import Server.Models.Organization;
+import Server.Connection.Response;
 import Server.Connection.Request;
-import Common.Exceptions.CommandNotFound;
-import Common.Exceptions.ScriptRuntimeException;
-import org.json.simple.JSONObject;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-public class CommandLineInterface extends UserInterface {
-    public Shell shell;
-    List<HistoryEntry> history;
+public class CommandLineInterface implements UserInterface {
+    private final ShellForm shellForm;
+    private final Shell shell;
+    private Callback<Request> APICallback;
 
     CommandLineInterface() {
-        this.api = new ClientAPI(this::processOutput);
         this.shell = new Shell();
-        this.history = new ArrayList<>();
+        this.shellForm = new ShellForm(shell);
     }
 
     private CommandArgument[] getArguments(Command command) {
         CommandArgument[] arguments = Arrays.copyOf(command.getArguments(), command.getArguments().length);
         int i = 0;
         for (CommandArgument arg : command.getArguments()) {
-            Object value = new Form(arg, shell).get();
-            if (value instanceof JSONObject) {
-                value = new Organization().from((JSONObject) value, false);
-            }
+            Object value = new Form(arg, this.shellForm).get();
             arguments[i++].setValue(value);
         }
         return arguments;
     }
 
-    private void execute(String commandName) {
-        Command command = CommandManager.get(commandName);
-        if (command == null) throw new CommandNotFound();
-        CommandArgument[] arguments = this.getArguments(command);
-        if (ClientCommand.class.isAssignableFrom(command.getClass())) {
-            this.processOutput(((ClientCommand) command).execute(this, arguments));
-        } else {
-            Request r = new Request(command, arguments);
-            this.api.request(r);
-            this.history.add(new HistoryEntry(r));
-        }
+    private void execute(String command) {
+        Command cmd = CommandManager.get(command);
+        if (cmd == null) throw new CommandNotFound();
+        CommandArgument[] arguments = this.getArguments(cmd);
+        Request r = new Request(cmd, arguments);
+        this.APICallback.call(r);
     }
 
-    private void processOutput(Object data) {
-        this.shell.print((String) data);
+    private void processOutput(Response response) {
+        this.shell.println(response.getBody());
     }
 
     private void processInput(String commandName) {
         try {
             this.execute(commandName);
-        } catch (ScriptRuntimeException e) {
-            this.shell.stopScript();
         } catch (RuntimeException e) {
             this.shell.error(e.toString());
         }
@@ -71,7 +56,13 @@ public class CommandLineInterface extends UserInterface {
         this.shell.start(this::processInput);
     }
 
-    public List<HistoryEntry> getHistory() {
-        return this.history;
+    @Override
+    public Callback<Response> getInterface() {
+        return this::processOutput;
+    }
+
+    @Override
+    public void setRequestCallback(Callback<Request> callback) {
+        this.APICallback = callback;
     }
 }

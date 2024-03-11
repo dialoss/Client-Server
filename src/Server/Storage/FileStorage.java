@@ -1,4 +1,4 @@
-package Common;
+package Server.Storage;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -7,10 +7,16 @@ import java.nio.file.Paths;
 public class FileStorage {
     protected Path source;
     protected FileAppend fileAppend;
+    private static String BASE_PATH = "src/Common/data/";
 
-    public FileStorage(String path) {
+    public FileStorage() {
+        this.changeSource(BASE_PATH + "data.json");
+    }
+
+    public FileStorage changeSource(String path) {
         this.source = Paths.get(path).toAbsolutePath();
         this.fileAppend = new FileAppend(this.source);
+        return this;
     }
 
     public String _read() {
@@ -39,14 +45,6 @@ public class FileStorage {
             f.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }
-    }
-
-    public void _add(String data) {
-        try {
-            this.fileAppend.out.println(data);
-        } catch (Exception e) {
-            System.out.println(e);
         }
     }
 

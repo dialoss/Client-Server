@@ -1,4 +1,4 @@
-package Common;
+package Server.Storage;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

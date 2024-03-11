@@ -1,27 +1,32 @@
 package Server.Commands;
 
-import Client.Commands.ClientCommand;
-import Client.Commands.ExecuteScript;
-import Client.Commands.Help;
-import Client.Commands.History;
+import Client.HistoryEntry;
+import Server.Commands.List.ExecuteScript;
+import Server.Commands.List.Help;
+import Server.Commands.List.History;
 import Server.Commands.List.*;
 import Server.Connection.Request;
 import Server.Connection.Response;
 import Server.Connection.Status;
 import Server.Storage.CollectionManager;
+import Server.Storage.StorageConnector;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CommandManager {
     private static final Map<String, Command> commands = new HashMap<>();
-    protected static final CollectionManager collectionManager = new CollectionManager();
+    private static final List<HistoryEntry> history = new ArrayList<>();
 
-    static public void add(Class commandName) {
+    public static List<HistoryEntry> getHistory() {
+        return history;
+    }
+
+    static public void add(Class<?> commandName) {
         try {
             Command cmd = (Command) commandName.getDeclaredConstructor().newInstance();
-            if (ServerCommand.class.isAssignableFrom(cmd.getClass())) cmd = (ServerCommand) cmd;
-            else cmd = (ClientCommand) cmd;
             CommandManager.commands.put(cmd.getName(), cmd);
         } catch (Exception e) {
             System.out.println(e);
@@ -38,12 +43,15 @@ public class CommandManager {
 
     static public Response execute(Request request) {
         Command command = commands.get(request.getName());
+        Response response;
         try {
-            String result = ((ServerCommand) command).execute(CommandManager.collectionManager, request.getArguments());
-            return new Response(result, Status.OK);
+            String result = command.execute(StorageConnector.manager, request.getArguments());
+            response = new Response(result, Status.OK);
         } catch (Exception e) {
-            return new Response(e.getMessage(), Status.SERVER_ERROR);
+            response = new Response(e.getMessage(), Status.SERVER_ERROR);
         }
+        history.add(new HistoryEntry(request, response));
+        return response;
     }
 
     static class CommandManagerBuilder {
@@ -61,6 +69,7 @@ public class CommandManager {
             CommandManager.add(History.class);
             CommandManager.add(RemoveGreater.class);
             CommandManager.add(Ascending.class);
+            CommandManager.add(Remove.class);
         }
     }
 

@@ -6,11 +6,10 @@ import Server.Connection.Request;
 import Server.Connection.Response;
 
 public class ClientAPI {
-    ClientAPI(Callback callback) {
-        EventBus.on("response", (Object data) -> {
-            Response response = (Response) data;
-            callback.call(response.getBody());
-        });
+    ClientAPI(Callback<Response> callback) {
+        EventBus.on("response", response ->
+            callback.call((Response) response)
+        );
     }
 
     void request(Request request) {

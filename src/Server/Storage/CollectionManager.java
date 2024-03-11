@@ -58,11 +58,11 @@ class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager
     }
 
     public class Info {
-        private final Date initializationDate;
+        private final Date initDate;
         private final String type;
 
         Info() {
-            this.initializationDate = new Date();
+            this.initDate = new Date();
             this.type = BaseCollectionManager.this.collection.getClass().getName() + Organization.class;
         }
 
@@ -71,7 +71,7 @@ class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager
         }
 
         public String getInfo() {
-            return String.format("Тип: %s\nДата: %s\nРазмер: %s", this.type, this.initializationDate, this.getSize());
+            return String.format("Тип: %s\nДата %s:\nРазмер: %s", this.type, this.initDate, this.getSize());
         }
     }
 }

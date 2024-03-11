@@ -5,8 +5,9 @@ import Server.Commands.ICallback;
 import java.util.Scanner;
 
 enum ShellColors {
-    ANSI_RESET("\u001B[0m"),
-    ANSI_RED("\u001B[31m");
+    RESET("\u001B[0m"),
+    RED("\u001B[31m"),
+    BLUE("\033[0;34m");
 
     final String code;
 
@@ -38,6 +39,6 @@ public class Shell {
     }
 
     public void error(String data) {
-        System.out.println(ShellColors.ANSI_RED + data + ShellColors.ANSI_RESET);
+        System.out.println(ShellColors.RED + data + ShellColors.RESET);
     }
 }

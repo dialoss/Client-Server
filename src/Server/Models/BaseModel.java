@@ -44,7 +44,7 @@ public class BaseModel extends OrderedModel {
                 boolean isInstance = BaseModel.class.isAssignableFrom(valueType);
                 boolean isObject = value instanceof JSONObject;
                 if (isInstance && !isObject) {
-                    throw new InvalidModelException(String.format("Значение %s не может быть присвоено полю %s", value, f.getName()));
+                    throw new InvalidValue(value, f.getName());
                 }
 
                 if (value instanceof JSONObject) {

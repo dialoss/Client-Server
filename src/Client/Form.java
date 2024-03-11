@@ -2,41 +2,49 @@ package Client;
 
 import Server.Commands.List.CommandArgument;
 import Server.Models.BaseModel;
+import Server.Serializer.Serializer;
+import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Form {
     Shell shell;
     CommandArgument argument;
-    Object result;
 
     Form(CommandArgument argument, Shell shell) {
         this.shell = shell;
         this.argument = argument;
-        this.createForm();
     }
 
-    private Object createForm() {
-        Class<?> cl = argument.type;
+    private JSONObject processInput(Class<?> cl) {
         Field[] fields = cl.getDeclaredFields();
-        Map<String, Object> result = new HashMap<>();
+        JSONObject result = new JSONObject();
+        shell.print(String.format("Заполните объект %s", ShellColors.BLUE + cl.getName() + ShellColors.RESET));
+
         for (Field f : fields) {
-            shell.print(String.format("Поле %s %s", f.getName(), f.getGenericType()));
             result.put(f.getName(), this.awaitInput(f));
         }
         return result;
     }
 
     private Object awaitInput(Field f) {
-        if (f.getClass().isAssignableFrom(BaseModel.class)) {
-            return this.createForm();
+        if (BaseModel.class.isAssignableFrom(f.getType())) {
+            return this.processInput(f.getType());
         }
-        this.shell.start();
+        shell.print(String.format("Введите поле %s %s", ShellColors.BLUE + f.getName() + ShellColors.RESET, f.getGenericType()));
+        Serializer s = new Serializer(null);
+        while (true) {
+            String val = this.shell.input();
+            try {
+                s.validateField(f, val);
+                return val;
+            } catch (Exception e) {
+                this.shell.error(e.toString());
+            }
+        }
     }
 
-    public Object get() {
-        return this.result;
+    public JSONObject get() {
+        return this.processInput(this.argument.type);
     }
 }

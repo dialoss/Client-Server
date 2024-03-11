@@ -7,6 +7,8 @@ import exceptions.InvalidValue;
 import exceptions.NotNullField;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 
 abstract class Validator {
@@ -39,7 +41,7 @@ class VMin extends Validator {
     @Override
     void validate(Field f, Object value, Object declaredValue) {
         if (!Double.class.isAssignableFrom(value.getClass())) return;
-        if ((Double) value <= (Double) declaredValue) throw new InvalidValue("Значение поля должно быть больше 0");
+        if ((Double) value <= (Double) declaredValue) throw new InvalidModelException("Значение поля должно быть больше 0");
     }
 }
 
@@ -109,8 +111,20 @@ public class Serializer {
         this.model = model;
     }
 
-    public void validateField(Field f, Object value) {
+    public void validateField(Field f, Object value) throws Exception {
         try {
+            if (!value.getClass().isAssignableFrom(f.getType())) {
+                Method method = f.getType().getDeclaredMethod("valueOf", String.class);
+                if (method != null) {
+                    try {
+                        Object obj = method.invoke(null, value);
+                    } catch (Exception e) {
+                        throw new InvalidValue(value, f.getName());
+                    }
+                }
+            }
+
+
             if (f.isAnnotationPresent(ModelField.class)) {
                 ModelField params = f.getAnnotation(ModelField.class);
                 for (String param : Validators.getParams()) {
@@ -123,7 +137,7 @@ public class Serializer {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
+            throw e;
         }
     }
 }

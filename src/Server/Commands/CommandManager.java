@@ -1,6 +1,5 @@
 package Server.Commands;
 
-import Client.HistoryEntry;
 import Server.Commands.List.ExecuteScript;
 import Server.Commands.List.Help;
 import Server.Commands.List.History;
@@ -8,7 +7,6 @@ import Server.Commands.List.*;
 import Server.Connection.Request;
 import Server.Connection.Response;
 import Server.Connection.Status;
-import Server.Storage.CollectionManager;
 import Server.Storage.StorageConnector;
 
 import java.util.ArrayList;

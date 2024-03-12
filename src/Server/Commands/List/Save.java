@@ -1,13 +1,8 @@
 package Server.Commands.List;
 
 import Server.Commands.Command;
-import Server.Models.Organization;
 import Server.Storage.CollectionManager;
-import Server.Storage.JSONStorage;
 import Server.Storage.StorageConnector;
-import org.json.simple.JSONObject;
-
-import java.util.stream.Stream;
 
 public class Save extends Command {
     public Save() {

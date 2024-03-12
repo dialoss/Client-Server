@@ -8,7 +8,7 @@ interface IExecutable {
     String execute(CollectionManager collectionManager, CommandArgument[] arguments);
 }
 
-public abstract class Command implements IExecutable  {
+public abstract class Command implements IExecutable {
     private final String name;
     public final String description;
     private final CommandArgument[] arguments;
@@ -26,7 +26,7 @@ public abstract class Command implements IExecutable  {
     }
 
     public String getDescription() {
-        String description = ShellColors.BLUE + this.name + ShellColors.RESET;
+        String description = ShellColors.format(ShellColors.BLUE, this.name);
         if (this.arguments.length > 0) {
             for (CommandArgument arg : this.arguments) {
                 description = description.concat(" " + arg.getName());

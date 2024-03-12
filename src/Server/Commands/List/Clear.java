@@ -11,6 +11,6 @@ public class Clear extends Command {
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         collectionManager.clear();
-        return "";
+        return "Коллекция очищена";
     }
 }

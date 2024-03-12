@@ -17,9 +17,9 @@ public class Server {
 
     public void run() {
         EventBus.on("request", this::request);
-        CommandArgument a = new CommandArgument("", String.class);
-        a.setValue("test");
-        CommandManager.get("script").execute(StorageConnector.manager,
-                new CommandArgument[]{a});
+//        CommandArgument a = new CommandArgument("", String.class);
+//        a.setValue("test");
+//        CommandManager.get("script").execute(StorageConnector.manager,
+//                new CommandArgument[]{a});
     }
 }

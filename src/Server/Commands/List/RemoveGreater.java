@@ -14,6 +14,6 @@ public class RemoveGreater extends Command {
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         Integer id = (Integer) args[0].getValue();
         collectionManager.delete(id);
-        return String.format("Элемент %s удалён", id);
+        return "Элемент %s удалён".formatted(id);
     }
 }

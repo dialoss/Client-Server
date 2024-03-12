@@ -1,5 +1,7 @@
 package Client.Shell;
 
+import Common.Exceptions.EmptyInputException;
+import Common.Exceptions.InvalidValue;
 import Server.Commands.List.CommandArgument;
 import Server.Models.BaseModel;
 import Server.Models.ModelField;
@@ -30,7 +32,7 @@ public class Form {
     private Object getValue(Class<?> type) {
         Serializer s = new Serializer();
         String val = this.form.input();
-        if (val == null) return null;
+        if (val == null) throw new EmptyInputException();
         try {
             return s.serializeValue(type, val);
         } catch (Exception e) {
@@ -91,6 +93,7 @@ public class Form {
 
     public Object get() {
         Object value = this.processInput(this.argument.type);
+        if (value == null) throw new RuntimeException("Ошибка");
         if (value instanceof JSONObject) {
             value = new Organization().from((JSONObject) value);
         }

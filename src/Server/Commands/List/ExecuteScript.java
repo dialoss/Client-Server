@@ -1,7 +1,9 @@
 package Server.Commands.List;
 
 import Client.CommandLineInterface;
+import Client.CommandParser;
 import Client.Shell.Form;
+import Client.Shell.IOdevice;
 import Server.Commands.Command;
 import Server.Commands.List.CommandArgument;
 import Server.Internal.DevNull;
@@ -22,8 +24,9 @@ public class ExecuteScript extends Command {
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         String filename = (String) args[0].getValue();
         String text = StorageConnector.storage.changeSource("scripts/" + filename)._read();
-        CommandLineInterface virtual = new CommandLineInterface(new FileForm(new DevNull(new Scanner(text))));
-        virtual.start();
+        IOdevice virtual = new DevNull(new Scanner(text));
+        CommandParser parser = new CommandParser(new FileForm(virtual));
+        virtual.start(parser::parse);
         return "";
     }
 }

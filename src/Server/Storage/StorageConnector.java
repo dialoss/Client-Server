@@ -18,7 +18,7 @@ public class StorageConnector {
     }
 
     public static String save(String filename) {
-        return storage.write((JSONObject[]) Stream.of(manager.getAll())
-                .map((Organization it) -> it.json).toArray(), filename);
+        return storage.write(Stream.of(manager.getAll())
+                .map((Organization it) -> it.json).toArray(JSONObject[]::new), filename);
     }
 }

@@ -1,4 +1,4 @@
-package Client;
+package Server.Commands;
 
 import Server.Connection.Request;
 import Server.Connection.Response;

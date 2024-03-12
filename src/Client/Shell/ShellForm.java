@@ -9,12 +9,6 @@ public class ShellForm extends IForm {
     public void validationError(String message) {
         this.device.error(message);
     }
-
-    @Override
-    public String input() {
-        return this.device.input();
-    }
-
     @Override
     public void out(String data) {
         this.device.println(data);

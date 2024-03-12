@@ -22,9 +22,9 @@ public class CommandLineInterface implements UserInterface {
         }
     }
 
-    private void processInput(String commandName) {
+    private void processInput(String[] tokens) {
         try {
-            this.APICallback.call(this.parser.parse(commandName));
+            this.APICallback.call(this.parser.parse(tokens));
         } catch (RuntimeException e) {
             this.shell.error(e.toString());
         }

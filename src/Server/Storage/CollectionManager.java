@@ -17,8 +17,4 @@ public class CollectionManager extends BaseCollectionManager<Organization> {
         this.collection = new LinkedHashMap<>();
         this.info = new CollectionManager.Info();
     }
-
-    public void init(Organization[] items) {
-        for (Organization it : items) this.insert(it);
-    }
 }

@@ -10,6 +10,10 @@ import java.util.Date;
 
 
 public class Serializer {
+    public static Object castValue(Class<?> type, Object value) throws Exception {
+        Method method = type.getDeclaredMethod("valueOf", String.class);
+        return method.invoke(null, value);
+    }
     public Object serializeValue(Class<?> type, Object value) {
         return this.serializeValue(type, value, type.getName());
     }
@@ -22,11 +26,7 @@ public class Serializer {
     private Object serializeValue(Class<?> type, Object value, String out) {
         if (!value.getClass().isAssignableFrom(type)) {
             try {
-                if (Date.class.isAssignableFrom(type)) {
-                    return Tools.serializeDate(value);
-                }
-                Method method = type.getDeclaredMethod("valueOf", String.class);
-                return method.invoke(null, value);
+                return castValue(type, value);
             } catch (Exception e) {
                 throw new InvalidValue(value, out);
             }
@@ -59,8 +59,6 @@ public class Serializer {
                     }
                 }
             }
-        } catch (ClassCastException e) {
-        } catch (NoSuchMethodException e) {
         } catch (Exception e) {
             throw e;
         }

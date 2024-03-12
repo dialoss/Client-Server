@@ -1,5 +1,7 @@
 package Common;
 
+import Common.Exceptions.InvalidModelException;
+import Common.Exceptions.InvalidValue;
 import Server.Models.Organization;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,6 +10,8 @@ import com.google.gson.JsonParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -61,9 +65,21 @@ public class Tools {
         return result;
     }
 
-    public static Date serializeDate(Object value) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
-        LocalDate date = LocalDate.parse((String) value, formatter);
-        return Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    public static String formatOutputDate(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            return formatter.format(date);
+        } catch (Exception e) {
+            throw new InvalidModelException("Неверный формат даты. Формат: dd.MM.yyyy");
+        }
+    }
+
+    public static Date formatInputDate(String value) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            return formatter.parse(value);
+        } catch (Exception e) {
+            throw new InvalidModelException("Неверный формат даты. Формат: dd.MM.yyyy");
+        }
     }
 }

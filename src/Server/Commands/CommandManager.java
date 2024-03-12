@@ -68,6 +68,7 @@ public class CommandManager {
             CommandManager.add(RemoveGreater.class);
             CommandManager.add(Ascending.class);
             CommandManager.add(Remove.class);
+            CommandManager.add(Load.class);
         }
     }
 

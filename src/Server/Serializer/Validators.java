@@ -13,6 +13,8 @@ public class Validators {
         Validators.add(new VMaxLength());
         Validators.add(new VMinLength());
         Validators.add(new VNotEmpty());
+        Validators.add(new VUnique());
+
     }
 
     static Validator get(String name) {

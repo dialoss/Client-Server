@@ -1,10 +1,5 @@
 package Server.Commands.List;
 
-enum ArgumentPosition {
-    LINE,
-    COMPLEX,
-}
-
 public class CommandArgument {
     private final String name;
     private final boolean required;

@@ -13,11 +13,6 @@ public class FileForm extends IForm {
     }
 
     @Override
-    protected String input() {
-        return this.device.input();
-    }
-
-    @Override
     protected void out(String data) {
     }
 }

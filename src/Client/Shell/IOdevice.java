@@ -12,6 +12,10 @@ public abstract class IOdevice {
         this.scanner = scanner;
     }
 
+    public void updateScanner() {
+
+    }
+
     abstract public void println(String data);
 
     abstract public void print(String data);
@@ -22,7 +26,7 @@ public abstract class IOdevice {
 
     public String input() {
         this.print("> ");
-        return this.processInput(this.scanner::next);
+        return this.processInput(this.scanner::nextLine);
     }
 
     public abstract void error(String message);
@@ -36,14 +40,14 @@ public abstract class IOdevice {
         return "";
     }
 
-    public void start(ICallback<String> callback) {
+    public void start(ICallback<String[]> callback) {
         while (true) {
             String input = this.input();
             if (input == null) {
                 break;
             }
             String[] tokens = input.split(" ");
-            callback.call(tokens[0]);
+            callback.call(tokens);
         }
     }
 }

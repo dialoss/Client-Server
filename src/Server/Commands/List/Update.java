@@ -8,8 +8,8 @@ public class Update extends Command {
     public Update() {
         super("update", "Обновляет значение элемента коллекции, id которого равен заданному",
                 new CommandArgument[]{
-                        new CommandArgument("id", Integer.class, ArgumentPosition.LINE),
-                        new CommandArgument("element", Organization.class, ArgumentPosition.COMPLEX)
+                        new CommandArgument("id", Integer.class),
+                        new CommandArgument("element", Organization.class, ArgumentPosition.MULTILINE)
         });
     }
 

@@ -1,4 +1,4 @@
-{
+[{
   "id": 1,
   "type": "PUBLIC",
   "name": "effwfwef",
@@ -15,5 +15,44 @@
     },
     "zipCode": "qwerty"
   },
-  "creationDate": "23 January 2023"
-}
+  "creationDate": "10.10.2023"
+},
+  {
+    "id": 3,
+    "type": "PUBLIC",
+    "name": "xxxxx",
+    "coordinates": {
+      "x": 1.1,
+      "y": 2.5
+    },
+    "annualTurnover": 666,
+    "postalAddress": {
+      "town": {
+        "x": 1.5,
+        "y": 2.2,
+        "z": 5.5
+      },
+      "zipCode": "qwerty"
+    },
+    "creationDate": "10.10.2023"
+  },
+  {
+    "id": 1,
+    "type": "PUBLIC",
+    "name": "ffff",
+    "coordinates": {
+      "x": 1.1,
+      "y": 2.5
+    },
+    "annualTurnover": 666,
+    "postalAddress": {
+      "town": {
+        "x": 1.5,
+        "y": 2.2,
+        "z": 5.5
+      },
+      "zipCode": "qwerty"
+    },
+    "creationDate": "10.20.2023"
+  }
+]

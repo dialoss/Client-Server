@@ -28,8 +28,8 @@ public class FileStorage {
             }
             f.close();
             return data;
-        } catch (FileNotFoundException e) {
-        } catch (IOException e) {
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return "";
     }
@@ -41,8 +41,8 @@ public class FileStorage {
             printStream.print(data);
             f.flush();
             f.close();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 }

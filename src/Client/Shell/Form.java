@@ -12,7 +12,6 @@ import Server.Storage.OrderedItem;
 import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class Form {
@@ -57,15 +56,9 @@ public class Form {
             return this.processInput(f.getType());
         }
         Serializer s = new Serializer();
-
         ModelField params = s.getParameters(f);
-        if (params != null && params.AUTO_GENERATE()) {
-            try {
-                return f.getType().getConstructor().newInstance();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
+        if (params != null && params.AUTO_GENERATE()) return null;
+
         this.form.out("Введите поле %s тип %s".formatted(ShellColors.format(ShellColors.BLUE, f.getName()), f.getGenericType()));
         if (Enum.class.isAssignableFrom(f.getType())) {
             this.form.out("Возможные значения:");
@@ -93,7 +86,7 @@ public class Form {
 
     public Object get() {
         Object value = this.processInput(this.argument.type);
-        if (value == null) throw new RuntimeException("Ошибка");
+        if (value == null) throw new RuntimeException("Ошибка значения");
         if (value instanceof JSONObject) {
             value = new Organization().from((JSONObject) value);
         }

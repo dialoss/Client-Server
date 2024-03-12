@@ -7,7 +7,7 @@ public class Organization extends BaseModel implements Comparable<Organization> 
     public OrganizationType type; //Поле не может быть null
     @ModelField(MIN = 0)
     public Float annualTurnover; //Поле не может быть null, Значение поля должно быть больше 0
-    @ModelField(NOT_EMPTY = true)
+    @ModelField(NOT_EMPTY = true, UNIQUE = true)
     public String name; //Поле не может быть null, Строка не может быть пустой
     @ModelField(AUTO_GENERATE = true)
     public Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически

@@ -1,7 +1,7 @@
 package Common.Exceptions;
 
 public class ScriptRuntimeException extends RuntimeException {
-    public ScriptRuntimeException() {
-        super("Ошибка выполнения скрипта");
+    public ScriptRuntimeException(String e) {
+        super("Ошибка выполнения скрипта " + e);
     }
 }

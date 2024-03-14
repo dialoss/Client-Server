@@ -1,0 +1,23 @@
+[
+  {
+    "id": 426724097,
+    "peopleCount": 123,
+    "type": "PUBLIC",
+    "annualTurnover": 1.11,
+    "name": "privet",
+    "creationDate": "15.03.2024 00:16:42.408",
+    "coordinates": {
+      "x": 1.0,
+      "y": 2.0
+    },
+    "postalAddress": {
+      "zipCode": "qqq",
+      "town": {
+        "x": 1.0,
+        "y": 2.0,
+        "z": 3.0
+      }
+    },
+    "isPrivate": "false"
+  }
+]

@@ -12,7 +12,7 @@ public class TcpAPI extends ClientAPI {
     SocketChannel socket;
 
     public TcpAPI() {
-        int port = 3333;
+        int port = 3000;
         InetSocketAddress address = new InetSocketAddress("127.0.0.1", port);
 
         try {
@@ -24,18 +24,12 @@ public class TcpAPI extends ClientAPI {
     }
 
     public void request(Request request) throws IOException {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-        objectOutputStream.writeObject(request);
-        objectOutputStream.close();
-        ByteBuffer buffer = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
+        ByteBuffer buffer = ByteBuffer.wrap(ObjectIO.writeObject(request).toByteArray());
 
         while (buffer.hasRemaining()) {
             socket.write(buffer);
         }
 
-        objectOutputStream.flush();
         buffer = ByteBuffer.allocate(2024);
 
         socket.read(buffer);
@@ -46,12 +40,8 @@ public class TcpAPI extends ClientAPI {
             bytesRead = socket.read(buffer);
         }
 
-        ByteArrayInputStream bi = new ByteArrayInputStream(buffer.array());
-        ObjectInputStream oi = new ObjectInputStream(bi);
-        System.out.println(oi.available());
-
         try {
-            Response response = (Response) oi.readObject();
+            Response response = (Response) ObjectIO.readObject(buffer.array());
             System.out.println("Server answer: \n" + response.getBody());
             this.responseCallback.call(response);
         } catch (Exception e) {

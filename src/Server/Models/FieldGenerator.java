@@ -11,7 +11,6 @@ public class FieldGenerator {
             String.class, JRand.string().range(40, 49),
             Double.class, JRand.dbl().range(1, 1000),
             Float.class, JRand.flt().range(1, 1000),
-            Boolean.class, JRand.bool(),
             Integer.class, new Generator<Integer>() {
                 @Override
                 public Integer gen() {
@@ -30,8 +29,14 @@ public class FieldGenerator {
                     OrganizationType[] v = OrganizationType.values();
                     return v[(new Random(1)).nextInt(v.length)];
                 }
+            },
+            MBoolean.class, new Generator<MBoolean>() {
+                @Override
+                public MBoolean gen() {
+                    return new MBoolean(JRand.bool().gen());
+                }
             }
-    );
+            );
 
     public static Object random(Class<?> type) {
         return generators.get(type).gen();

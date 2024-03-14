@@ -5,14 +5,11 @@ import java.io.Serializable;
 public class Response implements Serializable {
     private final String body;
     public final Status code;
-    private Integer client;
+    private final Integer client;
 
-    public Response(Object body, Status code) {
+    public Response(Object body, Status code, Integer client) {
         this.body = (String) body;
         this.code = code;
-    }
-
-    public void setClient(Integer client) {
         this.client = client;
     }
 

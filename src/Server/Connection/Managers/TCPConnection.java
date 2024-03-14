@@ -3,10 +3,7 @@ package Server.Connection.Managers;
 import Server.Connection.Request;
 import Server.Connection.Response;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -38,27 +35,41 @@ public class TCPConnection extends ConnectionManager {
 
     @Override
     public void response(Response response) {
-        SelectionKey key = (SelectionKey) clients.get(response.getClient());
-        if (key.isWritable()) {
-            try {
-                SocketChannel client = (SocketChannel) key.channel();
-                client.configureBlocking(false);
+        try {
+            while (true) {
+                selector.select();
+                Set<SelectionKey> selected = selector.selectedKeys();
+                Iterator<SelectionKey> iter = selected.iterator();
 
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-                objectOutputStream.writeObject(response);
-                objectOutputStream.close();
-                ByteBuffer buffer = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
+                while (iter.hasNext()) {
+                    SelectionKey key = iter.next();
+                    if (key.isWritable()) {
+                        try {
+                            SocketChannel client = (SocketChannel) key.channel();
+                            client.configureBlocking(false);
 
-                while (buffer.hasRemaining()) {
-                    client.write(buffer);
+                            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+                            objectOutputStream.writeObject(response);
+                            objectOutputStream.flush();
+                            objectOutputStream.close();
+                            ByteBuffer buffer = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
+
+                            while (buffer.hasRemaining()) {
+                                client.write(buffer);
+                            }
+
+                            client.register(selector, SelectionKey.OP_READ);
+                            buffer.clear();
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                    }
+                    iter.remove();
                 }
-
-                client.register(selector, SelectionKey.OP_READ);
-                buffer.clear();
-            } catch (Exception e) {
-                System.out.println(e);
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -7,7 +7,9 @@ import Server.Storage.StorageConnector;
 public class Load extends Command {
     public Load() {
         super("load", "—читывает коллекцию из файла",
-                new CommandArgument[]{new CommandArgument("filename", String.class)});
+                new CommandArgument[]{
+                        new CommandArgument("filename", String.class).withNotRequired("data.json")
+        });
     }
 
     @Override

@@ -1,5 +1,6 @@
 package Server.Connection.Managers;
 
+import Client.APIs.ObjectIO;
 import Server.Connection.Request;
 import Server.Connection.Response;
 import com.github.alexdlaird.ngrok.NgrokClient;
@@ -9,14 +10,17 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 public class HTTPConnection extends ConnectionManager {
     final int port = 3000;
     HttpServer server = null;
 
-    HTTPConnection() {
+    public HTTPConnection() {
         try {
             server = HttpServer.create(new InetSocketAddress(port), 0);
 
@@ -25,12 +29,10 @@ public class HTTPConnection extends ConnectionManager {
                             .withAuthToken("2cqm4VEMT2TfsVEXxSPZxG0VsuZ_79UMNoBkcRPVQECF8AAna").build()).build();
 
             final CreateTunnel createNamedTunnel = new CreateTunnel.Builder()
-                    .withHostname("opossum-wanted-mammal.ngrok-free.app")
+                    .withHostname("gnu-stirring-wolf.ngrok-free.app")
                     .withAddr(port)
                     .build();
             ngrokClient.connect(createNamedTunnel);
-
-
         } catch (IOException e) {
             System.out.println(e);
         }
@@ -39,15 +41,11 @@ public class HTTPConnection extends ConnectionManager {
     @Override
     public void response(Response response) {
         try {
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutputStream out = new ObjectOutputStream(bos);
-            out.writeObject(response);
-            out.flush();
-
             HttpExchange exchange = (HttpExchange) this.clients.get(response.getClient());
             OutputStream os = exchange.getResponseBody();
-            exchange.sendResponseHeaders(200, bos.toByteArray().length);
 
+            ByteArrayOutputStream bos = ObjectIO.writeObject(response);
+            exchange.sendResponseHeaders(200, bos.toByteArray().length);
             os.write(bos.toByteArray());
             exchange.close();
         } catch (IOException e) {
@@ -58,15 +56,12 @@ public class HTTPConnection extends ConnectionManager {
     @Override
     public void run() {
         server.start();
-        server.createContext("/app", new HttpHandler() {
+        server.createContext("/request", new HttpHandler() {
             @Override
             public void handle(HttpExchange exchange) {
                 try {
                     InputStream inputStream = exchange.getRequestBody();
-                    ByteArrayInputStream bis = new ByteArrayInputStream(inputStream.readAllBytes());
-                    ObjectInputStream in = new ObjectInputStream(bis);
-                    in.readObject();
-                    Request request = (Request) in.readObject();
+                    Request request = (Request) ObjectIO.readObject(inputStream.readAllBytes());
                     HTTPConnection.this.clients.put(request.getClient(), exchange);
                     requestCallback.call(request);
                 } catch (Exception e) {

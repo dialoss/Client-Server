@@ -13,9 +13,9 @@ public class Filter extends Command {
 
     @Override
     public String execute(CollectionManager manager, CommandArgument[] args) {
+        String name = (String) args[0].getValue();
         Object[] items = new Query(manager.getAll())
-                .filter("name", (Object value) -> ((String) value).startsWith("hello"))
-                .filter("annualTurnover", (Object v) -> ((Float) v) < 50).get();
+                .filter("name", (Object value) -> ((String) value).startsWith(name)).get();
 
         return new Stringify(items).get();
     }

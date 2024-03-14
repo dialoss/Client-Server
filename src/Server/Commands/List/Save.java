@@ -7,7 +7,9 @@ import Server.Storage.StorageConnector;
 public class Save extends Command {
     public Save() {
         super("save", "Сохраняет коллекцию в файл",
-                new CommandArgument[]{new CommandArgument("filename", String.class)});
+                new CommandArgument[]{
+                        new CommandArgument("filename", String.class).withNotRequired("data.json")
+        });
     }
 
     @Override

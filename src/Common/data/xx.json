@@ -1,0 +1,25 @@
+[
+  {
+    "id": 261307376,
+    "peopleCount": 123,
+    "type": "PUBLIC",
+    "annualTurnover": 13.0,
+    "name": "3",
+    "creationDate": "15.03.2024 00:10:45.621",
+    "coordinates": {
+      "x": 3.0,
+      "y": 3.0
+    },
+    "postalAddress": {
+      "zipCode": "3",
+      "town": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      }
+    },
+    "isPrivate": {
+      "value": false
+    }
+  }
+]

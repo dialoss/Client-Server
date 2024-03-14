@@ -7,9 +7,9 @@ import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
 
-public class DateAdapter implements JsonSerializer<MDate> {
+public class ModelFieldAdapter<T> implements JsonSerializer<T> {
     @Override
-    public JsonElement serialize(MDate src, Type typeOfSrc,
+    public JsonElement serialize(T src, Type typeOfSrc,
                                  JsonSerializationContext context) {
         return new JsonPrimitive(src.toString());
     }

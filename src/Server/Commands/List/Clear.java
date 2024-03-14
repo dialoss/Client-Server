@@ -5,12 +5,12 @@ import Server.Storage.CollectionManager;
 
 public class Clear extends Command {
     public Clear() {
-        super("clear", "Очищает коллекцию");
+        super("clear", "Clears the collection");
     }
 
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         collectionManager.clear();
-        return "Коллекция очищена";
+        return "Collection cleared";
     }
 }

@@ -12,6 +12,6 @@ public class VNotEmpty extends Validator {
 
     @Override
     public void validate(Field f, Object value, Object declaredValue) throws InvalidModelException {
-        if (((String) value).length() == 0) throw new InvalidModelException("Пустая строка");
+        if (((String) value).length() == 0) throw new InvalidModelException("Empty string");
     }
 }

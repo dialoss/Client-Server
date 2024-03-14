@@ -59,7 +59,7 @@ public class BaseCollectionManager<T extends OrderedItem> implements ICollection
         }
 
         public String getInfo() {
-            return String.format("Тип: %s\nДата: %s\nРазмер: %s", this.type, this.initDate, this.getSize());
+            return String.format("Type: %s\nDate: %s\nSize: %s", this.type, this.initDate, this.getSize());
         }
     }
 }

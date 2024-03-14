@@ -13,6 +13,6 @@ public class VMin extends Validator {
     public void validate(Field f, Object value, Object declaredValue) {
         if (!Double.class.isAssignableFrom(value.getClass())) return;
         if ((Double) value <= (Double) declaredValue)
-            throw new InvalidModelException("Значение поля должно быть больше 0");
+            throw new InvalidModelException("The field value must be greater than 0");
     }
 }

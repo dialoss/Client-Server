@@ -6,7 +6,7 @@ import Server.Storage.StorageConnector;
 
 public class Load extends Command {
     public Load() {
-        super("load", "Считывает коллекцию из файла",
+        super("load", "Reads a collection from a file",
                 new CommandArgument[]{
                         new CommandArgument("filename", String.class).withNotRequired("data.json")
         });
@@ -16,6 +16,6 @@ public class Load extends Command {
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         String filename = (String) args[0].getValue();
         StorageConnector.load(filename);
-        return "Коллекция загружена";
+        return "Collection loaded";
     }
 }

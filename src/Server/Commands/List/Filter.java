@@ -7,7 +7,7 @@ import Server.Storage.CollectionManager;
 public class Filter extends Command {
     public Filter() {
         super("filter_starts_with_name",
-                "¬ыводит элементы, значение пол€ name которых начинаетс€ с заданной подстроки",
+                "Displays elements whose name field value begins with the given substring",
                 new CommandArgument[]{new CommandArgument("name", String.class)});
     }
 

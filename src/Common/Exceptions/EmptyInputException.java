@@ -2,6 +2,6 @@ package Common.Exceptions;
 
 public class EmptyInputException extends RuntimeException {
     public EmptyInputException() {
-        super("Пустой ввод");
+        super("Empty input");
     }
 }

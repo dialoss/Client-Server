@@ -39,7 +39,7 @@ public class Form {
     private JSONObject getModel(Class<?> cl) {
         Field[] fields = cl.getDeclaredFields();
         JSONObject result = new JSONObject();
-        this.form.out("Заполните объект %s".formatted(ShellColors.format(ShellColors.BLUE, cl.getName())));
+        this.form.out("Fill in the %s object".formatted(ShellColors.format(ShellColors.BLUE, cl.getName())));
 
         for (Field f : fields) {
             result.put(f.getName(), this.awaitInput(f));
@@ -54,9 +54,9 @@ public class Form {
         ModelField params = Serializer.getParameters(f);
         if (params != null && params.AUTO_GENERATE()) return null;
 
-        this.form.out("Введите поле %s тип %s".formatted(ShellColors.format(ShellColors.BLUE, f.getName()), f.getGenericType()));
+        this.form.out("Enter field %s type %s".formatted(ShellColors.format(ShellColors.BLUE, f.getName()), f.getGenericType()));
         if (Enum.class.isAssignableFrom(f.getType())) {
-            this.form.out("Возможные значения:");
+            this.form.out("Possible values:");
             try {
                 Method method = f.getType().getDeclaredMethod("values");
                 Object[] obj = (Object[]) method.invoke(f);
@@ -64,7 +64,7 @@ public class Form {
                     this.form.out(enumField.toString());
                 }
             } catch (Exception e) {
-                throw new RuntimeException("Ошибка");
+                throw new RuntimeException("Error");
             }
         }
         while (true) {
@@ -81,7 +81,7 @@ public class Form {
 
     public Object get() {
         Object value = this.processInput(this.argument.type);
-        if (value == null) throw new RuntimeException("Ошибка значения");
+        if (value == null) throw new RuntimeException("Value error");
         if (value instanceof JSONObject) {
             value = new Organization().from((JSONObject) value);
         }

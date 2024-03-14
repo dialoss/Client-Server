@@ -7,7 +7,7 @@ import Server.Storage.CollectionManager;
 
 public class Help extends Command {
     public Help() {
-        super("help", "¬ыводит справку по доступным командам");
+        super("help", "Displays help on available commands");
     }
 
 

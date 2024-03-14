@@ -6,7 +6,7 @@ import Server.Storage.CollectionManager;
 
 public class Remove extends Command {
     public Remove() {
-        super("remove", "Удаляет элемент из коллекции по его ключу",
+        super("remove", "Removes an element from the collection by its key",
                 new CommandArgument[]{new CommandArgument("id", Integer.class)});
     }
 
@@ -15,6 +15,6 @@ public class Remove extends Command {
         Integer id = (Integer) args[0].getValue();
         if (collectionManager.get(id) == null) throw new ElementNotFound(id);
         collectionManager.delete(id);
-        return "Элемент %s удалён".formatted(id);
+        return "Item %s has been removed.".formatted(id);
     }
 }

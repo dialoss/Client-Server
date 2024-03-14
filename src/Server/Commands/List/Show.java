@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class Show extends Command {
     public Show() {
-        super("show", "Выводит все элементы коллекции в строковом представлении",
+        super("show", "Displays all elements of a collection in string representation",
                 new CommandArgument[]{
                         new CommandArgument("limit", Integer.class).withNotRequired((int)1e9)
                 });

@@ -34,7 +34,7 @@ public class Stringify {
             result = result.concat((numerate ? i++ + " " : "") + modificator.apply(it) + "\n");
             if (splitLines) result += "\n";
         }
-        if (result.equals("")) return "Нет элементов";
+        if (result.equals("")) return "No elements";
         return result;
     }
 }

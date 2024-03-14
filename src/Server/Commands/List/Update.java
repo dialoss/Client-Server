@@ -6,7 +6,7 @@ import Server.Storage.CollectionManager;
 
 public class Update extends Command {
     public Update() {
-        super("update", "Обновляет значение элемента коллекции, id которого равен заданному",
+        super("update", "Updates the value of a collection element whose id is equal to the given one",
                 new CommandArgument[]{
                         new CommandArgument("id", Integer.class),
                         new CommandArgument("element", Organization.class)
@@ -19,6 +19,6 @@ public class Update extends Command {
         Organization item = (Organization) args[1].getValue();
         Integer id = (Integer) args[0].getValue();
         collectionManager.update(id, item);
-        return "Элемент обновлён";
+        return "Item updated";
     }
 }

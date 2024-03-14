@@ -12,6 +12,6 @@ public class VMaxLength extends Validator {
     @Override
     public void validate(Field f, Object value, Object declaredValue) throws InvalidModelException {
         if (((String) value).length() >= (Integer) declaredValue)
-            throw new InvalidModelException("Максимальная длина строки "+ declaredValue);
+            throw new InvalidModelException("Maximum string length "+ declaredValue);
     }
 }

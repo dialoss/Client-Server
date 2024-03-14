@@ -16,11 +16,11 @@ import java.util.Scanner;
 
 public class ExecuteScript extends Command {
     public ExecuteScript() {
-        super("script", "Считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.",
+        super("script", "Read and execute a script from the specified file. The script contains commands in the same form in which the user enters them in interactive mode.",
                 new CommandArgument[]{
                         new CommandArgument("filename", String.class),
                         new CommandArgument("show_log", MBoolean.class).withNotRequired(new MBoolean(false))
-//                        new CommandArgument("recursion", Integer.class).withNotRequired(5)
+// new CommandArgument("recursion", Integer.class).withNotRequired(5)
         });
     }
 
@@ -28,7 +28,7 @@ public class ExecuteScript extends Command {
     public String execute(CollectionManager collectionManager, CommandArgument[] args) throws ScriptRuntimeException {
         String filename = (String) args[0].getValue();
         Boolean showLog = ((MBoolean) args[1].getValue()).getValue();
-        if (DevNull.deviceCounter >= 5) return "Ограничение рекурсии %s!".formatted(5);
+        if (DevNull.deviceCounter >= 5) return "Recursion limit %s!".formatted(5);
         try {
             String text = StorageConnector.storage.changeSource("scripts/" + filename)._read();
             IOdevice virtual = new DevNull(new Scanner(text));
@@ -41,6 +41,6 @@ public class ExecuteScript extends Command {
         } catch (Exception e) {
             throw new ScriptRuntimeException(e.toString());
         }
-        return "Скрипт %s завершён".formatted(filename);
+        return "Script %s completed".formatted(filename);
     }
 }

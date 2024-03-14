@@ -5,7 +5,7 @@ import Server.Storage.CollectionManager;
 
 public class Exit extends Command {
     public Exit() {
-        super("exit", "Завершает программу (без сохранения в файл)");
+        super("exit", "Exits the program (without saving to a file)");
     }
 
     @Override

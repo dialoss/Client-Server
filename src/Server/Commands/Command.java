@@ -33,7 +33,7 @@ public abstract class Command implements IExecutable, Serializable {
             for (CommandArgument arg : this.arguments) {
                 description = description.concat(" " + arg.getName());
             }
-            description = description + ": " + this.description + " | Аргументы: ";
+            description = description + ": " + this.description + " | Arguments: ";
             for (CommandArgument arg : this.arguments) {
                 description = description.concat(arg.toString() + ", ");
             }

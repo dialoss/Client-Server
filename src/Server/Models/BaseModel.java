@@ -78,4 +78,3 @@ public abstract class BaseModel {
         return "\n" + result.strip();
     }
 }
-

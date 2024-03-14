@@ -6,7 +6,7 @@ import Server.Storage.StorageConnector;
 
 public class Save extends Command {
     public Save() {
-        super("save", "Сохраняет коллекцию в файл",
+        super("save", "Saves the collection to a file",
                 new CommandArgument[]{
                         new CommandArgument("filename", String.class).withNotRequired("data.json")
         });
@@ -16,6 +16,6 @@ public class Save extends Command {
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         String filename = (String) args[0].getValue();
         String path = StorageConnector.save(filename);
-        return "Файл сохранён по пути: " + path;
+        return "The file is saved at the path: " + path;
     }
 }

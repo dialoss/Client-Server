@@ -27,7 +27,7 @@ public class CommandParser {
             if (arg.position == ArgumentPosition.LINE) {
                 if (tokens.length <= j)
                     if (arg.required) {
-                        throw new InvalidAmountOfArguments("¬ведите аргумент %s - %s".formatted(arg.getName(), arg.type.getSimpleName()));
+                        throw new InvalidAmountOfArguments("Enter argument %s - %s".formatted(arg.getName(), arg.type.getSimpleName()));
                     } else continue;
                 this.shellForm.putInput(tokens[j++]);
             }
@@ -43,7 +43,7 @@ public class CommandParser {
                     arg.possibleValues.stream()
                             .filter(v -> (v.equals(value)))
                             .toArray().length == 0)
-                throw new InvalidValue("«начение %s не может быть аргументом %s".formatted(value, arg.getName()));
+                throw new InvalidValue("Value %s cannot be an argument to %s".formatted(value, arg.getName()));
             arguments[i++].setValue(value);
         }
         return arguments;

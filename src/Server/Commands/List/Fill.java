@@ -6,7 +6,7 @@ import Server.Storage.CollectionManager;
 
 public class Fill extends Command {
     public Fill() {
-        super("fill", "Заполняет коллекцию случайными значениями",
+        super("fill", "Fills the collection with random values",
                 new CommandArgument[]{new CommandArgument("amount", Integer.class)});
     }
 
@@ -16,6 +16,6 @@ public class Fill extends Command {
         for (int i = 0; i < amount; i++) {
             collectionManager.insert((Organization) new Organization().random());
         }
-        return String.format("%s элементов добавлено", amount);
+        return String.format("%s elements added", amount);
     }
 }

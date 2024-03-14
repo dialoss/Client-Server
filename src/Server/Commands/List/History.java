@@ -7,14 +7,14 @@ import Server.Storage.CollectionManager;
 
 public class History extends Command {
     public History() {
-        super("history", "Выводит историю команд");
+        super("history", "Displays command history");
     }
 
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         StringBuilder b = new StringBuilder();
         CommandManager.getHistory().stream()
-                .map((HistoryEntry h) -> h.request.getName() + " Статус " + h.response.code + "\n")
+                .map((HistoryEntry h) -> h.request.getName() + " Status " + h.response.code + "\n")
                 .forEach(b::append);
         return b.toString();
     }

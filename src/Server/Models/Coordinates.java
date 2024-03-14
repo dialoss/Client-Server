@@ -2,7 +2,7 @@ package Server.Models;
 
 public class Coordinates extends BaseModel {
     @ModelField
-    public Double x; //Поле не может быть null
+    public Double x; //Field cannot be null
     @ModelField
-    public Double y; //Поле не может быть null
+    public Double y; //Field cannot be null
 }

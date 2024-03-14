@@ -1,4 +1,3 @@
-
 package Server.Storage;
 
 
@@ -39,4 +38,3 @@ public class JSONStorage extends FileStorage {
         return this.source.toString();
     }
 }
-

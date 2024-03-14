@@ -17,4 +17,3 @@ public class Tools {
         return json.toJson(object);
     }
 }
-

@@ -6,5 +6,5 @@ public class Location extends BaseModel {
     @ModelField(NULL = true)
     public Float y;
     @ModelField
-    public Float z; //Поле не может быть null
+    public Float z; //Field cannot be null
 }

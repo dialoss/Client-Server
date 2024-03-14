@@ -12,6 +12,6 @@ public class VMinLength extends Validator {
     @Override
     public void validate(Field f, Object value, Object declaredValue) throws InvalidModelException {
         if (((String) value).length() <= (Integer) declaredValue)
-            throw new InvalidModelException("Минимальная длина строки " + declaredValue);
+            throw new InvalidModelException("Minimum string length " + declaredValue);
     }
 }

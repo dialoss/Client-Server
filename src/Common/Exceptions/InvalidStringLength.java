@@ -2,6 +2,6 @@ package Common.Exceptions;
 
 public class InvalidStringLength extends RuntimeException {
     InvalidStringLength() {
-        super("Длина строки больше 15");
+        super("String length is greater than 15");
     }
 }

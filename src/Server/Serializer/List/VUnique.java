@@ -16,6 +16,6 @@ public class VUnique extends Validator {
         if ((Boolean) declaredValue && new Query(StorageConnector.manager.getAll())
                 .filter(f.getName(), (Object v) -> v.equals(value))
                 .get().length > 0)
-            throw new InvalidModelException("Значение поля %s должно быть уникальным - %s".formatted(f.getName(), value));
+            throw new InvalidModelException("The value of the field %s must be unique - %s".formatted(f.getName(), value));
     }
 }

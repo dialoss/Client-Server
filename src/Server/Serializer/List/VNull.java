@@ -13,6 +13,6 @@ public class VNull extends Validator {
     public void validate(Field f, Object value, Object declaredValue) {
         if (!((boolean) declaredValue) &&
                 (value == null || (value instanceof String && ((String)value).length() == 0)))
-            throw new NotNullField(String.format("Поле %s не может быть NULL", f.getName()));
+            throw new NotNullField(String.format("Field %s cannot be NULL", f.getName()));
     }
 }

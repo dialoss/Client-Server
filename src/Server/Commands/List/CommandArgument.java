@@ -49,6 +49,6 @@ public class CommandArgument implements Serializable {
     @Override
     public String toString() {
         return "%s - %s".formatted(this.name, this.type.getName()) +
-                (possibleValues.size() != 0 ? " - Возможные значения: %s".formatted(possibleValues.toString()) : "");
+                (possibleValues.size() != 0 ? " - Possible values: %s".formatted(possibleValues.toString()) : "");
     }
 }

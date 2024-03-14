@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class RemoveGreater extends Command {
     public RemoveGreater() {
-        super("remove_greater", "”дал€ет из коллекции все элементы, превышающие заданный",
+        super("remove_greater", "Removes from the collection all elements greater than the given one",
                 new CommandArgument[]{
                         new CommandArgument("element", Organization.class)
                                 .withPosition(ArgumentPosition.MULTILINE)
@@ -29,6 +29,6 @@ public class RemoveGreater extends Command {
                 deleted.add(id);
             });
 
-        return "Ёлементы удалены:\n%s".formatted(new Stringify(deleted.toArray()).get());
+        return "Items deleted:\n%s".formatted(new Stringify(deleted.toArray()).get());
     }
 }

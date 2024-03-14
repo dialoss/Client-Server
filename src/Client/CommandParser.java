@@ -24,13 +24,20 @@ public class CommandParser {
         CommandArgument[] arguments = Arrays.copyOf(command.getArguments(), command.getArguments().length);
         int j = 0;
         for (CommandArgument arg : command.getArguments()) {
-            if (arg.position == ArgumentPosition.LINE && arg.required) {
-                if (tokens.length <= j) throw new InvalidAmountOfArguments("¬ведите аргумент %s - %s".formatted(arg.getName(), arg.type.getSimpleName()));
+            if (arg.position == ArgumentPosition.LINE) {
+                if (tokens.length <= j)
+                    if (arg.required) {
+                        throw new InvalidAmountOfArguments("¬ведите аргумент %s - %s".formatted(arg.getName(), arg.type.getSimpleName()));
+                    } else continue;
                 this.shellForm.putInput(tokens[j++]);
             }
         }
         int i = 0;
         for (CommandArgument arg : command.getArguments()) {
+            if (!arg.required && i >= j) {
+                arguments[i++].setValue(arg.defaultValue);
+                continue;
+            }
             Object value = new Form(arg, this.shellForm).get();
             if (arg.possibleValues.size() != 0 &&
                     arg.possibleValues.stream()

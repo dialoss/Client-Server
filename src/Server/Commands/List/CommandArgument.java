@@ -11,14 +11,16 @@ public class CommandArgument implements Serializable {
     private Object value;
     public ArgumentPosition position = ArgumentPosition.LINE;
     public ArrayList<Object> possibleValues = new ArrayList<>();
+    public Object defaultValue;
 
     public CommandArgument withPosition(ArgumentPosition position) {
         this.position = position;
         return this;
     }
 
-    public CommandArgument withNotRequired() {
+    public CommandArgument withNotRequired(Object value) {
         this.required = false;
+        this.defaultValue = value;
         return this;
     }
 

@@ -10,7 +10,7 @@ public class Show extends Command {
     public Show() {
         super("show", "Выводит все элементы коллекции в строковом представлении",
                 new CommandArgument[]{
-                        new CommandArgument("limit", Integer.class)
+                        new CommandArgument("limit", Integer.class).withNotRequired((int)1e9)
                 });
     }
 

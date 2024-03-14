@@ -6,8 +6,17 @@ import Client.Shell.ShellColors;
 import java.util.Scanner;
 
 public class DevNull extends IOdevice {
+    public static Integer deviceCounter = 0;
+
     public DevNull(Scanner scanner) {
         super(scanner);
+        deviceCounter++;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        deviceCounter--;
     }
 
     @Override

@@ -16,12 +16,17 @@ import java.util.Scanner;
 public class ExecuteScript extends Command {
     public ExecuteScript() {
         super("script", "Считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.",
-                new CommandArgument[]{new CommandArgument("filename", String.class)});
+                new CommandArgument[]{
+                        new CommandArgument("filename", String.class),
+//                        new CommandArgument("recursion", Integer.class).withNotRequired(5)
+        });
     }
 
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) throws ScriptRuntimeException {
         String filename = (String) args[0].getValue();
+//        Integer recursion = (Integer) args[1].getValue();
+        if (DevNull.deviceCounter >= 5) return "Ограничение рекурсии %s!".formatted(5);
         try {
             String text = StorageConnector.storage.changeSource("scripts/" + filename)._read();
             IOdevice virtual = new DevNull(new Scanner(text));

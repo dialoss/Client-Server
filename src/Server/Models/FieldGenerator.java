@@ -18,10 +18,10 @@ public class FieldGenerator {
                     return (int) (Math.random() * 1e9);
                 }
             },
-            MyDate.class, new Generator<MyDate>() {
+            MDate.class, new Generator<MDate>() {
                 @Override
-                public MyDate gen() {
-                    return new MyDate();
+                public MDate gen() {
+                    return new MDate();
                 }
             },
             OrganizationType.class, new Generator<Enum<OrganizationType>>() {

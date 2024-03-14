@@ -1,14 +1,11 @@
 package Client.Shell;
 
 import Common.Exceptions.EmptyInputException;
-import Common.Exceptions.InvalidValue;
 import Server.Commands.List.CommandArgument;
 import Server.Models.BaseModel;
 import Server.Models.ModelField;
 import Server.Models.Organization;
-import Server.Models.OrganizationType;
 import Server.Serializer.Serializer;
-import Server.Storage.OrderedItem;
 import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
@@ -29,11 +26,10 @@ public class Form {
     }
 
     private Object getValue(Class<?> type) {
-        Serializer s = new Serializer();
         String val = this.form.input();
         if (val == null) throw new EmptyInputException();
         try {
-            return s.serializeValue(type, val);
+            return Serializer.serializeValue(type, val);
         } catch (Exception e) {
             this.form.validationError(e.toString());
         }
@@ -55,8 +51,7 @@ public class Form {
         if (BaseModel.isModel(f.getType())) {
             return this.processInput(f.getType());
         }
-        Serializer s = new Serializer();
-        ModelField params = s.getParameters(f);
+        ModelField params = Serializer.getParameters(f);
         if (params != null && params.AUTO_GENERATE()) return null;
 
         this.form.out("¬ведите поле %s тип %s".formatted(ShellColors.format(ShellColors.BLUE, f.getName()), f.getGenericType()));
@@ -69,14 +64,14 @@ public class Form {
                     this.form.out(enumField.toString());
                 }
             } catch (Exception e) {
-                this.form.validationError(e.toString());
+                throw new RuntimeException("ќшибка");
             }
         }
         while (true) {
             String val = this.form.input();
             if (val == null) break;
             try {
-                return s.serializeField(f, val);
+                return Serializer.serializeField(f, val);
             } catch (Exception e) {
                 this.form.validationError(e.toString());
             }

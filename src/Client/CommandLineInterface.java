@@ -7,7 +7,7 @@ import Server.Connection.Request;
 
 public class CommandLineInterface implements UserInterface {
     private final IOdevice shell;
-    private Callback<Request> APICallback;
+    private Callback<Request> requestCallback;
     private final CommandParser parser;
 
     public CommandLineInterface(IForm shellForm) {
@@ -24,8 +24,8 @@ public class CommandLineInterface implements UserInterface {
 
     private void processInput(String[] tokens) {
         try {
-            this.APICallback.call(this.parser.parse(tokens));
-        } catch (RuntimeException e) {
+            this.requestCallback.call(this.parser.parse(tokens));
+        } catch (Exception e) {
             this.shell.error(e.toString());
         }
     }
@@ -41,6 +41,6 @@ public class CommandLineInterface implements UserInterface {
 
     @Override
     public void setRequestCallback(Callback<Request> callback) {
-        this.APICallback = callback;
+        this.requestCallback = callback;
     }
 }

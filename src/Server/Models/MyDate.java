@@ -15,9 +15,14 @@ public class MyDate {
         date = new Date();
     }
 
-    public static Date valueOf(String s) {
+    public MyDate(Date date) {
+        this.date = date;
+    }
+
+    public static MyDate valueOf(String s) {
         try {
-            return formatter.parse(s);
+            Date d = formatter.parse(s);
+            return new MyDate(d);
         } catch (Exception e) {
             throw new InvalidModelException(EXCEPTION_MESSAGE);
         }

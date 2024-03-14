@@ -1,6 +1,6 @@
 package Server.Commands.List;
 
-import Common.Tools;
+import Common.Stringify;
 import Server.Commands.Command;
 import Server.Commands.CommandManager;
 import Server.Storage.CollectionManager;
@@ -13,6 +13,6 @@ public class Help extends Command {
 
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
-        return Tools.stringify(CommandManager.getAll().values().toArray());
+        return new Stringify(CommandManager.getAll().values().toArray()).get();
     }
 }

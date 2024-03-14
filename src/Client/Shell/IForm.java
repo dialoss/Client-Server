@@ -26,5 +26,5 @@ public abstract class IForm {
         return this.device.input();
     }
 
-    protected abstract void out(String data);
+    public abstract void out(String data);
 }

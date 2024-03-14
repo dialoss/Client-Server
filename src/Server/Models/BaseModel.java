@@ -67,7 +67,7 @@ public abstract class BaseModel {
 
     @Override
     public String toString() {
-        String result = "\n" + ShellColors.format(ShellColors.BLUE, this.getClass().getSimpleName()) + "\n";
+        String result = ShellColors.format(ShellColors.BLUE, this.getClass().getSimpleName()) + "\n";
         for (Field f : this.getFields()) {
             f.setAccessible(true);
             try {
@@ -75,7 +75,7 @@ public abstract class BaseModel {
             } catch (Exception e) {
             }
         }
-        return result.strip();
+        return "\n" + result.strip();
     }
 }
 

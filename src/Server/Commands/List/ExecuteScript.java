@@ -1,6 +1,7 @@
 package Server.Commands.List;
 
 import Client.CommandParser;
+import Client.Shell.IForm;
 import Client.Shell.IOdevice;
 import Common.Exceptions.ScriptRuntimeException;
 import Server.Commands.Command;
@@ -24,11 +25,12 @@ public class ExecuteScript extends Command {
         try {
             String text = StorageConnector.storage.changeSource("scripts/" + filename)._read();
             IOdevice virtual = new DevNull(new Scanner(text));
-            CommandParser parser = new CommandParser(new FileForm(virtual));
-            virtual.start((String[] command) -> CommandManager.execute(parser.parse(command)));
+            IForm form = new FileForm(virtual);
+            CommandParser parser = new CommandParser(form);
+            virtual.start((String[] command) -> form.out(CommandManager.execute(parser.parse(command)).getBody()));
         } catch (Exception e) {
             throw new ScriptRuntimeException(e.toString());
         }
-        return "";
+        return "Скрипт %s завершён".formatted(filename);
     }
 }

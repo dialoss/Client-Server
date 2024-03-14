@@ -1,6 +1,6 @@
 package Server.Commands.List;
 
-import Common.Tools;
+import Common.Stringify;
 import Server.Commands.Command;
 import Server.Storage.CollectionManager;
 
@@ -17,6 +17,6 @@ public class Filter extends Command {
                 .filter("name", (Object value) -> ((String) value).startsWith("hello"))
                 .filter("annualTurnover", (Object v) -> ((Float) v) < 50).get();
 
-        return Tools.stringify(items);
+        return new Stringify(items).get();
     }
 }

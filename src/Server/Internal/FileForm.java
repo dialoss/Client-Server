@@ -13,6 +13,7 @@ public class FileForm extends IForm {
     }
 
     @Override
-    protected void out(String data) {
+    public void out(String data) {
+        this.device.println(data);
     }
 }

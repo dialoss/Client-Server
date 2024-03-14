@@ -1,6 +1,6 @@
 package Server.Commands.List;
 
-import Common.Tools;
+import Common.Stringify;
 import Server.Commands.Command;
 import Server.Models.Organization;
 import Server.Storage.CollectionManager;
@@ -29,6 +29,6 @@ public class RemoveGreater extends Command {
                 deleted.add(id);
             });
 
-        return "Ёлементы удалены:\n%s".formatted(Tools.stringify(deleted.toArray()));
+        return "Ёлементы удалены:\n%s".formatted(new Stringify(deleted.toArray()).get());
     }
 }

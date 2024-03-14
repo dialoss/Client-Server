@@ -17,6 +17,7 @@ public class DevNull extends IOdevice {
 
     @Override
     public void print(String data) {
+        System.out.print(ShellColors.format(ShellColors.BLUE, data));
     }
 
     @Override

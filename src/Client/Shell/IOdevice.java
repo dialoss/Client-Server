@@ -20,7 +20,6 @@ public abstract class IOdevice {
     public String input() {
         String data = this.processInput(this.scanner::nextLine);
         if (Objects.equals(data, "")) return "";
-        this.print("> ");
         return data;
     }
 
@@ -39,12 +38,13 @@ public abstract class IOdevice {
         this.print("> ");
         while (true) {
             String input = this.input();
-            if (input.equals("")) continue;
             if (input == null) {
                 break;
             }
+            if (input.equals("")) continue;
             String[] tokens = input.split(" ");
             callback.call(tokens);
+            this.print("> ");
         }
     }
 }

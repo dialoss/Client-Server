@@ -1,6 +1,6 @@
 package Server.Commands.List;
 
-import Common.Tools;
+import Common.Stringify;
 import Server.Commands.Command;
 import Server.Storage.CollectionManager;
 
@@ -20,6 +20,6 @@ public class GetField extends Command {
         String fieldName = (String) args[0].getValue();
         Integer order = (Integer) args[1].getValue();
 
-        return Tools.stringify(new Query(manager.getAll()).reduce(fieldName).sorted(order));
+        return new Stringify(new Query(manager.getAll()).reduce(fieldName).sorted(order)).get();
     }
 }

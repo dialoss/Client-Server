@@ -4,11 +4,13 @@ import Client.Shell.ShellColors;
 import Server.Commands.List.CommandArgument;
 import Server.Storage.CollectionManager;
 
+import java.io.Serializable;
+
 interface IExecutable {
     String execute(CollectionManager collectionManager, CommandArgument[] arguments);
 }
 
-public abstract class Command implements IExecutable {
+public abstract class Command implements IExecutable, Serializable {
     private final String name;
     public final String description;
     private final CommandArgument[] arguments;

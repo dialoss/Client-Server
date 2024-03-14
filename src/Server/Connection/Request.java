@@ -3,7 +3,9 @@ package Server.Connection;
 import Server.Commands.Command;
 import Server.Commands.List.CommandArgument;
 
-public class Request {
+import java.io.Serializable;
+
+public class Request implements Serializable {
     private final CommandArgument[] arguments;
     private final Command command;
 

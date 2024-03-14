@@ -1,6 +1,8 @@
 package Server.Commands.List;
 
-public class CommandArgument {
+import java.io.Serializable;
+
+public class CommandArgument implements Serializable {
     private final String name;
     private final boolean required;
     public final Class<?> type;

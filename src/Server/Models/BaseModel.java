@@ -13,7 +13,7 @@ import java.util.Map;
 
 class OrderedModel implements OrderedItem {
     @ModelField(MIN = 2, UNIQUE = true, AUTO_GENERATE = true)
-    public Integer id; //ѕоле не может быть null, «начение пол€ должно быть больше 0, «начение этого пол€ должно быть уникальным, «начение этого пол€ должно генерироватьс€ автоматически
+    public Integer id;
 
     @Override
     public Integer getId() {
@@ -30,18 +30,22 @@ public class BaseModel extends OrderedModel {
         this.json = new JSONObject();
     }
 
+    private void createField() {
+
+    }
+
     public BaseModel from(JSONObject object) {
         Field[] fields = this.getClass().getFields();
         for (Field f : fields) {
             try {
-//                if (!BaseModel.class.isAssignableFrom(f.getType())) continue;
+                ModelField params = this.serializer.getParameters(f);
+                if (params == null) continue;
                 f.setAccessible(true);
                 Object value = object.get(f.getName());
                 if (value == "") value = null;
                 Class<?> type = f.getType();
 
-                ModelField params = this.serializer.getParameters(f);
-                if (value == null && params != null && params.AUTO_GENERATE()) {
+                if (value == null && params.AUTO_GENERATE()) {
                     try {
                         if (Integer.class.isAssignableFrom(type)) {
                             f.set(this, (int) (Math.random() * 1e9));

@@ -1,12 +1,18 @@
-import Client.Client;
 import Server.Server;
 
 public class Main {
     public static void main(String[] args) {
-        Server server = new Server();
-        Client client = new Client();
+        Runnable serverTask = new Runnable() {
+            @Override
+            public void run() {
+                Server server = new Server();
+                server.run();
+            }
+        };
+        Thread serverThread = new Thread(serverTask);
+        serverThread.start();
 
-        server.run();
-        client.run();
+//        Client client = new Client();
+//        client.run();
     }
 }

@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="lab5:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/lab5_jar</output-path>
+    <root id="root">
+      <element id="archive" name="lab5.jar">
+        <element id="module-output" name="lab5" />
+      </element>
+      <element id="library" level="project" name="github.alexdlaird.java.ngrok" />
+      <element id="library" level="project" name="gson-2.10.1" />
+      <element id="library" level="project" name="json-simple-1.1.1" />
+    </root>
+  </artifact>
+</component>

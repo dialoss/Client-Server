@@ -43,7 +43,7 @@ public class CommandManager {
             String result = command.execute(StorageConnector.manager, request.getArguments());
             response = new Response(result, Status.OK);
         } catch (Exception e) {
-            response = new Response(e.getMessage(), Status.SERVER_ERROR);
+            response = new Response(e.toString(), Status.SERVER_ERROR);
         }
         history.add(new HistoryEntry(request, response));
         return response;
@@ -65,5 +65,6 @@ public class CommandManager {
         add(Ascending.class);
         add(Remove.class);
         add(Load.class);
+        add(GetField.class);
     }
 }

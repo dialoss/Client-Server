@@ -1,25 +1,35 @@
 package Server.Commands.List;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandArgument implements Serializable {
     private final String name;
-    private final boolean required;
+    public boolean required = true;
     public final Class<?> type;
     private Object value;
     public ArgumentPosition position = ArgumentPosition.LINE;
+    public ArrayList<Object> possibleValues = new ArrayList<>();
 
-    CommandArgument(String name, Class<?> type, ArgumentPosition position) {
-        this.name = name;
-        this.type = type;
-        this.required = true;
+    public CommandArgument withPosition(ArgumentPosition position) {
         this.position = position;
+        return this;
+    }
+
+    public CommandArgument withNotRequired() {
+        this.required = false;
+        return this;
+    }
+
+    public CommandArgument withValues(Object[] values) {
+        this.possibleValues = new ArrayList<>(List.of(values));
+        return this;
     }
 
     public CommandArgument(String name, Class<?> type) {
         this.name = name;
         this.type = type;
-        this.required = true;
     }
 
     public String getName() {
@@ -36,6 +46,7 @@ public class CommandArgument implements Serializable {
 
     @Override
     public String toString() {
-        return this.name + " - " + this.type.getName();
+        return "%s - %s".formatted(this.name, this.type.getName()) +
+                (possibleValues.size() != 0 ? " - Возможные значения: %s".formatted(possibleValues.toString()) : "");
     }
 }

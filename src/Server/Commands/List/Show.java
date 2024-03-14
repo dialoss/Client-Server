@@ -11,6 +11,6 @@ public class Show extends Command {
 
     @Override
     public String execute(CollectionManager manager, CommandArgument[] args) {
-        return Tools.itemsToString(manager.getAll());
+        return Tools.stringify(manager.getAll());
     }
 }

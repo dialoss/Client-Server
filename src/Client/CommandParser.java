@@ -4,6 +4,7 @@ import Client.Shell.Form;
 import Client.Shell.IForm;
 import Common.Exceptions.CommandNotFound;
 import Common.Exceptions.InvalidAmountOfArguments;
+import Common.Exceptions.InvalidValue;
 import Server.Commands.Command;
 import Server.Commands.CommandManager;
 import Server.Commands.List.ArgumentPosition;
@@ -23,14 +24,19 @@ public class CommandParser {
         CommandArgument[] arguments = Arrays.copyOf(command.getArguments(), command.getArguments().length);
         int j = 0;
         for (CommandArgument arg : command.getArguments()) {
-            if (arg.position == ArgumentPosition.LINE) {
-                if (tokens.length <= j) throw new InvalidAmountOfArguments();
+            if (arg.position == ArgumentPosition.LINE && arg.required) {
+                if (tokens.length <= j) throw new InvalidAmountOfArguments("¬ведите аргумент %s - %s".formatted(arg.getName(), arg.type.getSimpleName()));
                 this.shellForm.putInput(tokens[j++]);
             }
         }
         int i = 0;
         for (CommandArgument arg : command.getArguments()) {
             Object value = new Form(arg, this.shellForm).get();
+            if (arg.possibleValues.size() != 0 &&
+                    arg.possibleValues.stream()
+                            .filter(v -> (v.equals(value)))
+                            .toArray().length == 0)
+                throw new InvalidValue("«начение %s не может быть аргументом %s".formatted(value, arg.getName()));
             arguments[i++].setValue(value);
         }
         return arguments;
@@ -40,7 +46,13 @@ public class CommandParser {
         String commandName = tokens[0];
         Command cmd = CommandManager.get(commandName);
         if (cmd == null) throw new CommandNotFound();
-        CommandArgument[] arguments = this.getArguments(cmd, Arrays.copyOfRange(tokens, 1, tokens.length));
+        CommandArgument[] arguments = new CommandArgument[0];
+        try {
+            arguments = this.getArguments(cmd, Arrays.copyOfRange(tokens, 1, tokens.length));
+        } catch (Exception e) {
+            this.shellForm.clearInput();
+            throw e;
+        }
         return new Request(cmd, arguments);
     }
 }

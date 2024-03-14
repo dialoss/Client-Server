@@ -13,6 +13,6 @@ public class Help extends Command {
 
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
-        return Tools.itemsToString(CommandManager.getAll().values().toArray());
+        return Tools.stringify(CommandManager.getAll().values().toArray());
     }
 }

@@ -7,7 +7,10 @@ import Server.Storage.CollectionManager;
 public class Insert extends Command {
     public Insert() {
         super("insert", "Добавляет новый элемент с заданным ключом",
-                new CommandArgument[]{new CommandArgument("element", Organization.class, ArgumentPosition.MULTILINE)});
+                new CommandArgument[]{
+                        new CommandArgument("element", Organization.class)
+                                .withPosition(ArgumentPosition.MULTILINE)
+        });
     }
 
     @Override

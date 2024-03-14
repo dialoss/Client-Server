@@ -15,6 +15,10 @@ public abstract class IForm {
         this.simulatedInput.add(data);
     }
 
+    public void clearInput() {
+        this.simulatedInput.clear();
+    }
+
     protected abstract void validationError(String message);
 
     protected String input() {

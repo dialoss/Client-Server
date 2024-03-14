@@ -9,8 +9,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public abstract class BaseModel {
-    public JSONObject json = new JSONObject();
-
     private Field[] getFields() {
         ArrayList<Field> fieldArrayList = new ArrayList<>();
         for (Field f : this.getClass().getFields()) {
@@ -42,7 +40,7 @@ public abstract class BaseModel {
                 if (value == "") value = null;
 
                 if (value == null && params.AUTO_GENERATE()) {
-                    value = FieldGenerator.getValue(f);
+                    value = FieldGenerator.random(f.getType());
                 } else {
                     if (random) value = FieldGenerator.random(f.getType());
                     value = Serializer.serializeField(f, String.valueOf(value));
@@ -73,11 +71,11 @@ public abstract class BaseModel {
         for (Field f : this.getFields()) {
             f.setAccessible(true);
             try {
-                result = result.concat(f.getName() + ": " + f.get(this).toString().strip() + "\n");
+                result = result.concat(f.getName() + ": " + f.get(this).toString() + "\n");
             } catch (Exception e) {
             }
         }
-        return result;
+        return result.strip();
     }
 }
 

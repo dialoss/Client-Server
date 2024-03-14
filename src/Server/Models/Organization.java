@@ -4,6 +4,8 @@ public class Organization extends BaseModel implements Comparable<Organization>,
     @ModelField(MIN = 2, UNIQUE = true, AUTO_GENERATE = true)
     public Integer id;
 
+    @ModelField(MIN=100, MAX=500)
+    public Integer peopleCount;
     @ModelField
     public OrganizationType type; //Поле не может быть null
     @ModelField(MIN = 0)
@@ -16,6 +18,8 @@ public class Organization extends BaseModel implements Comparable<Organization>,
     public Coordinates coordinates; //Поле не может быть null
     @ModelField
     public Address postalAddress; //Поле не может быть null
+    @ModelField
+    public Boolean isPrivate;
 
     @Override
     public int compareTo(Organization o) {

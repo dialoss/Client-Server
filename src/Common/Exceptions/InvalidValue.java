@@ -5,4 +5,7 @@ public class InvalidValue extends InvalidModelException {
     public InvalidValue(Object value, String field) {
         super(String.format("Значение %s не может быть присвоено полю %s", value, field));
     }
+    public InvalidValue(String message) {
+        super(message);
+    }
 }

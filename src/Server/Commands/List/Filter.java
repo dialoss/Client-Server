@@ -2,7 +2,6 @@ package Server.Commands.List;
 
 import Common.Tools;
 import Server.Commands.Command;
-import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 
 public class Filter extends Command {
@@ -14,10 +13,10 @@ public class Filter extends Command {
 
     @Override
     public String execute(CollectionManager manager, CommandArgument[] args) {
-        Object[] items = new Query(manager.getAll(), Organization.class)
+        Object[] items = new Query(manager.getAll())
                 .filter("name", (Object value) -> ((String) value).startsWith("hello"))
                 .filter("annualTurnover", (Object v) -> ((Float) v) < 50).get();
 
-        return Tools.itemsToString(items);
+        return Tools.stringify(items);
     }
 }

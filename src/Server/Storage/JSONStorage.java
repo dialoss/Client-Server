@@ -2,7 +2,6 @@
 package Server.Storage;
 
 
-import Common.Tools;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -34,14 +33,9 @@ public class JSONStorage extends FileStorage {
         return new JSONObject[]{new JSONObject()};
     }
 
-    public String write(JSONObject[] data, String filename) {
+    public String write(String data, String filename) {
         this.changeSource(filename);
-        return this.write(data);
-    }
-
-    public String write(JSONObject[] data) {
-        super._write(Tools.itemsToString(data,
-                (Object t) -> Tools.beautifyJSON(((JSONObject) t).toJSONString())));
+        super._write(data);
         return this.source.toString();
     }
 }

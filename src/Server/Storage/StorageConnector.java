@@ -1,9 +1,8 @@
 package Server.Storage;
 
+import Common.Tools;
 import Server.Models.Organization;
 import org.json.simple.JSONObject;
-
-import java.util.stream.Stream;
 
 public class StorageConnector {
     public static ServerStorage storage = new ServerStorage();
@@ -22,7 +21,6 @@ public class StorageConnector {
     }
 
     public static String save(String filename) {
-        return storage.write(Stream.of(manager.getAll())
-                .map((Organization it) -> it.json).toArray(JSONObject[]::new), filename);
+        return storage.write(Tools.objectToJSON(manager.getAll()), filename);
     }
 }

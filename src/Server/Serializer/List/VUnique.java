@@ -1,10 +1,8 @@
 package Server.Serializer.List;
 
 import Common.Exceptions.InvalidModelException;
-import Server.Commands.CommandManager;
 import Server.Commands.List.Query;
 import Server.Models.BaseModel;
-import Server.Models.Organization;
 import Server.Storage.StorageConnector;
 
 import java.lang.reflect.Field;

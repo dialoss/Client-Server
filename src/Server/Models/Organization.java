@@ -1,8 +1,9 @@
 package Server.Models;
 
-import java.util.Date;
+public class Organization extends BaseModel implements Comparable<Organization>, OrderedItem {
+    @ModelField(MIN = 2, UNIQUE = true, AUTO_GENERATE = true)
+    public Integer id;
 
-public class Organization extends BaseModel implements Comparable<Organization> {
     @ModelField
     public OrganizationType type; //Поле не может быть null
     @ModelField(MIN = 0)
@@ -10,15 +11,18 @@ public class Organization extends BaseModel implements Comparable<Organization> 
     @ModelField(NOT_EMPTY = true, UNIQUE = true)
     public String name; //Поле не может быть null, Строка не может быть пустой
     @ModelField(AUTO_GENERATE = true)
-    public Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    public MyDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     @ModelField(NULL = true)
     public Coordinates coordinates; //Поле не может быть null
     @ModelField
     public Address postalAddress; //Поле не может быть null
 
-
     @Override
     public int compareTo(Organization o) {
         return this.name.compareTo(o.name);
+    }
+
+    public Integer getId() {
+        return this.id;
     }
 }

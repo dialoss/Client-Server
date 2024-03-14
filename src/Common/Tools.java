@@ -1,8 +1,5 @@
 package Common;
 
-import Common.Exceptions.InvalidModelException;
-import Common.Exceptions.InvalidValue;
-import Server.Models.Organization;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -10,13 +7,6 @@ import com.google.gson.JsonParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
 import java.util.function.Function;
 
 public class Tools {
@@ -43,8 +33,9 @@ public class Tools {
 
     public static String itemsToString(Object[] items, Function<Object, String> modificator) {
         String result = "";
+        int i = 1;
         for (Object it : items) {
-            result = result.concat(modificator.apply(it) + "\n");
+            result = result.concat(String.valueOf(i++) + " " + modificator.apply(it) + "\n");
         }
         if (result.equals("")) return "Нет элементов";
         return result;
@@ -63,23 +54,5 @@ public class Tools {
             result = result.concat(v);
         }
         return result;
-    }
-
-    public static String formatOutputDate(Date date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        try {
-            return formatter.format(date);
-        } catch (Exception e) {
-            throw new InvalidModelException("Неверный формат даты. Формат: dd.MM.yyyy");
-        }
-    }
-
-    public static Date formatInputDate(String value) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        try {
-            return formatter.parse(value);
-        } catch (Exception e) {
-            throw new InvalidModelException("Неверный формат даты. Формат: dd.MM.yyyy");
-        }
     }
 }

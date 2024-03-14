@@ -2,7 +2,6 @@ package Server.Commands.List;
 
 import Common.Exceptions.ElementNotFound;
 import Server.Commands.Command;
-import Server.Models.Organization;
 import Server.Storage.CollectionManager;
 
 public class Remove extends Command {

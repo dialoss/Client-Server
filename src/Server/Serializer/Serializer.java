@@ -12,6 +12,7 @@ public class Serializer {
         Method method = type.getDeclaredMethod("valueOf", String.class);
         return method.invoke(null, value);
     }
+
     public static Object serializeValue(Class<?> type, Object value) {
         return serializeValue(type, value, type.getName());
     }

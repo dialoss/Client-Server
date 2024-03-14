@@ -1,6 +1,5 @@
 package Client.Shell;
 
-import Server.Commands.ICallback;
 import java.util.Scanner;
 
 public class Shell extends IOdevice {

@@ -1,5 +1,6 @@
 package Server.Storage;
 
+import Server.Models.OrderedItem;
 import Server.Models.Organization;
 
 import java.util.Date;

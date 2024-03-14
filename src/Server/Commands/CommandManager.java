@@ -1,8 +1,5 @@
 package Server.Commands;
 
-import Server.Commands.List.ExecuteScript;
-import Server.Commands.List.Help;
-import Server.Commands.List.History;
 import Server.Commands.List.*;
 import Server.Connection.Request;
 import Server.Connection.Response;
@@ -52,27 +49,21 @@ public class CommandManager {
         return response;
     }
 
-    static class CommandManagerBuilder {
-        public static void build() {
-            CommandManager.add(Info.class);
-            CommandManager.add(Show.class);
-            CommandManager.add(Insert.class);
-            CommandManager.add(Help.class);
-            CommandManager.add(Filter.class);
-            CommandManager.add(ExecuteScript.class);
-            CommandManager.add(Clear.class);
-            CommandManager.add(Save.class);
-            CommandManager.add(Fill.class);
-            CommandManager.add(Update.class);
-            CommandManager.add(History.class);
-            CommandManager.add(RemoveGreater.class);
-            CommandManager.add(Ascending.class);
-            CommandManager.add(Remove.class);
-            CommandManager.add(Load.class);
-        }
-    }
-
     static {
-        CommandManagerBuilder.build();
+        add(Info.class);
+        add(Show.class);
+        add(Insert.class);
+        add(Help.class);
+        add(Filter.class);
+        add(ExecuteScript.class);
+        add(Clear.class);
+        add(Save.class);
+        add(Fill.class);
+        add(Update.class);
+        add(History.class);
+        add(RemoveGreater.class);
+        add(Ascending.class);
+        add(Remove.class);
+        add(Load.class);
     }
 }

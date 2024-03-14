@@ -14,7 +14,7 @@ public class Fill extends Command {
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         Integer amount = (Integer) args[0].getValue();
         for (int i = 0; i < amount; i++) {
-            collectionManager.insert(new Organization());
+            collectionManager.insert((Organization) new Organization().random());
         }
         return String.format("%s элементов добавлено", amount);
     }

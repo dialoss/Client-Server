@@ -20,5 +20,6 @@
     <orderEntry type="library" name="json-simple-1.1.1" level="project" />
     <orderEntry type="library" name="gson-2.10.1" level="project" />
     <orderEntry type="library" name="github.alexdlaird.java.ngrok" level="project" />
+    <orderEntry type="library" name="jrand-0.2.5-alpha" level="project" />
   </component>
 </module>

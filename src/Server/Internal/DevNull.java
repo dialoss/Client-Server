@@ -1,6 +1,7 @@
 package Server.Internal;
 
 import Client.Shell.IOdevice;
+import Client.Shell.ShellColors;
 
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class DevNull extends IOdevice {
 
     @Override
     public void println(String data) {
+        System.out.println(ShellColors.format(ShellColors.BLUE, data));
     }
 
     @Override

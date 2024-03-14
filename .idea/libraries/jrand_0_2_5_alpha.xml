@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jrand-0.2.5-alpha">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dependencies/jrand-0.2.5-alpha.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

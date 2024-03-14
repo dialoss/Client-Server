@@ -8,9 +8,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
-import java.util.stream.Stream;
-
 public class JSONStorage extends FileStorage {
     public JSONStorage() {
         super();

@@ -1,4 +1,4 @@
-package Server.Storage;
+package Server.Models;
 
 public interface OrderedItem {
     Integer getId();

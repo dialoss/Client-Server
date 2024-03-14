@@ -1,7 +1,8 @@
 package Server.Storage;
 
 import Server.Models.Organization;
-import java.util.*;
+
+import java.util.LinkedHashMap;
 
 public class CollectionManager extends BaseCollectionManager<Organization> {
     public Organization[] getAll() {

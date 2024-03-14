@@ -3,9 +3,6 @@ package Server.Storage;
 import Server.Models.Organization;
 import org.json.simple.JSONObject;
 
-import java.io.IOException;
-import java.util.Objects;
-import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class StorageConnector {

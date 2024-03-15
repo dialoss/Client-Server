@@ -2,7 +2,7 @@ package Server.Models;
 
 public class Users extends BaseModel {
     @ModelField
-    public String name;
+    public String login;
     @ModelField
     public String password;
     @ModelField

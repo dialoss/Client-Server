@@ -8,15 +8,15 @@ import java.io.Serializable;
 public class Request implements Serializable {
     private final CommandArgument[] arguments;
     private final Command command;
-    private final Integer client;
+    private final User client;
 
     public Request(Command command, CommandArgument[] arguments) {
         this.command = command;
         this.arguments = arguments;
-        this.client = (int) (Math.random() * 1e9);
+        this.client = new User((int) (Math.random() * 1e9));
     }
 
-    public Integer getClient() {
+    public User getClient() {
         return client;
     }
 

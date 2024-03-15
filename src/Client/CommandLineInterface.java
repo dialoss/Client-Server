@@ -2,6 +2,7 @@ package Client;
 
 import Client.Shell.IForm;
 import Client.Shell.IOdevice;
+import Common.Connection.Status;
 import Common.EventBus.Callback;
 import Common.Connection.Request;
 import Common.Connection.Response;
@@ -17,10 +18,8 @@ public class CommandLineInterface implements UserInterface {
     }
 
     private void processOutput(Response response) {
-        switch (response.code) {
-            case SERVER_ERROR -> this.shell.error(response.getBody());
-            case OK -> this.shell.println(response.getBody());
-        }
+        if (response.code == Status.OK) this.shell.println(response.getBody());
+        else this.shell.error(response.getBody());
     }
 
     private void processInput(String[] tokens) {

@@ -20,4 +20,8 @@ public class DBManager {
             session.insert(Organization.class, it);
         }
     }
+
+    public DBOperations getSession() {
+        return session;
+    }
 }

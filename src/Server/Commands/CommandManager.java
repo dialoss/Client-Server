@@ -1,11 +1,14 @@
 package Server.Commands;
 
-import Server.Commands.List.*;
 import Common.Connection.Request;
 import Common.Connection.Response;
 import Common.Connection.Status;
+import Common.Connection.User;
+import Server.Commands.List.*;
+import Server.Internal.PasswordManager;
 import Server.Storage.StorageConnector;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,12 +39,27 @@ public class CommandManager {
         return CommandManager.commands;
     }
 
-    static public Response execute(Request request) {
+    static public Response execute(Request request) throws SQLException {
         Command command = commands.get(request.getName());
-        Response response;
+        User user = request.getClient();
+        Response response = null;
+
         try {
-            String result = command.execute(StorageConnector.manager, request.getArguments());
-            response = new Response(result, Status.OK, request.getClient());
+            if (command.getName().equals("register")) {
+                if (PasswordManager.login(user))
+                    response = new Response("You has already registered.", Status.OK, user);
+                else
+                    response = new Response("You are successfully registered.", Status.OK, PasswordManager.register(request));
+            }
+            else if (command.getName().equals("login")) {
+                if (!PasswordManager.login(user))
+                    response = new Response("Forbidden. You must login before using this app.", Status.FORBIDDEN, user);
+                else
+                    response = new Response("You are successfully login.", Status.OK, user);
+            } else {
+                String result = command.execute(StorageConnector.manager, request.getArguments());
+                response = new Response(result, Status.OK, request.getClient());
+            }
         } catch (Exception e) {
             response = new Response(e.toString(), Status.SERVER_ERROR, request.getClient());
         }

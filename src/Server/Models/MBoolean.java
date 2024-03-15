@@ -9,10 +9,14 @@ public class MBoolean implements CustomField {
         this.value = value;
     }
 
-    public static MBoolean valueOf(String s) {
+    public static MBoolean fromString(String s) {
         if (s.equals("true")) return new MBoolean(true);
         if (s.equals("false")) return new MBoolean(false);
         throw new InvalidValue(s, "boolean");
+    }
+
+    public static MBoolean valueOf(String s) {
+        return fromString(s);
     }
 
     @Override

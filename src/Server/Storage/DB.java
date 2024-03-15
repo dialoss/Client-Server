@@ -1,13 +1,58 @@
 package Server.Storage;
 
 import Server.Models.*;
+import org.postgresql.util.PSQLException;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+//SELECT .. WHERE ..
+
+class B {
+    String from = "";
+    MObject where = null;
+    ArrayList<String> join = new ArrayList<>();
+
+    public B from(String from) {
+        this.from = from;
+        return this;
+    }
+
+    public B where(MObject values) {
+        this.where = values;
+        return this;
+    }
+
+    public B join(String[] tables) {
+        this.join = (ArrayList<String>) Arrays.asList(tables);
+        return this;
+    }
+
+    public String get() throws Exception {
+        if (from.length() == 0) throw new Exception("Invalid from");
+        String query = "SELECT * FROM %s ".formatted(from);
+        if (join.size() != 0) {
+            String result = "";
+            for (String t : join) {
+                result += "JOIN %s USING(id) ".formatted(t);
+            }
+            query += result;
+        }
+        if (where != null) {
+            ArrayList<String> queryFields = new ArrayList<>();
+            for (Map.Entry<String, Object> entry : where.entrySet()) {
+                queryFields.add("%s = %s".formatted(entry.getKey().toLowerCase(), entry.getValue()));
+            }
+            query += "WHERE " + DB.formatQuery(queryFields.toArray());
+        }
+        return query;
+    }
+}
 
 public class DB {
     public static Connection connection;
@@ -20,69 +65,103 @@ public class DB {
             "INTEGER", "INTEGER"
     );
 
+    private static Map<Class<?>, DBModelFieldAdapter<?>> serializers = new HashMap<>();
+
     public static void registerModel(Class<?> t) throws Exception {
-        connection.prepareStatement(dropTable(t)).execute();
-        connection.prepareStatement(createTable(t)).execute();
+        dropTable(t);
+        createTable(t);
     }
 
     public static void registerType(Class<?> t) throws Exception {
-        connection.prepareStatement(dropType(t)).execute();
-        connection.prepareStatement(createType(t)).execute();
+        dropType(t);
+        createType(t);
     }
 
-    private static MObject queryToObject(String query) throws SQLException {
-        PreparedStatement st = connection.prepareStatement(query);
-        st.execute();
+    private static MObject[] queryToObject(Class<?> t, String query) throws SQLException {
+        PreparedStatement st = perform(query);
         ResultSet r = st.getResultSet();
-        MObject data = new MObject();
+        ArrayList<MObject> data = new ArrayList<>();
         while (r.next()) {
+            MObject object = new MObject();
+            int id = r.getInt("id");
             for (Field f : t.getDeclaredFields()) {
-                if (BaseModel.isModel(f.getType())) data.put(f.getName(), get(f.getType()));
-                else {
+                if (BaseModel.isModel(f.getType())) {
+                    MObject[] foreign = get(f.getType(), name(t) + "_id=" + id);
+                    if (foreign.length != 0) object.put(f.getName(), foreign[0]);
+                    else object.put(f.getName(), null);
+                } else {
                     try {
-                        data.put(f.getName(), r.getObject(f.getName()));
-                    } catch (Exception e) {
-                    }
+                        Object d = r.getObject(f.getName());
+                        try {
+                            Method[] x = f.getType().getMethods();
+                            f.setAccessible(true);
+                            Method m = f.getType().getMethod("fromString", String.class);
+                            object.put(f.getName(), m.invoke(d, d));
+                        } catch (Exception e) {
+                            object.put(f.getName(), d);
+                        }
+                    } catch (PSQLException e) {}
                 }
             }
+            data.add(object);
         }
-        return data;
+        return data.toArray(MObject[]::new);
     }
 
     static {
         try {
+
             connection = getNewConnection();
 
-//            registerType(OrganizationType.class);
-//            registerModel(Organization.class);
-//            registerModel(Address.class);
-//            registerModel(Location.class);
-//            registerModel(Coordinates.class);
+            registerType(OrganizationType.class);
+            registerModel(Users.class);
+            registerModel(Organization.class);
+            registerModel(Address.class);
+            registerModel(Location.class);
+            registerModel(Coordinates.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public DB() throws Exception {
-//        insert(Organization.class, new MObject(Map.of(
-//                "name", "test",
-//                "peoplecount", 100,
-//                "creationdate", new MDate(),
-//                "postaladdress", new Coordinates().from(new MObject(Map.of("x", 11, "y", 22)))
-//        )));
-        MObject t = get(Organization.class);
+        insert(Organization.class, new Organization().from(new MObject(Map.of(
+                "name", "test",
+                "peopleCount", 100,
+                "creationDate", new MDate(),
+                "postalAddress", new MObject(Map.of(
+                        "zipCode","qqq",
+                        "town",new MObject(Map.of(
+                                "x",1,"y",2,"z",3
+                        )))),
+                "annualTurnover", 2,
+                "isPrivate", false,
+                "type", OrganizationType.PUBLIC,
+                "coordinates", new MObject(Map.of("x", 11, "y", 22)),
+                "user", new MObject(Map.of(
+                        "name","alex",
+                        "password","123"
+                ))
+        ))));
+
+        MObject q = getAll(Organization.class)[0];
+        Organization t = (Organization) new Organization().from(q);
         return;
     }
 
-    public static String dropType(Class<?> t) throws Exception {
-        return "DROP TYPE IF EXISTS %s CASCADE;".formatted(t.getSimpleName().toUpperCase());
+    public static Object serialize() {
+        return null;
     }
 
-    public static String dropTable(Class<?> t) throws Exception {
-        return "DROP TABLE IF EXISTS %s CASCADE;".formatted(t.getSimpleName().toUpperCase());
+    public static void dropType(Class<?> t) throws Exception {
+        perform("DROP TYPE IF EXISTS %s CASCADE;".formatted(t.getSimpleName().toUpperCase()));
     }
 
-    public static String createType(Class<?> t) throws Exception {
+    public static void dropTable(Class<?> t) throws Exception {
+        perform("DROP TABLE IF EXISTS %s CASCADE;".formatted(t.getSimpleName().toUpperCase()));
+    }
+
+    public static void createType(Class<?> t) throws Exception {
         String query = "CREATE TYPE %s AS ENUM (%s);";
         ArrayList<String> queryFields = new ArrayList<>();
 
@@ -93,7 +172,7 @@ public class DB {
                 queryFields.add("'%s'".formatted(enumField.toString().toLowerCase()));
             }
         }
-        return query.formatted(name(t), formatQuery(queryFields.toArray()));
+        perform(query.formatted(name(t), formatQuery(queryFields.toArray())));
     }
 
     private static String name(Class<?> t, boolean toUpper) {
@@ -105,9 +184,8 @@ public class DB {
         return name(t, false);
     }
 
-    public static String createTable(Class<?> t) throws Exception {
+    public static void createTable(Class<?> t) throws Exception {
         String query = "CREATE TABLE IF NOT EXISTS %s (%s);";
-        String tableName = name(t);
         Field[] fields = t.getDeclaredFields();
         ArrayList<String> queryFields = new ArrayList<>();
         queryFields.add("id SERIAL PRIMARY KEY");
@@ -129,27 +207,25 @@ public class DB {
             }
             queryFields.add("%s %s".formatted(f.getName(), dbType.toUpperCase()));
         }
-        query = query.formatted(tableName, formatQuery(queryFields.toArray()));
-        System.out.println(query);
-        return query;
+        perform(query.formatted(name(t), formatQuery(queryFields.toArray())));
     }
 
-    public static int insert(Class<?> t, MObject values) throws Exception {
+    public static int insert(Class<?> t, BaseModel values) throws Exception {
         String query = "INSERT INTO %s (%s) VALUES (%s);";
-        Map<Integer, Class<?>> updateForeign = new HashMap<>();
+        ArrayList<Pair<Integer, Class<?>>> updateForeign = new ArrayList<>();
         ArrayList<String> insertFields = new ArrayList<>();
         ArrayList<Object> insertValues = new ArrayList<>();
-        for (Map.Entry<String, Object> e : values.entrySet()) {
-            Object value = e.getValue();
+        for (Field f : values.getClass().getDeclaredFields()) {
+            Object value = f.get(values);
             if (name(value.getClass(), true).equals("CLASS")) {
                 continue;
             }
-            if (BaseModel.isModel(value.getClass())) {
-                int key = insert(value.getClass(), new MObject(value));
-                updateForeign.put(key, value.getClass());
+            if (BaseModel.class.isAssignableFrom(value.getClass())) {
+                int id = insert(value.getClass(), (BaseModel) value);
+                updateForeign.add(new Pair<>(id, value.getClass()));
                 continue;
             }
-            insertFields.add(e.getKey());
+            insertFields.add(f.getName());
             Object v;
             try {
                 Method m = value.getClass().getDeclaredMethod("getValue");
@@ -158,6 +234,7 @@ public class DB {
                 v = value;
             }
             if (String.class.isAssignableFrom(v.getClass())) v = "'%s'".formatted(v);
+            if (Enum.class.isAssignableFrom(v.getClass())) v = "'%s'".formatted(v).toLowerCase();
             insertValues.add(v);
         }
 
@@ -167,8 +244,8 @@ public class DB {
         try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
             if (generatedKeys.next()) {
                 Integer key = generatedKeys.getInt(1);
-                for (Map.Entry<Integer, Class<?>> e : updateForeign.entrySet()) {
-                    connection.prepareStatement(update(e.getValue(), new MObject(Map.of(name(t) + "_id", key)), e.getKey())).executeUpdate();
+                for (Pair<Integer, Class<?>> p : updateForeign) {
+                    update(p.b, new MObject(Map.of(name(t) + "_id", key)), p.a);
                 }
                 return key;
             }
@@ -176,50 +253,44 @@ public class DB {
         return -1;
     }
 
-    public static MObject get(Class<?> t) throws Exception {
+    private static String _join(Class<?> t) {
         String join = "";
         for (Field f : t.getDeclaredFields()) {
             if (BaseModel.isModel(f.getType())) {
                 join += "JOIN %s USING(id) ".formatted(name(f.getType()));
             }
         }
-        PreparedStatement st = connection.prepareStatement("SELECT * FROM %s %s".formatted(name(t), join));
-        st.execute();
-        ResultSet r = st.getResultSet();
-        MObject data = new MObject();
-        while (r.next()) {
-            for (Field f : t.getDeclaredFields()) {
-                if (BaseModel.isModel(f.getType())) data.put(f.getName(), get(f.getType()));
-                else {
-                    try {
-                        data.put(f.getName(), r.getObject(f.getName()));
-                    } catch (Exception e) {
-                    }
-                }
-            }
-        }
-        return data;
+        return join;
     }
 
-    public static String update(Class<?> t, MObject values, Integer id) {
+    public static MObject[] getAll(Class<?> t) throws Exception {
+        return queryToObject(t, "SELECT * FROM %s".formatted(name(t)));
+    }
+
+    private static PreparedStatement perform(String query) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.execute();
+        return statement;
+    }
+
+    public static void update(Class<?> t, MObject values, Integer id) throws SQLException {
         String query = "UPDATE %s SET %s WHERE id = " + id;
         ArrayList<String> updateValues = new ArrayList<>();
         for (Map.Entry<String, Object> e : values.entrySet()) {
             updateValues.add(e.getKey() + "=" + e.getValue());
         }
-        return query.formatted(name(t), formatQuery(updateValues.toArray()));
+        perform(query.formatted(name(t), formatQuery(updateValues.toArray())));
     }
 
-    private static String _get(Class<?> t, Integer id) {
-        return "SELECT * FROM %s WHERE id = %s".formatted(name(t), id);
+    public static MObject[] get(Class<?> t, Integer id) throws SQLException {
+        return queryToObject(t, "SELECT * FROM %s WHERE id = %s".formatted(name(t), id));
     }
 
-    public static MObject get(Class<?> t, Integer id) throws SQLException {
-        return queryToObject(_get(t, id));
+    public static MObject[] get(Class<?> t, String where) throws SQLException {
+        return queryToObject(t, "SELECT * FROM %s WHERE %s".formatted(name(t), where));
     }
 
-
-    private static String formatQuery(Object[] values) {
+    public static String formatQuery(Object[] values) {
         String result = "";
         for (Object v : values) result += v.toString() + ",";
         return result.substring(0, result.length() - 1);

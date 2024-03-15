@@ -18,6 +18,7 @@ public class Organization extends BaseModel implements Comparable<Organization> 
     @ModelField
     public MBoolean isPrivate;
 
+    public static Class<?> user = Users.class;
     @Override
     public int compareTo(Organization o) {
         return this.name.compareTo(o.name);

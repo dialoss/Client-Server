@@ -20,15 +20,17 @@ public class ExecuteScript extends Command {
                 new CommandArgument[]{
                         new CommandArgument("filename", String.class),
                         new CommandArgument("show_log", MBoolean.class).withNotRequired(new MBoolean(false))
-// new CommandArgument("recursion", Integer.class).withNotRequired(5)
         });
     }
 
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) throws ScriptRuntimeException {
         String filename = (String) args[0].getValue();
-        Boolean showLog = ((MBoolean) args[1].getValue()).getValue();
-        if (DevNull.deviceCounter >= 5) return "Recursion limit %s!".formatted(5);
+        Boolean showLog = true;
+        if (DevNull.deviceCounter >= 10) {
+            DevNull.deviceCounter = 0;
+            return "Recursion limit %s!".formatted(5);
+        }
         try {
             String text = StorageConnector.storage.changeSource("scripts/" + filename)._read();
             IOdevice virtual = new DevNull(new Scanner(text));
@@ -36,7 +38,8 @@ public class ExecuteScript extends Command {
             CommandParser parser = new CommandParser(form);
             virtual.start((String[] command) -> {
                 String result = CommandManager.execute(parser.parse(command)).getBody();
-                if (showLog) form.out(result);
+                if (showLog)
+                    form.out(result);
             });
         } catch (Exception e) {
             throw new ScriptRuntimeException(e.toString());

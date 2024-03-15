@@ -25,6 +25,7 @@ public abstract class BaseModel {
         Field[] fields = this.getFields();
         for (Field f : fields) {
             try {
+                if (f.getType().isAssignableFrom(Organization.class) && f.getName().equals("id")) continue;
                 ModelField params = Serializer.getParameters(f);
                 if (params == null) continue;
                 f.setAccessible(true);
@@ -77,7 +78,10 @@ public abstract class BaseModel {
         return "\n" + result.strip();
     }
 
+    @ModelField(AUTO_GENERATE = true, UNIQUE = true)
+    public Integer id;
+
     public Integer getId() {
-        return 1;
+        return this.id;
     }
 }

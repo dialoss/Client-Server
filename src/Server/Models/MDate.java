@@ -19,13 +19,17 @@ public class MDate implements CustomField {
         this.date = date;
     }
 
-    public static MDate valueOf(String s) {
+    public static MDate fromString(String s) {
         try {
             Date d = formatter.parse(s);
             return new MDate(d);
         } catch (Exception e) {
             throw new InvalidModelException(EXCEPTION_MESSAGE);
         }
+    }
+
+    public static MDate valueOf(String s) {
+        return fromString(s);
     }
 
     @Override

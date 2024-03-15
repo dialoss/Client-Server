@@ -1,9 +1,6 @@
 package Server.Models;
 
-public class Organization extends BaseModel implements Comparable<Organization>, OrderedItem {
-    @ModelField(MIN = 2, UNIQUE = true, AUTO_GENERATE = true)
-    public Integer id;
-
+public class Organization extends BaseModel implements Comparable<Organization> {
     @ModelField(MIN = 100, MAX = 500)
     public Integer peopleCount;
     @ModelField
@@ -24,9 +21,5 @@ public class Organization extends BaseModel implements Comparable<Organization>,
     @Override
     public int compareTo(Organization o) {
         return this.name.compareTo(o.name);
-    }
-
-    public Integer getId() {
-        return this.id;
     }
 }

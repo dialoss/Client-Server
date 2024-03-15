@@ -77,4 +77,8 @@ public abstract class BaseModel {
         }
         return "\n" + result.strip();
     }
+
+    public Integer getId() {
+        return 1;
+    }
 }

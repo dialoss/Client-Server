@@ -1,12 +1,12 @@
 package Server.Storage;
 
-import Server.Models.OrderedItem;
+import Server.Models.BaseModel;
 import Server.Models.Organization;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
 
-public class BaseCollectionManager<T extends OrderedItem> implements ICollectionManager<T> {
+public class BaseCollectionManager<T extends BaseModel> implements ICollectionManager<T> {
     LinkedHashMap<Integer, T> collection;
     public Info info;
 

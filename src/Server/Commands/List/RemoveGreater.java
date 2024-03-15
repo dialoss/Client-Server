@@ -24,7 +24,7 @@ public class RemoveGreater extends Command {
         Stream.of(collectionManager.getAll())
             .filter((Object it) -> (0 < ((Organization) it).compareTo(organization)))
             .forEach(it -> {
-                Integer id = it.id;
+                Integer id = it.getId();
                 collectionManager.delete(id);
                 deleted.add(id);
             });

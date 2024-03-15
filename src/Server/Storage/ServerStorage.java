@@ -1,6 +1,6 @@
 package Server.Storage;
 
-public class ServerStorage extends JSONStorage {
+public class ServerStorage extends DBStorage {
     public ServerStorage() {
         super();
     }

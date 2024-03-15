@@ -7,7 +7,7 @@ import Server.Storage.CollectionManager;
 public class GetField extends Command {
     public GetField() {
         super("get_field_sorted",
-                "Displays the field values ​​of all elements in the given order",
+                "Displays the field values of all elements in the given order",
                 new CommandArgument[]{
                         new CommandArgument("field", String.class),
                         new CommandArgument("order", Integer.class)

@@ -7,7 +7,7 @@ import Server.Storage.CollectionManager;
 public class Ascending extends Command {
     public Ascending() {
         super("print_field_ascending",
-                "Displays the field values ​​of all elements in ascending order",
+                "Displays the field values of all elements in ascending order",
                 new CommandArgument[]{new CommandArgument("field", String.class)});
     }
 

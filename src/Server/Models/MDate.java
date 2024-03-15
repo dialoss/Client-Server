@@ -5,9 +5,7 @@ import Common.Exceptions.InvalidModelException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-
-public class MDate {
+public class MDate implements CustomField {
     private final Date date;
     static final String dateFormat = "dd.MM.yyyy HH:mm:ss.SSS";
     static final String EXCEPTION_MESSAGE = "Invalid date format. Format: " + dateFormat;
@@ -37,5 +35,13 @@ public class MDate {
         } catch (Exception e) {
             throw new InvalidModelException(EXCEPTION_MESSAGE);
         }
+    }
+
+    public static Class<?> getType() {
+        return String.class;
+    }
+
+    public Object getValue() {
+        return this.toString();
     }
 }

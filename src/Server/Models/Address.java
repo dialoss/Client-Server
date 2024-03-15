@@ -5,4 +5,5 @@ public class Address extends BaseModel {
     public String zipCode; //Length of the string must not be greater than 15, Field may be null
     @ModelField
     public Location town; //Field cannot be null
+    public static final Class<?> foreignKey = Organization.class;
 }

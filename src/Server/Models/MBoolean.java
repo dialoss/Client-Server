@@ -2,7 +2,7 @@ package Server.Models;
 
 import Common.Exceptions.InvalidValue;
 
-public class MBoolean {
+public class MBoolean implements CustomField {
     private final Boolean value;
 
     public MBoolean(Boolean value) {
@@ -22,5 +22,9 @@ public class MBoolean {
 
     public Boolean getValue() {
         return value;
+    }
+
+    public static Class<?> getType() {
+        return Boolean.class;
     }
 }

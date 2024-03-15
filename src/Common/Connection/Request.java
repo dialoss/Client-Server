@@ -13,7 +13,13 @@ public class Request implements Serializable {
     public Request(Command command, CommandArgument[] arguments) {
         this.command = command;
         this.arguments = arguments;
-        this.client = new User((int) (Math.random() * 1e9));
+        this.client = null;
+    }
+
+    public Request(Command command, CommandArgument[] arguments, User client) {
+        this.command = command;
+        this.arguments = arguments;
+        this.client = client;
     }
 
     public User getClient() {

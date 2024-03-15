@@ -5,11 +5,11 @@ import Client.Shell.IForm;
 import Common.Exceptions.CommandNotFound;
 import Common.Exceptions.InvalidAmountOfArguments;
 import Common.Exceptions.InvalidValue;
+import Common.Pair;
 import Server.Commands.Command;
 import Server.Commands.CommandManager;
 import Server.Commands.List.ArgumentPosition;
 import Server.Commands.List.CommandArgument;
-import Common.Connection.Request;
 
 import java.util.Arrays;
 
@@ -49,7 +49,7 @@ public class CommandParser {
         return arguments;
     }
 
-    public Request parse(String[] tokens) {
+    public Pair<Command, CommandArgument[]> parse(String[] tokens) {
         String commandName = tokens[0];
         Command cmd = CommandManager.get(commandName);
         if (cmd == null) throw new CommandNotFound();
@@ -60,6 +60,6 @@ public class CommandParser {
             this.shellForm.clearInput();
             throw e;
         }
-        return new Request(cmd, arguments);
+        return new Pair<>(cmd, arguments);
     }
 }

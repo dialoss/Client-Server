@@ -12,24 +12,30 @@ import me.xdrop.jrand.JRand;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Map;
 
 public class PasswordManager {
     private static final MessageDigest md;
-    private static String pepper = "2281337";
+    private static final String pepper = "2281337";
 
     static {
         try {
-            md = MessageDigest.getInstance("SHA-384");
+            md = MessageDigest.getInstance("md5");
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
 
     private static String encrypt(String data, String salt) {
-        byte[] hash = md.digest((pepper + data + salt).getBytes());
-        return Arrays.toString(hash);
+        String input = (pepper + data + salt);
+        byte[] inputBytes = input.getBytes();
+        md.update(inputBytes);
+        byte[] hashBytes = md.digest();
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashBytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
     }
 
     public static User register(Request request) throws Exception {
@@ -50,9 +56,12 @@ public class PasswordManager {
 
     public static boolean login(User user) throws SQLException {
         DBOperations session = StorageConnector.dbManager.getSession();
-        MObject[] result = session.get(Users.class, "login = " + user.getLogin());
+        if (user.getLogin().length() == 0 || user.getPassword().length() == 0) return false;
+        MObject[] result = session.get(Users.class, "login = '%s'".formatted(user.getLogin()));
         if (result.length == 0) return false;
         Users userData = (Users) new Users().from(result[0]);
-        return (encrypt(userData.password, userData.salt).equals(user.getPassword()));
+        String stored = userData.password;
+        String provided = encrypt(user.getPassword(), userData.salt);
+        return stored.equals(provided);
     }
 }

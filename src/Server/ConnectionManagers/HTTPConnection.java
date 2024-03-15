@@ -62,7 +62,7 @@ public class HTTPConnection extends ConnectionManager {
                 try {
                     InputStream inputStream = exchange.getRequestBody();
                     Request request = (Request) ObjectIO.readObject(inputStream.readAllBytes());
-                    HTTPConnection.this.clients.put(request.getClient(), exchange);
+                    HTTPConnection.this.clients.put(request.getClient().sessionId, exchange);
                     requestCallback.call(request);
                 } catch (Exception e) {
                     System.out.println(e);

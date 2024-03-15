@@ -8,9 +8,15 @@ import Server.Storage.Database.DBManager;
 import Server.Storage.Files.JSONStorage;
 
 public class StorageConnector {
-    public static JSONStorage fileStorage = new JSONStorage();
-    public static DBManager dbManager = new DBManager();
-    public static CollectionManager manager = new CollectionManager();
+    public static JSONStorage fileStorage;
+    public static DBManager dbManager;
+    public static CollectionManager manager;
+
+    public static void init() {
+        dbManager = new DBManager();
+        fileStorage = new JSONStorage();
+        manager = new CollectionManager();
+    }
 
     public static void loadFile() {
         loadFile("data.json");

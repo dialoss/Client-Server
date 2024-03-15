@@ -13,8 +13,8 @@ public class Response implements Serializable {
         this.client = client;
     }
 
-    public Integer getClient() {
-        return client.sessionId;
+    public User getClient() {
+        return client;
     }
 
     public String getBody() {

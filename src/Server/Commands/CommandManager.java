@@ -8,7 +8,6 @@ import Server.Commands.List.*;
 import Server.Internal.PasswordManager;
 import Server.Storage.StorageConnector;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,23 +38,24 @@ public class CommandManager {
         return CommandManager.commands;
     }
 
-    static public Response execute(Request request) throws SQLException {
+    static public Response execute(Request request) {
         Command command = commands.get(request.getName());
         User user = request.getClient();
         Response response = null;
 
         try {
-            if (command.getName().equals("register")) {
+            if (command.getName().equals("login")) {
+                if (!PasswordManager.login(user))
+                    response = new Response("Invalid login/password combintion.", Status.FORBIDDEN, user);
+                else
+                    response = new Response("You are successfully login.", Status.OK, user);
+            } else if (command.getName().equals("register")) {
                 if (PasswordManager.login(user))
                     response = new Response("You has already registered.", Status.OK, user);
                 else
                     response = new Response("You are successfully registered.", Status.OK, PasswordManager.register(request));
-            }
-            else if (command.getName().equals("login")) {
-                if (!PasswordManager.login(user))
-                    response = new Response("Forbidden. You must login before using this app.", Status.FORBIDDEN, user);
-                else
-                    response = new Response("You are successfully login.", Status.OK, user);
+            } else if (!PasswordManager.login(user)) {
+                response = new Response("Forbidden. You must login before using this app.", Status.FORBIDDEN, user);
             } else {
                 String result = command.execute(StorageConnector.manager, request.getArguments());
                 response = new Response(result, Status.OK, request.getClient());
@@ -85,5 +85,7 @@ public class CommandManager {
         add(Load.class);
         add(GetField.class);
         add(Exit.class);
+        add(Login.class);
+        add(Register.class);
     }
 }

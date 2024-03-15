@@ -103,7 +103,7 @@ public class TCPConnection extends ConnectionManager {
                         ByteArrayInputStream bi = new ByteArrayInputStream(buffer.array());
                         ObjectInputStream oi = new ObjectInputStream(bi);
                         Request request = (Request) oi.readObject();
-                        this.clients.put(request.getClient(), key);
+                        this.clients.put(request.getClient().sessionId, key);
                         this.requestCallback.call(request);
 
                         client.register(selector, SelectionKey.OP_WRITE);

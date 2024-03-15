@@ -1,8 +1,8 @@
-package Server.Connection.Managers;
+package Server.ConnectionManagers;
 
 import Common.EventBus.EventBus;
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.Request;
+import Common.Connection.Response;
 
 public class EventBusConnection extends ConnectionManager {
     @Override

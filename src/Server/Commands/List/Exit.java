@@ -1,7 +1,7 @@
 package Server.Commands.List;
 
 import Server.Commands.Command;
-import Server.Storage.CollectionManager;
+import Server.Storage.Collection.CollectionManager;
 
 public class Exit extends Command {
     public Exit() {

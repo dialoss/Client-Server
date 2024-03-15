@@ -1,4 +1,4 @@
-package Server.Connection;
+package Common.Connection;
 
 public enum Status {
     OK(200),

@@ -1,4 +1,4 @@
-package Server.Storage;
+package Common;
 
 public class Pair<K, V> {
     public K a;

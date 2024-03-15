@@ -1,8 +1,8 @@
-package Server.Connection.Managers;
+package Server.ConnectionManagers;
 
-import Client.APIs.ObjectIO;
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.ObjectIO;
+import Common.Connection.Request;
+import Common.Connection.Response;
 import com.github.alexdlaird.ngrok.NgrokClient;
 import com.github.alexdlaird.ngrok.conf.JavaNgrokConfig;
 import com.github.alexdlaird.ngrok.protocol.CreateTunnel;

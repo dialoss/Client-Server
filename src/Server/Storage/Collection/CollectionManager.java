@@ -1,4 +1,4 @@
-package Server.Storage;
+package Server.Storage.Collection;
 
 import Server.Models.Organization;
 

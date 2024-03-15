@@ -3,7 +3,7 @@ package Server.Commands.List;
 import Server.Commands.Command;
 import Server.Commands.CommandManager;
 import Server.Commands.HistoryEntry;
-import Server.Storage.CollectionManager;
+import Server.Storage.Collection.CollectionManager;
 
 public class History extends Command {
     public History() {

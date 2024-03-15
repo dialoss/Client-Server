@@ -1,62 +1,16 @@
-package Server.Storage;
+package Server.Storage.Database;
 
 import Server.Models.*;
+import Common.Pair;
 import org.postgresql.util.PSQLException;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
-//SELECT .. WHERE ..
-
-class B {
-    String from = "";
-    MObject where = null;
-    ArrayList<String> join = new ArrayList<>();
-
-    public B from(String from) {
-        this.from = from;
-        return this;
-    }
-
-    public B where(MObject values) {
-        this.where = values;
-        return this;
-    }
-
-    public B join(String[] tables) {
-        this.join = (ArrayList<String>) Arrays.asList(tables);
-        return this;
-    }
-
-    public String get() throws Exception {
-        if (from.length() == 0) throw new Exception("Invalid from");
-        String query = "SELECT * FROM %s ".formatted(from);
-        if (join.size() != 0) {
-            String result = "";
-            for (String t : join) {
-                result += "JOIN %s USING(id) ".formatted(t);
-            }
-            query += result;
-        }
-        if (where != null) {
-            ArrayList<String> queryFields = new ArrayList<>();
-            for (Map.Entry<String, Object> entry : where.entrySet()) {
-                queryFields.add("%s = %s".formatted(entry.getKey().toLowerCase(), entry.getValue()));
-            }
-            query += "WHERE " + DB.formatQuery(queryFields.toArray());
-        }
-        return query;
-    }
-}
-
-public class DB {
-    public static Connection connection;
-
+public class DBOperations {
     public static Map<String, String> TYPES = Map.of(
             "STRING", "TEXT",
             "FLOAT", "REAL",
@@ -64,20 +18,19 @@ public class DB {
             "BOOLEAN", "BOOLEAN",
             "INTEGER", "INTEGER"
     );
+    public Connection connection;
 
-    private static Map<Class<?>, DBModelFieldAdapter<?>> serializers = new HashMap<>();
-
-    public static void registerModel(Class<?> t) throws Exception {
+    public void registerModel(Class<?> t) throws Exception {
         dropTable(t);
         createTable(t);
     }
 
-    public static void registerType(Class<?> t) throws Exception {
+    public void registerType(Class<?> t) throws Exception {
         dropType(t);
         createType(t);
     }
 
-    private static MObject[] queryToObject(Class<?> t, String query) throws SQLException {
+    private MObject[] queryToObject(Class<?> t, String query) throws SQLException {
         PreparedStatement st = perform(query);
         ResultSet r = st.getResultSet();
         ArrayList<MObject> data = new ArrayList<>();
@@ -100,7 +53,8 @@ public class DB {
                         } catch (Exception e) {
                             object.put(f.getName(), d);
                         }
-                    } catch (PSQLException e) {}
+                    } catch (PSQLException e) {
+                    }
                 }
             }
             data.add(object);
@@ -108,60 +62,33 @@ public class DB {
         return data.toArray(MObject[]::new);
     }
 
-    static {
+    private void initModels() throws Exception {
+        registerType(OrganizationType.class);
+        registerModel(Users.class);
+        registerModel(Organization.class);
+        registerModel(Address.class);
+        registerModel(Location.class);
+        registerModel(Coordinates.class);
+    }
+
+    DBOperations() {
         try {
-
             connection = getNewConnection();
-
-            registerType(OrganizationType.class);
-            registerModel(Users.class);
-            registerModel(Organization.class);
-            registerModel(Address.class);
-            registerModel(Location.class);
-            registerModel(Coordinates.class);
+//            initModels();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public DB() throws Exception {
-        insert(Organization.class, new Organization().from(new MObject(Map.of(
-                "name", "test",
-                "peopleCount", 100,
-                "creationDate", new MDate(),
-                "postalAddress", new MObject(Map.of(
-                        "zipCode","qqq",
-                        "town",new MObject(Map.of(
-                                "x",1,"y",2,"z",3
-                        )))),
-                "annualTurnover", 2,
-                "isPrivate", false,
-                "type", OrganizationType.PUBLIC,
-                "coordinates", new MObject(Map.of("x", 11, "y", 22)),
-                "user", new MObject(Map.of(
-                        "name","alex",
-                        "password","123"
-                ))
-        ))));
-
-        MObject q = getAll(Organization.class)[0];
-        Organization t = (Organization) new Organization().from(q);
-        return;
-    }
-
-    public static Object serialize() {
-        return null;
-    }
-
-    public static void dropType(Class<?> t) throws Exception {
+    public void dropType(Class<?> t) throws Exception {
         perform("DROP TYPE IF EXISTS %s CASCADE;".formatted(t.getSimpleName().toUpperCase()));
     }
 
-    public static void dropTable(Class<?> t) throws Exception {
+    public void dropTable(Class<?> t) throws Exception {
         perform("DROP TABLE IF EXISTS %s CASCADE;".formatted(t.getSimpleName().toUpperCase()));
     }
 
-    public static void createType(Class<?> t) throws Exception {
+    public void createType(Class<?> t) throws Exception {
         String query = "CREATE TYPE %s AS ENUM (%s);";
         ArrayList<String> queryFields = new ArrayList<>();
 
@@ -175,16 +102,16 @@ public class DB {
         perform(query.formatted(name(t), formatQuery(queryFields.toArray())));
     }
 
-    private static String name(Class<?> t, boolean toUpper) {
+    private String name(Class<?> t, boolean toUpper) {
         if (toUpper) return t.getSimpleName().toUpperCase();
         return t.getSimpleName().toLowerCase();
     }
 
-    private static String name(Class<?> t) {
+    private String name(Class<?> t) {
         return name(t, false);
     }
 
-    public static void createTable(Class<?> t) throws Exception {
+    public void createTable(Class<?> t) throws Exception {
         String query = "CREATE TABLE IF NOT EXISTS %s (%s);";
         Field[] fields = t.getDeclaredFields();
         ArrayList<String> queryFields = new ArrayList<>();
@@ -195,7 +122,7 @@ public class DB {
             if (type.equals("CLASS")) {
                 Class<?> x = (Class<?>) f.get(null);
                 String parent = name(x);
-                queryFields.add("%s INTEGER REFERENCES %s".formatted(parent + "_id", parent));
+                queryFields.add("%s INTEGER REFERENCES %s ON DELETE CASCADE".formatted(parent + "_id", parent));
                 continue;
             } else if (CustomField.class.isAssignableFrom(f.getType())) {
                 Method method = f.getType().getDeclaredMethod("getType");
@@ -210,7 +137,7 @@ public class DB {
         perform(query.formatted(name(t), formatQuery(queryFields.toArray())));
     }
 
-    public static int insert(Class<?> t, BaseModel values) throws Exception {
+    public int insert(Class<?> t, BaseModel values) throws Exception {
         String query = "INSERT INTO %s (%s) VALUES (%s);";
         ArrayList<Pair<Integer, Class<?>>> updateForeign = new ArrayList<>();
         ArrayList<String> insertFields = new ArrayList<>();
@@ -253,27 +180,17 @@ public class DB {
         return -1;
     }
 
-    private static String _join(Class<?> t) {
-        String join = "";
-        for (Field f : t.getDeclaredFields()) {
-            if (BaseModel.isModel(f.getType())) {
-                join += "JOIN %s USING(id) ".formatted(name(f.getType()));
-            }
-        }
-        return join;
-    }
-
-    public static MObject[] getAll(Class<?> t) throws Exception {
+    public MObject[] getAll(Class<?> t) throws Exception {
         return queryToObject(t, "SELECT * FROM %s".formatted(name(t)));
     }
 
-    private static PreparedStatement perform(String query) throws SQLException {
+    private PreparedStatement perform(String query) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.execute();
         return statement;
     }
 
-    public static void update(Class<?> t, MObject values, Integer id) throws SQLException {
+    public void update(Class<?> t, MObject values, Integer id) throws SQLException {
         String query = "UPDATE %s SET %s WHERE id = " + id;
         ArrayList<String> updateValues = new ArrayList<>();
         for (Map.Entry<String, Object> e : values.entrySet()) {
@@ -282,24 +199,26 @@ public class DB {
         perform(query.formatted(name(t), formatQuery(updateValues.toArray())));
     }
 
-    public static MObject[] get(Class<?> t, Integer id) throws SQLException {
+    public MObject[] get(Class<?> t, Integer id) throws SQLException {
         return queryToObject(t, "SELECT * FROM %s WHERE id = %s".formatted(name(t), id));
     }
 
-    public static MObject[] get(Class<?> t, String where) throws SQLException {
+    public MObject[] get(Class<?> t, String where) throws SQLException {
         return queryToObject(t, "SELECT * FROM %s WHERE %s".formatted(name(t), where));
     }
 
-    public static String formatQuery(Object[] values) {
+    public void clear(Class<?> t) throws SQLException {
+        perform("TRUNCATE %s CASCADE".formatted(name(t)));
+    }
+
+    public String formatQuery(Object[] values) {
         String result = "";
         for (Object v : values) result += v.toString() + ",";
         return result.substring(0, result.length() - 1);
     }
 
-    private static Connection getNewConnection() throws SQLException {
-        String url = "jdbc:postgresql:1";
-        String user = "1";
-        String passwd = "1";
-        return DriverManager.getConnection(url, user, passwd);
+    private Connection getNewConnection() throws SQLException {
+        String url = "jdbc:postgresql:" + DBConfig.DATABASE;
+        return DriverManager.getConnection(url, DBConfig.USER, DBConfig.PASSWORD);
     }
 }

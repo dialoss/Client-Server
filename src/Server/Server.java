@@ -1,9 +1,9 @@
 package Server;
 
 import Server.Commands.CommandManager;
-import Server.Connection.Managers.ConnectionManager;
-import Server.Connection.Managers.EventBusConnection;
-import Server.Connection.Request;
+import Server.ConnectionManagers.ConnectionManager;
+import Server.ConnectionManagers.EventBusConnection;
+import Common.Connection.Request;
 
 public class Server {
     ConnectionManager manager;

@@ -2,7 +2,7 @@ package Server.Commands.List;
 
 import Common.Stringify;
 import Server.Commands.Command;
-import Server.Storage.CollectionManager;
+import Server.Storage.Collection.CollectionManager;
 
 public class GetField extends Command {
     public GetField() {

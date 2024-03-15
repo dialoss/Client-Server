@@ -1,4 +1,4 @@
-package Server.Storage;
+package Server.Storage.Files;
 
 
 import Server.Models.MObject;

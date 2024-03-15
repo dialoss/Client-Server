@@ -1,4 +1,4 @@
-package Server.Storage;
+package Server.Storage.Collection;
 
 public interface ICollectionManager<T> {
     void delete(T item);

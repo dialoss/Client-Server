@@ -9,7 +9,7 @@ import Server.Commands.Command;
 import Server.Commands.CommandManager;
 import Server.Commands.List.ArgumentPosition;
 import Server.Commands.List.CommandArgument;
-import Server.Connection.Request;
+import Common.Connection.Request;
 
 import java.util.Arrays;
 

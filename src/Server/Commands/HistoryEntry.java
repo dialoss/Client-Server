@@ -1,7 +1,7 @@
 package Server.Commands;
 
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.Request;
+import Common.Connection.Response;
 
 public class HistoryEntry {
     public Request request;

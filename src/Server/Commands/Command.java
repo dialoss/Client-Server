@@ -2,12 +2,12 @@ package Server.Commands;
 
 import Client.Shell.ShellColors;
 import Server.Commands.List.CommandArgument;
-import Server.Storage.CollectionManager;
+import Server.Storage.Collection.CollectionManager;
 
 import java.io.Serializable;
 
 interface IExecutable {
-    String execute(CollectionManager collectionManager, CommandArgument[] arguments);
+    String execute(CollectionManager collectionManager, CommandArgument[] arguments) throws Exception;
 }
 
 public abstract class Command implements IExecutable, Serializable {

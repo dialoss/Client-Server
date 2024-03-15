@@ -1,9 +1,9 @@
 package Server.Commands;
 
 import Server.Commands.List.*;
-import Server.Connection.Request;
-import Server.Connection.Response;
-import Server.Connection.Status;
+import Common.Connection.Request;
+import Common.Connection.Response;
+import Common.Connection.Status;
 import Server.Storage.StorageConnector;
 
 import java.util.ArrayList;

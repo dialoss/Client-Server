@@ -9,7 +9,7 @@ import Server.Commands.CommandManager;
 import Server.Internal.DevNull;
 import Server.Internal.FileForm;
 import Server.Models.MBoolean;
-import Server.Storage.CollectionManager;
+import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
 
 import java.util.Scanner;
@@ -32,7 +32,7 @@ public class ExecuteScript extends Command {
             return "Recursion limit %s!".formatted(5);
         }
         try {
-            String text = StorageConnector.storage.changeSource("scripts/" + filename)._read();
+            String text = StorageConnector.fileStorage.changeSource("scripts/" + filename)._read();
             IOdevice virtual = new DevNull(new Scanner(text));
             IForm form = new FileForm(virtual);
             CommandParser parser = new CommandParser(form);

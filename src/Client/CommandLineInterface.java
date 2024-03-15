@@ -3,8 +3,8 @@ package Client;
 import Client.Shell.IForm;
 import Client.Shell.IOdevice;
 import Common.EventBus.Callback;
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.Request;
+import Common.Connection.Response;
 
 public class CommandLineInterface implements UserInterface {
     private final IOdevice shell;

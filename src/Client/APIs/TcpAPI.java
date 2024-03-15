@@ -1,9 +1,10 @@
 package Client.APIs;
 
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.ObjectIO;
+import Common.Connection.Request;
+import Common.Connection.Response;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;

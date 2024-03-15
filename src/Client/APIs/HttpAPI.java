@@ -1,9 +1,11 @@
 package Client.APIs;
 
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.ObjectIO;
+import Common.Connection.Request;
+import Common.Connection.Response;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;

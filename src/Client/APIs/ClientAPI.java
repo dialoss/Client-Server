@@ -1,8 +1,8 @@
 package Client.APIs;
 
 import Common.EventBus.Callback;
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.Request;
+import Common.Connection.Response;
 
 import java.io.IOException;
 

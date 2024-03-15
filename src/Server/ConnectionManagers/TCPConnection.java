@@ -1,7 +1,7 @@
-package Server.Connection.Managers;
+package Server.ConnectionManagers;
 
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.Request;
+import Common.Connection.Response;
 
 import java.io.*;
 import java.net.InetSocketAddress;

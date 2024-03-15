@@ -3,7 +3,7 @@ package Server.Commands.List;
 import Common.Stringify;
 import Server.Commands.Command;
 import Server.Commands.CommandManager;
-import Server.Storage.CollectionManager;
+import Server.Storage.Collection.CollectionManager;
 
 public class Help extends Command {
     public Help() {

@@ -1,8 +1,8 @@
-package Server.Connection.Managers;
+package Server.ConnectionManagers;
 
 import Common.EventBus.Callback;
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.Request;
+import Common.Connection.Response;
 
 import java.util.HashMap;
 

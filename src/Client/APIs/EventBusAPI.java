@@ -1,8 +1,8 @@
 package Client.APIs;
 
 import Common.EventBus.EventBus;
-import Server.Connection.Request;
-import Server.Connection.Response;
+import Common.Connection.Request;
+import Common.Connection.Response;
 
 public class EventBusAPI extends ClientAPI {
     public void request(Request request) {

@@ -1,4 +1,4 @@
-package Server.Connection;
+package Common.Connection;
 
 import Server.Commands.Command;
 import Server.Commands.List.CommandArgument;

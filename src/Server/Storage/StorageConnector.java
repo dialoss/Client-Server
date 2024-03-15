@@ -1,8 +1,8 @@
 package Server.Storage;
 
 import Common.Tools;
+import Server.Models.MObject;
 import Server.Models.Organization;
-import org.json.simple.JSONObject;
 
 public class StorageConnector {
     public static ServerStorage storage = new ServerStorage();
@@ -14,7 +14,7 @@ public class StorageConnector {
 
     public static void load(String filename) {
         storage.changeSource(filename);
-        for (JSONObject o : storage.read()) {
+        for (MObject o : storage.read()) {
             Organization item = (Organization) new Organization().from(o);
             manager.insert(item);
         }

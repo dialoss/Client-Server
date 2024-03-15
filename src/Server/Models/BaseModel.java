@@ -3,7 +3,6 @@ package Server.Models;
 import Client.Shell.ShellColors;
 import Common.Exceptions.InvalidModelException;
 import Server.Serializer.Serializer;
-import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public abstract class BaseModel {
         return fieldArrayList.toArray(Field[]::new);
     }
 
-    public BaseModel from(JSONObject object, boolean random) {
+    public BaseModel from(MObject object, boolean random) {
         Field[] fields = this.getFields();
         for (Field f : fields) {
             try {
@@ -33,7 +32,7 @@ public abstract class BaseModel {
                 Object value = random ? null : object.get(f.getName());
                 if (BaseModel.class.isAssignableFrom(f.getType())) {
                     BaseModel m = (BaseModel) f.getType().getDeclaredConstructor().newInstance();
-                    f.set(this, m.from((JSONObject) value, random));
+                    f.set(this, m.from((MObject) value, random));
                     continue;
                 }
 
@@ -53,7 +52,7 @@ public abstract class BaseModel {
         return this;
     }
 
-    public BaseModel from(JSONObject object) {
+    public BaseModel from(MObject object) {
         return this.from(object, false);
     }
 

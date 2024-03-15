@@ -3,10 +3,10 @@ package Client.Shell;
 import Common.Exceptions.EmptyInputException;
 import Server.Commands.List.CommandArgument;
 import Server.Models.BaseModel;
+import Server.Models.MObject;
 import Server.Models.ModelField;
 import Server.Models.Organization;
 import Server.Serializer.Serializer;
-import org.json.simple.JSONObject;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -36,9 +36,9 @@ public class Form {
         return null;
     }
 
-    private JSONObject getModel(Class<?> cl) {
+    private MObject getModel(Class<?> cl) {
         Field[] fields = cl.getDeclaredFields();
-        JSONObject result = new JSONObject();
+        MObject result = new MObject();
         this.form.out("Fill in the %s object".formatted(ShellColors.format(ShellColors.BLUE, cl.getName())));
 
         for (Field f : fields) {
@@ -82,8 +82,8 @@ public class Form {
     public Object get() {
         Object value = this.processInput(this.argument.type);
         if (value == null) throw new RuntimeException("Value error");
-        if (value instanceof JSONObject) {
-            value = new Organization().from((JSONObject) value);
+        if (value instanceof MObject) {
+            value = new Organization().from((MObject) value);
         }
         return value;
     }

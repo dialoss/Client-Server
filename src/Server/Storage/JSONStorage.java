@@ -1,8 +1,8 @@
 package Server.Storage;
 
 
+import Server.Models.MObject;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -11,25 +11,25 @@ public class JSONStorage extends FileStorage {
         super();
     }
 
-    public JSONObject[] read() {
+    public MObject[] read() {
         String text = super._read();
         JSONParser parser = new JSONParser();
         try {
             Object parsed = parser.parse(text);
             if (parsed instanceof JSONArray) {
-                JSONObject[] list = new JSONObject[((JSONArray) parsed).size()];
+                MObject[] list = new MObject[((JSONArray) parsed).size()];
                 int i = 0;
                 for (Object o : (JSONArray) parsed) {
-                    list[i++] = (JSONObject) o;
+                    list[i++] = (MObject) o;
                 }
                 return list;
             }
-            else if (parsed instanceof JSONObject)
-                return new JSONObject[]{(JSONObject) parsed};
+            else if (parsed instanceof MObject)
+                return new MObject[]{(MObject) parsed};
         } catch (ParseException e) {
             System.out.println(e);
         }
-        return new JSONObject[]{new JSONObject()};
+        return new MObject[]{new MObject()};
     }
 
     public String write(String data, String filename) {

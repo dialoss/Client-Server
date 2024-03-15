@@ -1,7 +1,8 @@
 package Server.Storage.Database;
 
-import Server.Models.*;
 import Common.Pair;
+import Server.Internal.UserManager;
+import Server.Models.*;
 import org.postgresql.util.PSQLException;
 
 import java.lang.reflect.Field;
@@ -37,6 +38,7 @@ public class DBOperations {
         while (r.next()) {
             MObject object = new MObject();
             int id = r.getInt("id");
+            object.put("id", id);
             for (Field f : t.getDeclaredFields()) {
                 if (BaseModel.isModel(f.getType())) {
                     MObject[] foreign = get(f.getType(), name(t) + "_id=" + id);
@@ -64,7 +66,7 @@ public class DBOperations {
 
     private void initModels() throws Exception {
         registerType(OrganizationType.class);
-        registerModel(Users.class);
+        registerModel(UserAccount.class);
         registerModel(Organization.class);
         registerModel(Address.class);
         registerModel(Location.class);
@@ -74,6 +76,7 @@ public class DBOperations {
     DBOperations() {
         try {
             connection = getNewConnection();
+//            get(UserAccount.class, 1);
 //            initModels();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -165,8 +168,13 @@ public class DBOperations {
             insertValues.add(v);
         }
 
+        if (Organization.class.isAssignableFrom(t)) {
+            insertFields.add("useraccount_id");
+            insertValues.add(UserManager.getClientId());
+        }
+
         query = query.formatted(name(t), formatQuery(insertFields.toArray()), formatQuery(insertValues.toArray()));
-        PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement statement = perform(query);
         statement.executeUpdate();
         try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
             if (generatedKeys.next()) {
@@ -181,11 +189,11 @@ public class DBOperations {
     }
 
     public MObject[] getAll(Class<?> t) throws Exception {
-        return queryToObject(t, "SELECT * FROM %s".formatted(name(t)));
+        return queryToObject(t, "SELECT * FROM %s JOIN useraccount USING(id)".formatted(name(t)));
     }
 
     private PreparedStatement perform(String query) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(query);
+        PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         statement.execute();
         return statement;
     }

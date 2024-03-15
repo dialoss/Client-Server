@@ -5,16 +5,16 @@ import java.io.Serializable;
 public class Response implements Serializable {
     private final String body;
     public final Status code;
-    private final User client;
+    private final UserClient userClient;
 
-    public Response(Object body, Status code, User client) {
+    public Response(Object body, Status code, UserClient userClient) {
         this.body = (String) body;
         this.code = code;
-        this.client = client;
+        this.userClient = userClient;
     }
 
-    public User getClient() {
-        return client;
+    public UserClient getClient() {
+        return userClient;
     }
 
     public String getBody() {

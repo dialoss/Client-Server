@@ -5,7 +5,7 @@ import Server.Models.MObject;
 import Server.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.Database.DBManager;
-import Server.Storage.Files.JSONStorage;
+import Common.Files.JSONStorage;
 
 public class StorageConnector {
     public static JSONStorage fileStorage;
@@ -14,7 +14,7 @@ public class StorageConnector {
 
     public static void init() {
         dbManager = new DBManager();
-        fileStorage = new JSONStorage();
+        fileStorage = new JSONStorage("src/Common/data/");
         manager = new CollectionManager();
     }
 

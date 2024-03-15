@@ -1,20 +1,30 @@
 package Common.Connection;
 
-public class User {
+public class UserClient {
     public Integer sessionId;
     private String password = "";
     private String login = "";
     public boolean needUpdate = false;
 
-    User(Integer sessionId) {
+    UserClient(Integer sessionId) {
         this.sessionId = sessionId;
     }
 
-    public User() {
+    public UserClient() {
+        setSessionId();
+    }
+
+    private void setSessionId() {
         this.sessionId = (int) (Math.random() * 1e9);
     }
 
-    public User(String login, String password, Integer sessionId) {
+    public UserClient(String login, String password) {
+        this.login = login;
+        this.password = password;
+        setSessionId();
+    }
+
+    public UserClient(String login, String password, Integer sessionId) {
         this.login = login;
         this.password = password;
         this.sessionId = sessionId;

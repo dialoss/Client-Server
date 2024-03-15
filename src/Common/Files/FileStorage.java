@@ -1,4 +1,4 @@
-package Server.Storage.Files;
+package Common.Files;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -6,10 +6,10 @@ import java.nio.file.Paths;
 
 public class FileStorage {
     protected Path source;
-    private static String BASE_PATH = "src/Common/data/";
+    private String BASE_PATH = "";
 
-    public FileStorage() {
-        this.changeSource("data.json");
+    public FileStorage(String BASE_PATH) {
+        this.BASE_PATH = BASE_PATH;
     }
 
     public FileStorage changeSource(String path) {

@@ -8,22 +8,22 @@ import java.io.Serializable;
 public class Request implements Serializable {
     private final CommandArgument[] arguments;
     private final Command command;
-    private final User client;
+    private final UserClient userClient;
 
     public Request(Command command, CommandArgument[] arguments) {
         this.command = command;
         this.arguments = arguments;
-        this.client = null;
+        this.userClient = null;
     }
 
-    public Request(Command command, CommandArgument[] arguments, User client) {
+    public Request(Command command, CommandArgument[] arguments, UserClient userClient) {
         this.command = command;
         this.arguments = arguments;
-        this.client = client;
+        this.userClient = userClient;
     }
 
-    public User getClient() {
-        return client;
+    public UserClient getClient() {
+        return userClient;
     }
 
     public String getName() {

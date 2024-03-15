@@ -10,13 +10,6 @@ public class DevNull extends IOdevice {
 
     public DevNull(Scanner scanner) {
         super(scanner);
-        deviceCounter++;
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        deviceCounter--;
     }
 
     @Override

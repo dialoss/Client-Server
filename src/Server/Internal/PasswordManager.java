@@ -1,10 +1,10 @@
 package Server.Internal;
 
 import Common.Connection.Request;
-import Common.Connection.User;
+import Common.Connection.UserClient;
 import Server.Commands.List.CommandArgument;
 import Server.Models.MObject;
-import Server.Models.Users;
+import Server.Models.UserAccount;
 import Server.Storage.Database.DBOperations;
 import Server.Storage.StorageConnector;
 import me.xdrop.jrand.JRand;
@@ -38,7 +38,7 @@ public class PasswordManager {
         return sb.toString();
     }
 
-    public static User register(Request request) throws Exception {
+    public static UserClient register(Request request) throws Exception {
         CommandArgument[] arguments = request.getArguments();
         String login = (String) arguments[0].getValue();
         String password = (String) arguments[1].getValue();
@@ -46,22 +46,27 @@ public class PasswordManager {
         String encrypted = encrypt(password, salt);
 
         DBOperations session = StorageConnector.dbManager.getSession();
-        session.insert(Users.class, new Users().from(new MObject(Map.of(
+        session.insert(UserAccount.class, new UserAccount().from(new MObject(Map.of(
                 "login", login,
                 "password", encrypted,
                 "salt", salt
         ))));
-        return new User(login, encrypted, request.getClient().sessionId);
+        return new UserClient(login, encrypted, request.getClient().sessionId);
     }
 
-    public static boolean login(User user) throws SQLException {
-        DBOperations session = StorageConnector.dbManager.getSession();
-        if (user.getLogin().length() == 0 || user.getPassword().length() == 0) return false;
-        MObject[] result = session.get(Users.class, "login = '%s'".formatted(user.getLogin()));
-        if (result.length == 0) return false;
-        Users userData = (Users) new Users().from(result[0]);
+    public static boolean login(UserClient user) throws SQLException {
+        UserAccount userData = getUser(user);
+        if (userData == null) return false;
         String stored = userData.password;
         String provided = encrypt(user.getPassword(), userData.salt);
-        return stored.equals(provided);
+        return stored.equals(provided) || stored.equals(user.getPassword());
+    }
+
+    public static UserAccount getUser(UserClient user) throws SQLException {
+        DBOperations session = StorageConnector.dbManager.getSession();
+        if (user.getLogin().length() == 0 || user.getPassword().length() == 0) return null;
+        MObject[] result = session.get(UserAccount.class, "login = '%s'".formatted(user.getLogin()));
+        if (result.length == 0) return null;
+        return (UserAccount) new UserAccount().from(result[0]);
     }
 }

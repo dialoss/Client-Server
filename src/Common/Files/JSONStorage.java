@@ -1,4 +1,4 @@
-package Server.Storage.Files;
+package Common.Files;
 
 
 import Server.Models.MObject;
@@ -7,8 +7,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class JSONStorage extends FileStorage {
-    public JSONStorage() {
-        super();
+    public JSONStorage(String path) {
+        super(path);
     }
 
     public MObject[] read() {

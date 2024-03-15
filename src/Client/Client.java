@@ -14,6 +14,7 @@ public class Client {
         this.api = new EventBusAPI();
         this.api.setResponseCallback(this.userInterface.getInterface());
         this.userInterface.setRequestCallback(this.api::request);
+        UserManager.init();
     }
 
     public void run() {

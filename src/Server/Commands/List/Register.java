@@ -5,7 +5,7 @@ import Server.Storage.Collection.CollectionManager;
 
 public class Register extends Command {
     public Register() {
-        super("register", "Register user", new CommandArgument[]{
+        super("register", "Register Client", new CommandArgument[]{
                 new CommandArgument("login", String.class),
                 new CommandArgument("password", String.class),
                 new CommandArgument("repeat_password", String.class)

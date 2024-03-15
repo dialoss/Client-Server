@@ -3,9 +3,8 @@ package Server.Commands;
 import Common.Connection.Request;
 import Common.Connection.Response;
 import Common.Connection.Status;
-import Common.Connection.User;
 import Server.Commands.List.*;
-import Server.Internal.PasswordManager;
+import Server.Internal.UserManager;
 import Server.Storage.StorageConnector;
 
 import java.util.ArrayList;
@@ -40,26 +39,14 @@ public class CommandManager {
 
     static public Response execute(Request request) {
         Command command = commands.get(request.getName());
-        User user = request.getClient();
         Response response = null;
 
         try {
-            if (command.getName().equals("login")) {
-                if (!PasswordManager.login(user))
-                    response = new Response("Invalid login/password combintion.", Status.FORBIDDEN, user);
-                else
-                    response = new Response("You are successfully login.", Status.OK, user);
-            } else if (command.getName().equals("register")) {
-                if (PasswordManager.login(user))
-                    response = new Response("You has already registered.", Status.OK, user);
-                else
-                    response = new Response("You are successfully registered.", Status.OK, PasswordManager.register(request));
-            } else if (!PasswordManager.login(user)) {
-                response = new Response("Forbidden. You must login before using this app.", Status.FORBIDDEN, user);
-            } else {
-                String result = command.execute(StorageConnector.manager, request.getArguments());
-                response = new Response(result, Status.OK, request.getClient());
-            }
+            Response authResponse = UserManager.processAuth(command, request);
+            if (authResponse != null) return authResponse;
+
+            String result = command.execute(StorageConnector.manager, request.getArguments());
+            response = new Response(result, Status.OK, request.getClient());
         } catch (Exception e) {
             response = new Response(e.toString(), Status.SERVER_ERROR, request.getClient());
         }

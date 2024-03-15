@@ -1,6 +1,6 @@
 package Server.Models;
 
-public class Users extends BaseModel {
+public class UserAccount extends BaseModel {
     @ModelField
     public String login;
     @ModelField

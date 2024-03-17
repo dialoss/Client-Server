@@ -1,7 +1,7 @@
 package Server.Commands.List;
 
 import Server.Commands.Command;
-import Server.Commands.CommandManager;
+import Server.Commands.CommandExecutor;
 import Server.Commands.HistoryEntry;
 import Server.Storage.Collection.CollectionManager;
 
@@ -13,7 +13,7 @@ public class History extends Command {
     @Override
     public String execute(CollectionManager collectionManager, CommandArgument[] args) {
         StringBuilder b = new StringBuilder();
-        CommandManager.getHistory().stream()
+        CommandExecutor.getHistory().stream()
                 .map((HistoryEntry h) -> h.request.getName() + " Status " + h.response.code + "\n")
                 .forEach(b::append);
         return b.toString();

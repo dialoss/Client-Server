@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="io.github.mkpaz.atlantafx.base" type="repository">
+    <properties maven-id="io.github.mkpaz:atlantafx-base:2.0.1" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/github/mkpaz/atlantafx-base/2.0.1/atlantafx-base-2.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/20/javafx-controls-20.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/20/javafx-controls-20-win.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/20/javafx-graphics-20.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/20/javafx-graphics-20-win.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/20/javafx-base-20.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/20/javafx-base-20-win.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

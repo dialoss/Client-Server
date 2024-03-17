@@ -13,10 +13,6 @@ public class UserManager {
     private static int clientId = -1;
     private static UserClient client = new UserClient();
 
-    public static void setClient(UserClient client) {
-        UserManager.client = client;
-    }
-
     public static Response processAuth(Command command, Request request) throws Exception {
         UserClient user = request.getClient();
         Response response = null;
@@ -32,10 +28,9 @@ public class UserManager {
                 user = PasswordManager.register(request);
                 response = new Response("You are successfully registered.", Status.OK, user);
             }
-        } else if (clientId == -1 && !PasswordManager.login(user)) {
+        } else if (clientId == -1) {
             response = new Response("Forbidden. You must login before using this app.", Status.FORBIDDEN, user);
         }
-        setClient(user);
         if (clientId == -1) {
             MObject dbUser = StorageConnector.dbManager.getSession()
                     .get(UserAccount.class, "login='%s'".formatted(user.getLogin()))[0];

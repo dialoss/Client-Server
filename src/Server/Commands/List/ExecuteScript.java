@@ -1,13 +1,13 @@
 package Server.Commands.List;
 
-import Client.CommandParser;
+import Client.Shell.CommandParser;
 import Client.Shell.IForm;
 import Client.Shell.IOdevice;
 import Common.Connection.Request;
 import Common.Exceptions.ScriptRuntimeException;
 import Common.Pair;
 import Server.Commands.Command;
-import Server.Commands.CommandManager;
+import Server.Commands.CommandExecutor;
 import Server.Internal.DevNull;
 import Server.Internal.FileForm;
 import Server.Models.MBoolean;
@@ -40,7 +40,7 @@ public class ExecuteScript extends Command {
             CommandParser parser = new CommandParser(form);
             virtual.start((String[] command) -> {
                 Pair<Command, CommandArgument[]> c = parser.parse(command);
-                String result = CommandManager.execute(new Request(c.a, c.b)).getBody();
+                String result = CommandExecutor.execute(new Request(c.a, c.b)).getBody();
                 if (showLog)
                     form.out(result);
             });

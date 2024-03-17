@@ -1,5 +1,6 @@
 package Client;
 
+import Client.Storage.LocalStorage;
 import Common.Connection.UserClient;
 import Common.Pair;
 import Server.Commands.Command;

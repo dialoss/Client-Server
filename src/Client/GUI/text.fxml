@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.5388513513513514" orientation="VERTICAL" prefHeight="287.0" prefWidth="215.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Button layoutX="81.0" layoutY="111.0" mnemonicParsing="false" text="Button" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TextField layoutX="31.0" layoutY="38.0" />
+                  <Label layoutX="81.0" layoutY="14.0" text="jjjjjjjjjjjjjjjjj" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <TableView layoutX="297.0" prefHeight="273.0" prefWidth="303.0" />
+   </children>
+</Pane>

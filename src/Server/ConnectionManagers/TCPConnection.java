@@ -105,7 +105,6 @@ public class TCPConnection extends ConnectionManager {
                         Request request = (Request) oi.readObject();
                         this.clients.put(request.getClient().sessionId, key);
                         this.requestCallback.call(request);
-
                         client.register(selector, SelectionKey.OP_WRITE);
                     }
                     iter.remove();

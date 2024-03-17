@@ -1,9 +1,9 @@
 package Server;
 
-import Server.Commands.CommandManager;
-import Server.ConnectionManagers.ConnectionManager;
-import Server.ConnectionManagers.EventBusConnection;
 import Common.Connection.Request;
+import Server.Commands.CommandExecutor;
+import Server.ConnectionManagers.ConnectionManager;
+import Server.ConnectionManagers.TCPConnection;
 import Server.Storage.StorageConnector;
 
 public class Server {
@@ -11,9 +11,9 @@ public class Server {
 
     public Server() {
         StorageConnector.init();
-        manager = new EventBusConnection();
+        manager = new TCPConnection();
         manager.setRequestCallback((Request request) ->
-                manager.response(CommandManager.execute(request)));
-        manager.run();
+                manager.response(CommandExecutor.execute(request)));
+        new Thread(() -> manager.run()).start();
     }
 }

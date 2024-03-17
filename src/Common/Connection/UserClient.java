@@ -1,6 +1,8 @@
 package Common.Connection;
 
-public class UserClient {
+import java.io.Serializable;
+
+public class UserClient implements Serializable {
     public Integer sessionId;
     private String password = "";
     private String login = "";

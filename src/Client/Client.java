@@ -2,22 +2,30 @@ package Client;
 
 import Client.APIs.ClientAPI;
 import Client.APIs.EventBusAPI;
-import Client.Shell.Shell;
-import Client.Shell.ShellForm;
+import Client.GUI.GUIManager;
+import atlantafx.base.theme.NordLight;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-public class Client {
+public class Client extends Application {
     UserInterface userInterface;
     ClientAPI api;
 
-    public Client() {
-        this.userInterface = new CommandLineInterface(new ShellForm(new Shell()));
+    @Override
+    public void start(Stage stage) throws Exception {
+        Application.setUserAgentStylesheet(new NordLight().getUserAgentStylesheet());
+
+        this.userInterface = new GUIManager(stage);
         this.api = new EventBusAPI();
-        this.api.setResponseCallback(this.userInterface.getInterface());
+
         this.userInterface.setRequestCallback(this.api::request);
+        this.userInterface.start();
+        this.api.setResponseCallback(this.userInterface.getInterface());
         UserManager.init();
+
     }
 
-    public void run() {
-        this.userInterface.start();
+    public static void main(String[] args) {
+        launch(args);
     }
 }

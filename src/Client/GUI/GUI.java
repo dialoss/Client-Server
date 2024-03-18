@@ -1,8 +1,10 @@
 package Client.GUI;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -11,20 +13,22 @@ import java.nio.file.Paths;
 
 
 public class GUI {
+
     public void start(Stage stage) throws IOException, InterruptedException {
-        URL fxmlURL = Paths.get("C:\\Users\\dialoss\\IdeaProjects\\lab5\\src\\Client\\GUI\\text.fxml").toUri().toURL();
-        Parent root = FXMLLoader.load(fxmlURL);
+        URL html = Paths.get("C:\\Users\\dialoss\\IdeaProjects\\lab5\\src\\Client\\GUI\\webview.html").toUri().toURL();
 
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        WebView webView = new WebView();
+        WebEngine engine = webView.getEngine();
+        engine.load(html.toExternalForm());
 
+        VBox root = new VBox(webView);
+        root.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
-        stage.setTitle("JavaFX Application");
+        stage.setTitle("App");
         stage.setWidth(400);
         stage.setHeight(400);
         stage.show();
-
-        Thread.sleep(1000);
 
     }
 }

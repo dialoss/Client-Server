@@ -17,6 +17,10 @@ public class FileStorage {
         return this;
     }
 
+    public void setSource(Path path) {
+        this.source = path;
+    }
+
     public String _read() {
         try {
             FileInputStream f = new FileInputStream(this.source.toString());

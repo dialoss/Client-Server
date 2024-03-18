@@ -8,15 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class Controller {
-    @FXML
-    private Button btn;
-
-    @FXML
-    private Label name;
-
     public void click(javafx.event.ActionEvent actionEvent) {
         btn.setText("You've clicked!");
     }
+
+
 
     public void x(String text) {
         try {
@@ -25,6 +21,5 @@ public class Controller {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 }

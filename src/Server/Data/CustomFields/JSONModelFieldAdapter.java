@@ -1,4 +1,4 @@
-package Server.Models;
+package Server.Data.CustomFields;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;

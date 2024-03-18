@@ -1,5 +1,8 @@
-package Server.Models;
+package Server.Data;
 
+import Server.Data.CustomFields.MBoolean;
+import Server.Data.CustomFields.MDate;
+import Server.Data.Models.OrganizationType;
 import me.xdrop.jrand.Generator;
 import me.xdrop.jrand.JRand;
 

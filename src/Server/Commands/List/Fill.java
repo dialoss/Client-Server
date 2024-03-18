@@ -1,7 +1,7 @@
 package Server.Commands.List;
 
 import Server.Commands.Command;
-import Server.Models.Organization;
+import Server.Data.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 
 public class Fill extends Command {

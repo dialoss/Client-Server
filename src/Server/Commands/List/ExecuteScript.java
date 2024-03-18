@@ -10,7 +10,7 @@ import Server.Commands.Command;
 import Server.Commands.CommandExecutor;
 import Server.Internal.DevNull;
 import Server.Internal.FileForm;
-import Server.Models.MBoolean;
+import Server.Data.CustomFields.MBoolean;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
 

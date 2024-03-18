@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class TCPConnection extends ConnectionManager {
-    int port = 3000;
+    int port = 3003;
     Selector selector;
 
     public TCPConnection() {

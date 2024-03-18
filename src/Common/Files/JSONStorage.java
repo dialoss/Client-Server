@@ -1,7 +1,7 @@
 package Common.Files;
 
 
-import Server.Models.MObject;
+import Server.Data.MObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;

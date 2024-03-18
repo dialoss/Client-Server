@@ -1,8 +1,8 @@
 package Server.Storage;
 
 import Common.Tools;
-import Server.Models.MObject;
-import Server.Models.Organization;
+import Server.Data.MObject;
+import Server.Data.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.Database.DBManager;
 import Common.Files.JSONStorage;
@@ -39,7 +39,7 @@ public class StorageConnector {
     }
 
     public static String saveFile(String filename) {
-        return fileStorage.write(Tools.objectToJSON(manager.getAll()), filename);
+        return fileStorage.write(Tools.stringify(manager.getAll()), filename);
     }
 
     public static void saveDB() throws Exception {

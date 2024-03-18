@@ -1,4 +1,4 @@
-package Server.Models;
+package Server.Data.CustomFields;
 
 import Common.Exceptions.InvalidModelException;
 

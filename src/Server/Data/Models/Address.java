@@ -1,4 +1,6 @@
-package Server.Models;
+package Server.Data.Models;
+
+import Server.Data.ModelField;
 
 public class Address extends BaseModel {
     @ModelField(NULL = true, MAX_LENGTH = 50)

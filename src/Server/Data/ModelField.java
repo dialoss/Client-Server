@@ -1,4 +1,4 @@
-package Server.Models;
+package Server.Data;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

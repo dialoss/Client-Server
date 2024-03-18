@@ -2,7 +2,7 @@ package Server.Commands.List;
 
 import Common.Stringify;
 import Server.Commands.Command;
-import Server.Models.Organization;
+import Server.Data.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 
 import java.util.ArrayList;

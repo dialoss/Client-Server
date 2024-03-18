@@ -1,8 +1,10 @@
 package Server.Storage.Database;
 
 import Common.Pair;
+import Server.Data.CustomFields.CustomField;
+import Server.Data.Models.*;
 import Server.Internal.UserManager;
-import Server.Models.*;
+import Server.Data.*;
 import org.postgresql.util.PSQLException;
 
 import java.lang.reflect.Field;
@@ -76,8 +78,6 @@ public class DBOperations {
     DBOperations() {
         try {
             connection = getNewConnection();
-//            get(UserAccount.class, 1);
-//            initModels();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -189,7 +189,8 @@ public class DBOperations {
     }
 
     public MObject[] getAll(Class<?> t) throws Exception {
-        return queryToObject(t, "SELECT * FROM %s JOIN useraccount USING(id)".formatted(name(t)));
+        // JOIN useraccount USING(id)
+        return queryToObject(t, "SELECT * FROM %s".formatted(name(t)));
     }
 
     private PreparedStatement perform(String query) throws SQLException {

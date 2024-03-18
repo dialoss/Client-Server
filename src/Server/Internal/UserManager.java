@@ -5,8 +5,8 @@ import Common.Connection.Response;
 import Common.Connection.Status;
 import Common.Connection.UserClient;
 import Server.Commands.Command;
-import Server.Models.MObject;
-import Server.Models.UserAccount;
+import Server.Data.MObject;
+import Server.Data.Models.UserAccount;
 import Server.Storage.StorageConnector;
 
 public class UserManager {

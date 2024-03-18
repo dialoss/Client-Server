@@ -1,4 +1,6 @@
-package Server.Models;
+package Server.Data.Models;
+
+import Server.Data.ModelField;
 
 public class UserAccount extends BaseModel {
     @ModelField

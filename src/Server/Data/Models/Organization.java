@@ -1,4 +1,8 @@
-package Server.Models;
+package Server.Data.Models;
+
+import Server.Data.CustomFields.MBoolean;
+import Server.Data.CustomFields.MDate;
+import Server.Data.ModelField;
 
 public class Organization extends BaseModel implements Comparable<Organization> {
     @ModelField(MIN = 100, MAX = 500)

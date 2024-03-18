@@ -1,4 +1,4 @@
-package Server.Models;
+package Server.Data;
 
 public interface OrderedItem {
     Integer getId();

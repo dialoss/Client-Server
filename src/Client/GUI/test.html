@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App</title>
+    <script type='text/JavaScript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
+    <script defer src="file:/D:/Programming/lab8/build/static/js/bundle.js"></script>
+    <script>
+        window.onload = () => {
+            alert("ready");
+            window.addEventListener("keydown", e => {
+                if(e.keyCode === 80){
+                    window.location.reload();
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>

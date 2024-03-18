@@ -1,7 +1,7 @@
 package Server.Storage.Database;
 
-import Server.Models.MObject;
-import Server.Models.Organization;
+import Server.Data.MObject;
+import Server.Data.Models.Organization;
 
 public class DBManager {
     DBOperations session;

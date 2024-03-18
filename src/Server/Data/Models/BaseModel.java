@@ -1,7 +1,10 @@
-package Server.Models;
+package Server.Data.Models;
 
 import Client.Shell.ShellColors;
 import Common.Exceptions.InvalidModelException;
+import Server.Data.FieldGenerator;
+import Server.Data.MObject;
+import Server.Data.ModelField;
 import Server.Serializer.Serializer;
 
 import java.lang.reflect.Field;

@@ -1,7 +1,7 @@
 package Server.Serializer;
 
 import Common.Exceptions.InvalidValue;
-import Server.Models.ModelField;
+import Server.Data.ModelField;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

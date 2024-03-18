@@ -1,4 +1,4 @@
-package Server.Models;
+package Server.Data;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

@@ -2,9 +2,8 @@ package Server.Storage.Database;
 
 import Common.Pair;
 import Server.Data.CustomFields.CustomField;
-import Server.Data.Models.*;
+import Common.Models.*;
 import Server.Internal.UserManager;
-import Server.Data.*;
 import org.postgresql.util.PSQLException;
 
 import java.lang.reflect.Field;

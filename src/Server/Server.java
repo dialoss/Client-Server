@@ -1,19 +1,18 @@
 package Server;
 
-import Common.Connection.Request;
 import Server.Commands.CommandExecutor;
 import Server.ConnectionManagers.ConnectionManager;
-import Server.ConnectionManagers.TCPConnection;
+import Server.ConnectionManagers.HTTPConnection;
 import Server.Storage.StorageConnector;
 
 public class Server {
     ConnectionManager manager;
 
     public Server() {
+        System.out.println("Server started");
         StorageConnector.init();
-        manager = new TCPConnection();
-        manager.setRequestCallback((Request request) ->
-                manager.response(CommandExecutor.execute(request)));
+        manager = new HTTPConnection();
+        manager.setRequestCallback(CommandExecutor::execute);
         new Thread(() -> manager.run()).start();
     }
 }

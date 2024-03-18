@@ -1,5 +1,6 @@
 package Server.ConnectionManagers;
 
+import Common.Connection.ObjectIO;
 import Common.Connection.Request;
 import Common.Connection.Response;
 
@@ -16,68 +17,35 @@ import java.util.Set;
 public class TCPConnection extends ConnectionManager {
     int port = 3003;
     Selector selector;
+    ServerSocketChannel channel;
 
     public TCPConnection() {
         try {
             InetSocketAddress address = new InetSocketAddress("127.0.0.1", port);
 
-            ServerSocketChannel channel = ServerSocketChannel.open();
+            channel = ServerSocketChannel.open();
             channel.bind(address);
             channel.configureBlocking(false);
 
             selector = Selector.open();
             channel.register(selector, SelectionKey.OP_ACCEPT);
-
         } catch (Exception e) {
             System.out.println(e);
-        }
-    }
-
-    @Override
-    public void response(Response response) {
-        try {
-            while (true) {
-                selector.select();
-                Set<SelectionKey> selected = selector.selectedKeys();
-                Iterator<SelectionKey> iter = selected.iterator();
-
-                while (iter.hasNext()) {
-                    SelectionKey key = iter.next();
-                    if (key.isWritable()) {
-                        try {
-                            SocketChannel client = (SocketChannel) key.channel();
-                            client.configureBlocking(false);
-
-                            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-                            objectOutputStream.writeObject(response);
-                            objectOutputStream.flush();
-                            objectOutputStream.close();
-                            ByteBuffer buffer = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
-
-                            while (buffer.hasRemaining()) {
-                                client.write(buffer);
-                            }
-
-                            client.register(selector, SelectionKey.OP_READ);
-                            buffer.clear();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }
-                    }
-                    iter.remove();
-                }
+            try {
+                selector.close();
+                channel.close();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
     @Override
     public void run() {
-        try {
-            while (true) {
-                selector.select();
+        Response response = null;
+        while (true) {
+            try {
+                if (selector.select(3000) == 0) continue;
                 Set<SelectionKey> selected = selector.selectedKeys();
                 Iterator<SelectionKey> iter = selected.iterator();
 
@@ -95,23 +63,42 @@ public class TCPConnection extends ConnectionManager {
                         System.out.println("Reading");
 
                         SocketChannel client = (SocketChannel) key.channel();
+//                        if (!client.isConnected())
                         client.configureBlocking(false);
 
                         ByteBuffer buffer = ByteBuffer.allocate(1024);
-                        client.read(buffer);
+                        try {
+                            client.read(buffer);
+                        } catch (IOException e) {
+                            channel.close();
+                            iter.remove();
+                            continue;
+                        }
 
                         ByteArrayInputStream bi = new ByteArrayInputStream(buffer.array());
                         ObjectInputStream oi = new ObjectInputStream(bi);
                         Request request = (Request) oi.readObject();
-                        this.clients.put(request.getClient().sessionId, key);
-                        this.requestCallback.call(request);
-                        client.register(selector, SelectionKey.OP_WRITE);
+                        response = this.requestCallback.call(request);
+                        key.interestOps(SelectionKey.OP_READ | SelectionKey.OP_WRITE);
                     }
+                    if (key.isWritable() && key.isValid()) {
+                        SocketChannel client = (SocketChannel) key.channel();
+                        client.configureBlocking(false);
+
+                        ByteBuffer buffer = ByteBuffer.wrap(ObjectIO.writeObject(response).toByteArray());
+
+                        while (buffer.hasRemaining()) {
+                            client.write(buffer);
+                        }
+
+                        client.register(selector, SelectionKey.OP_READ);
+                    }
+
                     iter.remove();
                 }
+            } catch (Exception e) {
+                System.out.println(e);
             }
-        } catch (Exception e) {
-            System.out.println(e);
         }
     }
 }

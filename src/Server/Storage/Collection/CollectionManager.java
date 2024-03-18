@@ -1,6 +1,6 @@
 package Server.Storage.Collection;
 
-import Server.Data.Models.Organization;
+import Common.Models.Organization;
 
 import java.util.LinkedHashMap;
 

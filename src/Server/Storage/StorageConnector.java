@@ -1,8 +1,8 @@
 package Server.Storage;
 
 import Common.Tools;
-import Server.Data.MObject;
-import Server.Data.Models.Organization;
+import Common.Models.MObject;
+import Common.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.Database.DBManager;
 import Common.Files.JSONStorage;

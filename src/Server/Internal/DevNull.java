@@ -10,6 +10,7 @@ public class DevNull extends IOdevice {
 
     public DevNull(Scanner scanner) {
         super(scanner);
+        deviceCounter++;
     }
 
     @Override

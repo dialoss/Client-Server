@@ -1,12 +1,17 @@
 package Client.APIs;
 
-import Common.EventBus.EventBus;
 import Common.Connection.Request;
 import Common.Connection.Response;
+import Common.EventBus;
+
+import java.io.IOException;
 
 public class EventBusAPI extends ClientAPI {
-    public void request(Request request) {
-        EventBus.on("response", response -> this.responseCallback.call((Response) response));
-        EventBus.emit("request", request);
+    public Response request(Request request) {
+        try {
+            return EventBus.emit("request", request);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

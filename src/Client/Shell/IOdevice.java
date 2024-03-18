@@ -1,6 +1,6 @@
 package Client.Shell;
 
-import Server.Commands.ICallback;
+import Common.Callback;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -34,7 +34,7 @@ public abstract class IOdevice {
         return "";
     }
 
-    public void start(ICallback<String[]> callback) {
+    public void start(Callback<String[]> callback) {
         this.print("> ");
         while (true) {
             String input = this.input();

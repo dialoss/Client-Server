@@ -1,6 +1,6 @@
 package Server.Commands.List;
 
-import Common.EventBus.Callback;
+import Common.Connection.ICallback;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class Query {
         return Stream.of(this.items);
     }
 
-    public Query sort(String f, Callback<Object> p) {
+    public Query sort(String f, ICallback<Object> p) {
         return this;
     }
 

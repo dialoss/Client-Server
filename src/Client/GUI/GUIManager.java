@@ -1,13 +1,11 @@
 package Client.GUI;
 
 import Client.UserInterface;
-import Common.Connection.Response;
-import Common.EventBus.Callback;
 import javafx.stage.Stage;
 
 
 public class GUIManager extends UserInterface {
-    private Stage stage;
+    private final Stage stage;
 
     public GUIManager(Stage stage) {
         this.stage = stage;
@@ -15,17 +13,12 @@ public class GUIManager extends UserInterface {
 
     @Override
     public void start() {
-        GUI gui = new GUI();
+        Controller controller = new Controller(this.requestCallback);
+        GUI gui = new GUI(controller);
         try {
             gui.start(stage);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-
-    @Override
-    public Callback<Response> getInterface() {
-        return null;
     }
 }

@@ -1,9 +1,0 @@
-# Created by .ignore support plugin (hsz.mobi)
-.idea
-.gradle
-_design
-build
-out
-gradle.properties
-*.iml
-

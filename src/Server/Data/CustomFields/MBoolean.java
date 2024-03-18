@@ -2,7 +2,7 @@ package Server.Data.CustomFields;
 
 import Common.Exceptions.InvalidValue;
 
-public class MBoolean implements CustomField {
+public class MBoolean extends CustomField {
     private final Boolean value;
 
     public MBoolean(Boolean value) {

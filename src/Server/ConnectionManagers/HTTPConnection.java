@@ -17,7 +17,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 public class HTTPConnection extends ConnectionManager {
-    final int port = 3000;
+    final int port = 3003;
     HttpServer server = null;
 
     public HTTPConnection() {
@@ -39,21 +39,6 @@ public class HTTPConnection extends ConnectionManager {
     }
 
     @Override
-    public void response(Response response) {
-        try {
-            HttpExchange exchange = (HttpExchange) this.clients.get(response.getClient());
-            OutputStream os = exchange.getResponseBody();
-
-            ByteArrayOutputStream bos = ObjectIO.writeObject(response);
-            exchange.sendResponseHeaders(200, bos.toByteArray().length);
-            os.write(bos.toByteArray());
-            exchange.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-
-    @Override
     public void run() {
         server.start();
         server.createContext("/request", new HttpHandler() {
@@ -62,8 +47,14 @@ public class HTTPConnection extends ConnectionManager {
                 try {
                     InputStream inputStream = exchange.getRequestBody();
                     Request request = (Request) ObjectIO.readObject(inputStream.readAllBytes());
-                    HTTPConnection.this.clients.put(request.getClient().sessionId, exchange);
-                    requestCallback.call(request);
+                    Response response = requestCallback.call(request);
+
+                    OutputStream os = exchange.getResponseBody();
+
+                    ByteArrayOutputStream bos = ObjectIO.writeObject(response);
+                    exchange.sendResponseHeaders(200, bos.toByteArray().length);
+                    os.write(bos.toByteArray());
+                    exchange.close();
                 } catch (Exception e) {
                     System.out.println(e);
                 }

@@ -1,18 +1,14 @@
 package Server.Internal;
 
-import Common.Connection.Request;
 import Common.Connection.UserClient;
-import Server.Commands.List.CommandArgument;
-import Server.Data.MObject;
-import Server.Data.Models.UserAccount;
+import Common.Models.MObject;
+import Common.Models.UserAccount;
 import Server.Storage.Database.DBOperations;
 import Server.Storage.StorageConnector;
-import me.xdrop.jrand.JRand;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.Map;
 
 public class PasswordManager {
     private static final MessageDigest md;
@@ -26,7 +22,7 @@ public class PasswordManager {
         }
     }
 
-    private static String encrypt(String data, String salt) {
+    public static String encrypt(String data, String salt) {
         String input = (pepper + data + salt);
         byte[] inputBytes = input.getBytes();
         md.update(inputBytes);
@@ -36,22 +32,6 @@ public class PasswordManager {
             sb.append(String.format("%02x", b));
         }
         return sb.toString();
-    }
-
-    public static UserClient register(Request request) throws Exception {
-        CommandArgument[] arguments = request.getArguments();
-        String login = (String) arguments[0].getValue();
-        String password = (String) arguments[1].getValue();
-        String salt = JRand.string().range(50, 100).gen();
-        String encrypted = encrypt(password, salt);
-
-        DBOperations session = StorageConnector.dbManager.getSession();
-        session.insert(UserAccount.class, new UserAccount().from(new MObject(Map.of(
-                "login", login,
-                "password", encrypted,
-                "salt", salt
-        ))));
-        return new UserClient(login, encrypted, request.getClient().sessionId);
     }
 
     public static boolean login(UserClient user) throws SQLException {

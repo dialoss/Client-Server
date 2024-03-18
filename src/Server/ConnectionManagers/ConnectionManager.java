@@ -1,20 +1,14 @@
 package Server.ConnectionManagers;
 
-import Common.EventBus.Callback;
 import Common.Connection.Request;
-import Common.Connection.Response;
-
-import java.util.HashMap;
+import Common.Connection.ICallback;
 
 public abstract class ConnectionManager {
-    public HashMap<Integer, Object> clients = new HashMap<>();
-    public Callback<Request> requestCallback;
-
-    public abstract void response(Response response);
+    public ICallback<Request> requestCallback;
 
     public abstract void run();
 
-    public void setRequestCallback(Callback<Request> requestCallback) {
+    public void setRequestCallback(ICallback<Request> requestCallback) {
         this.requestCallback = requestCallback;
     }
 }

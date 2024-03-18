@@ -1,6 +1,6 @@
 package Server.Commands.List;
 
-import Server.Commands.Command;
+import Common.Commands.Command;
 import Server.Storage.Collection.CollectionManager;
 
 public class Clear extends Command {
@@ -9,7 +9,7 @@ public class Clear extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, CommandArgument[] args) {
+    public String execute(CollectionManager collectionManager, Object[] args) {
         collectionManager.clear();
         return "Collection cleared";
     }

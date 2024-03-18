@@ -2,7 +2,7 @@ package Server.Data;
 
 import Server.Data.CustomFields.MBoolean;
 import Server.Data.CustomFields.MDate;
-import Server.Data.Models.OrganizationType;
+import Common.Models.OrganizationType;
 import me.xdrop.jrand.Generator;
 import me.xdrop.jrand.JRand;
 
@@ -12,8 +12,8 @@ import java.util.Random;
 public class FieldGenerator {
     private static final Map<Class<?>, Generator<?>> generators = Map.of(
             String.class, JRand.string().range(40, 49),
-            Double.class, JRand.dbl().range(1, 1000),
-            Float.class, JRand.flt().range(1, 1000),
+            Double.class, JRand.dbl().range(-10000, 10000),
+            Float.class, JRand.flt().range(-10000, 10000),
             Integer.class, new Generator<Integer>() {
                 @Override
                 public Integer gen() {

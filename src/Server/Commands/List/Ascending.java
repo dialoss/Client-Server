@@ -1,7 +1,8 @@
 package Server.Commands.List;
 
+import Common.Commands.CommandArgument;
 import Common.Stringify;
-import Server.Commands.Command;
+import Common.Commands.Command;
 import Server.Storage.Collection.CollectionManager;
 
 public class Ascending extends Command {
@@ -12,8 +13,8 @@ public class Ascending extends Command {
     }
 
     @Override
-    public String execute(CollectionManager manager, CommandArgument[] args) {
-        String fieldName = (String) args[0].getValue();
+    public String execute(CollectionManager manager, Object[] args) {
+        String fieldName = (String) args[0];
 
         return new Stringify(new Query(manager.getAll()).reduce(fieldName).sorted()).get();
     }

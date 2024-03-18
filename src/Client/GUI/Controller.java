@@ -1,11 +1,14 @@
 package Client.GUI;
 
+import Common.Connection.ICallback;
+import Common.Connection.Request;
+import Common.Connection.Response;
+import Common.Connection.Status;
+import Common.Models.MObject;
+import Common.Models.Organization;
 import Common.Tools;
-import Server.Data.MObject;
-import Server.Data.Models.Organization;
-import Server.Storage.StorageConnector;
-import javafx.scene.web.WebEngine;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.stream.Stream;
@@ -16,10 +19,10 @@ class UserLogin {
 }
 
 public class Controller {
-    WebEngine engine;
+    ICallback<Request> request;
 
-    Controller(WebEngine engine) {
-        this.engine = engine;
+    Controller(ICallback<Request> request) {
+        this.request = request;
     }
 
     public String call(String methodName, String data) {
@@ -30,8 +33,9 @@ public class Controller {
                 if (params.length == 0) return Tools.stringify(m.invoke(this));
                 return Tools.stringify(m.invoke(this, Tools.parse(data, params[0])));
             }
+            request.call(new Request(methodName, new Object[]{100}));
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getStackTrace());
         }
         return "{}";
     }
@@ -40,20 +44,23 @@ public class Controller {
         System.out.println(d);
     }
 
-    private MObject[] getRows() {
-        System.out.println("AUE");
-        try {
-            return StorageConnector.dbManager.getSession().getAll(Organization.class);
-        } catch (Exception e) {
-            return null;
-        }
+    private MObject[] getRows() throws IOException {
+        Response r = request.call(new Request("db", new Object[]{"getAll"}));
+        if (r.code == Status.OK) return (MObject[]) r.getBody();
+        else return null;
+
     }
 
     private String[] getColumns() {
         return Stream.of(Organization.class.getDeclaredFields()).map(Field::getName).toArray(String[]::new);
     }
 
-    private void login(UserLogin data) {
-
+    private String login(UserLogin data) throws IOException {
+        Response r = request.call(new Request("login", new Object[]{
+                data.login,
+                data.password,
+        }));
+        return (String) r.getBody();
     }
+
 }

@@ -3,10 +3,11 @@ package Server.Commands.List;
 import Client.Shell.CommandParser;
 import Client.Shell.IForm;
 import Client.Shell.IOdevice;
+import Common.Commands.CommandArgument;
 import Common.Connection.Request;
 import Common.Exceptions.ScriptRuntimeException;
 import Common.Pair;
-import Server.Commands.Command;
+import Common.Commands.Command;
 import Server.Commands.CommandExecutor;
 import Server.Internal.DevNull;
 import Server.Internal.FileForm;
@@ -21,14 +22,14 @@ public class ExecuteScript extends Command {
         super("script", "Read and execute a script from the specified file. The script contains commands in the same form in which the user enters them in interactive mode.",
                 new CommandArgument[]{
                         new CommandArgument("filename", String.class),
-                        new CommandArgument("show_log", MBoolean.class).withNotRequired(new MBoolean(false))
+                        new CommandArgument("show_log", MBoolean.class).withNotRequired(new MBoolean(true))
         });
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, CommandArgument[] args) throws ScriptRuntimeException {
-        String filename = (String) args[0].getValue();
-        Boolean showLog = true;
+    public String execute(CollectionManager collectionManager, Object[] args) throws ScriptRuntimeException {
+        String filename = (String) args[0];
+        Boolean showLog = (Boolean) args[1];
         if (DevNull.deviceCounter >= 10) {
             DevNull.deviceCounter = 0;
             return "Recursion limit %s!".formatted(5);
@@ -39,8 +40,8 @@ public class ExecuteScript extends Command {
             IForm form = new FileForm(virtual);
             CommandParser parser = new CommandParser(form);
             virtual.start((String[] command) -> {
-                Pair<Command, CommandArgument[]> c = parser.parse(command);
-                String result = CommandExecutor.execute(new Request(c.a, c.b)).getBody();
+                Pair<Command, Object[]> c = parser.parse(command);
+                String result = (String) CommandExecutor.execute(new Request(c.a, c.b)).getBody();
                 if (showLog)
                     form.out(result);
             });

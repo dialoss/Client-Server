@@ -2,13 +2,11 @@ package Client.Shell;
 
 import Client.UserInterface;
 import Client.UserManager;
+import Common.Commands.Command;
 import Common.Connection.Request;
 import Common.Connection.Response;
 import Common.Connection.Status;
-import Common.EventBus.Callback;
 import Common.Pair;
-import Server.Commands.Command;
-import Server.Commands.List.CommandArgument;
 
 public class CommandLineInterface extends UserInterface {
     private final IOdevice shell;
@@ -21,15 +19,16 @@ public class CommandLineInterface extends UserInterface {
 
     private void processOutput(Response response) {
         UserManager.setClient(response.getClient());
-        if (response.code == Status.OK) this.shell.println(response.getBody());
-        else this.shell.error(response.getBody());
+        if (response.code == Status.OK) this.shell.println((String) response.getBody());
+        else this.shell.error((String) response.getBody());
     }
 
     private void processInput(String[] tokens) {
         try {
-            Pair<Command, CommandArgument[]> command = this.parser.parse(tokens);
+            Pair<Command, Object[]> command = this.parser.parse(tokens);
             UserManager.processAuth(command);
-            this.requestCallback.call(new Request(command.a, command.b, UserManager.getClient()));
+            Response response = this.requestCallback.call(new Request(command.a, command.b));
+            this.processOutput(response);
         } catch (Exception e) {
             this.shell.error(e.toString());
         }
@@ -37,10 +36,5 @@ public class CommandLineInterface extends UserInterface {
 
     public void start() {
         this.shell.start(this::processInput);
-    }
-
-    @Override
-    public Callback<Response> getInterface() {
-        return this::processOutput;
     }
 }

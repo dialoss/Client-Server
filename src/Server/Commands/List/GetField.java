@@ -1,7 +1,8 @@
 package Server.Commands.List;
 
+import Common.Commands.CommandArgument;
 import Common.Stringify;
-import Server.Commands.Command;
+import Common.Commands.Command;
 import Server.Storage.Collection.CollectionManager;
 
 public class GetField extends Command {
@@ -16,9 +17,9 @@ public class GetField extends Command {
     }
 
     @Override
-    public String execute(CollectionManager manager, CommandArgument[] args) {
-        String fieldName = (String) args[0].getValue();
-        Integer order = (Integer) args[1].getValue();
+    public String execute(CollectionManager manager, Object[] args) {
+        String fieldName = (String) args[0];
+        Integer order = (Integer) args[1];
 
         return new Stringify(new Query(manager.getAll()).reduce(fieldName).sorted(order)).get();
     }

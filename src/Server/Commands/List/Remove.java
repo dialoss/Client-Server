@@ -1,18 +1,19 @@
 package Server.Commands.List;
 
+import Common.Commands.CommandArgument;
 import Common.Exceptions.ElementNotFound;
-import Server.Commands.Command;
+import Common.Commands.Command;
 import Server.Storage.Collection.CollectionManager;
 
 public class Remove extends Command {
     public Remove() {
-        super("remove", "Removes an element from the collection by its key",
+        super("remove", "Removes an element from the collection by its id",
                 new CommandArgument[]{new CommandArgument("id", Integer.class)});
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, CommandArgument[] args) {
-        Integer id = (Integer) args[0].getValue();
+    public String execute(CollectionManager collectionManager, Object[] args) {
+        Integer id = (Integer) args[0];
         if (collectionManager.get(id) == null) throw new ElementNotFound(id);
         collectionManager.delete(id);
         return "Item %s has been removed.".formatted(id);

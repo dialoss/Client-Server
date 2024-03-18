@@ -1,6 +1,6 @@
 package Server.Commands.List;
 
-import Server.Commands.Command;
+import Common.Commands.Command;
 import Server.Storage.Collection.CollectionManager;
 
 public class Exit extends Command {
@@ -9,7 +9,7 @@ public class Exit extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, CommandArgument[] args) {
+    public String execute(CollectionManager collectionManager, Object[] args) {
         System.exit(0);
         return "";
     }

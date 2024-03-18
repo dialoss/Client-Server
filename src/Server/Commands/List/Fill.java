@@ -1,7 +1,8 @@
 package Server.Commands.List;
 
-import Server.Commands.Command;
-import Server.Data.Models.Organization;
+import Common.Commands.CommandArgument;
+import Common.Commands.Command;
+import Common.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 
 public class Fill extends Command {
@@ -11,8 +12,8 @@ public class Fill extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, CommandArgument[] args) {
-        Integer amount = (Integer) args[0].getValue();
+    public String execute(CollectionManager collectionManager, Object[] args) {
+        Integer amount = (Integer) args[0];
         for (int i = 0; i < amount; i++) {
             collectionManager.insert((Organization) new Organization().random());
         }

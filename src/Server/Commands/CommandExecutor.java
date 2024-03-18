@@ -1,5 +1,6 @@
 package Server.Commands;
 
+import Common.Commands.Command;
 import Common.Connection.Request;
 import Common.Connection.Response;
 import Common.Connection.Status;
@@ -17,19 +18,22 @@ public class CommandExecutor {
     }
 
     static public Response execute(Request request) {
-        Command command = CommandManager.get(request.getName());
+        UserManager.setClient(request.getClient());
+        if (UserManager.getClientId() == -1)
+            return new Response("Forbidden. You must login before using this app.", Status.FORBIDDEN);
+
         Response response = null;
-
         try {
-            Response authResponse = UserManager.processAuth(command, request);
-            if (authResponse != null) return authResponse;
-
-            String result = command.execute(StorageConnector.manager, request.getArguments());
-            response = new Response(result, Status.OK, request.getClient());
+            Command command = CommandManager.get(request.getCommandName());
+            Object result = command.execute(StorageConnector.manager, request.getArguments());
+            if (Response.class.isAssignableFrom(result.getClass())) response = (Response) result;
+            else response = new Response(result, Status.OK);
         } catch (Exception e) {
-            response = new Response(e.toString(), Status.SERVER_ERROR, request.getClient());
+            response = new Response(e.toString(), Status.SERVER_ERROR);
         }
+        response.setUserClient(UserManager.getClient());
         history.add(new HistoryEntry(request, response));
+        System.out.println(response.getBody());
         return response;
     }
 }

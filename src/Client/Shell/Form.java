@@ -1,12 +1,12 @@
 package Client.Shell;
 
+import Common.Commands.CommandArgument;
 import Common.Exceptions.EmptyInputException;
-import Server.Commands.List.CommandArgument;
-import Server.Data.Models.BaseModel;
-import Server.Data.MObject;
-import Server.Data.ModelField;
-import Server.Data.Models.Organization;
-import Server.Serializer.Serializer;
+import Common.Models.BaseModel;
+import Common.Models.MObject;
+import Common.Models.ModelField;
+import Common.Models.Organization;
+import Common.Serializer.Serializer;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

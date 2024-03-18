@@ -1,36 +1,44 @@
 package Common.Connection;
 
-import Server.Commands.Command;
-import Server.Commands.List.CommandArgument;
+import Common.Commands.Command;
 
 import java.io.Serializable;
 
 public class Request implements Serializable {
-    private final CommandArgument[] arguments;
     private final Command command;
-    private final UserClient userClient;
+    private UserClient userClient;
+    Object[] arguments;
 
-    public Request(Command command, CommandArgument[] arguments) {
+    public Request(String commandName, Object[] arguments) {
+        this.command = new Command(commandName);
+        this.arguments = arguments;
+    }
+
+    public Request(Command command, Object[] arguments) {
         this.command = command;
         this.arguments = arguments;
         this.userClient = null;
     }
 
-    public Request(Command command, CommandArgument[] arguments, UserClient userClient) {
+    public Request(Command command, Object[] arguments, UserClient userClient) {
         this.command = command;
         this.arguments = arguments;
         this.userClient = userClient;
+    }
+
+    public String getCommandName() {
+        return this.command.getName();
     }
 
     public UserClient getClient() {
         return userClient;
     }
 
-    public String getName() {
-        return this.command.getName();
+    public Object[] getArguments() {
+        return arguments;
     }
 
-    public CommandArgument[] getArguments() {
-        return this.arguments;
+    public void setUserClient(UserClient userClient) {
+        this.userClient = userClient;
     }
 }

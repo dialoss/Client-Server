@@ -3,13 +3,16 @@ package Common.Connection;
 import java.io.Serializable;
 
 public class Response implements Serializable {
-    private final String body;
+    private final Object body;
     public final Status code;
-    private final UserClient userClient;
+    private UserClient userClient;
 
-    public Response(Object body, Status code, UserClient userClient) {
-        this.body = (String) body;
+    public Response(Object body, Status code) {
+        this.body = body;
         this.code = code;
+    }
+
+    public void setUserClient(UserClient userClient) {
         this.userClient = userClient;
     }
 
@@ -17,7 +20,7 @@ public class Response implements Serializable {
         return userClient;
     }
 
-    public String getBody() {
+    public Object getBody() {
         return this.body;
     }
 }

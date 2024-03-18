@@ -1,7 +1,9 @@
 package Server.Commands.List;
 
-import Server.Commands.Command;
-import Server.Data.Models.Organization;
+import Common.Commands.ArgumentPosition;
+import Common.Commands.CommandArgument;
+import Common.Commands.Command;
+import Common.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 
 public class Insert extends Command {
@@ -14,8 +16,8 @@ public class Insert extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, CommandArgument[] args) {
-        collectionManager.insert((Organization) args[0].getValue());
+    public String execute(CollectionManager collectionManager, Object[] args) {
+        collectionManager.insert((Organization) args[0]);
         return "Element added";
     }
 }

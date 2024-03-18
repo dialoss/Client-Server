@@ -1,16 +1,17 @@
 package Client;
 
 import Common.Connection.Request;
-import Common.Connection.Response;
-import Common.EventBus.Callback;
+import Common.Connection.ICallback;
 
 public abstract class UserInterface {
-    protected Callback<Request> requestCallback;
+    protected ICallback<Request> requestCallback;
 
     public abstract void start();
-    public abstract Callback<Response> getInterface();
 
-    public void setRequestCallback(Callback<Request> callback) {
-        this.requestCallback = callback;
+    public void setRequestCallback(ICallback<Request> callback) {
+        this.requestCallback = (Request request) -> {
+            request.setUserClient(UserManager.getClient());
+            return callback.call(request);
+        };
     }
 }

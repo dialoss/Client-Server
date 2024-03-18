@@ -1,7 +1,7 @@
 package Server.Commands.List;
 
 import Common.Stringify;
-import Server.Commands.Command;
+import Common.Commands.Command;
 import Server.Commands.CommandManager;
 import Server.Storage.Collection.CollectionManager;
 
@@ -12,7 +12,7 @@ public class Help extends Command {
 
 
     @Override
-    public String execute(CollectionManager collectionManager, CommandArgument[] args) {
+    public String execute(CollectionManager collectionManager, Object[] args) {
         return new Stringify(CommandManager.getAll().values().toArray()).get();
     }
 }

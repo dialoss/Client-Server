@@ -1,7 +1,9 @@
 package Server.Commands.List;
 
-import Server.Commands.Command;
-import Server.Data.Models.Organization;
+import Common.Commands.ArgumentPosition;
+import Common.Commands.CommandArgument;
+import Common.Commands.Command;
+import Common.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 
 public class Update extends Command {
@@ -15,9 +17,9 @@ public class Update extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, CommandArgument[] args) {
-        Organization item = (Organization) args[1].getValue();
-        Integer id = (Integer) args[0].getValue();
+    public String execute(CollectionManager collectionManager, Object[] args) {
+        Organization item = (Organization) args[1];
+        Integer id = (Integer) args[0];
         collectionManager.update(id, item);
         return "Item updated";
     }

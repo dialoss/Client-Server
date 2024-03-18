@@ -1,7 +1,15 @@
 package Server.Commands.List;
 
-import Server.Commands.Command;
+import Common.Commands.CommandArgument;
+import Common.Commands.Command;
+import Common.Connection.Response;
+import Common.Connection.Status;
+import Common.Connection.UserClient;
+import Server.Internal.PasswordManager;
+import Server.Internal.UserManager;
 import Server.Storage.Collection.CollectionManager;
+
+import java.sql.SQLException;
 
 public class Login extends Command {
     public Login() {
@@ -13,7 +21,11 @@ public class Login extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, CommandArgument[] args) {
-        return "";
+    public Response execute(CollectionManager collectionManager, Object[] args) throws SQLException {
+        UserClient user = UserManager.getClient();
+        if (!PasswordManager.login(user))
+            return new Response("Invalid login/password combination.", Status.FORBIDDEN);
+        else
+            return new Response("You are successfully login.", Status.OK);
     }
 }

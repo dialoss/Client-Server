@@ -1,7 +1,7 @@
 package Server.Storage.Collection;
 
-import Server.Data.Models.BaseModel;
-import Server.Data.Models.Organization;
+import Common.Models.BaseModel;
+import Common.Models.Organization;
 
 import java.util.Date;
 import java.util.LinkedHashMap;

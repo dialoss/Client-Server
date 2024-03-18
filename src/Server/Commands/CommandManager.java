@@ -1,10 +1,9 @@
 package Server.Commands;
 
+import Common.Commands.Command;
 import Server.Commands.List.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CommandManager {
@@ -47,5 +46,6 @@ public class CommandManager {
         add(Exit.class);
         add(Login.class);
         add(Register.class);
+        add(DB.class);
     }
 }

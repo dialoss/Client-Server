@@ -1,6 +1,7 @@
 package Server.Data.CustomFields;
 
-public interface CustomField {
-//    Class<?> getType();
-    Object getValue();
+import java.io.Serializable;
+
+public abstract class CustomField implements Serializable {
+    abstract Object getValue();
 }

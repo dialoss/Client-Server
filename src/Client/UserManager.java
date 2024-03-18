@@ -3,8 +3,7 @@ package Client;
 import Client.Storage.LocalStorage;
 import Common.Connection.UserClient;
 import Common.Pair;
-import Server.Commands.Command;
-import Server.Commands.List.CommandArgument;
+import Common.Commands.Command;
 
 public class UserManager {
     private static UserClient client;
@@ -23,11 +22,11 @@ public class UserManager {
         LocalStorage.write("cookie", "%s %s".formatted(client.getLogin(), client.getPassword()));
     }
 
-    public static void processAuth(Pair<Command, CommandArgument[]> command) {
+    public static void processAuth(Pair<Command, Object[]> command) {
         String cmdName = command.a.getName();
         if (!(cmdName.equals("login") || cmdName.equals("register"))) return;
-        String login = (String) command.b[0].getValue();
-        String password = (String) command.b[1].getValue();
+        String login = (String) command.b[0];
+        String password = (String) command.b[1];
         UserManager.setClient(new UserClient(login, password));
     }
 

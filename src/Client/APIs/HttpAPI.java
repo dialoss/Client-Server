@@ -1,7 +1,7 @@
 package Client.APIs;
 
-import Common.Connection.ObjectIO;
 import Common.Connection.Request;
+import Common.Connection.ObjectIO;
 import Common.Connection.Response;
 
 import java.io.ByteArrayOutputStream;
@@ -12,7 +12,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class HttpAPI extends ClientAPI {
-    public void request(Request request) throws IOException {
+    public Response request(Request request) throws IOException {
         HttpClient client = HttpClient.newHttpClient();
 
         ByteArrayOutputStream bos = ObjectIO.writeObject(request);
@@ -23,11 +23,10 @@ public class HttpAPI extends ClientAPI {
                 .build();
         try {
             HttpResponse<byte[]> httpResponse = client.send(httpRequest, HttpResponse.BodyHandlers.ofByteArray());
-            Response response = (Response) ObjectIO.readObject(httpResponse.body());
-
-            this.responseCallback.call(response);
+            return (Response) ObjectIO.readObject(httpResponse.body());
         } catch (Exception e) {
             System.out.println(e);
         }
+        return null;
     }
 }

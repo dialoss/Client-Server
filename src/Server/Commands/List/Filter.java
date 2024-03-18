@@ -1,7 +1,8 @@
 package Server.Commands.List;
 
+import Common.Commands.CommandArgument;
 import Common.Stringify;
-import Server.Commands.Command;
+import Common.Commands.Command;
 import Server.Storage.Collection.CollectionManager;
 
 public class Filter extends Command {
@@ -12,8 +13,8 @@ public class Filter extends Command {
     }
 
     @Override
-    public String execute(CollectionManager manager, CommandArgument[] args) {
-        String name = (String) args[0].getValue();
+    public String execute(CollectionManager manager, Object[] args) {
+        String name = (String) args[0];
         Object[] items = new Query(manager.getAll())
                 .filter("name", (Object value) -> ((String) value).startsWith(name)).get();
 

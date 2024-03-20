@@ -5,13 +5,15 @@ import Server.Commands.CommandExecutor;
 import Server.Commands.HistoryEntry;
 import Server.Storage.Collection.CollectionManager;
 
+import java.util.Map;
+
 public class History extends Command {
     public History() {
         super("history", "Displays command history");
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Object[] args) {
+    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
         StringBuilder b = new StringBuilder();
         CommandExecutor.getHistory().stream()
                 .map((HistoryEntry h) -> h.request.getCommandName() + " Status " + h.response.code + "\n")

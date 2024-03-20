@@ -57,6 +57,7 @@ public class HTTPConnection extends ConnectionManager {
                     exchange.close();
                 } catch (Exception e) {
                     System.out.println(e);
+                    exchange.close();
                 }
             }
         });

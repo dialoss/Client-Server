@@ -1,11 +1,12 @@
 package Server.Commands.List;
 
+import Common.Commands.Command;
 import Common.Commands.CommandArgument;
 import Common.Stringify;
-import Common.Commands.Command;
 import Server.Storage.Collection.CollectionManager;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class Show extends Command {
     public Show() {
@@ -16,8 +17,8 @@ public class Show extends Command {
     }
 
     @Override
-    public String execute(CollectionManager manager, Object[] args) {
-        Integer limit = (Integer) args[0];
+    public String execute(CollectionManager manager, Map<String, Object> args) {
+        Integer limit = (Integer) args.get("limit");
         Object[] all = manager.getAll();
         return new Stringify(Arrays.copyOfRange(all, 0, Math.min(limit, all.length))).withSplitLines().get();
     }

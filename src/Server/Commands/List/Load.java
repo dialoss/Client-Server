@@ -1,9 +1,13 @@
 package Server.Commands.List;
 
-import Common.Commands.CommandArgument;
 import Common.Commands.Command;
+import Common.Commands.CommandArgument;
+import Common.Connection.Response;
+import Common.Connection.Status;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
+
+import java.util.Map;
 
 public class Load extends Command {
     public Load() {
@@ -14,9 +18,10 @@ public class Load extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Object[] args) throws Exception {
+    public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
 //        String filename = (String) args[0];
         StorageConnector.loadDB();
-        return "Collection loaded";
+        return new Response(StorageConnector.manager.getAll(), Status.OK)
+                .withMessage("Collection loaded with %s items".formatted(StorageConnector.manager.getSize()));
     }
 }

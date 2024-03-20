@@ -1,9 +1,11 @@
 package Server.Commands.List;
 
-import Common.Commands.CommandArgument;
 import Common.Commands.Command;
+import Common.Commands.CommandArgument;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
+
+import java.util.Map;
 
 public class Save extends Command {
     public Save() {
@@ -14,7 +16,7 @@ public class Save extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Object[] args) throws Exception {
+    public String execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
 //        String filename = (String) args[0];
 //        String path = StorageConnector.dbManager.save();
         StorageConnector.saveDB();

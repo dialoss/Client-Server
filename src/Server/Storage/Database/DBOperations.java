@@ -77,6 +77,7 @@ public class DBOperations {
     DBOperations() {
         try {
             connection = getNewConnection();
+//            initModels();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -174,7 +175,6 @@ public class DBOperations {
 
         query = query.formatted(name(t), formatQuery(insertFields.toArray()), formatQuery(insertValues.toArray()));
         PreparedStatement statement = perform(query);
-        statement.executeUpdate();
         try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
             if (generatedKeys.next()) {
                 Integer key = generatedKeys.getInt(1);

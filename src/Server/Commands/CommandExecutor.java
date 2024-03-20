@@ -4,6 +4,7 @@ import Common.Commands.Command;
 import Common.Connection.Request;
 import Common.Connection.Response;
 import Common.Connection.Status;
+import Common.Exceptions.CommandNotFound;
 import Server.Internal.UserManager;
 import Server.Storage.StorageConnector;
 
@@ -18,22 +19,27 @@ public class CommandExecutor {
     }
 
     static public Response execute(Request request) {
-        UserManager.setClient(request.getClient());
-        if (UserManager.getClientId() == -1)
+        if (request.getArgument("Authorization") == null)
             return new Response("Forbidden. You must login before using this app.", Status.FORBIDDEN);
 
+        Command command = CommandManager.get(request.getCommandName());
+        if (command == null) throw new CommandNotFound();
+
+        UserManager.setClient(request.getClient());
         Response response = null;
         try {
-            Command command = CommandManager.get(request.getCommandName());
             Object result = command.execute(StorageConnector.manager, request.getArguments());
             if (Response.class.isAssignableFrom(result.getClass())) response = (Response) result;
-            else response = new Response(result, Status.OK);
+            else {
+                if (result.getClass().isAssignableFrom(String.class)) response = new Response((String) result, Status.OK);
+                else response = new Response(result, Status.OK);
+            }
         } catch (Exception e) {
-            response = new Response(e.toString(), Status.SERVER_ERROR);
+            response = new Response(e.getMessage(), Status.SERVER_ERROR);
         }
         response.setUserClient(UserManager.getClient());
         history.add(new HistoryEntry(request, response));
-        System.out.println(response.getBody());
+        System.out.println(response.getMessage());
         return response;
     }
 }

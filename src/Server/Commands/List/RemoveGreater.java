@@ -1,13 +1,14 @@
 package Server.Commands.List;
 
 import Common.Commands.ArgumentPosition;
-import Common.Commands.CommandArgument;
-import Common.Stringify;
 import Common.Commands.Command;
+import Common.Commands.CommandArgument;
 import Common.Models.Organization;
+import Common.Stringify;
 import Server.Storage.Collection.CollectionManager;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class RemoveGreater extends Command {
@@ -20,8 +21,8 @@ public class RemoveGreater extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Object[] args) {
-        Organization organization = (Organization) args[0];
+    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
+        Organization organization = (Organization) args.get("element");
         ArrayList<Integer> deleted = new ArrayList<>();
         Stream.of(collectionManager.getAll())
             .filter((Object it) -> (0 < ((Organization) it).compareTo(organization)))

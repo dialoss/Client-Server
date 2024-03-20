@@ -1,5 +1,6 @@
 package Server.Commands.List;
 
+import Client.GUI.UserInfo;
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
 import Common.Connection.Response;
@@ -26,22 +27,25 @@ public class Register extends Command {
     }
 
     @Override
-    public Response execute(CollectionManager collectionManager, Object[] args) throws Exception {
+    public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
         UserClient user = UserManager.getClient();
         if (PasswordManager.getUser(user) != null)
             return new Response("You has already registered.", Status.OK);
         else {
-            String login = (String) args[0];
-            String password = (String) args[1];
+            String login = (String) args.get("login");
+            String password = (String) args.get("password");
+            String name = (String) args.get("name");
             String salt = JRand.string().range(90, 100).gen();
             String encrypted = PasswordManager.encrypt(password, salt);
 
             DBOperations session = StorageConnector.dbManager.getSession();
-            session.insert(UserAccount.class, new UserAccount().from(new MObject(Map.of(
+            int key = session.insert(UserAccount.class, new UserAccount().from(new MObject(Map.of(
                     "login", login,
                     "password", encrypted,
-                    "salt", salt
+                    "salt", salt,
+                    "name", name
             ))));
+            UserManager.setClient(new UserClient(new UserInfo(name, login, password)).withId(key));
             return new Response("You are successfully registered.", Status.OK);
         }
     }

@@ -3,10 +3,10 @@ package Server.Commands.List;
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
 import Common.Connection.Response;
-import Common.Connection.Status;
-import Common.Models.Organization;
+import Server.Commands.CommandManager;
 import Server.Storage.Collection.CollectionManager;
-import Server.Storage.StorageConnector;
+
+import java.util.Map;
 
 public class DB extends Command {
     public DB() {
@@ -17,9 +17,9 @@ public class DB extends Command {
     }
 
     @Override
-    public Response execute(CollectionManager collectionManager, Object[] args) throws Exception {
-        if ("getAll".equals(args[0])) {
-            return new Response(StorageConnector.dbManager.getSession().getAll(Organization.class), Status.OK);
+    public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
+        if ("getAll".equals(args.get("action"))) {
+            return (Response) CommandManager.get("load").execute(null, null);
         }
         return null;
     }

@@ -15,6 +15,7 @@ import Server.Data.CustomFields.MBoolean;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class ExecuteScript extends Command {
@@ -27,9 +28,9 @@ public class ExecuteScript extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Object[] args) throws ScriptRuntimeException {
-        String filename = (String) args[0];
-        Boolean showLog = (Boolean) args[1];
+    public String execute(CollectionManager collectionManager, Map<String, Object> args) throws ScriptRuntimeException {
+        String filename = (String) args.get("filename");
+        Boolean showLog = (Boolean) args.get("show_log");
         if (DevNull.deviceCounter >= 10) {
             DevNull.deviceCounter = 0;
             return "Recursion limit %s!".formatted(5);
@@ -40,8 +41,8 @@ public class ExecuteScript extends Command {
             IForm form = new FileForm(virtual);
             CommandParser parser = new CommandParser(form);
             virtual.start((String[] command) -> {
-                Pair<Command, Object[]> c = parser.parse(command);
-                String result = (String) CommandExecutor.execute(new Request(c.a, c.b)).getBody();
+                Pair<Command, Map<String, Object>> c = parser.parse(command);
+                String result = (String) CommandExecutor.execute(new Request(c.a, c.b)).getMessage();
                 if (showLog)
                     form.out(result);
             });

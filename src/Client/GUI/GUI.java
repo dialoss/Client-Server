@@ -1,15 +1,11 @@
 package Client.GUI;
 
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
-import netscape.javascript.JSObject;
+import org.cef.CefApp;
 
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Paths;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GUI {
     Controller controller;
@@ -18,24 +14,24 @@ public class GUI {
         this.controller = controller;
     }
 
-    public void start(Stage stage) throws IOException, InterruptedException {
-        URL html = Paths.get("C:\\Users\\dialoss\\IdeaProjects\\lab5\\src\\Client\\GUI\\test.html").toUri().toURL();
+    public void start() {
+        Browser browser = new Browser(this.controller);
+        JFrame frame = new JFrame();
 
-        WebView webView = new WebView();
-        WebEngine engine = webView.getEngine();
-        engine.load(html.toExternalForm());
-        webView.setPrefHeight(1200);
-        VBox root = new VBox(webView);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("App");
-        stage.setWidth(1300);
-        stage.setHeight(700);
-        stage.show();
+        Component UI = browser.getBrowserUI();
+        frame.add(UI, BorderLayout.CENTER);
 
-        engine.setOnAlert((event) -> {
-            JSObject w = (JSObject) engine.executeScript("window");
-            w.setMember("bridge", this.controller);
+        frame.pack();
+        frame.setSize(1300, 800);
+        frame.setLocation(400, 100);
+        frame.setVisible(true);
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                CefApp.getInstance().dispose();
+                browser.dispose();
+            }
         });
     }
 }

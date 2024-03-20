@@ -1,35 +1,27 @@
 package Common.Connection;
 
+import Client.GUI.UserInfo;
+
 import java.io.Serializable;
 
 public class UserClient implements Serializable {
-    public Integer sessionId;
+    private Integer id = -1;
     private String password = "";
     private String login = "";
-    public boolean needUpdate = false;
-
-    UserClient(Integer sessionId) {
-        this.sessionId = sessionId;
-    }
+    private String name = "";
 
     public UserClient() {
-        setSessionId();
     }
 
-    private void setSessionId() {
-        this.sessionId = (int) (Math.random() * 1e9);
+    public UserClient(UserInfo info) {
+        this.login = info.login();
+        this.password = info.password();
+        this.name = info.name();
     }
 
-    public UserClient(String login, String password) {
-        this.login = login;
-        this.password = password;
-        setSessionId();
-    }
-
-    public UserClient(String login, String password, Integer sessionId) {
-        this.login = login;
-        this.password = password;
-        this.sessionId = sessionId;
+    public UserClient withId(Integer id) {
+        this.id = id;
+        return this;
     }
 
     public String getPassword() {
@@ -40,7 +32,7 @@ public class UserClient implements Serializable {
         return login;
     }
 
-    public void setNeedUpdate(boolean needUpdate) {
-        this.needUpdate = needUpdate;
+    public Integer getId() {
+        return id;
     }
 }

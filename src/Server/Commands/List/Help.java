@@ -1,9 +1,11 @@
 package Server.Commands.List;
 
-import Common.Stringify;
 import Common.Commands.Command;
+import Common.Stringify;
 import Server.Commands.CommandManager;
 import Server.Storage.Collection.CollectionManager;
+
+import java.util.Map;
 
 public class Help extends Command {
     public Help() {
@@ -12,7 +14,7 @@ public class Help extends Command {
 
 
     @Override
-    public String execute(CollectionManager collectionManager, Object[] args) {
+    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
         return new Stringify(CommandManager.getAll().values().toArray()).get();
     }
 }

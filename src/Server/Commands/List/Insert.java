@@ -1,10 +1,12 @@
 package Server.Commands.List;
 
 import Common.Commands.ArgumentPosition;
-import Common.Commands.CommandArgument;
 import Common.Commands.Command;
+import Common.Commands.CommandArgument;
 import Common.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
+
+import java.util.Map;
 
 public class Insert extends Command {
     public Insert() {
@@ -16,8 +18,8 @@ public class Insert extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Object[] args) {
-        collectionManager.insert((Organization) args[0]);
+    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
+        collectionManager.insert((Organization) args.get("element"));
         return "Element added";
     }
 }

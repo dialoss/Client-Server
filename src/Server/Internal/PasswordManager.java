@@ -1,5 +1,6 @@
 package Server.Internal;
 
+import Client.GUI.UserInfo;
 import Common.Connection.UserClient;
 import Common.Models.MObject;
 import Common.Models.UserAccount;
@@ -35,16 +36,17 @@ public class PasswordManager {
     }
 
     public static boolean login(UserClient user) throws SQLException {
-        UserAccount userData = getUser(user);
-        if (userData == null) return false;
-        String stored = userData.password;
-        String provided = encrypt(user.getPassword(), userData.salt);
+        UserAccount account = getUser(user);
+        if (account == null) return false;
+        UserManager.setClient(new UserClient(new UserInfo(account.name, account.login, account.password)).withId(account.id));
+        String stored = account.password;
+        String provided = encrypt(user.getPassword(), account.salt);
         return stored.equals(provided) || stored.equals(user.getPassword());
     }
 
     public static UserAccount getUser(UserClient user) throws SQLException {
         DBOperations session = StorageConnector.dbManager.getSession();
-        if (user.getLogin().length() == 0 || user.getPassword().length() == 0) return null;
+        if (user.getLogin().length() == 0) return null;
         MObject[] result = session.get(UserAccount.class, "login = '%s'".formatted(user.getLogin()));
         if (result.length == 0) return null;
         return (UserAccount) new UserAccount().from(result[0]);

@@ -7,55 +7,74 @@ import Common.Exceptions.CommandNotFound;
 import Common.Exceptions.InvalidAmountOfArguments;
 import Common.Exceptions.InvalidValue;
 import Common.Pair;
+import Common.Serializer.Serializer;
 import Server.Commands.CommandManager;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CommandParser {
-    private final IForm shellForm;
+    private IForm shellForm = null;
 
     public CommandParser(IForm form) {
         this.shellForm = form;
     }
 
-    private Object[] getArguments(Command command, String[] tokens) {
-        Object[] arguments = Arrays.copyOf(command.getArguments(), command.getArguments().length);
-        int j = 0;
+    public CommandParser() {
+
+    }
+
+    public Map<String, Object> parseArguments(String commandName, Map<String, String> arguments) {
+        return parseArguments(getCommand(commandName), arguments);
+    }
+
+    public Map<String, Object> parseArguments(Command command, Map<String, String> arguments) {
+        Map<String, Object> parsed = new HashMap<>();
         for (CommandArgument arg : command.getArguments()) {
-            if (arg.position == ArgumentPosition.LINE) {
-                if (tokens.length <= j)
-                    if (arg.required) {
-                        throw new InvalidAmountOfArguments("Enter argument %s - %s".formatted(arg.getName(), arg.type.getSimpleName()));
-                    } else continue;
-                this.shellForm.putInput(tokens[j++]);
+            String value = arguments.get(arg.getName());
+            if (arg.required && value == null) {
+                throw new InvalidAmountOfArguments("Enter argument %s - %s".formatted(arg.getName(), arg.type.getSimpleName()));
             }
-        }
-        int i = 0;
-        for (CommandArgument arg : command.getArguments()) {
-            if (!arg.required && i >= j) {
-                arguments[i++] = arg.defaultValue;
+            if (!arg.required) {
+                parsed.put(arg.getName(), arg.defaultValue);
                 continue;
             }
-            Object value = new Form(arg, this.shellForm).get();
+            Object parsedValue = Serializer.serializeValue(arg.type, value);
             if (arg.possibleValues.size() != 0 &&
                     arg.possibleValues.stream()
                             .filter(v -> (v.equals(value)))
                             .toArray().length == 0)
                 throw new InvalidValue("Value %s cannot be an argument to %s".formatted(value, arg.getName()));
-            arguments[i++] = value;
+            parsed.put(arg.getName(), parsedValue);
         }
-        return arguments;
+        return parsed;
     }
 
-    public Pair<Command, Object[]> parse(String[] tokens) {
-        String commandName = tokens[0];
-        Command cmd = CommandManager.get(commandName);
+    private Map<String, Object> getArguments(Command command, String[] tokens) {
+        int j = 0;
+        Map<String, String> rawArguments = new HashMap<>();
+
+        for (CommandArgument arg : command.getArguments()) {
+            if (arg.position == ArgumentPosition.LINE) {
+                if (j < tokens.length) rawArguments.put(arg.getName(), tokens[j++]);
+            }
+        }
+        return parseArguments(command, rawArguments);
+    }
+
+    public Command getCommand(String name) {
+        Command cmd = CommandManager.get(name);
         if (cmd == null) throw new CommandNotFound();
-        Object[] arguments;
+        return cmd;
+    }
+
+    public Pair<Command, Map<String, Object>> parse(String[] tokens) {
+        Command cmd = getCommand(tokens[0]);
+        Map<String, Object> arguments;
         try {
             arguments = this.getArguments(cmd, Arrays.copyOfRange(tokens, 1, tokens.length));
         } catch (Exception e) {
-            this.shellForm.clearInput();
             throw e;
         }
         return new Pair<>(cmd, arguments);

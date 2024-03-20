@@ -5,10 +5,11 @@ import Common.Exceptions.InvalidModelException;
 import Common.Serializer.Serializer;
 import Server.Data.FieldGenerator;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public abstract class BaseModel {
+public abstract class BaseModel implements Serializable {
     private Field[] getFields() {
         ArrayList<Field> fieldArrayList = new ArrayList<>();
         for (Field f : this.getClass().getFields()) {

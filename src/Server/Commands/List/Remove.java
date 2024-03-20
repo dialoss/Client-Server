@@ -1,9 +1,11 @@
 package Server.Commands.List;
 
+import Common.Commands.Command;
 import Common.Commands.CommandArgument;
 import Common.Exceptions.ElementNotFound;
-import Common.Commands.Command;
 import Server.Storage.Collection.CollectionManager;
+
+import java.util.Map;
 
 public class Remove extends Command {
     public Remove() {
@@ -12,8 +14,8 @@ public class Remove extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Object[] args) {
-        Integer id = (Integer) args[0];
+    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
+        Integer id = (Integer) args.get("id");
         if (collectionManager.get(id) == null) throw new ElementNotFound(id);
         collectionManager.delete(id);
         return "Item %s has been removed.".formatted(id);

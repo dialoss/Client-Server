@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="me.friwi.jcefmaven" type="repository">
+    <properties maven-id="me.friwi:jcefmaven:122.1.10" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/me/friwi/jcefmaven/122.1.10/jcefmaven-122.1.10.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/me/friwi/jcef-api/jcef-0b8e42e+cef-122.1.10+gc902316+chromium-122.0.6261.112/jcef-api-jcef-0b8e42e+cef-122.1.10+gc902316+chromium-122.0.6261.112.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/me/friwi/jogl-all/v2.4.0-rc-20210111/jogl-all-v2.4.0-rc-20210111.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/me/friwi/gluegen-rt/v2.4.0-rc-20210111/gluegen-rt-v2.4.0-rc-20210111.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-compress/1.21/commons-compress-1.21.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.10/gson-2.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

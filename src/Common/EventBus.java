@@ -3,7 +3,6 @@ package Common;
 import Common.Connection.ICallback;
 import Common.Connection.Response;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 public class EventBus {
@@ -13,7 +12,7 @@ public class EventBus {
         EventBus.callbacks.put(event, callback);
     }
 
-    public static Response emit(String event, Object data) throws IOException {
+    public static Response emit(String event, Object data) throws Exception {
         return EventBus.callbacks.get(event).call(data);
     }
 }

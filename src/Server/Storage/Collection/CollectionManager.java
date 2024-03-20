@@ -18,4 +18,8 @@ public class CollectionManager extends BaseCollectionManager<Organization> {
         this.collection = new LinkedHashMap<>();
         this.info = new CollectionManager.Info();
     }
+
+    public int getSize() {
+        return this.collection.size();
+    }
 }

@@ -26,5 +26,7 @@
     <orderEntry type="library" name="io.github.mkpaz.atlantafx.base" level="project" />
     <orderEntry type="library" name="apache.commons.collections4" level="project" />
     <orderEntry type="library" name="vladsch.javafx.webview.debugger" level="project" />
+    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="library" name="me.friwi.jcefmaven" level="project" />
   </component>
 </module>

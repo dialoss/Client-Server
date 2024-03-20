@@ -4,9 +4,10 @@ import Client.Shell.ShellColors;
 import Server.Storage.Collection.CollectionManager;
 
 import java.io.Serializable;
+import java.util.Map;
 
 interface IExecutable {
-    Object execute(CollectionManager collectionManager, Object[] arguments) throws Exception;
+    Object execute(CollectionManager collectionManager, Map<String, Object> arguments) throws Exception;
 }
 
 public class Command implements IExecutable, Serializable {
@@ -63,7 +64,7 @@ public class Command implements IExecutable, Serializable {
     }
 
     @Override
-    public Object execute(CollectionManager collectionManager, Object[] arguments) throws Exception {
+    public Object execute(CollectionManager collectionManager, Map<String, Object> arguments) throws Exception {
         return null;
     }
 }

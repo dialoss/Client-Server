@@ -2,43 +2,44 @@ package Common.Connection;
 
 import Common.Commands.Command;
 
-import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Request implements Serializable {
+public class Request extends ConnectionPackage {
     private final Command command;
-    private UserClient userClient;
-    Object[] arguments;
+    Map<String, Object> arguments;
 
-    public Request(String commandName, Object[] arguments) {
+    public Request(String commandName) {
+        this.command = new Command(commandName);
+        this.arguments = new HashMap<>();
+    }
+
+    public Request(String commandName, Map<String, Object> arguments) {
         this.command = new Command(commandName);
         this.arguments = arguments;
     }
 
-    public Request(Command command, Object[] arguments) {
+    public Request(Command command,  Map<String, Object> arguments) {
         this.command = command;
         this.arguments = arguments;
-        this.userClient = null;
-    }
-
-    public Request(Command command, Object[] arguments, UserClient userClient) {
-        this.command = command;
-        this.arguments = arguments;
-        this.userClient = userClient;
     }
 
     public String getCommandName() {
         return this.command.getName();
     }
-
-    public UserClient getClient() {
-        return userClient;
-    }
-
-    public Object[] getArguments() {
+    public Map<String, Object> getArguments() {
         return arguments;
     }
+    public Object getArgument(String name) {
+        return arguments.get(name);
+    }
+    public void setArgument(String name, String value) {
+        arguments.put(name, value);
+    }
 
-    public void setUserClient(UserClient userClient) {
-        this.userClient = userClient;
+
+    public Request withArgument(String name, String value) {
+        this.arguments.put(name, value);
+        return this;
     }
 }

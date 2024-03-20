@@ -1,21 +1,15 @@
 package Client.GUI;
 
-import Common.Connection.ICallback;
-import Common.Connection.Request;
-import Common.Connection.Response;
-import Common.Connection.Status;
-import Common.Models.MObject;
-import Common.Models.Organization;
+import Client.Exceptions.RequestError;
+import Client.Shell.CommandParser;
+import Client.UserManager;
+import Common.Connection.*;
 import Common.Tools;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.stream.Stream;
+import java.util.Map;
 
-class UserLogin {
-    String login;
-    String password;
+record ClientResponse(Object body, String message) {
 }
 
 public class Controller {
@@ -25,42 +19,53 @@ public class Controller {
         this.request = request;
     }
 
-    public String call(String methodName, String data) {
+    public String call(BridgeRequest r) throws RequestError {
         try {
             for (Method m : this.getClass().getDeclaredMethods()) {
-                if (!m.getName().equals(methodName)) continue;
+                if (!m.getName().equals(r.method())) continue;
+                Response response;
+                if (!ConnectionPackage.class.isAssignableFrom(m.getReturnType())) {
+                    return Tools.stringify(new ClientResponse(m.invoke(this), ""));
+                }
                 Class<?>[] params = m.getParameterTypes();
-                if (params.length == 0) return Tools.stringify(m.invoke(this));
-                return Tools.stringify(m.invoke(this, Tools.parse(data, params[0])));
+                if (params.length == 0) response = (Response) m.invoke(this);
+                else response = (Response) m.invoke(this, Tools.parse(r.data(), params[0]));
+                return Tools.stringify(new ClientResponse(response.getBody(), response.getMessage()));
             }
-            request.call(new Request(methodName, new Object[]{100}));
+            Map<String, Object> args = new CommandParser().parseArguments(r.method(), (Map<String, String>) Tools.parse(r.data(), Object.class));
+            Response response = request.call(new Request(r.method(), args));
+            return Tools.stringify(new ClientResponse(response.getBody(), response.getMessage()));
+        } catch (RequestError e) {
+            throw new RequestError(e.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            throw new RequestError(e.getCause().getMessage());
         }
-        return "{}";
     }
 
-    private void log(String d) {
-        System.out.println(d);
+    private void logout() {
+        UserManager.clearCookie();
     }
 
-    private MObject[] getRows() throws IOException {
-        Response r = request.call(new Request("db", new Object[]{"getAll"}));
-        if (r.code == Status.OK) return (MObject[]) r.getBody();
-        else return null;
-
+    private UserClient getUser() {
+        return UserManager.getClient();
     }
 
-    private String[] getColumns() {
-        return Stream.of(Organization.class.getDeclaredFields()).map(Field::getName).toArray(String[]::new);
+    private Response register(UserInfo data) throws Exception {
+        return auth(data, "register");
     }
 
-    private String login(UserLogin data) throws IOException {
-        Response r = request.call(new Request("login", new Object[]{
-                data.login,
-                data.password,
-        }));
-        return (String) r.getBody();
+    private Response auth(UserInfo data, String type) throws Exception {
+        UserManager.setClient(new UserClient(data).withId(0));
+        Response r = request.call(new Request(type)
+                .withArgument("login", data.login())
+                .withArgument("name", data.name())
+                .withArgument("password", data.password()));
+        if (data.remember()) UserManager.setCookie();
+        r.setBody(UserManager.getClient());
+        return r;
     }
 
+    private Response login(UserInfo data) throws Exception {
+        return auth(data, "login");
+    }
 }

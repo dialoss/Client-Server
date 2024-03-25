@@ -49,4 +49,19 @@ public class FileStorage {
             System.out.println(e);
         }
     }
+
+    public boolean checkExistance(String file) {
+        this.changeSource(file);
+        File f = new File(this.source.toString());
+        return f.exists() && !f.isDirectory();
+    }
+
+    public boolean remove(String file) {
+        this.changeSource(file);
+        File f = new File(this.source.toString());
+        if (f.exists() && !f.isDirectory()) {
+            return f.delete();
+        }
+        return false;
+    }
 }

@@ -1,12 +1,13 @@
 package Server;
 
+import Common.Connection.ObjectIO;
 import Common.Connection.Request;
 import Common.Connection.Response;
 import Server.Commands.CommandExecutor;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -45,58 +46,36 @@ public class Test {
                             client.configureBlocking(false);
                             client.register(selector, SelectionKey.OP_READ);
                         } else if (key.isReadable()) {
-                            System.out.println("Reading...");
-
                             SocketChannel client = (SocketChannel) key.channel();
                             client.configureBlocking(false);
 
                             ByteBuffer buffer = ByteBuffer.allocate(10000);
-
-
                             client.read(buffer);
 
-
-                            ByteArrayInputStream bi = new ByteArrayInputStream(buffer.array());
-                            ObjectInputStream oi = new ObjectInputStream(bi);
-                            Request request = (Request) oi.readObject();
+                            Request request = (Request) ObjectIO.readObject(buffer.array());
                             response = CommandExecutor.execute(request);
                             System.out.println("request " + request.getCommandName());
                             client.register(selector, SelectionKey.OP_WRITE);
-
                         } else if (key.isWritable()) {
                             System.out.println("Writing...");
-
 
                             SocketChannel client = (SocketChannel) key.channel();
                             client.configureBlocking(false);
 
-                            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-                            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-
-                            objectOutputStream.writeObject(response);
-                            objectOutputStream.flush();
-                            objectOutputStream.close();
-                            ByteBuffer b = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
+                            ByteArrayOutputStream bos = ObjectIO.writeObject(response);
+                            ByteBuffer b = ByteBuffer.wrap(bos.toByteArray());
 
                             while (b.hasRemaining()) {
                                 client.write(b);
                             }
 
-
                             client.register(selector, SelectionKey.OP_READ);
-                            System.out.println("Request was sent to " + client.socket().toString());
+                            System.out.println("Response was sent to " + client.socket().toString());
                         }
                         iter.remove();
                     } catch (IOException e) {
-                        if (e instanceof SocketException && e.getMessage().equals("Connection reset")) {
-                            System.out.println("Соединение было сброшено клиентом.");
-                            System.out.println(e.getMessage());
-                            key.cancel();
-                        } else {
-                            e.printStackTrace();
-                        }
-                    }  catch (Exception e) {
+                        System.out.println(e);
+                    } catch (ClassNotFoundException e) {
                         throw new RuntimeException(e);
                     }
                 }

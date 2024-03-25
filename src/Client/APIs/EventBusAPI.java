@@ -8,4 +8,9 @@ public class EventBusAPI extends ClientAPI {
     public Response request(Request request) throws Exception {
         return EventBus.emit("request", request);
     }
+
+    @Override
+    public void connect() {
+
+    }
 }

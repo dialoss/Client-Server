@@ -10,6 +10,7 @@ public class ObjectIO {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream out = new ObjectOutputStream(bos);
         out.writeObject(data);
+        out.flush();
         out.close();
         return bos;
     }

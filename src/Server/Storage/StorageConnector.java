@@ -7,6 +7,8 @@ import Server.Storage.Collection.CollectionManager;
 import Server.Storage.Database.DBManager;
 import Common.Files.JSONStorage;
 
+import java.util.Scanner;
+
 public class StorageConnector {
     public static JSONStorage fileStorage;
     public static DBManager dbManager;
@@ -16,6 +18,24 @@ public class StorageConnector {
         dbManager = new DBManager();
         fileStorage = new JSONStorage("src/Common/data/");
         manager = new CollectionManager();
+
+        String file = "session_data.json";
+        if (fileStorage.checkExistance(file)) {
+            System.out.println("Do you want to restore collection?");
+            String ans = null;
+            Scanner scanner = new Scanner(System.in);
+            while (ans == null) {
+                ans = scanner.next();
+                if (ans.equals("yes")) {
+                    fileStorage.changeSource(file);
+                    loadCollection(fileStorage.read());
+                    break;
+                }
+                if (ans.equals("no")) break;
+                ans = null;
+            }
+            fileStorage.remove(file);
+        }
     }
 
     public static void loadFile() {

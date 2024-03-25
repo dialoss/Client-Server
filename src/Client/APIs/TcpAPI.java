@@ -1,5 +1,7 @@
 package Client.APIs;
 
+import Client.Exceptions.RequestError;
+import Common.Connection.ObjectIO;
 import Common.Connection.Request;
 import Common.Connection.Response;
 
@@ -14,57 +16,46 @@ public class TcpAPI extends ClientAPI {
     static int reconnectTimeout = 3000;
     static InetSocketAddress address = new InetSocketAddress("127.0.0.1", port);
 
-    public TcpAPI() {
-        connect(0);
-    }
-
-    public void connect(int reconnects) {
+    public void connect() {
         try {
             socket = SocketChannel.open();
             socket.connect(address);
             socket.configureBlocking(false);
             System.out.println("Connected to Server " + address.getAddress());
         } catch (IOException e) {
-            System.out.println(e);
             System.out.println("Reconnecting to the server in %s ms".formatted(reconnectTimeout));
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
-            connect(reconnects + 1);
+            connect();
         }
     }
 
-    public Response request(Request request) throws IOException {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    public Response request(Request request) throws RequestError, IOException {
+        ByteArrayOutputStream bos = ObjectIO.writeObject(request);
+        ByteBuffer b = ByteBuffer.wrap(bos.toByteArray());
 
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-
-        objectOutputStream.writeObject(request);
-        objectOutputStream.flush();
-        objectOutputStream.close();
-        ByteBuffer b = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
-
-        while (b.hasRemaining()) {
-            this.socket.write(b);
+        try {
+            while (b.hasRemaining()) {
+                this.socket.write(b);
+            }
+        } catch (IOException e) {
+            throw new RequestError("No connection to the server");
         }
         b.clear();
         ByteBuffer buffer = ByteBuffer.allocate(100000);
 
         int a = this.socket.read(buffer);
-        System.out.println(a);
         while (a < 1) {
             a = this.socket.read(buffer);
         }
 
-        ByteArrayInputStream bi = new ByteArrayInputStream(buffer.array());
-        ObjectInputStream oi = new ObjectInputStream(bi);
         try {
-            return (Response) oi.readObject();
+            return (Response) ObjectIO.readObject(buffer.array());
         } catch (Exception e) {
-            System.out.println(e);
+            throw new RequestError("Failed to read response");
         }
-        return null;
     }
 }

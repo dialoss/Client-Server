@@ -4,7 +4,8 @@ import Common.Connection.ObjectIO;
 import Common.Connection.Request;
 import Common.Connection.Response;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -15,7 +16,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class TCPConnection extends ConnectionManager {
-    int port = 3003;
+    static int port = 3003;
     Selector selector;
     ServerSocketChannel channel;
 
@@ -52,48 +53,38 @@ public class TCPConnection extends ConnectionManager {
                 while (iter.hasNext()) {
                     SelectionKey key = iter.next();
                     if (key.isAcceptable()) {
-                        ServerSocketChannel ch = (ServerSocketChannel) key.channel();
-                        SocketChannel client = ch.accept();
-                        if (client == null) continue;
+                        ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel(); // используется для доступа к серверному каналу
+                        SocketChannel client = serverChannel.accept(); // позволяет вашему серверу принять новое входящее соединение и дает вам возможность взаимодействовать с клиентом, используя этот SocketChannel
                         System.out.println("new client: " + client.socket().toString());
                         client.configureBlocking(false);
                         client.register(selector, SelectionKey.OP_READ);
-                    }
-                    if (key.isReadable()) {
-                        System.out.println("Reading");
-
+                    } else if (key.isReadable()) {
                         SocketChannel client = (SocketChannel) key.channel();
-//                        if (!client.isConnected())
                         client.configureBlocking(false);
 
-                        ByteBuffer buffer = ByteBuffer.allocate(1024);
-                        try {
-                            client.read(buffer);
-                        } catch (IOException e) {
-                            channel.close();
-                            iter.remove();
-                            continue;
-                        }
+                        ByteBuffer buffer = ByteBuffer.allocate(10000);
+                        client.read(buffer);
 
-                        ByteArrayInputStream bi = new ByteArrayInputStream(buffer.array());
-                        ObjectInputStream oi = new ObjectInputStream(bi);
-                        Request request = (Request) oi.readObject();
+                        Request request = (Request) ObjectIO.readObject(buffer.array());
                         response = this.requestCallback.call(request);
-                        key.interestOps(SelectionKey.OP_READ | SelectionKey.OP_WRITE);
-                    }
-                    if (key.isWritable() && key.isValid()) {
+                        System.out.println("request " + request.getCommandName());
+                        client.register(selector, SelectionKey.OP_WRITE);
+                    } else if (key.isWritable()) {
+                        System.out.println("Writing...");
+
                         SocketChannel client = (SocketChannel) key.channel();
                         client.configureBlocking(false);
 
-                        ByteBuffer buffer = ByteBuffer.wrap(ObjectIO.writeObject(response).toByteArray());
+                        ByteArrayOutputStream bos = ObjectIO.writeObject(response);
+                        ByteBuffer b = ByteBuffer.wrap(bos.toByteArray());
 
-                        while (buffer.hasRemaining()) {
-                            client.write(buffer);
+                        while (b.hasRemaining()) {
+                            client.write(b);
                         }
 
                         client.register(selector, SelectionKey.OP_READ);
+                        System.out.println("Response was sent to " + client.socket().toString());
                     }
-
                     iter.remove();
                 }
             } catch (Exception e) {

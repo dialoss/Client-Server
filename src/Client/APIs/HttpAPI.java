@@ -12,11 +12,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class HttpAPI extends ClientAPI {
+    HttpClient client;
+
     public Response request(Request request) throws IOException {
-        HttpClient client = HttpClient.newHttpClient();
-
         ByteArrayOutputStream bos = ObjectIO.writeObject(request);
-
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create("https://gnu-stirring-wolf.ngrok-free.app/request"))
                 .POST(HttpRequest.BodyPublishers.ofByteArray(bos.toByteArray()))
@@ -28,5 +27,10 @@ public class HttpAPI extends ClientAPI {
             System.out.println(e);
         }
         return null;
+    }
+
+    @Override
+    public void connect() {
+        client = HttpClient.newHttpClient();
     }
 }

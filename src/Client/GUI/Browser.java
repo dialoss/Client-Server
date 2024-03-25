@@ -33,7 +33,7 @@ public class Browser extends JFrame {
         final CefApp cefApp = CefApp.getInstance(settings);
 
         final CefClient client = cefApp.createClient();
-        final CefBrowser browser = client.createBrowser("file:///C:\\Users\\dialoss\\IdeaProjects\\lab5\\src\\Client\\GUI\\test.html", false, false);
+        final CefBrowser browser = client.createBrowser("file:///C:\\Users\\dialoss\\IdeaProjects\\lab5\\src\\Client\\GUI\\app.html", false, false);
 
         this.browserUI = browser.getUIComponent();
 

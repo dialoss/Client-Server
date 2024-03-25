@@ -6,6 +6,9 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
 
+/**
+ * Describes behavior of any Input/Output device
+ */
 public abstract class IOdevice {
     protected Scanner scanner;
 

@@ -1,13 +1,12 @@
 package Server.Data;
 
+import Common.Models.OrganizationType;
 import Server.Data.CustomFields.MBoolean;
 import Server.Data.CustomFields.MDate;
-import Common.Models.OrganizationType;
 import me.xdrop.jrand.Generator;
 import me.xdrop.jrand.JRand;
 
 import java.util.Map;
-import java.util.Random;
 
 public class FieldGenerator {
     private static final Map<Class<?>, Generator<?>> generators = Map.of(
@@ -30,7 +29,7 @@ public class FieldGenerator {
                 @Override
                 public Enum<OrganizationType> gen() {
                     OrganizationType[] v = OrganizationType.values();
-                    return v[(new Random(1)).nextInt(v.length)];
+                    return v[(int) Math.floor(Math.random() * v.length)];
                 }
             },
             MBoolean.class, new Generator<MBoolean>() {

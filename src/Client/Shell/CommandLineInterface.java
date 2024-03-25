@@ -1,11 +1,13 @@
 package Client.Shell;
 
+import Client.GUI.UserInfo;
 import Client.UserInterface;
 import Client.UserManager;
 import Common.Commands.Command;
 import Common.Connection.Request;
 import Common.Connection.Response;
 import Common.Connection.Status;
+import Common.Connection.UserClient;
 import Common.Pair;
 
 import java.util.Map;
@@ -20,7 +22,6 @@ public class CommandLineInterface extends UserInterface {
     }
 
     private void processOutput(Response response) {
-        UserManager.setClient(response.getClient());
         if (response.code == Status.OK) this.shell.println(response.getMessage());
         else this.shell.error(response.getMessage());
     }
@@ -29,7 +30,13 @@ public class CommandLineInterface extends UserInterface {
         try {
             Pair<Command, Map<String, Object>> command = this.parser.parse(tokens);
             Request r = new Request(command.a, command.b);
-            r.setUserClient(UserManager.getClient());
+            Map<String, Object> args = command.b;
+            if (command.a.getName().equals("login") || command.a.getName().equals("register"))
+                UserManager.setClient(new UserClient(new UserInfo(
+                                "Alex",
+                                (String) args.get("login"),
+                                (String) args.get("password"))).withId(0));
+
             Response response = this.requestCallback.call(r);
             this.processOutput(response);
         } catch (Exception e) {

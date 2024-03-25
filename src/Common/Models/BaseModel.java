@@ -10,6 +10,11 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public abstract class BaseModel implements Serializable {
+    static final long serialVersionUID = 1L;
+
+    @ModelField(UNIQUE = true, AUTO_GENERATE = true)
+    public Integer id;
+
     private Field[] getFields() {
         ArrayList<Field> fieldArrayList = new ArrayList<>();
         for (Field f : this.getClass().getFields()) {
@@ -72,6 +77,7 @@ public abstract class BaseModel implements Serializable {
         String result = ShellColors.format(ShellColors.BLUE, this.getClass().getSimpleName()) + "\n";
         for (Field f : this.getFields()) {
             f.setAccessible(true);
+            if (f.getName().equals("id") && !this.getClass().getSimpleName().equals("Organization")) continue;
             try {
                 result = result.concat(f.getName() + ": " + f.get(this).toString() + "\n");
             } catch (Exception e) {
@@ -80,8 +86,6 @@ public abstract class BaseModel implements Serializable {
         return "\n" + result.strip();
     }
 
-    @ModelField(UNIQUE = true, AUTO_GENERATE = true)
-    public Integer id;
 
     public Integer getId() {
         return this.id;

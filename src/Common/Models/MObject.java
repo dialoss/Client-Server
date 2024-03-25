@@ -5,6 +5,9 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Describes base object with data in the app
+ */
 public class MObject extends HashMap<String, Object> implements Map<String, Object>, Serializable {
     public MObject() {
         super();

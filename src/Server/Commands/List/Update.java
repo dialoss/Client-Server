@@ -22,6 +22,7 @@ public class Update extends Command {
     public String execute(CollectionManager collectionManager, Map<String, Object> args) {
         Organization item = (Organization) args.get("element");
         Integer id = (Integer) args.get("id");
+        item.id = id;
         collectionManager.update(id, item);
         return "Item updated";
     }

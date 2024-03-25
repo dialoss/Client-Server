@@ -23,4 +23,9 @@ public class ConnectionPackage implements Serializable {
     public UserClient getClient() {
         return userClient;
     }
+
+    public ConnectionPackage withHeader(String name, String value) {
+        this.headers.put(name, value);
+        return this;
+    }
 }

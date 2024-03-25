@@ -16,12 +16,12 @@ public abstract class UserInterface {
         this.requestCallback = (Request request) -> {
             request.setUserClient(UserManager.getClient());
             if (UserManager.getClient().getId() != -1)
-                request.setArgument("Authorization", "true");
+                request.setHeader("Authorization", "true");
 
             Response r = callback.call(request);
             if (r == null) throw new ServerNotAvailableException();
             if (r.code != Status.OK) throw new RequestError(r.getMessage());
-            UserManager.setClient(r.getClient());
+            if (r.getClient() != null) UserManager.setClient(r.getClient());
             return r;
         };
     }

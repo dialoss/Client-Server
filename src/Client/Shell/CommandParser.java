@@ -14,6 +14,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * Parses command with its arguments from text
+ */
 public class CommandParser {
     private IForm shellForm = null;
 
@@ -34,16 +38,20 @@ public class CommandParser {
         for (CommandArgument arg : command.getArguments()) {
             String value = arguments.get(arg.getName());
             if (arg.required && value == null) {
+                if (arg.position == ArgumentPosition.MULTILINE) {
+                    parsed.put(arg.getName(), new Form(arg, this.shellForm).get());
+                    continue;
+                }
                 throw new InvalidAmountOfArguments("Enter argument %s - %s".formatted(arg.getName(), arg.type.getSimpleName()));
             }
-            if (!arg.required) {
+            if (!arg.required && value == null) {
                 parsed.put(arg.getName(), arg.defaultValue);
                 continue;
             }
             Object parsedValue = Serializer.serializeValue(arg.type, value);
             if (arg.possibleValues.size() != 0 &&
                     arg.possibleValues.stream()
-                            .filter(v -> (v.equals(value)))
+                            .filter(v -> (v.equals(parsedValue)))
                             .toArray().length == 0)
                 throw new InvalidValue("Value %s cannot be an argument to %s".formatted(value, arg.getName()));
             parsed.put(arg.getName(), parsedValue);

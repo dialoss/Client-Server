@@ -47,5 +47,7 @@ public class CommandManager {
         add(Login.class);
         add(Register.class);
         add(DB.class);
+        add(Get.class);
+
     }
 }

@@ -2,6 +2,7 @@ package Client.Shell;
 
 import java.util.Scanner;
 
+
 public class Shell extends IOdevice {
     public Shell() {
         super(new Scanner(System.in));

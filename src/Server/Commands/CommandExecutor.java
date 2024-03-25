@@ -19,8 +19,8 @@ public class CommandExecutor {
     }
 
     static public Response execute(Request request) {
-        if (request.getArgument("Authorization") == null)
-            return new Response("Forbidden. You must login before using this app.", Status.FORBIDDEN);
+//        if (request.getHeader("Authorization") == null)
+//            return new Response("Forbidden. You must login before using this app.", Status.FORBIDDEN);
 
         Command command = CommandManager.get(request.getCommandName());
         if (command == null) throw new CommandNotFound();
@@ -39,7 +39,7 @@ public class CommandExecutor {
         }
         response.setUserClient(UserManager.getClient());
         history.add(new HistoryEntry(request, response));
-        System.out.println(response.getMessage());
+        System.out.println(request.getCommandName());
         return response;
     }
 }

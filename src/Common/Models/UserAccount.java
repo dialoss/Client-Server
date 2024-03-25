@@ -1,5 +1,6 @@
 package Common.Models;
 
+
 public class UserAccount extends BaseModel {
     @ModelField
     public String name;

@@ -24,6 +24,6 @@ public class Organization extends BaseModel implements Comparable<Organization> 
     public static Class<?> user = UserAccount.class;
     @Override
     public int compareTo(Organization o) {
-        return this.name.compareTo(o.name);
+        return this.id.compareTo(o.id);
     }
 }

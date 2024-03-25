@@ -11,6 +11,9 @@ import Common.Serializer.Serializer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+/**
+ * Used for performing multiline input from user in CLI with field validation
+ */
 public class Form {
     IForm form;
     CommandArgument argument;
@@ -52,7 +55,7 @@ public class Form {
             return this.processInput(f.getType());
         }
         ModelField params = Serializer.getParameters(f);
-        if (params != null && params.AUTO_GENERATE()) return null;
+        if (params == null || params.AUTO_GENERATE()) return null;
 
         this.form.out("Enter field %s type %s".formatted(ShellColors.format(ShellColors.BLUE, f.getName()), f.getGenericType()));
         if (Enum.class.isAssignableFrom(f.getType())) {

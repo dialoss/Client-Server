@@ -1,9 +1,9 @@
 package Server;
 
-import Server.Commands.CommandExecutor;
 import Server.ConnectionManagers.ConnectionManager;
-import Server.ConnectionManagers.HTTPConnection;
 import Server.Storage.StorageConnector;
+
+import java.io.IOException;
 
 public class Server {
     ConnectionManager manager;
@@ -11,8 +11,16 @@ public class Server {
     public Server() {
         System.out.println("Server started");
         StorageConnector.init();
-        manager = new HTTPConnection();
-        manager.setRequestCallback(CommandExecutor::execute);
-        new Thread(() -> manager.run()).start();
+        try {
+            Test manager = new Test();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+//        manager.setRequestCallback(CommandExecutor::execute);
+
+    }
+
+    public void run() {
+        manager.run();
     }
 }

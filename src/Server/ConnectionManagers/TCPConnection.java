@@ -32,7 +32,7 @@ public class TCPConnection extends ConnectionManager {
         } catch (Exception e) {
             System.out.println(e);
             try {
-                selector.close();
+                if (selector != null) selector.close();
                 channel.close();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);

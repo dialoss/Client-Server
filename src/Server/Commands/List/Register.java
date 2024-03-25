@@ -20,6 +20,7 @@ import java.util.Map;
 public class Register extends Command {
     public Register() {
         super("register", "Register Client", new CommandArgument[]{
+                new CommandArgument("name", String.class),
                 new CommandArgument("login", String.class),
                 new CommandArgument("password", String.class),
                 new CommandArgument("repeat_password", String.class)

@@ -30,12 +30,6 @@ public class Request extends ConnectionPackage {
     public Map<String, Object> getArguments() {
         return arguments;
     }
-    public Object getArgument(String name) {
-        return arguments.get(name);
-    }
-    public void setArgument(String name, String value) {
-        arguments.put(name, value);
-    }
 
 
     public Request withArgument(String name, String value) {

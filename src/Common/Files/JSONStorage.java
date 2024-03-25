@@ -1,35 +1,42 @@
 package Common.Files;
 
 
+import Common.Exceptions.InvalidFileException;
 import Common.Models.MObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import Common.Tools;
+import com.google.gson.internal.LinkedTreeMap;
+
+import java.util.Map;
 
 public class JSONStorage extends FileStorage {
     public JSONStorage(String path) {
         super(path);
     }
 
+    private MObject convertObject(Map<String, Object> obj) throws IllegalAccessException {
+        MObject result = new MObject();
+        for (Map.Entry<String, Object> entry : obj.entrySet()) {
+            Object v = entry.getValue();
+            String k = entry.getKey();
+            if (v.getClass().isAssignableFrom(LinkedTreeMap.class)) result.put(k, convertObject((Map<String, Object>) v));
+            else result.put(k, v);
+        }
+        return result;
+    }
+
     public MObject[] read() {
         String text = super._read();
-        JSONParser parser = new JSONParser();
+
         try {
-            Object parsed = parser.parse(text);
-            if (parsed instanceof JSONArray) {
-                MObject[] list = new MObject[((JSONArray) parsed).size()];
-                int i = 0;
-                for (Object o : (JSONArray) parsed) {
-                    list[i++] = (MObject) o;
-                }
-                return list;
+            MObject[] objects = (MObject[]) Tools.parse(text, MObject[].class);
+            for (int i = 0; i < objects.length; i++) {
+                MObject converted = convertObject(objects[i]);
+                objects[i] = converted;
             }
-            else if (parsed instanceof MObject)
-                return new MObject[]{(MObject) parsed};
-        } catch (ParseException e) {
-            System.out.println(e);
+            return objects;
+        } catch (Exception e) {
+            throw new InvalidFileException("Invalid collection JSON file");
         }
-        return new MObject[]{new MObject()};
     }
 
     public String write(String data, String filename) {

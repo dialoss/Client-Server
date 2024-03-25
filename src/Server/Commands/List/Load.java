@@ -13,15 +13,14 @@ public class Load extends Command {
     public Load() {
         super("load", "Reads a collection from a storage",
                 new CommandArgument[]{
-//                        new CommandArgument("filename", String.class).withNotRequired("data.json")
+                        new CommandArgument("filename", String.class).withNotRequired("data.json")
         });
     }
 
     @Override
     public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
-//        String filename = (String) args[0];
-        StorageConnector.loadDB();
-        return new Response(StorageConnector.manager.getAll(), Status.OK)
-                .withMessage("Collection loaded with %s items".formatted(StorageConnector.manager.getSize()));
+        String filename = (String) args.get("filename");
+        StorageConnector.loadFile(filename);
+        return new Response("Collection loaded with %s items".formatted(StorageConnector.manager.getSize()), Status.OK);
     }
 }

@@ -1,50 +1,67 @@
 package Client.APIs;
 
 import Common.Connection.Request;
-import Common.Connection.ObjectIO;
 import Common.Connection.Response;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
 public class TcpAPI extends ClientAPI {
     SocketChannel socket;
+    static int port = 3003;
+    static int reconnectTimeout = 3000;
+    static InetSocketAddress address = new InetSocketAddress("127.0.0.1", port);
 
     public TcpAPI() {
-        int port = 3003;
-        InetSocketAddress address = new InetSocketAddress("127.0.0.1", port);
+        connect(0);
+    }
 
+    public void connect(int reconnects) {
         try {
             socket = SocketChannel.open();
             socket.connect(address);
+            socket.configureBlocking(false);
+            System.out.println("Connected to Server " + address.getAddress());
         } catch (IOException e) {
             System.out.println(e);
+            System.out.println("Reconnecting to the server in %s ms".formatted(reconnectTimeout));
             try {
-                socket.close();
-            } catch (IOException ex) {
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
                 throw new RuntimeException(ex);
             }
+            connect(reconnects + 1);
         }
     }
 
     public Response request(Request request) throws IOException {
-        ByteBuffer buffer = ByteBuffer.wrap(ObjectIO.writeObject(request).toByteArray());
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-        while (buffer.hasRemaining()) {
-            socket.write(buffer);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+
+        objectOutputStream.writeObject(request);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+        ByteBuffer b = ByteBuffer.wrap(byteArrayOutputStream.toByteArray());
+
+        while (b.hasRemaining()) {
+            this.socket.write(b);
+        }
+        b.clear();
+        ByteBuffer buffer = ByteBuffer.allocate(100000);
+
+        int a = this.socket.read(buffer);
+        System.out.println(a);
+        while (a < 1) {
+            a = this.socket.read(buffer);
         }
 
-        buffer = ByteBuffer.allocate(100000);
-
-        int bytesRead = socket.read(buffer);
-        while (bytesRead == -1) {
-            bytesRead = socket.read(buffer);
-        }
-
+        ByteArrayInputStream bi = new ByteArrayInputStream(buffer.array());
+        ObjectInputStream oi = new ObjectInputStream(bi);
         try {
-            return (Response) ObjectIO.readObject(buffer.array());
+            return (Response) oi.readObject();
         } catch (Exception e) {
             System.out.println(e);
         }

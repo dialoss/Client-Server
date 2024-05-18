@@ -1,10 +1,8 @@
 package Client;
 
 import Client.APIs.ClientAPI;
-import Client.APIs.EventBusAPI;
-import Client.Shell.CommandLineInterface;
-import Client.Shell.Shell;
-import Client.Shell.ShellForm;
+import Client.APIs.TcpAPI;
+import Client.GUI.GUIManager;
 
 public class Client {
     UserInterface userInterface;
@@ -12,8 +10,9 @@ public class Client {
 
     public void start() {
         UserManager.init();
-        this.userInterface = new CommandLineInterface(new ShellForm(new Shell()));
-        this.api = new EventBusAPI();
+        this.userInterface = new GUIManager();
+//        this.userInterface = new CommandLineInterface(new ShellForm(new Shell()));
+        this.api = new TcpAPI();
         this.api.connect();
         this.userInterface.setRequestCallback(this.api::request);
         this.userInterface.start();

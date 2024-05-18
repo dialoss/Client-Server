@@ -4,6 +4,7 @@ import Client.Exceptions.RequestError;
 import Client.Shell.CommandParser;
 import Client.UserManager;
 import Common.Connection.*;
+import Common.Models.SchemaGenerator;
 import Common.Tools;
 
 import java.lang.reflect.Method;
@@ -67,5 +68,9 @@ public class Controller {
 
     private Response login(UserInfo data) throws Exception {
         return auth(data, "login");
+    }
+
+    private Response schema() {
+        return new Response(SchemaGenerator.generate(), Status.OK);
     }
 }

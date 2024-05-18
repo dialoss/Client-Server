@@ -1,11 +1,11 @@
 package Server.Storage;
 
-import Common.Tools;
+import Common.Files.JSONStorage;
 import Common.Models.MObject;
 import Common.Models.Organization;
+import Common.Tools;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.Database.DBManager;
-import Common.Files.JSONStorage;
 
 import java.util.Scanner;
 
@@ -52,9 +52,14 @@ public class StorageConnector {
     }
 
     public static void loadCollection(MObject[] items) {
+        int counter = 0;
         for (MObject o : items) {
+            System.out.println("Start");
+            long m = System.currentTimeMillis();
             Organization item = (Organization) new Organization().from(o);
+            System.out.println("End " + (System.currentTimeMillis() - m));
             manager.insert(item);
+            System.out.println(counter++);
         }
     }
 

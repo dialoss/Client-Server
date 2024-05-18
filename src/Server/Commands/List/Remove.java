@@ -16,6 +16,7 @@ public class Remove extends Command {
     @Override
     public String execute(CollectionManager collectionManager, Map<String, Object> args) {
         Integer id = (Integer) args.get("id");
+
         if (collectionManager.get(id) == null) throw new ElementNotFound(id);
         collectionManager.delete(id);
         return "Item %s has been removed.".formatted(id);

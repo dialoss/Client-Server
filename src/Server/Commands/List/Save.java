@@ -2,7 +2,6 @@ package Server.Commands.List;
 
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
-import Common.Tools;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
 
@@ -18,11 +17,11 @@ public class Save extends Command {
 
     @Override
     public String execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
-        String filename = (String) args.get("filename");
-        String path = StorageConnector.fileStorage.write(
-                Tools.stringify(StorageConnector.manager.getAll()), filename);
-//        StorageConnector.saveDB();
-//        return "Collection saved";
-        return "The file is saved at the path: " + path;
+//        String filename = (String) args.get("filename");
+//        String path = StorageConnector.fileStorage.write(
+//                Tools.stringify(StorageConnector.manager.getAll()), filename);
+        StorageConnector.saveDB();
+        return "Collection saved";
+//        return "The file is saved at the path: " + path;
     }
 }

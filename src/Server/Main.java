@@ -1,6 +1,5 @@
 package Server;
 
-import Client.Client;
 import Server.Storage.StorageConnector;
 
 public class Main {
@@ -11,8 +10,8 @@ public class Main {
                 Server server = new Server();
                 server.run();
 
-                Client client = new Client();
-                client.start();
+//                Client client = new Client();
+//                client.start();
             }
         };
         Thread t = new Thread(task);

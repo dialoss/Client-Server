@@ -3,8 +3,9 @@ package Server.Commands.List;
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
 import Common.Connection.Response;
-import Server.Commands.CommandManager;
+import Common.Connection.Status;
 import Server.Storage.Collection.CollectionManager;
+import Server.Storage.StorageConnector;
 
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class DB extends Command {
     @Override
     public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
         if ("getAll".equals(args.get("action"))) {
-            return (Response) CommandManager.get("load").execute(null, null);
+            return new Response(StorageConnector.manager.getAll(), Status.OK);
         }
         return null;
     }

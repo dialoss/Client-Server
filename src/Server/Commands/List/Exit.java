@@ -12,7 +12,7 @@ public class Exit extends Command {
 
     @Override
     public String execute(CollectionManager collectionManager, Map<String, Object> args) {
-        System.exit(0);
-        return "";
+//        System.exit(0);
+        return "Exiting is disabled from client";
     }
 }

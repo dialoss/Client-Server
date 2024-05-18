@@ -2,7 +2,7 @@ package Server;
 
 import Server.Commands.CommandExecutor;
 import Server.ConnectionManagers.ConnectionManager;
-import Server.ConnectionManagers.EventBusConnection;
+import Server.ConnectionManagers.TCPConnection;
 import Server.Storage.StorageConnector;
 
 public class Server {
@@ -11,7 +11,7 @@ public class Server {
     public Server() {
         System.out.println("Server started");
         StorageConnector.init();
-        manager = new EventBusConnection();
+        manager = new TCPConnection();
         manager.setRequestCallback(CommandExecutor::execute);
     }
 

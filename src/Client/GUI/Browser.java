@@ -45,6 +45,7 @@ public class Browser extends JFrame {
                     String result = controller.call(new BridgeRequest(tokens[0], tokens[1]));
                     callback.success(result);
                 } catch (Exception e) {
+
                     callback.failure(0, e.getMessage());
                 }
                 return true;

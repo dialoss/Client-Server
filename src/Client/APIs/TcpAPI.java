@@ -42,18 +42,30 @@ public class TcpAPI extends ClientAPI {
                 this.socket.write(b);
             }
         } catch (IOException e) {
+            b.clear();
+            new Thread(this::connect).start();
             throw new RequestError("No connection to the server");
         }
         b.clear();
-        ByteBuffer buffer = ByteBuffer.allocate(100000);
-
-        int a = this.socket.read(buffer);
+        ByteBuffer capacity = ByteBuffer.allocate(4);
+        int a = 0;
         while (a < 1) {
-            a = this.socket.read(buffer);
+            a = this.socket.read(capacity);
         }
 
+        capacity.position(0);
+        int size = capacity.getInt();
+//        System.out.println("Buffer size received " + size);
+
+        ByteBuffer buffer = ByteBuffer.allocate(size);
+
+        while (buffer.position() < size) {
+            this.socket.read(buffer);
+        }
         try {
-            return (Response) ObjectIO.readObject(buffer.array());
+            Response r = (Response) ObjectIO.readObject(buffer.array());
+            buffer.clear();
+            return r;
         } catch (Exception e) {
             throw new RequestError("Failed to read response");
         }

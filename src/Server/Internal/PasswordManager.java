@@ -17,7 +17,7 @@ public class PasswordManager {
 
     static {
         try {
-            md = MessageDigest.getInstance("md5");
+            md = MessageDigest.getInstance("SHA-1");
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }

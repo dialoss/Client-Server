@@ -1,26 +1,3194 @@
 [
   {
-    "peopleCount": 1,
-    "type": "PUBLIC",
-    "annualTurnover": 87.0,
-    "name": "{,}{\u0027\"}",
-    "creationDate": "25.03.2024 19:35:44.938",
+    "peopleCount": 225771149,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 1037.3438,
+    "name": "u7BoHMMDKCP3LFmWNbabRziqfkI1qBAxnRPYoBZUGkUmvMEKw",
+    "creationDate": "22.04.2024 19:22:00.782",
     "coordinates": {
-      "x": 876.0,
-      "y": 98.0,
-      "id": 503841545
+      "x": -565.9220532147665,
+      "y": -8661.720644782245,
+      "id": 11653
     },
     "postalAddress": {
-      "zipCode": "oiu",
+      "zipCode": "7O86EsyjTTGORW8ShyP3L4uZ9ZSTOMbY4mR29ghRQ4L1yVgW",
       "town": {
-        "x": 99.0,
-        "y": 88.0,
-        "z": 88.0,
-        "id": 994199255
+        "x": -9381.639477620107,
+        "y": 6651.2793,
+        "z": -1660.4326,
+        "id": 11653
       },
-      "id": 169726927
+      "id": 11653
+    },
+    "isPrivate": "false",
+    "id": 11653
+  },
+  {
+    "peopleCount": 104283150,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 1489.0791,
+    "name": "hZ3gtuaF8xB7wdSPyo82jRAVV7ZfNTc4PTZa8XdX5tclWTCEE",
+    "creationDate": "22.04.2024 19:22:00.790",
+    "coordinates": {
+      "x": -1493.1557458412299,
+      "y": -618.291529963366,
+      "id": 11654
+    },
+    "postalAddress": {
+      "zipCode": "mVjFDwC3brnbSsZH93JuBiCkU2R1zmOTLlwAKEVokYAc8HpHN",
+      "town": {
+        "x": 9168.013807425657,
+        "y": -3452.2485,
+        "z": -9512.614,
+        "id": 11654
+      },
+      "id": 11654
     },
     "isPrivate": "true",
-    "id": 571368635
+    "id": 11654
+  },
+  {
+    "peopleCount": 520653876,
+    "type": "PUBLIC",
+    "annualTurnover": -1443.2988,
+    "name": "yahfHnSx9rKckjz9w1Y6IjGO9y9CfD7dQVrpXLJ7oiFziD",
+    "creationDate": "22.04.2024 19:22:00.793",
+    "coordinates": {
+      "x": 6156.885088676723,
+      "y": -4422.48405232363,
+      "id": 11655
+    },
+    "postalAddress": {
+      "zipCode": "pGJOzJRaMAx5cVkVPlZzTfKHX1hOhKFyrzLHMz6hRrtdQUv",
+      "town": {
+        "x": 9921.948843049857,
+        "y": -9213.974,
+        "z": -2.2919922,
+        "id": 11655
+      },
+      "id": 11655
+    },
+    "isPrivate": "true",
+    "id": 11655
+  },
+  {
+    "peopleCount": 847541708,
+    "type": "GOVERNMENT",
+    "annualTurnover": -5623.5874,
+    "name": "tFzUlAlW1sKOA685SC9pAcoTdrzsbnI5IZpqCretRlaz4AZs",
+    "creationDate": "22.04.2024 19:22:00.796",
+    "coordinates": {
+      "x": -1362.5692824486068,
+      "y": 1822.9006971505205,
+      "id": 11656
+    },
+    "postalAddress": {
+      "zipCode": "vvOd8dftzQCDz3MSdRCYaiRO6Mg6IHGLOoqoXviU7nk",
+      "town": {
+        "x": 7373.846221057098,
+        "y": -4605.398,
+        "z": -1713.0225,
+        "id": 11656
+      },
+      "id": 11656
+    },
+    "isPrivate": "true",
+    "id": 11656
+  },
+  {
+    "peopleCount": 636167124,
+    "type": "PUBLIC",
+    "annualTurnover": -4420.861,
+    "name": "4dNTAQEr5212urR42QyqpSYGXCSMcQgbes5CE2HgkthifSz",
+    "creationDate": "22.04.2024 19:22:00.799",
+    "coordinates": {
+      "x": 425.4064929230808,
+      "y": -8234.852213981594,
+      "id": 11657
+    },
+    "postalAddress": {
+      "zipCode": "usE9JOgif2tBFUfVm1dbiZyPjepMbeqWiIoDtgmTh",
+      "town": {
+        "x": -6710.191445437387,
+        "y": 1013.6533,
+        "z": 4483.92,
+        "id": 11657
+      },
+      "id": 11657
+    },
+    "isPrivate": "true",
+    "id": 11657
+  },
+  {
+    "peopleCount": 591131573,
+    "type": "PUBLIC",
+    "annualTurnover": 9300.094,
+    "name": "l8lfTM7mljoNPWJtCN86LtjKRgKjqMJ4R2xpE6Lz",
+    "creationDate": "22.04.2024 19:22:00.801",
+    "coordinates": {
+      "x": 9013.61080647996,
+      "y": 1818.3582481186913,
+      "id": 11658
+    },
+    "postalAddress": {
+      "zipCode": "LuSVxweQRSWM5mIAfLw7pXa6QsidwG49c1zZOcpQP5IaTxt",
+      "town": {
+        "x": 2168.3415224338805,
+        "y": 1466.7871,
+        "z": -7902.2217,
+        "id": 11658
+      },
+      "id": 11658
+    },
+    "isPrivate": "false",
+    "id": 11658
+  },
+  {
+    "peopleCount": 479384572,
+    "type": "PUBLIC",
+    "annualTurnover": 2458.498,
+    "name": "xRI7ApBq8PFIBVoFnnDgzqWJ5hC4wL5NnNvXRSZvHXqYO2aa",
+    "creationDate": "22.04.2024 19:22:00.804",
+    "coordinates": {
+      "x": 9321.732982409492,
+      "y": 5.858310427171091,
+      "id": 11659
+    },
+    "postalAddress": {
+      "zipCode": "wlc9rFLW5iiDY9rBsEjqgpDnBnKzLAtnl1VsriAKy4w9s",
+      "town": {
+        "x": -2424.5479882227073,
+        "y": -3961.3916,
+        "z": -7466.701,
+        "id": 11659
+      },
+      "id": 11659
+    },
+    "isPrivate": "false",
+    "id": 11659
+  },
+  {
+    "peopleCount": 91090244,
+    "type": "COMMERCIAL",
+    "annualTurnover": 404.85156,
+    "name": "vYsqJvpdRKGV16l2pFgzjWvtPxICGxvJ1xCVdRccGtxYpBTc",
+    "creationDate": "22.04.2024 19:22:00.806",
+    "coordinates": {
+      "x": -5631.001822900082,
+      "y": -3319.6580923789606,
+      "id": 11660
+    },
+    "postalAddress": {
+      "zipCode": "OtiBPwRJZbFtqrQclDkpxYNJXtfCRQwoxYOSJXHU73e6",
+      "town": {
+        "x": -5318.866178397628,
+        "y": 9663.031,
+        "z": -2982.1206,
+        "id": 11660
+      },
+      "id": 11660
+    },
+    "isPrivate": "true",
+    "id": 11660
+  },
+  {
+    "peopleCount": 646209879,
+    "type": "PUBLIC",
+    "annualTurnover": -9555.421,
+    "name": "RzDCTaUoiAuIHAHPyHGh31ztkIQrlf6gqbEChaztpdnurOQA9",
+    "creationDate": "22.04.2024 19:22:00.808",
+    "coordinates": {
+      "x": 4011.7479902447976,
+      "y": -4170.78214104742,
+      "id": 11661
+    },
+    "postalAddress": {
+      "zipCode": "IUnZ3iv1qpeCslV4JcYfhFFerwpy7ZtgsnNfcDHq5hMN",
+      "town": {
+        "x": -2040.761119871655,
+        "y": 8511.549,
+        "z": 3145.918,
+        "id": 11661
+      },
+      "id": 11661
+    },
+    "isPrivate": "false",
+    "id": 11661
+  },
+  {
+    "peopleCount": 520967717,
+    "type": "PUBLIC",
+    "annualTurnover": 977.2627,
+    "name": "DtzaH5ZFGF3jybaFUTsArHeVdTzv9whNppRzHPwlaUgp1io",
+    "creationDate": "22.04.2024 19:22:00.810",
+    "coordinates": {
+      "x": 4596.662878180248,
+      "y": 3854.1966852629666,
+      "id": 11662
+    },
+    "postalAddress": {
+      "zipCode": "w5ZFHdEh1bh7CSdXXejLWTJQmNB6mbbroUZKmLXh4dV3eoq",
+      "town": {
+        "x": -1311.162362820367,
+        "y": 660.0371,
+        "z": 5561.33,
+        "id": 11662
+      },
+      "id": 11662
+    },
+    "isPrivate": "false",
+    "id": 11662
+  },
+  {
+    "peopleCount": 614098511,
+    "type": "PUBLIC",
+    "annualTurnover": -4135.2104,
+    "name": "EnfXLURYtBqjqOCP1FOlDRxIqy9zTZXBUSMqdTUTCqU",
+    "creationDate": "22.04.2024 23:31:40.011",
+    "coordinates": {
+      "x": 9365.757084597746,
+      "y": -7333.59783350199,
+      "id": 976539541
+    },
+    "postalAddress": {
+      "zipCode": "VW9rk4WnEO7bROjJmLCgazNwGIhZUpFIbW9J2EnADi",
+      "town": {
+        "x": -6311.886361017458,
+        "y": -5165.579,
+        "z": -6248.7236,
+        "id": 122829528
+      },
+      "id": 148556248
+    },
+    "isPrivate": "false",
+    "id": 993318303
+  },
+  {
+    "peopleCount": 4139807,
+    "type": "PUBLIC",
+    "annualTurnover": 3859.121,
+    "name": "fyW8p6MWOwiwcfFvYemta37TLCLk7B4oHkskSeyJ",
+    "creationDate": "22.04.2024 23:31:40.012",
+    "coordinates": {
+      "x": -2068.3493030736954,
+      "y": 1474.954036511961,
+      "id": 918751909
+    },
+    "postalAddress": {
+      "zipCode": "AKbLNoznkrYAuHcilkEIFSEg9S1mYypajjVdJQmKi",
+      "town": {
+        "x": 4201.50936862181,
+        "y": 892.8535,
+        "z": -5511.6606,
+        "id": 769093410
+      },
+      "id": 234223516
+    },
+    "isPrivate": "false",
+    "id": 302281835
+  },
+  {
+    "peopleCount": 276063542,
+    "type": "PUBLIC",
+    "annualTurnover": 6615.2246,
+    "name": "Sprmba68EGTTo5QhFb2GvFQ6oBq1kqfHWBxeVJqPPo",
+    "creationDate": "22.04.2024 23:31:40.012",
+    "coordinates": {
+      "x": -3393.5572789570797,
+      "y": 7136.842247287121,
+      "id": 169328870
+    },
+    "postalAddress": {
+      "zipCode": "Y9c8R5UTrJu2OZUaZ1ITSm2wmXDfDnS9ttvRQw6uCOZZybltm",
+      "town": {
+        "x": -3434.5427318003476,
+        "y": 2219.5508,
+        "z": -6128.2637,
+        "id": 438658960
+      },
+      "id": 722526362
+    },
+    "isPrivate": "true",
+    "id": 28524389
+  },
+  {
+    "peopleCount": 169467559,
+    "type": "PUBLIC",
+    "annualTurnover": -8657.623,
+    "name": "Z4EkPJJZECfAd7VhsNx2xjGNd4iUiJJ56IG8GO7rI",
+    "creationDate": "22.04.2024 23:31:40.013",
+    "coordinates": {
+      "x": -1087.3228941444486,
+      "y": 2317.9119937112064,
+      "id": 765055763
+    },
+    "postalAddress": {
+      "zipCode": "rAsYSzkLVqDGKYapVQcW6jdnicrMz7c6hgEWGGzQa9wawLX",
+      "town": {
+        "x": -8104.253843319404,
+        "y": 955.1621,
+        "z": 881.5537,
+        "id": 562129875
+      },
+      "id": 76753207
+    },
+    "isPrivate": "false",
+    "id": 969809634
+  },
+  {
+    "peopleCount": 268679433,
+    "type": "GOVERNMENT",
+    "annualTurnover": -7095.4355,
+    "name": "31T5xxdNOHcXUO42oez4VVeRHN3HibvTxiekVNZDAvNMu",
+    "creationDate": "22.04.2024 23:31:40.013",
+    "coordinates": {
+      "x": 3751.9978655928408,
+      "y": -1293.34187867756,
+      "id": 975284517
+    },
+    "postalAddress": {
+      "zipCode": "dqOawXYkpfsLAqAIdNBHg6UZZt7QRFB19VSPHWWTtqu3WVlu",
+      "town": {
+        "x": -2948.2342705277324,
+        "y": 1316.7656,
+        "z": 249.05371,
+        "id": 856575686
+      },
+      "id": 257295575
+    },
+    "isPrivate": "false",
+    "id": 49870460
+  },
+  {
+    "peopleCount": 140757266,
+    "type": "COMMERCIAL",
+    "annualTurnover": 1309.5029,
+    "name": "9OhAV9yGgGRzHZ4x9opOE8EbnKUTnNqsTT1ltGFvf",
+    "creationDate": "22.04.2024 23:31:40.014",
+    "coordinates": {
+      "x": -806.9720521051713,
+      "y": -3356.002736472481,
+      "id": 892700395
+    },
+    "postalAddress": {
+      "zipCode": "7AEhKulvtwe9HglVTIgv8E2PKFe7fV68AIoymzxa7y",
+      "town": {
+        "x": -2921.880577982889,
+        "y": -9550.767,
+        "z": -5666.9067,
+        "id": 48947167
+      },
+      "id": 282130326
+    },
+    "isPrivate": "true",
+    "id": 114619515
+  },
+  {
+    "peopleCount": 926105068,
+    "type": "GOVERNMENT",
+    "annualTurnover": 349.1084,
+    "name": "dRKQC7LCrCgZ7yOqBAmRNfk3VWVxQfyRswYS3CQjI7",
+    "creationDate": "22.04.2024 23:31:40.015",
+    "coordinates": {
+      "x": -745.1700249727892,
+      "y": -9013.73114280932,
+      "id": 506773012
+    },
+    "postalAddress": {
+      "zipCode": "65W2ZY1xVqZOATSD17beRjS2UxQ9eojVjlSlG6gGJltExgO",
+      "town": {
+        "x": -1023.7841793161824,
+        "y": -5741.135,
+        "z": -8166.332,
+        "id": 796820192
+      },
+      "id": 261088452
+    },
+    "isPrivate": "true",
+    "id": 713736207
+  },
+  {
+    "peopleCount": 50872098,
+    "type": "PUBLIC",
+    "annualTurnover": -8672.318,
+    "name": "138QkOGkh628SE21kGRGRMawPJwVMAYQMH56z6ZwIf94rWXAe",
+    "creationDate": "22.04.2024 23:31:40.015",
+    "coordinates": {
+      "x": -1455.1338405771585,
+      "y": -1783.5180441812827,
+      "id": 392908881
+    },
+    "postalAddress": {
+      "zipCode": "17YWssN7lqibRxjpiQgWEuiNdmtgkYFJ8aDpziqqovumHa3",
+      "town": {
+        "x": -6501.316182335548,
+        "y": -8466.607,
+        "z": -3045.392,
+        "id": 797576553
+      },
+      "id": 708478707
+    },
+    "isPrivate": "true",
+    "id": 541489304
+  },
+  {
+    "peopleCount": 396324596,
+    "type": "COMMERCIAL",
+    "annualTurnover": 3843.0176,
+    "name": "3fCvveEo6Ettyn53uw4A9JUyIpO9vlOjL6XQAo4lqg42mhiYq",
+    "creationDate": "22.04.2024 23:31:40.016",
+    "coordinates": {
+      "x": -6548.905596899767,
+      "y": -2765.7612033924497,
+      "id": 65426758
+    },
+    "postalAddress": {
+      "zipCode": "MyQkQuiScM7l4FkrwxAJzEPKprqFVMztN1SYFVnrQ",
+      "town": {
+        "x": -9431.300588116948,
+        "y": -289.65234,
+        "z": -5896.374,
+        "id": 829056961
+      },
+      "id": 822549052
+    },
+    "isPrivate": "false",
+    "id": 843989875
+  },
+  {
+    "peopleCount": 98456305,
+    "type": "GOVERNMENT",
+    "annualTurnover": 1598.3057,
+    "name": "V9jxeHTRQh4xKjir3qdZ3zKYLu57oQOouRXvML6bwD",
+    "creationDate": "22.04.2024 23:31:40.016",
+    "coordinates": {
+      "x": 3600.3273047957227,
+      "y": -8594.302120299653,
+      "id": 335693779
+    },
+    "postalAddress": {
+      "zipCode": "cpoGbKZmg8p4Rnsv2ZNdzMeF4yHgrpoWrwQ31saFXpc6fq",
+      "town": {
+        "x": -6960.736538493599,
+        "y": -9226.674,
+        "z": 9103.953,
+        "id": 887240635
+      },
+      "id": 435226283
+    },
+    "isPrivate": "false",
+    "id": 961614266
+  },
+  {
+    "peopleCount": 170028364,
+    "type": "PUBLIC",
+    "annualTurnover": -5951.0195,
+    "name": "pagmftSzYRsN64TPc3j2S3khM5p6DlWBPsxhTliZIv",
+    "creationDate": "22.04.2024 23:31:40.017",
+    "coordinates": {
+      "x": 174.49440238184252,
+      "y": 5237.386442753374,
+      "id": 587503612
+    },
+    "postalAddress": {
+      "zipCode": "6SEkjFmLkju59r5KgE4AskQ1MwVHKhJXp9d73Uz1ryaGOd",
+      "town": {
+        "x": 623.2098931776491,
+        "y": -3484.0498,
+        "z": 3267.4824,
+        "id": 618096338
+      },
+      "id": 521613238
+    },
+    "isPrivate": "true",
+    "id": 969195281
+  },
+  {
+    "peopleCount": 767665852,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -6019.8604,
+    "name": "b6r3em31eBFGViXvegCqfk5Z6wRvLxiE6Xfm6yGgeXRsA3GOV",
+    "creationDate": "22.04.2024 23:31:40.017",
+    "coordinates": {
+      "x": 3001.4122696510203,
+      "y": -3062.426641645453,
+      "id": 801337888
+    },
+    "postalAddress": {
+      "zipCode": "NJj9adrY5anBGVrfttUf5u2IkrJpVETDOZSETRiz",
+      "town": {
+        "x": -9080.068507113554,
+        "y": -4656.0,
+        "z": 77.27246,
+        "id": 866759377
+      },
+      "id": 477757565
+    },
+    "isPrivate": "true",
+    "id": 603724538
+  },
+  {
+    "peopleCount": 271123485,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 3952.9229,
+    "name": "CZ7tpD6d5vvTSTkBqg7HJJ6OPeSVw5VuaYthd8cCl",
+    "creationDate": "22.04.2024 23:31:40.018",
+    "coordinates": {
+      "x": -6059.0450820226315,
+      "y": -4559.879035713561,
+      "id": 920691137
+    },
+    "postalAddress": {
+      "zipCode": "Pt7KePCRL3m9R6nKPV38BhUlZXbg36WCMvSEcOWI5",
+      "town": {
+        "x": -4289.417217546623,
+        "y": 1751.0869,
+        "z": -9218.527,
+        "id": 669849080
+      },
+      "id": 961025450
+    },
+    "isPrivate": "true",
+    "id": 877596722
+  },
+  {
+    "peopleCount": 424784642,
+    "type": "COMMERCIAL",
+    "annualTurnover": -786.6797,
+    "name": "LPosCO48vU6Tzbcf8Sbfl2fzUCHTTSOY4ovXvueL16NAb5xC",
+    "creationDate": "22.04.2024 23:31:40.018",
+    "coordinates": {
+      "x": 5954.285551377534,
+      "y": -7736.042386357218,
+      "id": 922198261
+    },
+    "postalAddress": {
+      "zipCode": "g1b4pXZWetEZ6dHfv6M8DpZu8AlKTzbgGX7lYM77DWF",
+      "town": {
+        "x": -5162.521785276739,
+        "y": 5593.74,
+        "z": -5447.917,
+        "id": 225148852
+      },
+      "id": 495681109
+    },
+    "isPrivate": "false",
+    "id": 809578548
+  },
+  {
+    "peopleCount": 809161027,
+    "type": "GOVERNMENT",
+    "annualTurnover": -4403.4995,
+    "name": "AtJwr4865ylDl3xHEl5ZL3Pcod6aT7dOt7jgAvtfVTC",
+    "creationDate": "22.04.2024 23:31:40.019",
+    "coordinates": {
+      "x": -2251.149557235676,
+      "y": -3593.051367780473,
+      "id": 813794906
+    },
+    "postalAddress": {
+      "zipCode": "78yEX3GikUBJJaehOrWv7uL115xbvkQf9AaHJclQGUJT",
+      "town": {
+        "x": -7824.921392495147,
+        "y": 8404.783,
+        "z": -5327.8984,
+        "id": 913005714
+      },
+      "id": 504529386
+    },
+    "isPrivate": "true",
+    "id": 957306439
+  },
+  {
+    "peopleCount": 480782347,
+    "type": "GOVERNMENT",
+    "annualTurnover": -5015.5044,
+    "name": "zn8DhnFa7D5eF1WTn4ueZ2EUM2szedWKmiiIXgXlC9dj4",
+    "creationDate": "22.04.2024 23:31:40.019",
+    "coordinates": {
+      "x": -3400.200232775421,
+      "y": -5948.956340293358,
+      "id": 355254
+    },
+    "postalAddress": {
+      "zipCode": "crQcqL9lXgbObWlvbSP3vs8jbS7yykmtprUD3rXb",
+      "town": {
+        "x": 5712.80027913929,
+        "y": -7933.061,
+        "z": 7444.418,
+        "id": 988518064
+      },
+      "id": 85135840
+    },
+    "isPrivate": "false",
+    "id": 92683729
+  },
+  {
+    "peopleCount": 32443103,
+    "type": "PUBLIC",
+    "annualTurnover": 3857.163,
+    "name": "9BAVwiohdcdqOfkS3eS6YbSNQ36C9yD6dHplwJUsZsiHn1WGY",
+    "creationDate": "22.04.2024 23:31:40.020",
+    "coordinates": {
+      "x": -9460.203347900711,
+      "y": -7443.933910361871,
+      "id": 704851417
+    },
+    "postalAddress": {
+      "zipCode": "TBO4hWMbl2yChuQ9bA31w9kXDwqLDXwHj3Yq2p57j7JUZQ",
+      "town": {
+        "x": 2447.712654152063,
+        "y": 4174.3457,
+        "z": -8858.966,
+        "id": 82596933
+      },
+      "id": 27487548
+    },
+    "isPrivate": "false",
+    "id": 660409846
+  },
+  {
+    "peopleCount": 794222195,
+    "type": "COMMERCIAL",
+    "annualTurnover": -5309.659,
+    "name": "gSZt4Mwp8CRKYoqtrfih6Uw198V8yLki8IFdrKHSQ6VpS9",
+    "creationDate": "22.04.2024 23:31:40.020",
+    "coordinates": {
+      "x": 9391.073673047253,
+      "y": 6335.745560258778,
+      "id": 767603960
+    },
+    "postalAddress": {
+      "zipCode": "ypy9jbKiaJNrQsUZUNFXlMJ3fiePdEtwVnZWBbmrln",
+      "town": {
+        "x": 416.4934979761674,
+        "y": 8848.518,
+        "z": -7607.626,
+        "id": 659907858
+      },
+      "id": 12161183
+    },
+    "isPrivate": "false",
+    "id": 132259794
+  },
+  {
+    "peopleCount": 802799913,
+    "type": "GOVERNMENT",
+    "annualTurnover": -5878.6597,
+    "name": "P5SRyjqeDHyD7smgxUpozzBeSgtlvgmaXlWHhVycMFB7",
+    "creationDate": "22.04.2024 23:31:40.021",
+    "coordinates": {
+      "x": -1556.7913953075422,
+      "y": 2508.395630150715,
+      "id": 441058138
+    },
+    "postalAddress": {
+      "zipCode": "oGN3bMWpjXaLy21JrFERzTpiuYHDnWHPIHfrFVXkfBiy",
+      "town": {
+        "x": -6605.86997381875,
+        "y": 1083.2812,
+        "z": -7947.205,
+        "id": 396004698
+      },
+      "id": 49162572
+    },
+    "isPrivate": "false",
+    "id": 94742084
+  },
+  {
+    "peopleCount": 318027896,
+    "type": "COMMERCIAL",
+    "annualTurnover": 4993.4785,
+    "name": "a1NJkys5OPVnXgV9CBLmIobMjo3Ox7hNvZFkrbxC1s",
+    "creationDate": "22.04.2024 23:31:40.021",
+    "coordinates": {
+      "x": -6597.213338847361,
+      "y": 3586.00268949935,
+      "id": 199012659
+    },
+    "postalAddress": {
+      "zipCode": "KK1KObZx8zYQIyv4uj4equmkRSeRxHzIn7vLUIMa4hh",
+      "town": {
+        "x": 328.94164585312865,
+        "y": -3486.9897,
+        "z": 4622.6387,
+        "id": 415005510
+      },
+      "id": 354507809
+    },
+    "isPrivate": "false",
+    "id": 761374197
+  },
+  {
+    "peopleCount": 539003445,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 1235.6104,
+    "name": "SaIS2zRnGDxQrCsFdug9o9svPUicanNrJZcMYwW4ZBYrC4T1",
+    "creationDate": "22.04.2024 23:31:40.021",
+    "coordinates": {
+      "x": -3177.805087600158,
+      "y": -125.10173984527319,
+      "id": 955514514
+    },
+    "postalAddress": {
+      "zipCode": "UbzAjqzILVFGcDAKaJDM85H1IibO4aVj5uN6pDn1KL5",
+      "town": {
+        "x": -5463.03749421124,
+        "y": 445.57324,
+        "z": 3125.2852,
+        "id": 130158456
+      },
+      "id": 523118398
+    },
+    "isPrivate": "true",
+    "id": 505878366
+  },
+  {
+    "peopleCount": 166470973,
+    "type": "PUBLIC",
+    "annualTurnover": 7568.5977,
+    "name": "QBgwNoL3WLDXcxVLyYCERj89Mww3Gn76Bk9HhZgUC65F",
+    "creationDate": "22.04.2024 23:31:40.022",
+    "coordinates": {
+      "x": -982.4360371782186,
+      "y": -9417.06191695764,
+      "id": 979749130
+    },
+    "postalAddress": {
+      "zipCode": "sOtdUWi1IlPau2MrPRGrweyQYOaWKBgFaElwv8HdqIEl5",
+      "town": {
+        "x": 7017.410754936125,
+        "y": -5230.975,
+        "z": -7328.1465,
+        "id": 256707297
+      },
+      "id": 973367275
+    },
+    "isPrivate": "true",
+    "id": 188843172
+  },
+  {
+    "peopleCount": 145510471,
+    "type": "COMMERCIAL",
+    "annualTurnover": -7989.5054,
+    "name": "yNcjqv9f8HSjNSQNByPM1uXz5TFQvChWCnbI8VjQyXMR",
+    "creationDate": "22.04.2024 23:31:40.023",
+    "coordinates": {
+      "x": -8975.332642354004,
+      "y": -9687.491078009984,
+      "id": 661119282
+    },
+    "postalAddress": {
+      "zipCode": "ynXHWd4QhkQukR1y9IchuASeHevcoaCVzPJ6jyhrACLmikz",
+      "town": {
+        "x": 4040.2978917820456,
+        "y": 3208.2402,
+        "z": 5761.158,
+        "id": 420564582
+      },
+      "id": 813177118
+    },
+    "isPrivate": "true",
+    "id": 264420207
+  },
+  {
+    "peopleCount": 295341271,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -9170.18,
+    "name": "yy3IpAzDrVQ1LUXIqWJFnzQsCJ8LyfJshbuXvfJcCJ6hVLHS",
+    "creationDate": "22.04.2024 23:31:40.023",
+    "coordinates": {
+      "x": -2488.071135817602,
+      "y": -8478.609197032112,
+      "id": 757102234
+    },
+    "postalAddress": {
+      "zipCode": "P5GNinediftnlrLzb8UBX6AhwYnOTfVInwaW2wLu73Hrl6",
+      "town": {
+        "x": -8239.863894334474,
+        "y": 1261.1719,
+        "z": -3997.252,
+        "id": 715290515
+      },
+      "id": 34350278
+    },
+    "isPrivate": "true",
+    "id": 468905873
+  },
+  {
+    "peopleCount": 256705336,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -83.006836,
+    "name": "17NcAmdTTKM91NXp6VwKy2vlvUnfn26zKSZzIj8qFkVuv",
+    "creationDate": "22.04.2024 23:31:40.024",
+    "coordinates": {
+      "x": 1235.0709671724271,
+      "y": -6389.8439861186125,
+      "id": 901071396
+    },
+    "postalAddress": {
+      "zipCode": "7nhpFNoYSzab8YZCht9kgFAGWKKJeBtQ4ze1Q23XY57Sx",
+      "town": {
+        "x": -8257.11205210069,
+        "y": -938.125,
+        "z": 1301.043,
+        "id": 908481302
+      },
+      "id": 977093033
+    },
+    "isPrivate": "true",
+    "id": 919948141
+  },
+  {
+    "peopleCount": 848614509,
+    "type": "COMMERCIAL",
+    "annualTurnover": 293.01562,
+    "name": "sjYTl4xy8EV2XzO6Yz8pQ6mIMAoLRetFgsGSiNE1mkrDxV2JP",
+    "creationDate": "22.04.2024 23:31:40.024",
+    "coordinates": {
+      "x": 2404.826397698047,
+      "y": -1761.1474111429852,
+      "id": 685602968
+    },
+    "postalAddress": {
+      "zipCode": "2BsEMhmbdLOQxILXKkXhxCDKHmmJUxEiojYbC34E49HBfZ7",
+      "town": {
+        "x": -864.389452688094,
+        "y": 1457.0068,
+        "z": 3804.4844,
+        "id": 658495504
+      },
+      "id": 438645076
+    },
+    "isPrivate": "false",
+    "id": 600843457
+  },
+  {
+    "peopleCount": 284037780,
+    "type": "GOVERNMENT",
+    "annualTurnover": 3150.587,
+    "name": "RfHQnl6c1cdyQQdigFPW9WB6v8q6PmRGB87iAzRZUjGmMfsmk",
+    "creationDate": "22.04.2024 23:31:40.024",
+    "coordinates": {
+      "x": 2969.6773346939535,
+      "y": 2753.048273094131,
+      "id": 218272697
+    },
+    "postalAddress": {
+      "zipCode": "xXeXzlFVgeEfXCb589uV5BNyEO2GiqPH4BE5d5mMj7NpCVo",
+      "town": {
+        "x": -8859.6789540838,
+        "y": 7017.5293,
+        "z": 8145.1875,
+        "id": 761965475
+      },
+      "id": 418582547
+    },
+    "isPrivate": "false",
+    "id": 923051107
+  },
+  {
+    "peopleCount": 929032842,
+    "type": "COMMERCIAL",
+    "annualTurnover": -6872.4834,
+    "name": "DDVB5X73wLForhoFbXwqbP4hslDPPfdBKMyCaz8H",
+    "creationDate": "22.04.2024 23:31:40.025",
+    "coordinates": {
+      "x": -3319.786260683004,
+      "y": 4707.026294447345,
+      "id": 492875642
+    },
+    "postalAddress": {
+      "zipCode": "te3yFAzA3fkFLoXLUDOwQQHF1ZHnQ8P2WHvw7mRQdAG",
+      "town": {
+        "x": 7381.332447856923,
+        "y": -4914.1885,
+        "z": 5186.744,
+        "id": 847107408
+      },
+      "id": 10638910
+    },
+    "isPrivate": "false",
+    "id": 602628500
+  },
+  {
+    "peopleCount": 254429545,
+    "type": "COMMERCIAL",
+    "annualTurnover": 1094.7852,
+    "name": "22J9BXccPhiajj2oepTZervTQGs6hMLKc9uQTvVctc4J6v",
+    "creationDate": "22.04.2024 23:31:40.025",
+    "coordinates": {
+      "x": 50.218152079409265,
+      "y": -5374.730795076197,
+      "id": 472533052
+    },
+    "postalAddress": {
+      "zipCode": "H1kOOmiE8qYbYR3jowW7eiEPf9gtluwxuYoUqnzlR",
+      "town": {
+        "x": -654.6206688599177,
+        "y": -8453.97,
+        "z": 3815.6113,
+        "id": 89681367
+      },
+      "id": 250574656
+    },
+    "isPrivate": "false",
+    "id": 750631170
+  },
+  {
+    "peopleCount": 97865921,
+    "type": "GOVERNMENT",
+    "annualTurnover": 1822.7236,
+    "name": "R6VJkS9TL2w437cHBNKmS2UsAh1AvLp7zic98HVwndnU25J",
+    "creationDate": "22.04.2024 23:31:40.025",
+    "coordinates": {
+      "x": 8733.689535569654,
+      "y": -7031.592716565476,
+      "id": 357325943
+    },
+    "postalAddress": {
+      "zipCode": "RXeCqyOBVka35t18NbbgJ6OY4BMdoadUH8tnvepEf",
+      "town": {
+        "x": 6604.63276500117,
+        "y": -6514.236,
+        "z": 4120.1143,
+        "id": 36665960
+      },
+      "id": 117387057
+    },
+    "isPrivate": "false",
+    "id": 458354844
+  },
+  {
+    "peopleCount": 273048338,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 7266.912,
+    "name": "gF6FyTXBy4PnDJVBJ16LcZF1f7nNnn4Tc5f3SgzvQQ4vu",
+    "creationDate": "22.04.2024 23:31:40.026",
+    "coordinates": {
+      "x": 5252.511765914325,
+      "y": 1454.7831395201702,
+      "id": 944829162
+    },
+    "postalAddress": {
+      "zipCode": "rDROOhkl4d292FBHGw9W9wYe7VFI6tuUrJauHjsz",
+      "town": {
+        "x": -2561.571666578202,
+        "y": 8934.01,
+        "z": 912.0498,
+        "id": 853276359
+      },
+      "id": 338523935
+    },
+    "isPrivate": "false",
+    "id": 397221887
+  },
+  {
+    "peopleCount": 300721012,
+    "type": "GOVERNMENT",
+    "annualTurnover": -1186.8164,
+    "name": "miAYJpVm9YSrypoYAhyAhdvQMs1acYYBs95hqhKu3",
+    "creationDate": "22.04.2024 23:31:40.026",
+    "coordinates": {
+      "x": 4641.14501784775,
+      "y": 9123.20437328174,
+      "id": 296000324
+    },
+    "postalAddress": {
+      "zipCode": "a6UhRzW7U9TKgRbtkH4J8TUFkkvUUTfxeGWSmeijv8eEMOJ",
+      "town": {
+        "x": 8030.951692746585,
+        "y": -7411.506,
+        "z": -6361.2114,
+        "id": 684721519
+      },
+      "id": 68165491
+    },
+    "isPrivate": "true",
+    "id": 988611270
+  },
+  {
+    "peopleCount": 632025732,
+    "type": "COMMERCIAL",
+    "annualTurnover": -3638.9077,
+    "name": "PTuTxWi2YPt2YniqhWGeBSbuFVx9Pq4cxCckpSs5YNoHt",
+    "creationDate": "22.04.2024 23:31:40.027",
+    "coordinates": {
+      "x": -2378.0088886216163,
+      "y": -3574.3050283462144,
+      "id": 521970561
+    },
+    "postalAddress": {
+      "zipCode": "xH8GBwoJPVlzNSVKBwmBwjoRERWIdwNoSFmfED739IP",
+      "town": {
+        "x": -1568.2108805157986,
+        "y": -1543.1807,
+        "z": -8822.819,
+        "id": 64791544
+      },
+      "id": 962353711
+    },
+    "isPrivate": "false",
+    "id": 516347174
+  },
+  {
+    "peopleCount": 151622902,
+    "type": "GOVERNMENT",
+    "annualTurnover": 4122.1025,
+    "name": "cQvYCyj4rR3Vrai5NfzVLSk34htAwVzfdlUjoFlV",
+    "creationDate": "22.04.2024 23:31:40.027",
+    "coordinates": {
+      "x": -1438.0433587056723,
+      "y": 9757.891005512232,
+      "id": 511926258
+    },
+    "postalAddress": {
+      "zipCode": "dKEWinQWPIahWjhI3i6YEL4enOsKAnbDCD9u7sLyD7",
+      "town": {
+        "x": -2928.4461610839417,
+        "y": -3292.233,
+        "z": -225.22656,
+        "id": 675593796
+      },
+      "id": 158944802
+    },
+    "isPrivate": "true",
+    "id": 436127436
+  },
+  {
+    "peopleCount": 118920993,
+    "type": "COMMERCIAL",
+    "annualTurnover": 1319.8818,
+    "name": "cr7ALrKAlrnWyhdRzyhvjPqYuYGttsHkFD5WbVgK",
+    "creationDate": "22.04.2024 23:31:40.028",
+    "coordinates": {
+      "x": -9522.584297955596,
+      "y": -9837.886394461073,
+      "id": 852877641
+    },
+    "postalAddress": {
+      "zipCode": "gvjnis8t32BShC12GWSR1BLkEaeW8nFomEz7Iv3f5GL",
+      "town": {
+        "x": 9926.84878347009,
+        "y": -7374.867,
+        "z": 2286.1455,
+        "id": 329990009
+      },
+      "id": 349074553
+    },
+    "isPrivate": "false",
+    "id": 910987128
+  },
+  {
+    "peopleCount": 586685456,
+    "type": "COMMERCIAL",
+    "annualTurnover": 2316.455,
+    "name": "FGwNQy2UDGGeVFxCOofvxrxefAeqoU922sT5i1SVittfX",
+    "creationDate": "22.04.2024 23:31:40.028",
+    "coordinates": {
+      "x": -3835.1031412903594,
+      "y": 5781.460048522751,
+      "id": 244970948
+    },
+    "postalAddress": {
+      "zipCode": "SwVqaSKvZ7ifZZC2i1BbWmYNi32G5KUxyL7LInmwn",
+      "town": {
+        "x": 4790.244997273894,
+        "y": -4830.1377,
+        "z": 1589.3643,
+        "id": 920879089
+      },
+      "id": 586974796
+    },
+    "isPrivate": "false",
+    "id": 895933372
+  },
+  {
+    "peopleCount": 954710185,
+    "type": "COMMERCIAL",
+    "annualTurnover": -5894.407,
+    "name": "2pb3PaUxLGeQitDdQrnWmbNgonioxiePCA1paOg3x",
+    "creationDate": "22.04.2024 23:31:40.029",
+    "coordinates": {
+      "x": -5374.182698706889,
+      "y": 2045.7258428582973,
+      "id": 9277949
+    },
+    "postalAddress": {
+      "zipCode": "fNM2dhQxv5reQfokNPaBWFOQpK6PH1LaVHzOj3P4q1Jt",
+      "town": {
+        "x": 490.98607770174203,
+        "y": -5529.928,
+        "z": 9786.633,
+        "id": 666649725
+      },
+      "id": 985348863
+    },
+    "isPrivate": "true",
+    "id": 581005699
+  },
+  {
+    "peopleCount": 821548594,
+    "type": "GOVERNMENT",
+    "annualTurnover": -8549.43,
+    "name": "ua1pOf3PFjCQjrJjLtrBEdTvVGz5oxxuV2C2Bjh32LVOem",
+    "creationDate": "22.04.2024 23:31:40.029",
+    "coordinates": {
+      "x": -1766.3245717502905,
+      "y": 6862.330640109791,
+      "id": 108731273
+    },
+    "postalAddress": {
+      "zipCode": "gvj4PVcmGcbKE9kKIBbwgfEcv3hTaJzRFOjDql7aG9",
+      "town": {
+        "x": -3008.3295600551382,
+        "y": -2565.7012,
+        "z": -4341.042,
+        "id": 233991269
+      },
+      "id": 664770148
+    },
+    "isPrivate": "false",
+    "id": 649939118
+  },
+  {
+    "peopleCount": 10806086,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -771.01953,
+    "name": "RRhvF6PigTQEA3a4PTTLkbFOZQOHoWviY2rxSoffl7EUYKAv",
+    "creationDate": "22.04.2024 23:31:40.029",
+    "coordinates": {
+      "x": -5038.264468096485,
+      "y": 7522.266774327898,
+      "id": 668978904
+    },
+    "postalAddress": {
+      "zipCode": "vLzVv6LZVvBACb6Or3l4hLmmdO6nTevA2Y1qbFsficfFgWI",
+      "town": {
+        "x": -1688.510469088018,
+        "y": -9005.007,
+        "z": -1072.0352,
+        "id": 988781128
+      },
+      "id": 620249793
+    },
+    "isPrivate": "false",
+    "id": 137934766
+  },
+  {
+    "peopleCount": 313355518,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -3874.5903,
+    "name": "8T2iJazNpVcnDKzaw9upqqnticPZjFM7hRNAC5lyuA7Zhn3kp",
+    "creationDate": "22.04.2024 23:31:40.030",
+    "coordinates": {
+      "x": -659.5606047541642,
+      "y": -6161.367018798079,
+      "id": 678195451
+    },
+    "postalAddress": {
+      "zipCode": "SI72scbyYPKaaE9yKVq6UZlniRTgDr2LyWE5fu9mL",
+      "town": {
+        "x": -775.721179990891,
+        "y": 6375.9873,
+        "z": 2812.7314,
+        "id": 510810226
+      },
+      "id": 810639893
+    },
+    "isPrivate": "true",
+    "id": 990254269
+  },
+  {
+    "peopleCount": 518090977,
+    "type": "PUBLIC",
+    "annualTurnover": -4308.8164,
+    "name": "Z92CxWDSxG7aiI7uwVNWj8wP7nGw74M8bt4YSUt3onECW9f",
+    "creationDate": "22.04.2024 23:31:40.030",
+    "coordinates": {
+      "x": 1535.2255646790672,
+      "y": 1574.9657772751307,
+      "id": 168976409
+    },
+    "postalAddress": {
+      "zipCode": "2pMICQIxjGcwlTEouyGLkAMHzfflH1rQ24TqVwkBaR",
+      "town": {
+        "x": 6721.330174840277,
+        "y": -9809.002,
+        "z": 7249.4277,
+        "id": 703394762
+      },
+      "id": 213188558
+    },
+    "isPrivate": "true",
+    "id": 93797857
+  },
+  {
+    "peopleCount": 38397243,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -2065.9219,
+    "name": "xl39sWPUqgnBWej1nAFrPjft1wdRrpUYHpJ2nGnbR4gRoFVL",
+    "creationDate": "22.04.2024 23:31:40.030",
+    "coordinates": {
+      "x": -3123.3804370981734,
+      "y": -4654.496072849274,
+      "id": 218892663
+    },
+    "postalAddress": {
+      "zipCode": "a7yE3FiVDnOdmqmSCOmFFKebQKHc7xfaPxswfvGicgc",
+      "town": {
+        "x": -2991.4196103468257,
+        "y": 7393.5,
+        "z": -8570.291,
+        "id": 976050752
+      },
+      "id": 684504246
+    },
+    "isPrivate": "false",
+    "id": 233731571
+  },
+  {
+    "peopleCount": 388171287,
+    "type": "GOVERNMENT",
+    "annualTurnover": -2076.3564,
+    "name": "oB6TAoq56uYXfHHGC1bn8wOjol4pMSdHoJBbRVxGm6XKC",
+    "creationDate": "22.04.2024 23:31:40.031",
+    "coordinates": {
+      "x": 7896.851632327907,
+      "y": 2227.825745438484,
+      "id": 948510173
+    },
+    "postalAddress": {
+      "zipCode": "2aYux5PBgfgxlsnWDhAkAntrwXxpVHmW9ydkMsdykmoJojd",
+      "town": {
+        "x": 1100.1606106249583,
+        "y": -7501.673,
+        "z": 903.26953,
+        "id": 515857255
+      },
+      "id": 770461069
+    },
+    "isPrivate": "true",
+    "id": 320695821
+  },
+  {
+    "peopleCount": 850652537,
+    "type": "COMMERCIAL",
+    "annualTurnover": 3741.751,
+    "name": "M8ZDo9CaYSCdr9Pov7HFB3kcE2RwIzTTv5ycoTrZGpq",
+    "creationDate": "22.04.2024 23:31:40.031",
+    "coordinates": {
+      "x": 1945.8172435067117,
+      "y": -1359.0809233015261,
+      "id": 917973936
+    },
+    "postalAddress": {
+      "zipCode": "VQOnIfRl8l9flzxk9dGLDMDZefPAv7U6KzhXHSYIrJ",
+      "town": {
+        "x": 2022.9030089101307,
+        "y": -6750.8887,
+        "z": -5870.8276,
+        "id": 76254204
+      },
+      "id": 573094520
+    },
+    "isPrivate": "false",
+    "id": 342132780
+  },
+  {
+    "peopleCount": 518039198,
+    "type": "PUBLIC",
+    "annualTurnover": 5244.793,
+    "name": "ggXVAxGCbhPMtHqi7ihcq3UxgUzG3wy43QUv4kH6nQLpnZ",
+    "creationDate": "22.04.2024 23:31:40.031",
+    "coordinates": {
+      "x": 8052.107655904896,
+      "y": 5057.750224151365,
+      "id": 918778948
+    },
+    "postalAddress": {
+      "zipCode": "66KHkRGhT6hC78b9Jt3Qb54UlxTXqyymWdeRMc1SfhtHkOY",
+      "town": {
+        "x": -3765.9206385726065,
+        "y": 9875.523,
+        "z": -990.88184,
+        "id": 783039011
+      },
+      "id": 46091825
+    },
+    "isPrivate": "true",
+    "id": 861666226
+  },
+  {
+    "peopleCount": 984303041,
+    "type": "PUBLIC",
+    "annualTurnover": -8013.629,
+    "name": "OF4ollSyPry4imK4UZAh5b95izFpKyK8lW6LvtezMnfge",
+    "creationDate": "22.04.2024 23:31:40.032",
+    "coordinates": {
+      "x": 9734.932986867789,
+      "y": -8170.3433858064645,
+      "id": 791143914
+    },
+    "postalAddress": {
+      "zipCode": "fHa5MwrJPDiR9tMyjaxbicfxknVSdGxUIuSG45qIi",
+      "town": {
+        "x": -8800.975677999239,
+        "y": 2734.8574,
+        "z": -3420.7725,
+        "id": 515343985
+      },
+      "id": 707732983
+    },
+    "isPrivate": "true",
+    "id": 867979251
+  },
+  {
+    "peopleCount": 44053101,
+    "type": "GOVERNMENT",
+    "annualTurnover": -5986.2207,
+    "name": "sxCIWHuRTg8Mf7WmdCtLQ47VuKjWVsoyL2JAF7l1xfOqUrUe3",
+    "creationDate": "22.04.2024 23:31:40.032",
+    "coordinates": {
+      "x": -9891.714415632456,
+      "y": 9949.132101941093,
+      "id": 156379294
+    },
+    "postalAddress": {
+      "zipCode": "FskDGOrkNsB1pCpdJqNorueJh1rZXNRKD6PuxNSLzSlMqSJoc",
+      "town": {
+        "x": 1707.7570533114358,
+        "y": -797.4971,
+        "z": 9933.145,
+        "id": 590370222
+      },
+      "id": 458628300
+    },
+    "isPrivate": "false",
+    "id": 250866630
+  },
+  {
+    "peopleCount": 904905105,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -4598.9634,
+    "name": "3VXYRpn9AYBFSha4ZzISYgeZbcqjT6irAFkveAiYYJEjQ",
+    "creationDate": "22.04.2024 23:31:40.032",
+    "coordinates": {
+      "x": -6992.952251082796,
+      "y": -2565.892935439764,
+      "id": 596589584
+    },
+    "postalAddress": {
+      "zipCode": "T5TTQlcn6nPYl9CeF81PF5C3ThBWJNoxnWxkwjhY",
+      "town": {
+        "x": -7969.161594709273,
+        "y": 8062.4785,
+        "z": 3131.5625,
+        "id": 937475046
+      },
+      "id": 620741283
+    },
+    "isPrivate": "true",
+    "id": 845563123
+  },
+  {
+    "peopleCount": 449625366,
+    "type": "COMMERCIAL",
+    "annualTurnover": 4879.2266,
+    "name": "NHnnenfU1iNY8IUgjBp8YzysIZZayC2hCa72Ni6SC6PYCbQ",
+    "creationDate": "22.04.2024 23:31:40.033",
+    "coordinates": {
+      "x": 9536.968728815144,
+      "y": 362.0659047881454,
+      "id": 21633972
+    },
+    "postalAddress": {
+      "zipCode": "3JBPVnlFqH6meAHgd5x6GkQ2AUdcT6vsIrVEssVE9xkv8yC",
+      "town": {
+        "x": -2021.7164040894577,
+        "y": 1388.9658,
+        "z": 5538.384,
+        "id": 159586249
+      },
+      "id": 295267326
+    },
+    "isPrivate": "false",
+    "id": 572421706
+  },
+  {
+    "peopleCount": 699251226,
+    "type": "GOVERNMENT",
+    "annualTurnover": -7369.5645,
+    "name": "HuiM67xRrZTp26dRFyimVF3WUm17ojasMPeua1zBeSWz",
+    "creationDate": "22.04.2024 23:31:40.033",
+    "coordinates": {
+      "x": -740.3311358481242,
+      "y": -3970.9800466964707,
+      "id": 588029156
+    },
+    "postalAddress": {
+      "zipCode": "vU25AJnLwVTByPRLtJLGNkbMeTX6V2HUvuhSqeEgfA573",
+      "town": {
+        "x": 5150.149399154736,
+        "y": -9368.584,
+        "z": -6177.5938,
+        "id": 864446652
+      },
+      "id": 913127713
+    },
+    "isPrivate": "false",
+    "id": 739759983
+  },
+  {
+    "peopleCount": 713232551,
+    "type": "COMMERCIAL",
+    "annualTurnover": -4687.618,
+    "name": "7lTTTSOtHVwgafPxuNhOPLPgc6vfnJQ6WPjdvIee",
+    "creationDate": "22.04.2024 23:31:40.033",
+    "coordinates": {
+      "x": -8794.13006230555,
+      "y": -212.1118252303295,
+      "id": 350827377
+    },
+    "postalAddress": {
+      "zipCode": "ciX3VEzq9E6H6IKYhHm3iBj13TI8doHUBAovwon9LNHKX",
+      "town": {
+        "x": -1445.1638767225377,
+        "y": 4125.2363,
+        "z": -9673.328,
+        "id": 218357674
+      },
+      "id": 338169917
+    },
+    "isPrivate": "false",
+    "id": 652312550
+  },
+  {
+    "peopleCount": 23055614,
+    "type": "COMMERCIAL",
+    "annualTurnover": -2046.7163,
+    "name": "t7MzQWmcVBaQcNArvubvbyLlNiIG29MfISNqVP4UJC5LZoiz",
+    "creationDate": "22.04.2024 23:31:40.034",
+    "coordinates": {
+      "x": -3240.6218479628924,
+      "y": -2629.262740356664,
+      "id": 783729958
+    },
+    "postalAddress": {
+      "zipCode": "UNKjwgAhdWKPrlKclFVUFCKFHEHFZbA8aLEoUx87",
+      "town": {
+        "x": 6581.795890365873,
+        "y": -3882.8062,
+        "z": -7295.415,
+        "id": 691236956
+      },
+      "id": 916554687
+    },
+    "isPrivate": "true",
+    "id": 652197156
+  },
+  {
+    "peopleCount": 309339283,
+    "type": "GOVERNMENT",
+    "annualTurnover": -2884.4214,
+    "name": "zYtnCkYdSAtTTFkuTKVVLGPZUTADPjJtDck8CxzD",
+    "creationDate": "22.04.2024 23:31:40.034",
+    "coordinates": {
+      "x": -1307.0475055420702,
+      "y": -7647.185515759496,
+      "id": 762966522
+    },
+    "postalAddress": {
+      "zipCode": "IBwPkITMHgue4J4CUTt21LHDmD7pn5Vijcqws9KYKtGg9kK",
+      "town": {
+        "x": -1267.256498400091,
+        "y": -7075.244,
+        "z": 5906.1006,
+        "id": 581163826
+      },
+      "id": 455048872
+    },
+    "isPrivate": "true",
+    "id": 36476149
+  },
+  {
+    "peopleCount": 298450029,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -9283.578,
+    "name": "RzEUlIZdVmAlfZGpPWjjeM8HUdGXuidpFwMiUHddgfstBzWHQ",
+    "creationDate": "22.04.2024 23:31:40.034",
+    "coordinates": {
+      "x": -5069.269584793709,
+      "y": 7473.261584049877,
+      "id": 616821775
+    },
+    "postalAddress": {
+      "zipCode": "7Ax1F7Kd9r3ckRLusaG6jgdzYbQc1mqRSlPmcY9w8",
+      "town": {
+        "x": 5200.116513538811,
+        "y": -25.751953,
+        "z": -3989.29,
+        "id": 833256544
+      },
+      "id": 686690094
+    },
+    "isPrivate": "false",
+    "id": 664996014
+  },
+  {
+    "peopleCount": 844554161,
+    "type": "PUBLIC",
+    "annualTurnover": -4951.9155,
+    "name": "jdJPbAU7MJKUQ4RyKTyr6Dd59Z9QzCOnVHcg4bLbjgtF43q",
+    "creationDate": "22.04.2024 23:31:40.035",
+    "coordinates": {
+      "x": 7059.407842835786,
+      "y": 8159.0609268313965,
+      "id": 357038542
+    },
+    "postalAddress": {
+      "zipCode": "tw81KVjVd6n5ugcEJLf6Dm6F8CGU3QhGgtLrxZBm",
+      "town": {
+        "x": -8406.934031655446,
+        "y": -4328.463,
+        "z": 450.1963,
+        "id": 402683174
+      },
+      "id": 447088972
+    },
+    "isPrivate": "true",
+    "id": 760821640
+  },
+  {
+    "peopleCount": 369877296,
+    "type": "PUBLIC",
+    "annualTurnover": -1416.0195,
+    "name": "8BVDvWWccZAXVEONie6b3RrGEADUyDMx5LCwDHvzl",
+    "creationDate": "22.04.2024 23:31:40.035",
+    "coordinates": {
+      "x": 4212.937612114947,
+      "y": 9214.458486619318,
+      "id": 364457716
+    },
+    "postalAddress": {
+      "zipCode": "A44QvKLsjubCqLbbU7V75XWX2fVaxXxAHpn53ffnx2V",
+      "town": {
+        "x": 4852.335656504814,
+        "y": 457.9912,
+        "z": -414.30664,
+        "id": 502707714
+      },
+      "id": 562897253
+    },
+    "isPrivate": "true",
+    "id": 476721434
+  },
+  {
+    "peopleCount": 424812455,
+    "type": "COMMERCIAL",
+    "annualTurnover": -1930.9761,
+    "name": "y6JXFIjF5YqP7p2qfbja3RqPdqkJFEnkCYZTxeWix3Ml",
+    "creationDate": "22.04.2024 23:31:40.035",
+    "coordinates": {
+      "x": -5160.547732558951,
+      "y": -1682.467875875347,
+      "id": 154836198
+    },
+    "postalAddress": {
+      "zipCode": "rxqW2FTXKoAGuKu8sPeqm3ukcr2KF8819C7XlrZh8DbGpj",
+      "town": {
+        "x": 3905.148678036323,
+        "y": -4658.381,
+        "z": -7345.2544,
+        "id": 370637815
+      },
+      "id": 541986952
+    },
+    "isPrivate": "true",
+    "id": 365159349
+  },
+  {
+    "peopleCount": 187322223,
+    "type": "PUBLIC",
+    "annualTurnover": 2695.8584,
+    "name": "sjjyNDkS1IJNB5rlCJNVL3zRsD534HWFlkVs2j4ncKP1",
+    "creationDate": "22.04.2024 23:31:40.036",
+    "coordinates": {
+      "x": 4209.507743515222,
+      "y": 5534.020207719705,
+      "id": 629351885
+    },
+    "postalAddress": {
+      "zipCode": "eXgS4IXTUGUwgCFG3aMKJJkVRHRQnT7XjqFXZ4xttr763CX",
+      "town": {
+        "x": -9588.72433313388,
+        "y": -4067.4697,
+        "z": -79.51758,
+        "id": 68974576
+      },
+      "id": 170819495
+    },
+    "isPrivate": "false",
+    "id": 353334136
+  },
+  {
+    "peopleCount": 506606488,
+    "type": "GOVERNMENT",
+    "annualTurnover": -5166.3076,
+    "name": "xKcdUfk7jjHbWSYjsVkrFzcajUobsUkG44kAv6EHHy82uW",
+    "creationDate": "22.04.2024 23:31:40.036",
+    "coordinates": {
+      "x": -445.22287074551787,
+      "y": -9941.023735433648,
+      "id": 567275500
+    },
+    "postalAddress": {
+      "zipCode": "bfQavh8hZSoEq7gTCcgnTZzbV3tldCtt76n6hi6q333Zu",
+      "town": {
+        "x": 3023.0424909647863,
+        "y": 1799.6982,
+        "z": 808.7012,
+        "id": 504443340
+      },
+      "id": 358374425
+    },
+    "isPrivate": "false",
+    "id": 143077324
+  },
+  {
+    "peopleCount": 289920003,
+    "type": "COMMERCIAL",
+    "annualTurnover": -9182.506,
+    "name": "3cOMgfCTWpKOA1YLhomvuAtbErlAOdsfao7KFgLQU2rU1DRqA",
+    "creationDate": "22.04.2024 23:31:40.036",
+    "coordinates": {
+      "x": 7388.0809385062275,
+      "y": -4213.626956170924,
+      "id": 366949410
+    },
+    "postalAddress": {
+      "zipCode": "Ign6cmRMtYdJCZyqVFQ1TpDVHNofCA2j8BP2OPJJ",
+      "town": {
+        "x": -1373.0699130177672,
+        "y": -5306.165,
+        "z": -5111.319,
+        "id": 529259217
+      },
+      "id": 229768056
+    },
+    "isPrivate": "true",
+    "id": 878857676
+  },
+  {
+    "peopleCount": 986261781,
+    "type": "COMMERCIAL",
+    "annualTurnover": 1894.5088,
+    "name": "6rfOUmyEhr5votJkvZN1UBD6R1sqrk5FZLQxgIikx7yZMaFfg",
+    "creationDate": "22.04.2024 23:31:40.036",
+    "coordinates": {
+      "x": 4068.157437645077,
+      "y": 5080.975341841753,
+      "id": 928730171
+    },
+    "postalAddress": {
+      "zipCode": "dWpWSKflsFLcXiGOBQ2PF2ZRt2tZWOCIh4opPw9nBrbEJC",
+      "town": {
+        "x": -851.9622557750426,
+        "y": 9239.838,
+        "z": 1153.0342,
+        "id": 219179531
+      },
+      "id": 950114165
+    },
+    "isPrivate": "true",
+    "id": 253589479
+  },
+  {
+    "peopleCount": 910835109,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 3434.3545,
+    "name": "lOBjtHrz95mizIR1Q2bCCInOg5Z7Aw5FCwzx6DNlBR4AuD",
+    "creationDate": "22.04.2024 23:31:40.037",
+    "coordinates": {
+      "x": 322.2833249902942,
+      "y": 3449.7248922129656,
+      "id": 514961067
+    },
+    "postalAddress": {
+      "zipCode": "TBTZGUufSYCB4r5Vwffns5nAS5aHaa6SBFkakBsyNwtvt",
+      "town": {
+        "x": 9958.395966463446,
+        "y": -7119.5103,
+        "z": 1967.6445,
+        "id": 280716905
+      },
+      "id": 855922027
+    },
+    "isPrivate": "false",
+    "id": 46133814
+  },
+  {
+    "peopleCount": 625983385,
+    "type": "GOVERNMENT",
+    "annualTurnover": -7797.638,
+    "name": "VKKKJTml9WnAgVmCTGo9PGMas2ICXo5jNGDkzRhc",
+    "creationDate": "22.04.2024 23:31:40.037",
+    "coordinates": {
+      "x": 7479.966467849463,
+      "y": -8396.73409411444,
+      "id": 754259833
+    },
+    "postalAddress": {
+      "zipCode": "ZQVQogomPExaKcZYnRZKR44ewHIlkc5Fhh8pg7al8M",
+      "town": {
+        "x": 2177.012640838977,
+        "y": 7366.842,
+        "z": 6731.34,
+        "id": 901311189
+      },
+      "id": 664935741
+    },
+    "isPrivate": "true",
+    "id": 47918463
+  },
+  {
+    "peopleCount": 415903985,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -1605.7002,
+    "name": "VJ3ouVa4aHmXHlZdWCBdAAdvT8lkVTbJxpJluBZt4sMUE",
+    "creationDate": "22.04.2024 23:31:40.037",
+    "coordinates": {
+      "x": -6975.979549402862,
+      "y": -3282.2906211209693,
+      "id": 189221037
+    },
+    "postalAddress": {
+      "zipCode": "CYWLG5iRSVDIu7IGqF7brNqWTCUnYEyIxA3tb4dsFiHv7",
+      "town": {
+        "x": -583.4906103690864,
+        "y": -7204.4805,
+        "z": 7739.881,
+        "id": 144133629
+      },
+      "id": 225201986
+    },
+    "isPrivate": "true",
+    "id": 877455728
+  },
+  {
+    "peopleCount": 603872954,
+    "type": "GOVERNMENT",
+    "annualTurnover": -9198.853,
+    "name": "OlDxz6DfGvpvfj4KNlWNyhbfsNNu5NbeVS3ttNf9gMytJ",
+    "creationDate": "22.04.2024 23:31:40.038",
+    "coordinates": {
+      "x": 1406.4139738543636,
+      "y": -4391.751426536117,
+      "id": 828710291
+    },
+    "postalAddress": {
+      "zipCode": "Q9GEiqjkm1BAduhkSOqChbdE8NkThafkotIypRA68A4",
+      "town": {
+        "x": -1054.2434630499883,
+        "y": -8441.378,
+        "z": -3546.12,
+        "id": 423252796
+      },
+      "id": 21604051
+    },
+    "isPrivate": "true",
+    "id": 786065151
+  },
+  {
+    "peopleCount": 523887544,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 2155.2012,
+    "name": "BBDWlqi4apBt8EmpUQrBt1XeIlLcXeEJyap9rxfz",
+    "creationDate": "22.04.2024 23:31:40.038",
+    "coordinates": {
+      "x": 7750.259844433494,
+      "y": -9499.086682739313,
+      "id": 660803431
+    },
+    "postalAddress": {
+      "zipCode": "omfKr6Vynu25kJUeLjPe4lgMkVqmP7bKGaTnmUY1LxH4x",
+      "town": {
+        "x": 1602.7317235373503,
+        "y": -9079.927,
+        "z": -7797.0303,
+        "id": 441727329
+      },
+      "id": 476279772
+    },
+    "isPrivate": "true",
+    "id": 8031912
+  },
+  {
+    "peopleCount": 7344541,
+    "type": "COMMERCIAL",
+    "annualTurnover": -2382.0532,
+    "name": "OQ4NNQmexjSw1pv53w1IlKLanGiWKQUZiQqrYfUlk",
+    "creationDate": "22.04.2024 23:31:40.038",
+    "coordinates": {
+      "x": -8839.934947258207,
+      "y": 3519.1207972915945,
+      "id": 534515530
+    },
+    "postalAddress": {
+      "zipCode": "1TOCinKMsoJrSvR5NB2fpcqEGVjPMe5UzehAilkxOXB",
+      "town": {
+        "x": -6378.929401767604,
+        "y": -1368.9863,
+        "z": -8371.869,
+        "id": 798284326
+      },
+      "id": 623290284
+    },
+    "isPrivate": "true",
+    "id": 832856022
+  },
+  {
+    "peopleCount": 335279972,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -4252.0093,
+    "name": "42dMad4zu2uomkmOArw4TVyYEGM9aUaUfwTWNVPCbXorcQ",
+    "creationDate": "22.04.2024 23:31:40.038",
+    "coordinates": {
+      "x": -3822.386736603582,
+      "y": 467.6778118184229,
+      "id": 924059139
+    },
+    "postalAddress": {
+      "zipCode": "q2FfFrYmNqgsjTdC3i6Zpk5sNZrorgZ77XGxPA9gR",
+      "town": {
+        "x": 7298.516709287087,
+        "y": 7930.369,
+        "z": 6717.414,
+        "id": 877944044
+      },
+      "id": 594538556
+    },
+    "isPrivate": "false",
+    "id": 502147271
+  },
+  {
+    "peopleCount": 465342774,
+    "type": "COMMERCIAL",
+    "annualTurnover": 810.94824,
+    "name": "EJ86hjBKJxBZwhFHhJnFlWkIN7Mr19f3WjYxMX75sRGY",
+    "creationDate": "22.04.2024 23:31:40.039",
+    "coordinates": {
+      "x": 819.8045402227945,
+      "y": 7134.439951689099,
+      "id": 966632983
+    },
+    "postalAddress": {
+      "zipCode": "pkJ6yf3TaESAm3nRqcjlmiZMtqKo5YP1NczrFFDjDnS",
+      "town": {
+        "x": -6653.885355977727,
+        "y": 1697.3379,
+        "z": 5644.548,
+        "id": 545490147
+      },
+      "id": 282041482
+    },
+    "isPrivate": "true",
+    "id": 431948642
+  },
+  {
+    "peopleCount": 619472906,
+    "type": "PUBLIC",
+    "annualTurnover": -1179.1396,
+    "name": "bMwlLdm6l5uba1RawmK4LlkVZR29EwDNH5NuAs7vfr",
+    "creationDate": "22.04.2024 23:31:40.039",
+    "coordinates": {
+      "x": 3352.8463345770724,
+      "y": -3179.6949573186903,
+      "id": 603711594
+    },
+    "postalAddress": {
+      "zipCode": "neUeu63fB3TuRVwaucFLcYbyofuybqvO2mTqSM2VOnz",
+      "town": {
+        "x": -8214.02125318568,
+        "y": -9056.158,
+        "z": -434.51562,
+        "id": 12158468
+      },
+      "id": 721899101
+    },
+    "isPrivate": "true",
+    "id": 602552933
+  },
+  {
+    "peopleCount": 834494129,
+    "type": "GOVERNMENT",
+    "annualTurnover": -1920.0801,
+    "name": "dLlwyDAAptbWqCINHCLA9rdjYJWQXVJtEZwxLSuH",
+    "creationDate": "22.04.2024 23:31:40.039",
+    "coordinates": {
+      "x": -5895.251343770036,
+      "y": -7047.924455617509,
+      "id": 368394898
+    },
+    "postalAddress": {
+      "zipCode": "DUqNsm9NcS4yrFh51XXNcWyZreMiYibXzvLMNs96fE",
+      "town": {
+        "x": -6511.5819995147685,
+        "y": 9998.074,
+        "z": -3381.1035,
+        "id": 296306456
+      },
+      "id": 30221673
+    },
+    "isPrivate": "true",
+    "id": 258814614
+  },
+  {
+    "peopleCount": 76674690,
+    "type": "GOVERNMENT",
+    "annualTurnover": 5212.8486,
+    "name": "5kJg8XARjyXv9rGoB19fAvMbOk97drKlovfnsBhoAAzaHY",
+    "creationDate": "22.04.2024 23:31:40.040",
+    "coordinates": {
+      "x": 9617.456095752364,
+      "y": -9165.090348845328,
+      "id": 231376376
+    },
+    "postalAddress": {
+      "zipCode": "GNAoPfu2HtwA6mPSQX8CiEbGKOdquw6DW7btMUCBCvSYaQu",
+      "town": {
+        "x": 5147.304905104838,
+        "y": 165.81738,
+        "z": -2422.9536,
+        "id": 245978398
+      },
+      "id": 885279360
+    },
+    "isPrivate": "true",
+    "id": 138029523
+  },
+  {
+    "peopleCount": 917798786,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 4971.966,
+    "name": "8Hn2HbEls9tC9E3JyKLn77hRXfVCjsGsFKjZWTMTi",
+    "creationDate": "22.04.2024 23:31:40.040",
+    "coordinates": {
+      "x": -9532.106413466905,
+      "y": 8972.013303871598,
+      "id": 251160517
+    },
+    "postalAddress": {
+      "zipCode": "cNS79jFtaPjHMCw2dbo7Uq7IzP7IRrpLn4J4du2e",
+      "town": {
+        "x": -4095.011809495366,
+        "y": -4208.981,
+        "z": 3118.6572,
+        "id": 729927057
+      },
+      "id": 539523770
+    },
+    "isPrivate": "true",
+    "id": 150008155
+  },
+  {
+    "peopleCount": 401336748,
+    "type": "PUBLIC",
+    "annualTurnover": -8918.143,
+    "name": "N7IPy7oAoJoCKTXxRzJpwccljQUKsWs4Qaqc9ruibu6M1u",
+    "creationDate": "22.04.2024 23:31:40.040",
+    "coordinates": {
+      "x": 9976.622995818456,
+      "y": -7471.088745128873,
+      "id": 547846285
+    },
+    "postalAddress": {
+      "zipCode": "Y9cIu9pEbVPxkJXBb7jtA37jpAyruE1FcKwKUO5c",
+      "town": {
+        "x": -5383.533774587177,
+        "y": -1687.9082,
+        "z": -6273.997,
+        "id": 475390531
+      },
+      "id": 528056624
+    },
+    "isPrivate": "true",
+    "id": 932233197
+  },
+  {
+    "peopleCount": 601696156,
+    "type": "COMMERCIAL",
+    "annualTurnover": 4482.956,
+    "name": "Qjn3PVq9Yi4UfEhRbxHiiTl8ypgrE8Uck2NX1EDz",
+    "creationDate": "22.04.2024 23:31:40.040",
+    "coordinates": {
+      "x": -7548.648496535932,
+      "y": -9501.66117591551,
+      "id": 233504982
+    },
+    "postalAddress": {
+      "zipCode": "jxuo74kJvuXdR2iv3Frk7Gj7JJpV9iobspoUuHdKw52SL",
+      "town": {
+        "x": 1887.324005760518,
+        "y": -7136.0586,
+        "z": 8266.957,
+        "id": 74231408
+      },
+      "id": 656628263
+    },
+    "isPrivate": "false",
+    "id": 696067959
+  },
+  {
+    "peopleCount": 927940214,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 2740.4316,
+    "name": "xJQK7VTlgGJ2DOh5lKyTpqxBUK7Cl7xeatVVNtnJcv",
+    "creationDate": "22.04.2024 23:31:40.041",
+    "coordinates": {
+      "x": -7718.281844360587,
+      "y": -1664.6025190798318,
+      "id": 457209902
+    },
+    "postalAddress": {
+      "zipCode": "Ktkxs9qMTK3ruzvOPaCSfwHl2sEv4rlGASRAPbguMni3",
+      "town": {
+        "x": 2099.476346361049,
+        "y": 248.61816,
+        "z": -3077.129,
+        "id": 879275296
+      },
+      "id": 464252344
+    },
+    "isPrivate": "false",
+    "id": 768847460
+  },
+  {
+    "peopleCount": 548315173,
+    "type": "PUBLIC",
+    "annualTurnover": 9988.986,
+    "name": "bKT2XXCnxfakvpzPcFCRtPg8DDEwN5YXLmOxbdZNlxtE",
+    "creationDate": "22.04.2024 23:31:40.041",
+    "coordinates": {
+      "x": -915.8953374567063,
+      "y": 6135.476248169765,
+      "id": 152282632
+    },
+    "postalAddress": {
+      "zipCode": "y12ffGovwCW5EPLaK9lqFZxZZrWVbagfg5kvEChpFlew",
+      "town": {
+        "x": -5318.3719830045375,
+        "y": 8340.465,
+        "z": 460.64648,
+        "id": 152062723
+      },
+      "id": 296811095
+    },
+    "isPrivate": "false",
+    "id": 769188595
+  },
+  {
+    "peopleCount": 437847655,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -9455.081,
+    "name": "NzbbaAFr3wkAwbbmmkxTXWr63n68ut2XUnvb35uO4nYj",
+    "creationDate": "22.04.2024 23:31:40.042",
+    "coordinates": {
+      "x": 203.17644954744355,
+      "y": 6971.500922915024,
+      "id": 572348456
+    },
+    "postalAddress": {
+      "zipCode": "SQwBVPVPvuUGuWD7jDcfQaVDOmD5SyJPCN8rxRLGHGh",
+      "town": {
+        "x": -4366.806904747913,
+        "y": 624.7295,
+        "z": 7036.1973,
+        "id": 730856390
+      },
+      "id": 954261778
+    },
+    "isPrivate": "false",
+    "id": 273728220
+  },
+  {
+    "peopleCount": 674445497,
+    "type": "COMMERCIAL",
+    "annualTurnover": -1598.4463,
+    "name": "ayLeCvNX2kmCFKyUEafFV8gbz77qP4il6RlbitEZ5XuPvm",
+    "creationDate": "22.04.2024 23:31:40.042",
+    "coordinates": {
+      "x": -2618.8702526157394,
+      "y": -9200.541373003638,
+      "id": 358253991
+    },
+    "postalAddress": {
+      "zipCode": "nrwPRLeh9b8eWI9CTxP4KjCPz5O3WaiMRmzKO8Fp",
+      "town": {
+        "x": -1065.563287948191,
+        "y": 5070.1406,
+        "z": -4145.205,
+        "id": 289598042
+      },
+      "id": 812780054
+    },
+    "isPrivate": "true",
+    "id": 534337061
+  },
+  {
+    "peopleCount": 347526218,
+    "type": "COMMERCIAL",
+    "annualTurnover": -7545.514,
+    "name": "oKiWMf8zxyyFSzNKG9ECmzYe6r7mxPXEFL8tdThhMrr",
+    "creationDate": "22.04.2024 23:31:40.042",
+    "coordinates": {
+      "x": -693.5703266994005,
+      "y": -3160.60031418145,
+      "id": 948581893
+    },
+    "postalAddress": {
+      "zipCode": "vjkp9QDaHc7XV9q2XrOtoXeoThJGSFkxwV7kHX3R7pM3",
+      "town": {
+        "x": -7850.449679799021,
+        "y": -398.32324,
+        "z": 9353.754,
+        "id": 627440615
+      },
+      "id": 523802195
+    },
+    "isPrivate": "false",
+    "id": 474143231
+  },
+  {
+    "peopleCount": 87243552,
+    "type": "COMMERCIAL",
+    "annualTurnover": 4694.6553,
+    "name": "bgnqbb7ElEeo7CdMwYyCAmaeIumJWQTRuDyIiFxPW",
+    "creationDate": "22.04.2024 23:31:40.042",
+    "coordinates": {
+      "x": 4682.735776036416,
+      "y": 4786.1390028611295,
+      "id": 313067134
+    },
+    "postalAddress": {
+      "zipCode": "cwpELQzYqzeJmlWXrp7XkGnCWGAliRLHY5DzGgfpfewO",
+      "town": {
+        "x": -6233.0237656855215,
+        "y": 1131.8203,
+        "z": 7981.914,
+        "id": 334216357
+      },
+      "id": 175744868
+    },
+    "isPrivate": "false",
+    "id": 63779220
+  },
+  {
+    "peopleCount": 983800391,
+    "type": "GOVERNMENT",
+    "annualTurnover": 4912.784,
+    "name": "dW6JFheVJpnP3QkQDGcam2aiIKSvWPfnU9CoRHm8GH",
+    "creationDate": "22.04.2024 23:31:40.043",
+    "coordinates": {
+      "x": -9435.208136253534,
+      "y": 4781.765967349571,
+      "id": 603212584
+    },
+    "postalAddress": {
+      "zipCode": "CbNeU5PW7bnWfvuL38bkk9AoctnjcaG3ZBoyNhVEq",
+      "town": {
+        "x": 6721.6229231817015,
+        "y": 9052.92,
+        "z": -1104.0469,
+        "id": 136341934
+      },
+      "id": 914354490
+    },
+    "isPrivate": "true",
+    "id": 788371479
+  },
+  {
+    "peopleCount": 928913169,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -7467.3174,
+    "name": "29PRL7miIFYuevRkhbCZFGFrxczt3Lw67Kae3S49XGo",
+    "creationDate": "22.04.2024 23:31:40.043",
+    "coordinates": {
+      "x": -3044.1349757929893,
+      "y": 8336.89674636317,
+      "id": 652235848
+    },
+    "postalAddress": {
+      "zipCode": "VEvRjuZVvZnLiT5fUx8ji662W6zXOhvEwLn1i6kfcot",
+      "town": {
+        "x": 8546.141476345456,
+        "y": -5495.5767,
+        "z": 9230.029,
+        "id": 553684964
+      },
+      "id": 869203423
+    },
+    "isPrivate": "true",
+    "id": 340019525
+  },
+  {
+    "peopleCount": 980893608,
+    "type": "GOVERNMENT",
+    "annualTurnover": 2174.9707,
+    "name": "AB7E3ltFQSkOYybXta2oyTKfYHHF7SfhbwVMHsUsnoXgP4",
+    "creationDate": "22.04.2024 23:31:40.043",
+    "coordinates": {
+      "x": 7244.219558695921,
+      "y": 2754.2902918550462,
+      "id": 763440283
+    },
+    "postalAddress": {
+      "zipCode": "EhufvAc5bo7v7xxWhbjfkQn3OdJcauqb1RUAbO6HOHSAzH31y",
+      "town": {
+        "x": -2302.868983808943,
+        "y": -2929.4048,
+        "z": 6691.088,
+        "id": 551173563
+      },
+      "id": 163725235
+    },
+    "isPrivate": "true",
+    "id": 785841730
+  },
+  {
+    "peopleCount": 708577417,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -1623.6807,
+    "name": "4AKuvF4BgySRjMQfXPjpzi53AtLc1rROCLPEqspgOF",
+    "creationDate": "22.04.2024 23:31:40.043",
+    "coordinates": {
+      "x": -996.8556408001732,
+      "y": -2761.9536450300757,
+      "id": 770358285
+    },
+    "postalAddress": {
+      "zipCode": "TnZxkGHWmpOXyJJuutw2qrlo3p9tE46UJczBmRBKytWO51",
+      "town": {
+        "x": 5346.823818784123,
+        "y": -6809.839,
+        "z": 8591.068,
+        "id": 306647643
+      },
+      "id": 303153042
+    },
+    "isPrivate": "false",
+    "id": 190947026
+  },
+  {
+    "peopleCount": 6869919,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 5093.7197,
+    "name": "9Gs2tNobxVLp5tdNXRCOZuqt26fa8REP9COqFpNFjm",
+    "creationDate": "22.04.2024 23:31:40.044",
+    "coordinates": {
+      "x": -8892.243383546596,
+      "y": 3339.5647140349047,
+      "id": 473599894
+    },
+    "postalAddress": {
+      "zipCode": "3LMSrAToJ9IJmEpOOJslCKWvSlvETqqpvSpn1HhSL3fEZ",
+      "town": {
+        "x": -9081.590092546685,
+        "y": -8003.8833,
+        "z": 8735.863,
+        "id": 242730004
+      },
+      "id": 269457091
+    },
+    "isPrivate": "true",
+    "id": 238653854
+  },
+  {
+    "peopleCount": 169284752,
+    "type": "COMMERCIAL",
+    "annualTurnover": -4835.7544,
+    "name": "S688SCc6uMN6RAxgrNkWSFTVrdVAzqgMizHeShSc4",
+    "creationDate": "22.04.2024 23:31:40.044",
+    "coordinates": {
+      "x": -8033.523538609379,
+      "y": -4760.133694962272,
+      "id": 720171979
+    },
+    "postalAddress": {
+      "zipCode": "A7TIJVEwEeCuSLqKvgjsxGoS6bpexVWUlMA2ajNoimki",
+      "town": {
+        "x": 7577.6851327893455,
+        "y": 1367.3545,
+        "z": -2721.5693,
+        "id": 86313838
+      },
+      "id": 807411615
+    },
+    "isPrivate": "true",
+    "id": 553519171
+  },
+  {
+    "peopleCount": 43688505,
+    "type": "GOVERNMENT",
+    "annualTurnover": -1870.5654,
+    "name": "eTBsv3EhFCe4cHfR6r9KWdxQ582nNjXaAJwe6pSO9JmtRweK",
+    "creationDate": "22.04.2024 23:31:40.044",
+    "coordinates": {
+      "x": -8918.225538216666,
+      "y": -2190.125490420778,
+      "id": 224899097
+    },
+    "postalAddress": {
+      "zipCode": "8FvpzBYdNqsbxPo13eWc4c8Zj4PbnzYDCIE89oNNjZYjH3o",
+      "town": {
+        "x": -6332.488438866315,
+        "y": 3628.9678,
+        "z": -9138.7295,
+        "id": 972470924
+      },
+      "id": 185667778
+    },
+    "isPrivate": "false",
+    "id": 759740762
+  },
+  {
+    "peopleCount": 551569136,
+    "type": "GOVERNMENT",
+    "annualTurnover": 1062.042,
+    "name": "naCF8sUmxt1n7GTrREik6Uz1vTRQrcKwDGZ24zlWdPV2pycJ4",
+    "creationDate": "22.04.2024 23:31:40.044",
+    "coordinates": {
+      "x": 183.17166063341028,
+      "y": -2120.5404943020612,
+      "id": 796141643
+    },
+    "postalAddress": {
+      "zipCode": "xUZqBIM1GGPJpRuUpDah5gI5KAWLmf2AuRzZxYK7",
+      "town": {
+        "x": -8303.83065233963,
+        "y": -5006.2407,
+        "z": 9763.258,
+        "id": 844909950
+      },
+      "id": 857460956
+    },
+    "isPrivate": "false",
+    "id": 408604557
+  },
+  {
+    "peopleCount": 305434896,
+    "type": "PUBLIC",
+    "annualTurnover": 6423.0664,
+    "name": "pZNF1sb7uZ8DpUpwIsCTj2Y3vYHRuzZzmKgjoT6QI2kt",
+    "creationDate": "22.04.2024 23:31:40.045",
+    "coordinates": {
+      "x": 1608.8208065200924,
+      "y": 889.6530091918648,
+      "id": 646810213
+    },
+    "postalAddress": {
+      "zipCode": "WTamYIngQPFhklowQuJoXY57RNguHcQvhdzHXPfJrr",
+      "town": {
+        "x": 80.52700888605068,
+        "y": -5377.3403,
+        "z": -8057.4766,
+        "id": 514157136
+      },
+      "id": 45498710
+    },
+    "isPrivate": "true",
+    "id": 691091940
+  },
+  {
+    "peopleCount": 272210508,
+    "type": "PUBLIC",
+    "annualTurnover": 1200.8545,
+    "name": "Q93VAsK7f5Mx4g91UwTtM2QLafsglT5ipmQe9Bq4",
+    "creationDate": "22.04.2024 23:31:40.045",
+    "coordinates": {
+      "x": -4595.143040505401,
+      "y": -5029.429679807779,
+      "id": 596128975
+    },
+    "postalAddress": {
+      "zipCode": "u9wCIldkbEaqxPf5yWnQyCBcOx8I5BYs14mDYWj3MOoAk",
+      "town": {
+        "x": 8231.82166638548,
+        "y": -7593.325,
+        "z": 3534.6807,
+        "id": 405869979
+      },
+      "id": 124700506
+    },
+    "isPrivate": "false",
+    "id": 769644280
+  },
+  {
+    "peopleCount": 583395148,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -1834.0815,
+    "name": "sMqDbSakJHZjMUr7iymLXY8ye1yac2FJ3eDwS4wH8i",
+    "creationDate": "22.04.2024 23:31:40.045",
+    "coordinates": {
+      "x": 4527.5851335781845,
+      "y": 7147.226240211894,
+      "id": 18996684
+    },
+    "postalAddress": {
+      "zipCode": "oogxGPpLeeFWPXEnRjVjc4oaCUePORURjH3TvnAwvAZBInx6U",
+      "town": {
+        "x": -4496.538078741654,
+        "y": -4015.1646,
+        "z": 2746.5166,
+        "id": 478378
+      },
+      "id": 486706457
+    },
+    "isPrivate": "false",
+    "id": 867375030
+  },
+  {
+    "peopleCount": 537818065,
+    "type": "PUBLIC",
+    "annualTurnover": -2745.8774,
+    "name": "jWsCjoEvM24zt2Kv2ojH2zjcwMKoMskVQ3Hv8L1iTdevb",
+    "creationDate": "22.04.2024 23:31:40.045",
+    "coordinates": {
+      "x": 2110.8976363213096,
+      "y": 6852.53217360803,
+      "id": 621294133
+    },
+    "postalAddress": {
+      "zipCode": "5unR3t5XoMcMFtuyigiAneEZ9fIIKLIPq2nnMs4x",
+      "town": {
+        "x": 2770.6734038603445,
+        "y": 2615.6924,
+        "z": -22.786133,
+        "id": 263905413
+      },
+      "id": 225226480
+    },
+    "isPrivate": "true",
+    "id": 241581005
+  },
+  {
+    "peopleCount": 354489753,
+    "type": "PUBLIC",
+    "annualTurnover": 5623.6562,
+    "name": "uT4k195bCQzyC3rDUSNNKyYQ9ZmYTEOqBgJVUHFUDOWBfCXCS",
+    "creationDate": "22.04.2024 23:31:40.046",
+    "coordinates": {
+      "x": -5948.8606947471335,
+      "y": 6173.345744203263,
+      "id": 426131417
+    },
+    "postalAddress": {
+      "zipCode": "ePlaaJ5OaMSFpPSyXltYn4X4yVW3CyHHfNDocQD1R",
+      "town": {
+        "x": 4507.533074456958,
+        "y": 6749.871,
+        "z": 4279.6826,
+        "id": 576551575
+      },
+      "id": 787031371
+    },
+    "isPrivate": "true",
+    "id": 435954533
+  },
+  {
+    "peopleCount": 257586199,
+    "type": "PUBLIC",
+    "annualTurnover": 4865.8096,
+    "name": "BmDicYNK4fRAX9TonZFkkKtL9gJUDnSr7PbsTTGeUJ",
+    "creationDate": "22.04.2024 23:31:40.046",
+    "coordinates": {
+      "x": 7064.659309579558,
+      "y": -5323.243275394649,
+      "id": 584730822
+    },
+    "postalAddress": {
+      "zipCode": "W44MQEYhM8dinhj8hgXeRUdkDiNru9do73e1GvlUX4QAp",
+      "town": {
+        "x": 8865.759526147122,
+        "y": -4002.2002,
+        "z": 746.74414,
+        "id": 160008903
+      },
+      "id": 667227960
+    },
+    "isPrivate": "false",
+    "id": 894043706
+  },
+  {
+    "peopleCount": 381186678,
+    "type": "COMMERCIAL",
+    "annualTurnover": -5703.7354,
+    "name": "52LMLlieLt1LYwtSrMeg1flNSwZUIhMBhf5bXIZp",
+    "creationDate": "22.04.2024 23:31:40.046",
+    "coordinates": {
+      "x": 1779.812401423389,
+      "y": 1931.615379865556,
+      "id": 785190870
+    },
+    "postalAddress": {
+      "zipCode": "N3pbK7LrUgbXk11sLctygohjVwRqlJBQSILDnVqZsGOOMED",
+      "town": {
+        "x": 3876.6944385761417,
+        "y": 8527.469,
+        "z": 5896.286,
+        "id": 200957359
+      },
+      "id": 188829668
+    },
+    "isPrivate": "true",
+    "id": 63722068
+  },
+  {
+    "peopleCount": 808048580,
+    "type": "PUBLIC",
+    "annualTurnover": -1481.7998,
+    "name": "HjqUWOiJPTK8EF98Tz9xldw3oivjaqRZ2oqVElJiaDt",
+    "creationDate": "22.04.2024 23:31:40.046",
+    "coordinates": {
+      "x": 1735.8577331108281,
+      "y": -4302.879069667431,
+      "id": 553438225
+    },
+    "postalAddress": {
+      "zipCode": "RQLiB1IS8XHq1nvNPRgNHvmH4IlR55DAut3OliPayPVy",
+      "town": {
+        "x": 8205.633278077712,
+        "y": -170.1748,
+        "z": -7866.856,
+        "id": 499110316
+      },
+      "id": 466818188
+    },
+    "isPrivate": "true",
+    "id": 514065267
+  },
+  {
+    "peopleCount": 766363704,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 2185.5938,
+    "name": "e29HmtNsPYLu7zRN8iuwd8IHROiRCEa963qL4Xne",
+    "creationDate": "22.04.2024 23:31:40.047",
+    "coordinates": {
+      "x": -8858.204680457522,
+      "y": -1118.4282110145996,
+      "id": 725784927
+    },
+    "postalAddress": {
+      "zipCode": "1SDu3Fk6JeyfGbYp8IFYNpfzLAd4Wo9MmSjRahnq6",
+      "town": {
+        "x": 1594.0179374420095,
+        "y": 6573.42,
+        "z": -1786.6826,
+        "id": 787521389
+      },
+      "id": 309056322
+    },
+    "isPrivate": "true",
+    "id": 604315558
+  },
+  {
+    "peopleCount": 734883131,
+    "type": "PUBLIC",
+    "annualTurnover": -2458.8706,
+    "name": "L2qec7nuGC7eSS7p813rR2AWeXoFS4py1YeWfeS7EmvOqlk6e",
+    "creationDate": "22.04.2024 23:31:40.047",
+    "coordinates": {
+      "x": 3546.311695161683,
+      "y": 9802.285429814747,
+      "id": 846084580
+    },
+    "postalAddress": {
+      "zipCode": "ZBsPZfcVe49CzsHImsHzTHjyuRKjyRc7WZO1Uw4lJCNk381e",
+      "town": {
+        "x": -7592.770613137016,
+        "y": -9487.5625,
+        "z": 229.68555,
+        "id": 952517689
+      },
+      "id": 215595513
+    },
+    "isPrivate": "true",
+    "id": 718649064
+  },
+  {
+    "peopleCount": 505692215,
+    "type": "GOVERNMENT",
+    "annualTurnover": -7570.3286,
+    "name": "u74dG91WHmA7BkUSSDBG2FeHIXVbVGsW2o5FOHgaT",
+    "creationDate": "22.04.2024 23:31:40.047",
+    "coordinates": {
+      "x": -2402.606244687926,
+      "y": 104.65066530314107,
+      "id": 398809661
+    },
+    "postalAddress": {
+      "zipCode": "TocyvZNu5AVOmcs316ZH9TE2LtxSNCu1Zj49N7Ko",
+      "town": {
+        "x": -9606.693016258145,
+        "y": -4041.6025,
+        "z": 1662.9502,
+        "id": 327336636
+      },
+      "id": 891038431
+    },
+    "isPrivate": "true",
+    "id": 636219537
+  },
+  {
+    "peopleCount": 352796894,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 1466.4375,
+    "name": "ZxWT5SuKX313O63ENGnaJOh7R5jzx5DdsSjKVCqXykwa4MoE",
+    "creationDate": "22.04.2024 23:31:40.047",
+    "coordinates": {
+      "x": -4672.117757721763,
+      "y": -1597.0645487394577,
+      "id": 250618829
+    },
+    "postalAddress": {
+      "zipCode": "2nyGvVRhjrAhq8corWkvLnudokFiX1D9ID1WNZRU",
+      "town": {
+        "x": 2552.434027111505,
+        "y": 179.13574,
+        "z": 9106.904,
+        "id": 455439616
+      },
+      "id": 40455448
+    },
+    "isPrivate": "false",
+    "id": 916289712
+  },
+  {
+    "peopleCount": 502965863,
+    "type": "COMMERCIAL",
+    "annualTurnover": 8784.889,
+    "name": "wJQtKqoZ66CetDRiuTgqZjbFEFYcZtOOfTufQvQAqRv8OO3",
+    "creationDate": "22.04.2024 23:31:40.048",
+    "coordinates": {
+      "x": 2703.7956804653368,
+      "y": 5569.840144324018,
+      "id": 727186224
+    },
+    "postalAddress": {
+      "zipCode": "G3nRKw2i1vPyTPDclzfqd3WiPoTMespEunq7o6KrTLN1",
+      "town": {
+        "x": -9547.48206097732,
+        "y": -546.26074,
+        "z": -7744.068,
+        "id": 170561368
+      },
+      "id": 358579246
+    },
+    "isPrivate": "true",
+    "id": 212902622
+  },
+  {
+    "peopleCount": 424246289,
+    "type": "COMMERCIAL",
+    "annualTurnover": 9575.619,
+    "name": "Lmjf5ZB6bxgZjcFIyVPB5vHBBvtt5L1m4YyKO7Ghv",
+    "creationDate": "22.04.2024 23:31:40.048",
+    "coordinates": {
+      "x": -413.9463625190019,
+      "y": 7222.192486801214,
+      "id": 611138202
+    },
+    "postalAddress": {
+      "zipCode": "6j3Tp4jwQW5nH7F3TuluK1swJVvULrmnXphbr5PE",
+      "town": {
+        "x": -7452.479752243824,
+        "y": 8346.861,
+        "z": 7879.912,
+        "id": 271799954
+      },
+      "id": 897151449
+    },
+    "isPrivate": "false",
+    "id": 709092261
+  },
+  {
+    "peopleCount": 780399459,
+    "type": "COMMERCIAL",
+    "annualTurnover": -511.07324,
+    "name": "kO2mzjgOzxlxedFywHIKUWEE9bhsgl8lv6sYaihjurTV",
+    "creationDate": "22.04.2024 23:31:40.048",
+    "coordinates": {
+      "x": -7014.204030630497,
+      "y": -9839.725235055366,
+      "id": 394676121
+    },
+    "postalAddress": {
+      "zipCode": "YcgfA8vbE9ZTrjBQz3tlgR8XorA44LKzE3LUlkZbyS",
+      "town": {
+        "x": 1868.2795901480476,
+        "y": -7154.671,
+        "z": 8530.525,
+        "id": 281316827
+      },
+      "id": 680785739
+    },
+    "isPrivate": "true",
+    "id": 690562069
+  },
+  {
+    "peopleCount": 661225201,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 7127.752,
+    "name": "p1OrkQTBlCvUinydmXnIm936mOuiQkxvUJk7JcHAbZOH",
+    "creationDate": "22.04.2024 23:31:40.048",
+    "coordinates": {
+      "x": 1253.7425130431238,
+      "y": -7572.4678259724915,
+      "id": 162521550
+    },
+    "postalAddress": {
+      "zipCode": "Y9hF18WFQdCxzR4DclP4H4AMghtwaUQn83xvIbosGxJ6CUsh",
+      "town": {
+        "x": 9476.962921620838,
+        "y": 7903.5645,
+        "z": 2630.501,
+        "id": 854219417
+      },
+      "id": 983828966
+    },
+    "isPrivate": "true",
+    "id": 23423381
+  },
+  {
+    "peopleCount": 226274714,
+    "type": "GOVERNMENT",
+    "annualTurnover": 1689.0762,
+    "name": "skO4Otmo3g6XLk6UvLzwzlOqFwVaJZsFBKKKJnsIZzz",
+    "creationDate": "22.04.2024 23:31:40.048",
+    "coordinates": {
+      "x": -4298.799501488164,
+      "y": 7882.635685616853,
+      "id": 994739009
+    },
+    "postalAddress": {
+      "zipCode": "IFXnryDOpn6Q3tIXeLiFnA8YfsQf7NUtTwf8Xw9j7cGUpEoMX",
+      "town": {
+        "x": -8814.495682343835,
+        "y": 3235.499,
+        "z": -84.80469,
+        "id": 6547659
+      },
+      "id": 947613286
+    },
+    "isPrivate": "false",
+    "id": 617209559
+  },
+  {
+    "peopleCount": 701579284,
+    "type": "COMMERCIAL",
+    "annualTurnover": 9491.203,
+    "name": "SSw9P9brbBcVXWMzSp5VZFkZFRBVQvYOwRIy5XBpXqpa7",
+    "creationDate": "22.04.2024 23:31:40.049",
+    "coordinates": {
+      "x": -851.670635043618,
+      "y": 7719.508054047605,
+      "id": 164189058
+    },
+    "postalAddress": {
+      "zipCode": "XfR6tdzaNupCHUMJYQSs2vQe61tdLAmo7Z868i9xoWTQ",
+      "town": {
+        "x": 5711.355759762877,
+        "y": -5156.641,
+        "z": 8509.748,
+        "id": 876453011
+      },
+      "id": 749233610
+    },
+    "isPrivate": "false",
+    "id": 47066638
+  },
+  {
+    "peopleCount": 676411038,
+    "type": "GOVERNMENT",
+    "annualTurnover": 5208.423,
+    "name": "oIaYHvNg4nWSZw1tirI67rMOKWXfeEUNu5N67DnHL4kVG",
+    "creationDate": "22.04.2024 23:31:40.049",
+    "coordinates": {
+      "x": -3827.9110770906773,
+      "y": 973.7835586751225,
+      "id": 231126546
+    },
+    "postalAddress": {
+      "zipCode": "nneYELEcf7TN1jjh9RZVjtfQv5FQm4XP5koO9oslfZ2E8E",
+      "town": {
+        "x": -4080.1289828690797,
+        "y": 3741.87,
+        "z": 7773.3145,
+        "id": 720997216
+      },
+      "id": 791473009
+    },
+    "isPrivate": "false",
+    "id": 378746700
+  },
+  {
+    "peopleCount": 462282120,
+    "type": "COMMERCIAL",
+    "annualTurnover": -9972.805,
+    "name": "q6HhxpEeuYENf7PijUJ7FcvqJYdHJQrgIXWSX8tUzKgSn",
+    "creationDate": "22.04.2024 23:31:40.049",
+    "coordinates": {
+      "x": -9701.167219512989,
+      "y": 7225.921291745708,
+      "id": 400951442
+    },
+    "postalAddress": {
+      "zipCode": "MDNpbLwDdFMGN7w6ADVMFEodH6A2RVNSdVTNxb3dxwzhSYy8",
+      "town": {
+        "x": 4414.006324672688,
+        "y": 2497.1162,
+        "z": -6052.054,
+        "id": 58736091
+      },
+      "id": 2520782
+    },
+    "isPrivate": "true",
+    "id": 934643540
+  },
+  {
+    "peopleCount": 423791248,
+    "type": "GOVERNMENT",
+    "annualTurnover": -7492.8486,
+    "name": "u6mtHysi4iW3w3nCsnijedhf5QepWLzEMfQvmEgoMLApHVmV",
+    "creationDate": "22.04.2024 23:31:40.049",
+    "coordinates": {
+      "x": 9456.84079640374,
+      "y": 9016.82094168209,
+      "id": 875381786
+    },
+    "postalAddress": {
+      "zipCode": "7dROU7Z94ZcGbQIKxFrmpqvFuRa9NpgOyVUStHW6pCGMheu",
+      "town": {
+        "x": -8901.695622015997,
+        "y": 6777.5312,
+        "z": 5661.8223,
+        "id": 625488721
+      },
+      "id": 369348759
+    },
+    "isPrivate": "false",
+    "id": 603341927
+  },
+  {
+    "peopleCount": 366834870,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 5994.8574,
+    "name": "ZGLfXcw7B17KqisM7hQJz143LPMFbK6oX74z4dF6YkVAd4m",
+    "creationDate": "22.04.2024 23:31:40.050",
+    "coordinates": {
+      "x": 4115.3992977712605,
+      "y": 5046.871205321517,
+      "id": 979262425
+    },
+    "postalAddress": {
+      "zipCode": "DYbQWNxQABguQUlivq6uoLHrrbDT6CGP4Fu3VLBNwm75",
+      "town": {
+        "x": 1510.5248466964022,
+        "y": -7113.396,
+        "z": -1119.4209,
+        "id": 243406108
+      },
+      "id": 7571100
+    },
+    "isPrivate": "true",
+    "id": 220600899
+  },
+  {
+    "peopleCount": 392273770,
+    "type": "GOVERNMENT",
+    "annualTurnover": 1954.1035,
+    "name": "72eAiNu3zCFiLsTN3UoUWaQMlDoJuEy8G5onuAXg",
+    "creationDate": "22.04.2024 23:31:40.050",
+    "coordinates": {
+      "x": 2782.314648244228,
+      "y": 5732.585572223854,
+      "id": 343640284
+    },
+    "postalAddress": {
+      "zipCode": "GSI5voz2nFLPAKQ68iWuhxhBmBkzKBw1jat8wqDarT4c",
+      "town": {
+        "x": -2314.442925557212,
+        "y": 1886.7314,
+        "z": 6928.6543,
+        "id": 984492959
+      },
+      "id": 42722439
+    },
+    "isPrivate": "false",
+    "id": 224835746
+  },
+  {
+    "peopleCount": 882427977,
+    "type": "PUBLIC",
+    "annualTurnover": -6511.176,
+    "name": "GH6ZhD3eMddAn3yoxv1PclRPUBddfHv4XbbWgDEPfxnjDwYS",
+    "creationDate": "22.04.2024 23:31:40.050",
+    "coordinates": {
+      "x": 4893.137571801604,
+      "y": 2700.84720006355,
+      "id": 551290612
+    },
+    "postalAddress": {
+      "zipCode": "DlPqVD5DRmlTOmrt9ohTvMzzbYBZ4SAZFyW7Zs6CLLh8N",
+      "town": {
+        "x": -4183.820703766516,
+        "y": 2232.581,
+        "z": -3051.5967,
+        "id": 608830859
+      },
+      "id": 164442106
+    },
+    "isPrivate": "false",
+    "id": 950354002
+  },
+  {
+    "peopleCount": 195673963,
+    "type": "PUBLIC",
+    "annualTurnover": 8010.248,
+    "name": "GkdjsWUgyQnTk2FE2A5rqFjQ77WMPj89GI19jEKVj7CCWfpyO",
+    "creationDate": "22.04.2024 23:31:40.050",
+    "coordinates": {
+      "x": 5297.84820185908,
+      "y": -9689.365097194981,
+      "id": 256105831
+    },
+    "postalAddress": {
+      "zipCode": "hx8ExsErhWpEJdtGumUv6bb1a7IWPFi5RcZ3S7t5oqL89Fdx",
+      "town": {
+        "x": -4366.887034153324,
+        "y": 2306.329,
+        "z": 3806.7354,
+        "id": 191501162
+      },
+      "id": 159207731
+    },
+    "isPrivate": "true",
+    "id": 599064207
+  },
+  {
+    "peopleCount": 84729834,
+    "type": "COMMERCIAL",
+    "annualTurnover": -3360.919,
+    "name": "JwPfxqdTtVG2eckKQxHoop21ov9QuZtM3yaAIQVCA",
+    "creationDate": "22.04.2024 23:31:40.050",
+    "coordinates": {
+      "x": 4677.558956674226,
+      "y": -2883.2358573037473,
+      "id": 647077940
+    },
+    "postalAddress": {
+      "zipCode": "lG2U581SNNKOrkGwHykd6zM2dHEpCyCTBPDISYiz9ltedB",
+      "town": {
+        "x": -4029.790561255273,
+        "y": -9867.413,
+        "z": 1073.8965,
+        "id": 934088504
+      },
+      "id": 944063258
+    },
+    "isPrivate": "true",
+    "id": 705214302
+  },
+  {
+    "peopleCount": 132599397,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": 4728.495,
+    "name": "ulfQBt1o3qWM4TxpEsOUAmvTB6mmlCJvYsdghuHEttN7d2B",
+    "creationDate": "22.04.2024 23:31:40.051",
+    "coordinates": {
+      "x": 5247.386264404533,
+      "y": -88.07108875634731,
+      "id": 187300212
+    },
+    "postalAddress": {
+      "zipCode": "O7NgvRC9zS8JElgiM6eRr6BZ98R8jvCxDYFNdwj9",
+      "town": {
+        "x": 6386.92712798834,
+        "y": 5228.0195,
+        "z": -4101.565,
+        "id": 247012009
+      },
+      "id": 450143931
+    },
+    "isPrivate": "false",
+    "id": 153905447
+  },
+  {
+    "peopleCount": 594143898,
+    "type": "PUBLIC",
+    "annualTurnover": 8157.4395,
+    "name": "2tUbfFnLZY8Uap1kuKlbUqCT9HA7duVRiU1HoUFkGvyV1ri",
+    "creationDate": "22.04.2024 23:31:40.051",
+    "coordinates": {
+      "x": 5807.76658378436,
+      "y": -3278.917507313102,
+      "id": 186653564
+    },
+    "postalAddress": {
+      "zipCode": "lW8m1c9mZxR2OvKFNLLdY6AaMZgxbYcnVIBz9vx2xmi",
+      "town": {
+        "x": -7344.533069971943,
+        "y": -2332.9556,
+        "z": 6432.328,
+        "id": 445008425
+      },
+      "id": 149508282
+    },
+    "isPrivate": "false",
+    "id": 955519363
+  },
+  {
+    "peopleCount": 840274934,
+    "type": "COMMERCIAL",
+    "annualTurnover": -1855.3579,
+    "name": "HU5HkHwCMTQCVePPmYnxQt2BxIw6EfKmh6mDU3hFkRFwRat",
+    "creationDate": "22.04.2024 23:31:40.052",
+    "coordinates": {
+      "x": -584.9890112153153,
+      "y": -7323.0799766075315,
+      "id": 3662774
+    },
+    "postalAddress": {
+      "zipCode": "Dytv1Am1zrz5NedBtSEQJ7ZD9naieqOX87vhTIQENnD4O",
+      "town": {
+        "x": 9167.526657180504,
+        "y": -885.792,
+        "z": -5729.3916,
+        "id": 523979752
+      },
+      "id": 512503030
+    },
+    "isPrivate": "true",
+    "id": 734517400
+  },
+  {
+    "peopleCount": 197102783,
+    "type": "OPEN_JOINT_STOCK_COMPANY",
+    "annualTurnover": -3111.9907,
+    "name": "WBdEtkd2kQIpyx726q5UkyfTbXS2DgUNw6SUqJdT4V",
+    "creationDate": "22.04.2024 23:31:40.061",
+    "coordinates": {
+      "x": -1328.10084185109,
+      "y": 5039.972747053544,
+      "id": 479323609
+    },
+    "postalAddress": {
+      "zipCode": "XG3JGUYnS16F4jUvbmwXhefqX2nhfy3zsMmhWERxKuC4wp",
+      "town": {
+        "x": 273.9713438754916,
+        "y": 3760.3008,
+        "z": 8694.066,
+        "id": 984095952
+      },
+      "id": 328154915
+    },
+    "isPrivate": "false",
+    "id": 528921936
+  },
+  {
+    "peopleCount": 847195498,
+    "type": "PUBLIC",
+    "annualTurnover": 3664.129,
+    "name": "Jn6CB1k37TE8MqKYcFTtRrbvBGS8ijxIhSMlZbbv6OVzj8k",
+    "creationDate": "22.04.2024 23:31:40.061",
+    "coordinates": {
+      "x": -547.9486568619777,
+      "y": -7991.632360143947,
+      "id": 717302421
+    },
+    "postalAddress": {
+      "zipCode": "XpgY7V1mcyT83TYNeky61nIP34xE4XEyI89IinrJqLt",
+      "town": {
+        "x": 1271.734628228065,
+        "y": -4056.8018,
+        "z": -6001.011,
+        "id": 79360149
+      },
+      "id": 641315386
+    },
+    "isPrivate": "false",
+    "id": 79649651
+  },
+  {
+    "peopleCount": 779443228,
+    "type": "PUBLIC",
+    "annualTurnover": 8367.67,
+    "name": "9YYphFlF6sWzGNa6hbTT2eu4ftqum9jzef9ogmuS",
+    "creationDate": "22.04.2024 23:31:40.062",
+    "coordinates": {
+      "x": -1029.625579543148,
+      "y": 9468.354001602711,
+      "id": 96459107
+    },
+    "postalAddress": {
+      "zipCode": "eTbJrOiZgtEeuuSgii2lDd1prMkbfQOSXMtSZbcBbkoJr",
+      "town": {
+        "x": 229.9915386485045,
+        "y": 7020.049,
+        "z": 6465.631,
+        "id": 52528601
+      },
+      "id": 253769048
+    },
+    "isPrivate": "true",
+    "id": 427083673
+  },
+  {
+    "peopleCount": 624795448,
+    "type": "GOVERNMENT",
+    "annualTurnover": -5966.1865,
+    "name": "KvgYGWyaK49s1JwkemjPrMQPHep3NNMF2maVVClJBLcb",
+    "creationDate": "22.04.2024 23:31:40.062",
+    "coordinates": {
+      "x": 9147.74701959925,
+      "y": -2693.7637704869785,
+      "id": 660681096
+    },
+    "postalAddress": {
+      "zipCode": "8nHmwfi6qJPjZMNrttYSiMPOnVOPsVfFbaUP7TuzwaP",
+      "town": {
+        "x": -9940.692134037052,
+        "y": 3679.454,
+        "z": -6400.063,
+        "id": 247929766
+      },
+      "id": 920419621
+    },
+    "isPrivate": "false",
+    "id": 733075708
+  },
+  {
+    "peopleCount": 856134014,
+    "type": "PUBLIC",
+    "annualTurnover": -9304.519,
+    "name": "KwIUAtU4vklWvywC6grYCAGfJufefyN5fm8A3rwarmzO3",
+    "creationDate": "22.04.2024 23:31:40.062",
+    "coordinates": {
+      "x": -2862.9458376094117,
+      "y": -2217.3426203472136,
+      "id": 926955282
+    },
+    "postalAddress": {
+      "zipCode": "FscRYJXtbD1bVxELPIqTNXABVdA2uLZMbcWNlSrP1lfK9DrO",
+      "town": {
+        "x": 3105.4134551828483,
+        "y": 6641.8535,
+        "z": 4333.1064,
+        "id": 671824587
+      },
+      "id": 836026597
+    },
+    "isPrivate": "true",
+    "id": 764058922
   }
 ]

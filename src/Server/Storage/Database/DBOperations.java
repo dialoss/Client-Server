@@ -34,6 +34,7 @@ public class DBOperations {
 
     private MObject[] queryToObject(Class<?> t, String query) throws SQLException {
         PreparedStatement st = perform(query);
+        System.out.println("Got rows from database");
         ResultSet r = st.getResultSet();
         ArrayList<MObject> data = new ArrayList<>();
         while (r.next()) {
@@ -57,6 +58,7 @@ public class DBOperations {
                             object.put(f.getName(), d);
                         }
                     } catch (PSQLException e) {
+                        System.out.println(e);
                     }
                 }
             }
@@ -190,6 +192,12 @@ public class DBOperations {
     public MObject[] getAll(Class<?> t) throws Exception {
         // JOIN useraccount USING(id)
         return queryToObject(t, "SELECT * FROM %s".formatted(name(t)));
+    }
+
+    public MObject[] getAll() throws SQLException {
+        return queryToObject(Organization.class, "SELECT * FROM organization JOIN address ON (organization.id = address.organization_id) " +
+                "JOIN coordinates ON organization.id = coordinates.organization_id " +
+                "JOIN location ON address.id = location.address_id;");
     }
 
     private PreparedStatement perform(String query) throws SQLException {

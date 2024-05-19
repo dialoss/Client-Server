@@ -17,20 +17,24 @@ public class TcpAPI extends ClientAPI {
     static InetSocketAddress address = new InetSocketAddress("127.0.0.1", port);
 
     public void connect() {
-        try {
-            socket = SocketChannel.open();
-            socket.connect(address);
-            socket.configureBlocking(false);
-            System.out.println("Connected to Server " + address.getAddress());
-        } catch (IOException e) {
-            System.out.println("Reconnecting to the server in %s ms".formatted(reconnectTimeout));
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
+        new Thread(() -> {
+            while (true) {
+                try {
+                    socket = SocketChannel.open();
+                    socket.connect(address);
+                    socket.configureBlocking(false);
+                    System.out.println("Connected to Server " + address.getAddress());
+                    break;
+                } catch (IOException e) {
+                    System.out.println("Reconnecting to the server in %s ms".formatted(reconnectTimeout));
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
             }
-            connect();
-        }
+        }).start();
     }
 
     public Response request(Request request) throws RequestError, IOException {
@@ -55,7 +59,7 @@ public class TcpAPI extends ClientAPI {
 
         capacity.position(0);
         int size = capacity.getInt();
-//        System.out.println("Buffer size received " + size);
+        System.out.println("Buffer size received " + size);
 
         ByteBuffer buffer = ByteBuffer.allocate(size);
 

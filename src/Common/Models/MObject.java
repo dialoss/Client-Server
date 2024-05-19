@@ -16,10 +16,13 @@ public class MObject extends HashMap<String, Object> implements Map<String, Obje
         super(map);
     }
 
-    public MObject(Object obj) throws IllegalAccessException {
+    public MObject(Object obj) {
         super();
         for (Field f : obj.getClass().getDeclaredFields()) {
-            this.put(f.getName(), f.get(obj));
+            try {
+                this.put(f.getName(), f.get(obj));
+            } catch (IllegalAccessException e) {
+            }
         }
     }
 }

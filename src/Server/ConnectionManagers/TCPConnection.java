@@ -8,17 +8,28 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.*;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 
 public class TCPConnection extends ConnectionManager {
     static int port = 3003;
     Selector selector;
     ServerSocketChannel channel;
+    ExecutorService sender;
+    ForkJoinPool executor;
 
     public TCPConnection() {
         try {
+            sender = Executors.newCachedThreadPool();
+            executor = new ForkJoinPool(10);
+
             InetSocketAddress address = new InetSocketAddress("127.0.0.1", port);
 
             channel = ServerSocketChannel.open();
@@ -39,8 +50,7 @@ public class TCPConnection extends ConnectionManager {
     }
 
     private void read(SelectionKey key) throws Exception {
-        SocketChannel client = (SocketChannel) key.channel();
-        client.configureBlocking(false);
+        SocketChannel client = getClient(key);
 
         ByteBuffer buffer = ByteBuffer.allocate(10000);
         try {
@@ -52,16 +62,36 @@ public class TCPConnection extends ConnectionManager {
         }
 
         Request request = (Request) ObjectIO.readObject(buffer.array());
-        response = this.requestCallback.call(request);
         System.out.println("request " + request.getCommandName());
-        client.register(selector, SelectionKey.OP_WRITE);
+
+        executor.execute(() -> {
+            try {
+                Response response = this.requestCallback.call(request);
+                SelectionKey writeKey = client.register(selector, SelectionKey.OP_WRITE);
+
+                sender.execute(() -> {
+                    try {
+                        send(writeKey, response);
+                    } catch (Exception e) {
+
+                    }
+                });
+            } catch (Exception e) {
+            }
+        });
+
     }
 
-    private void send(SelectionKey key) throws Exception {
-        System.out.println("Writing...");
-
+    private SocketChannel getClient(SelectionKey key) throws IOException {
         SocketChannel client = (SocketChannel) key.channel();
         client.configureBlocking(false);
+        return client;
+    }
+
+    private void send(SelectionKey key, Response response) throws Exception {
+        System.out.println("Writing...");
+
+        SocketChannel client = getClient(key);
 
         ByteArrayOutputStream bos = ObjectIO.writeObject(response);
         ByteBuffer b = ByteBuffer.wrap(bos.toByteArray());
@@ -91,7 +121,6 @@ public class TCPConnection extends ConnectionManager {
 
     @Override
     public void run() {
-        Response response = null;
         while (true) {
             try {
                 if (selector.select() == 0) continue;
@@ -103,9 +132,13 @@ public class TCPConnection extends ConnectionManager {
                     if (key.isAcceptable()) {
                         accept(key);
                     } else if (key.isReadable()) {
-                        read(key);
-                    } else if (key.isWritable()) {
-                        send(key);
+                        new Thread(() -> {
+                            try {
+                                read(key);
+                            } catch (Exception e) {
+
+                            }
+                        }).start();
                     }
                     iter.remove();
                 }

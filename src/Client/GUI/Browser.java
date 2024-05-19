@@ -1,5 +1,7 @@
 package Client.GUI;
 
+import Common.Models.MObject;
+import Common.Tools;
 import org.cef.CefApp;
 import org.cef.CefApp.CefAppState;
 import org.cef.CefClient;
@@ -14,6 +16,10 @@ import org.cef.handler.CefMessageRouterHandlerAdapter;
 import javax.swing.*;
 import java.awt.*;
 
+class BridgeData {
+    String method;
+    MObject data;
+}
 
 public class Browser extends JFrame {
     private final Component browserUI;
@@ -40,13 +46,17 @@ public class Browser extends JFrame {
         class MessageRouterHandler extends CefMessageRouterHandlerAdapter {
             @Override
             public boolean onQuery(CefBrowser browser, CefFrame frame, long queryId, String request, boolean persistent, CefQueryCallback callback) {
-                String[] tokens = request.split(" ");
                 try {
-                    String result = controller.call(new BridgeRequest(tokens[0], tokens[1]));
-                    callback.success(result);
+                    new Thread(() -> {
+                        try {
+                            BridgeData data = (BridgeData) Tools.parse(request, BridgeData.class);
+                            String result = controller.call(new BridgeRequest(data.method, Tools.stringify(data.data)));
+                            callback.success(result);
+                        } catch (Exception e) {
+                            callback.failure(0, e.getMessage());
+                        }
+                    }).start();
                 } catch (Exception e) {
-
-                    callback.failure(0, e.getMessage());
                 }
                 return true;
             }

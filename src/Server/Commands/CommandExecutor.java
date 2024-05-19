@@ -26,7 +26,7 @@ public class CommandExecutor {
         if (command == null) throw new CommandNotFound();
 
         UserManager.setClient(request.getClient());
-        Response response = null;
+        Response response;
         try {
             Object result = command.execute(StorageConnector.manager, request.getArguments());
             if (Response.class.isAssignableFrom(result.getClass())) response = (Response) result;

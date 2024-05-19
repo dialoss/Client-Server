@@ -13,16 +13,18 @@ public class JSONStorage extends FileStorage {
         super(path);
     }
 
-    private MObject convertObject(Map<String, Object> obj) throws IllegalAccessException {
+    public static MObject convertObject(Map<String, Object> obj) {
         MObject result = new MObject();
         for (Map.Entry<String, Object> entry : obj.entrySet()) {
             Object v = entry.getValue();
             String k = entry.getKey();
-            if (v.getClass().isAssignableFrom(LinkedTreeMap.class)) result.put(k, convertObject((Map<String, Object>) v));
+            if (v.getClass().isAssignableFrom(LinkedTreeMap.class))
+                result.put(k, convertObject((Map<String, Object>) v));
             else result.put(k, v);
         }
         return result;
     }
+
 
     public MObject[] read() {
         String text = super._read();

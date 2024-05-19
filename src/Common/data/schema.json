@@ -1,0 +1,17 @@
+{
+  "peopleCount": {
+    "type": "number"
+  },
+  "name": {
+    "type": "text"
+  },
+  "annualTurnover": {
+    "type": "number"
+  },
+  "isPrivate": {
+    "type": "boolean"
+  },
+  "creationDate": {
+    "type": "date"
+  }
+}

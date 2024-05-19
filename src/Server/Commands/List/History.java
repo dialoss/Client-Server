@@ -1,6 +1,8 @@
 package Server.Commands.List;
 
 import Common.Commands.Command;
+import Common.Connection.Response;
+import Common.Connection.Status;
 import Server.Commands.CommandExecutor;
 import Server.Commands.HistoryEntry;
 import Server.Storage.Collection.CollectionManager;
@@ -13,11 +15,14 @@ public class History extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
+    public Response execute(CollectionManager collectionManager, Map<String, Object> args) {
         StringBuilder b = new StringBuilder();
         CommandExecutor.getHistory().stream()
                 .map((HistoryEntry h) -> h.request.getCommandName() + " Status " + h.response.code + "\n")
                 .forEach(b::append);
-        return b.toString();
+        return new Response(CommandExecutor.getHistory().stream()
+                .map((HistoryEntry h) -> h.request.getCommandName() + " Status " + h.response.code)
+                .toArray(),
+                Status.OK);
     }
 }

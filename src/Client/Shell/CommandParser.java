@@ -6,8 +6,12 @@ import Common.Commands.CommandArgument;
 import Common.Exceptions.CommandNotFound;
 import Common.Exceptions.InvalidAmountOfArguments;
 import Common.Exceptions.InvalidValue;
+import Common.Files.JSONStorage;
+import Common.Models.MObject;
+import Common.Models.Organization;
 import Common.Pair;
 import Common.Serializer.Serializer;
+import Common.Tools;
 import Server.Commands.CommandManager;
 
 import java.util.Arrays;
@@ -36,7 +40,15 @@ public class CommandParser {
     public Map<String, Object> parseArguments(Command command, Map<String, String> arguments) {
         Map<String, Object> parsed = new HashMap<>();
         for (CommandArgument arg : command.getArguments()) {
-            String value = arguments.get(arg.getName());
+            Object rawValue = arguments.get(arg.getName());
+            if (arg.getName().equals("element")) {
+                parsed.put(arg.getName(),
+                        new Organization().from(JSONStorage.convertObject((MObject) Tools.parse(Tools.stringify(rawValue), MObject.class))));
+                continue;
+            }
+
+            String value = null;
+            if (rawValue != null) value = rawValue.toString();
             if (arg.required && value == null) {
                 if (arg.position == ArgumentPosition.MULTILINE) {
                     parsed.put(arg.getName(), new Form(arg, this.shellForm).get());
@@ -49,10 +61,7 @@ public class CommandParser {
                 continue;
             }
             Object parsedValue = Serializer.serializeValue(arg.type, value);
-            if (arg.possibleValues.size() != 0 &&
-                    arg.possibleValues.stream()
-                            .filter(v -> (v.equals(parsedValue)))
-                            .toArray().length == 0)
+            if (arg.possibleValues.size() != 0 && arg.possibleValues.stream().filter(v -> (v.equals(parsedValue))).toArray().length == 0)
                 throw new InvalidValue("Value %s cannot be an argument to %s".formatted(value, arg.getName()));
             parsed.put(arg.getName(), parsedValue);
         }

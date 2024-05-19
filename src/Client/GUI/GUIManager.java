@@ -8,10 +8,6 @@ public class GUIManager extends UserInterface {
     public void start() {
         Controller controller = new Controller(this.requestCallback);
         GUI gui = new GUI(controller);
-        try {
-            gui.start();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        gui.start();
     }
 }

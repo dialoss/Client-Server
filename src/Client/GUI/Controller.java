@@ -24,22 +24,17 @@ public class Controller {
         try {
             for (Method m : this.getClass().getDeclaredMethods()) {
                 if (!m.getName().equals(r.method())) continue;
-                Response response;
                 if (!ConnectionPackage.class.isAssignableFrom(m.getReturnType())) {
                     return Tools.stringify(new ClientResponse(m.invoke(this), ""));
                 }
-                Class<?>[] params = m.getParameterTypes();
-                if (params.length == 0) response = (Response) m.invoke(this);
-                else response = (Response) m.invoke(this, Tools.parse(r.data(), params[0]));
+                Response response = (Response) m.invoke(this);
                 return Tools.stringify(new ClientResponse(response.getBody(), response.getMessage()));
             }
             Map<String, Object> args = new CommandParser().parseArguments(r.method(), (Map<String, String>) Tools.parse(r.data(), Object.class));
             Response response = request.call(new Request(r.method(), args));
             return Tools.stringify(new ClientResponse(response.getBody(), response.getMessage()));
-        } catch (RequestError e) {
-            throw new RequestError(e.getMessage());
         } catch (Exception e) {
-            throw new RequestError(e.getCause().getMessage());
+            throw new RequestError(e.getMessage());
         }
     }
 
@@ -49,25 +44,6 @@ public class Controller {
 
     private UserClient getUser() {
         return UserManager.getClient();
-    }
-
-    private Response register(UserInfo data) throws Exception {
-        return auth(data, "register");
-    }
-
-    private Response auth(UserInfo data, String type) throws Exception {
-        UserManager.setClient(new UserClient(data).withId(0));
-        Response r = request.call(new Request(type)
-                .withArgument("login", data.login())
-                .withArgument("name", data.name())
-                .withArgument("password", data.password()));
-        if (data.remember()) UserManager.setCookie();
-        r.setBody(UserManager.getClient());
-        return r;
-    }
-
-    private Response login(UserInfo data) throws Exception {
-        return auth(data, "login");
     }
 
     private Response schema() {

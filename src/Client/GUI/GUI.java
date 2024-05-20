@@ -15,6 +15,8 @@ import java.io.IOException;
 
 public class GUI {
     Controller controller;
+    public static JFrame mainWindow;
+    public static JFrame authWindow;
 
     GUI(Controller controller) {
         this.controller = controller;
@@ -22,11 +24,11 @@ public class GUI {
 
     public void start() {
         Browser browser = new Browser(this.controller);
-        JFrame frame = new JFrame();
+        mainWindow = new JFrame();
         Component UI = browser.getBrowserUI();
         new JFXPanel();
 
-        JFrame auth = new JFrame();
+        authWindow = new JFrame();
 
         try {
             FileInputStream fileInputStream = new FileInputStream("C:\\Users\\dialoss\\IdeaProjects\\lab5\\src\\Client\\GUI\\auth.fxml");
@@ -35,29 +37,30 @@ public class GUI {
             Scene scene = new Scene(root);
             JFXPanel panel = new JFXPanel();
             panel.setScene(scene);
-            auth.add(panel);
+            authWindow.add(panel);
             SceneController controller = loader.getController();
             controller.setRequestCallback(this.controller.request);
             controller.setOwner(scene.getWindow());
             controller.authCallback = () -> {
-                auth.setVisible(false);
-                frame.setVisible(true);
+                authWindow.setVisible(false);
+                mainWindow.setVisible(true);
                 return null;
             };
         } catch (IOException e) {
         }
-        auth.pack();
-        auth.setSize(600, 600);
-        auth.setLocation(400, 100);
-        auth.setVisible(true);
-        frame.add(UI, BorderLayout.CENTER);
+        authWindow.pack();
+        authWindow.setSize(600, 600);
+        authWindow.setLocation(400, 100);
+        authWindow.setVisible(true);
+        authWindow.setResizable(false);
+        mainWindow.add(UI, BorderLayout.CENTER);
 
-        frame.pack();
-        frame.setSize(1300, 800);
-        frame.setLocation(400, 100);
-        frame.setVisible(false);
+        mainWindow.pack();
+        mainWindow.setSize(1300, 800);
+        mainWindow.setLocation(400, 100);
+        mainWindow.setVisible(false);
 
-        frame.addWindowListener(new WindowAdapter() {
+        mainWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 CefApp.getInstance().dispose();

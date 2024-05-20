@@ -3,15 +3,16 @@ package Server.Commands.List;
 import Client.Shell.CommandParser;
 import Client.Shell.IForm;
 import Client.Shell.IOdevice;
+import Common.Commands.Command;
 import Common.Commands.CommandArgument;
 import Common.Connection.Request;
+import Common.Connection.UserClient;
 import Common.Exceptions.ScriptRuntimeException;
 import Common.Pair;
-import Common.Commands.Command;
 import Server.Commands.CommandExecutor;
+import Server.Data.CustomFields.MBoolean;
 import Server.Internal.DevNull;
 import Server.Internal.FileForm;
-import Server.Data.CustomFields.MBoolean;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
 
@@ -28,7 +29,7 @@ public class ExecuteScript extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Map<String, Object> args) throws ScriptRuntimeException {
+    public String execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) throws ScriptRuntimeException {
         String filename = (String) args.get("filename");
         Boolean showLog = ((MBoolean) args.get("show_log")).getValue();
         if (DevNull.deviceCounter >= 10) {

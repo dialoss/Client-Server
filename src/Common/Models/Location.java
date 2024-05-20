@@ -7,5 +7,6 @@ public class Location extends BaseModel {
     public Float y;
     @ModelField
     public Float z; //Field cannot be null
-    public static final Class<?> address = Address.class;
+    @ForeignKey
+    public Address address;
 }

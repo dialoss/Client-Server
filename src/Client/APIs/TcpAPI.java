@@ -15,8 +15,11 @@ public class TcpAPI extends ClientAPI {
     static int port = 3003;
     static int reconnectTimeout = 3000;
     static InetSocketAddress address = new InetSocketAddress("127.0.0.1", port);
+    static boolean connectionStarted = false;
 
     public void connect() {
+        if (connectionStarted) return;
+        connectionStarted = true;
         new Thread(() -> {
             while (true) {
                 try {
@@ -24,6 +27,7 @@ public class TcpAPI extends ClientAPI {
                     socket.connect(address);
                     socket.configureBlocking(false);
                     System.out.println("Connected to Server " + address.getAddress());
+                    connectionStarted = false;
                     break;
                 } catch (IOException e) {
                     System.out.println("Reconnecting to the server in %s ms".formatted(reconnectTimeout));
@@ -47,7 +51,7 @@ public class TcpAPI extends ClientAPI {
             }
         } catch (IOException e) {
             b.clear();
-            new Thread(this::connect).start();
+            this.connect();
             throw new RequestError("No connection to the server");
         }
         b.clear();

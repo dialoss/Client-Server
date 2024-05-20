@@ -2,37 +2,60 @@ package Server.Storage.Collection;
 
 import Common.Models.BaseModel;
 import Common.Models.Organization;
+import Server.ConnectionManagers.Notification;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BaseCollectionManager<T extends BaseModel> implements ICollectionManager<T> {
     LinkedHashMap<Integer, T> collection;
+    ReentrantLock locker = new ReentrantLock();
     public Info info;
 
     @Override
-    public void delete(T item) {
+    public synchronized void delete(T item) {
+        locker.lock();
         this.collection.remove(item.getId());
+        Notification.set();
+        locker.unlock();
     }
 
     @Override
-    public void delete(Integer id) {
+    public synchronized void delete(Integer id) {
+        locker.lock();
         this.collection.remove(id);
+        Notification.set();
+        locker.unlock();
+
     }
 
     @Override
-    public void update(T item) {
+    public synchronized void update(T item) {
+        locker.lock();
         this.collection.replace(item.getId(), item);
+        Notification.set();
+        locker.unlock();
+
+
     }
 
     @Override
-    public void update(Integer id, T item) {
+    public synchronized void update(Integer id, T item) {
+        locker.lock();
         this.collection.replace(id, item);
+        Notification.set();
+        locker.unlock();
+
     }
 
     @Override
-    public void insert(T item) {
+    public synchronized void insert(T item) {
+        locker.lock();
         this.collection.put(item.getId(), item);
+        Notification.set();
+        locker.unlock();
+
     }
 
     @Override
@@ -41,7 +64,7 @@ public class BaseCollectionManager<T extends BaseModel> implements ICollectionMa
     }
 
     @Override
-    public void clear() {
+    public synchronized void clear() {
         this.collection.clear();
     }
 

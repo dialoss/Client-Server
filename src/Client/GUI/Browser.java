@@ -33,6 +33,7 @@ public class Browser extends JFrame {
         });
 
         final CefSettings settings = new CefSettings();
+        settings.root_cache_path = "C:\\Users\\dialoss\\IdeaProjects\\lab5\\src\\Client\\GUI\\test";
         settings.windowless_rendering_enabled = false;
 
 //        settings.log_severity = CefSettings.LogSeverity.LOGSEVERITY_DISABLE;

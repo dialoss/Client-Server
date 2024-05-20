@@ -4,6 +4,7 @@ import Common.Commands.Command;
 import Common.Commands.CommandArgument;
 import Common.Connection.Response;
 import Common.Connection.Status;
+import Common.Connection.UserClient;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
 
@@ -20,7 +21,7 @@ public class Get extends Command {
     }
 
     @Override
-    public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
+    public Response execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) throws Exception {
         Integer amount = (Integer) args.get("amount");
         return new Response(Arrays.copyOfRange(StorageConnector.manager.getAll(), 0, amount), Status.OK)
                 .withMessage("Collection returned with %s items".formatted(amount));

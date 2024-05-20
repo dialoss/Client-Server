@@ -4,7 +4,6 @@ import Client.Exceptions.RequestError;
 import Client.Shell.CommandParser;
 import Client.UserManager;
 import Common.Connection.*;
-import Common.Models.SchemaGenerator;
 import Common.Tools;
 
 import java.lang.reflect.Method;
@@ -40,13 +39,11 @@ public class Controller {
 
     private void logout() {
         UserManager.clearCookie();
+        GUI.authWindow.setVisible(true);
+        GUI.mainWindow.setVisible(false);
     }
 
     private UserClient getUser() {
         return UserManager.getClient();
-    }
-
-    private Response schema() {
-        return new Response(SchemaGenerator.generate(), Status.OK);
     }
 }

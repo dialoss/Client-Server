@@ -2,6 +2,7 @@ package Server.Commands.List;
 
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
+import Common.Connection.UserClient;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
 
@@ -16,7 +17,7 @@ public class Save extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
+    public String execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) throws Exception {
 //        String filename = (String) args.get("filename");
 //        String path = StorageConnector.fileStorage.write(
 //                Tools.stringify(StorageConnector.manager.getAll()), filename);

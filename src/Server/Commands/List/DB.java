@@ -4,6 +4,7 @@ import Common.Commands.Command;
 import Common.Commands.CommandArgument;
 import Common.Connection.Response;
 import Common.Connection.Status;
+import Common.Connection.UserClient;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
 
@@ -18,7 +19,7 @@ public class DB extends Command {
     }
 
     @Override
-    public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
+    public Response execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) throws Exception {
         if ("getAll".equals(args.get("action"))) {
             return new Response(StorageConnector.manager.getAll(), Status.OK);
         }

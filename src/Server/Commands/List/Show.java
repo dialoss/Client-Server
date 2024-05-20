@@ -2,6 +2,7 @@ package Server.Commands.List;
 
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
+import Common.Connection.UserClient;
 import Common.Stringify;
 import Server.Storage.Collection.CollectionManager;
 
@@ -17,7 +18,7 @@ public class Show extends Command {
     }
 
     @Override
-    public String execute(CollectionManager manager, Map<String, Object> args) {
+    public String execute(CollectionManager manager, Map<String, Object> args, UserClient client) {
         Integer limit = (Integer) args.get("limit");
         Object[] all = manager.getAll();
         return new Stringify(Arrays.copyOfRange(all, 0, Math.min(limit, all.length))).withSplitLines().get();

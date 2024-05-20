@@ -2,6 +2,7 @@ package Server.Commands.List;
 
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
+import Common.Connection.UserClient;
 import Common.Stringify;
 import Server.Storage.Collection.CollectionManager;
 
@@ -15,7 +16,7 @@ public class Filter extends Command {
     }
 
     @Override
-    public String execute(CollectionManager manager, Map<String, Object> args) {
+    public String execute(CollectionManager manager, Map<String, Object> args, UserClient client) {
         String name = (String) args.get("name");
         Object[] items = new Query(manager.getAll())
                 .filter("name", (Object value) -> ((String) value).startsWith(name)).get();

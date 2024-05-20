@@ -21,7 +21,8 @@ public class Organization extends BaseModel implements Comparable<Organization> 
     @ModelField
     public MBoolean isPrivate;
 
-    public static Class<?> user = UserAccount.class;
+    @ForeignKey
+    public Integer useraccount_id;
     @Override
     public int compareTo(Organization o) {
         return this.id.compareTo(o.id);

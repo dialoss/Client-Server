@@ -5,8 +5,8 @@ import Common.Commands.CommandArgument;
 import Common.Connection.Response;
 import Common.Connection.Status;
 import Common.Connection.UserClient;
+import Common.Models.UserAccount;
 import Server.Internal.PasswordManager;
-import Server.Internal.UserManager;
 import Server.Storage.Collection.CollectionManager;
 
 import java.sql.SQLException;
@@ -22,11 +22,15 @@ public class Login extends Command {
     }
 
     @Override
-    public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws SQLException {
-        UserClient user = UserManager.getClient();
-        if (!PasswordManager.login(user))
-            return new Response("Invalid login/password combination.", Status.FORBIDDEN);
-        else
-            return new Response("You are successfully login.", Status.OK);
+    public Response execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) throws SQLException {
+        Response r;
+        UserAccount logged = PasswordManager.login(client);
+        if (logged == null)
+            r = new Response("Invalid login/password combination.", Status.FORBIDDEN);
+        else {
+            r = new Response("You are successfully login.", Status.OK);
+            r.setUserClient(client.withId(logged.id));
+        }
+        return r;
     }
 }

@@ -11,7 +11,6 @@ public class Client {
     public void start() {
         UserManager.init();
         this.userInterface = new GUIManager();
-//        this.userInterface = new CommandLineInterface(new ShellForm(new Shell()));
         this.api = new TcpAPI();
         this.api.connect();
         this.userInterface.setRequestCallback(this.api::request);

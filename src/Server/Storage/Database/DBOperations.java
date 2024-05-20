@@ -3,7 +3,6 @@ package Server.Storage.Database;
 import Common.Pair;
 import Server.Data.CustomFields.CustomField;
 import Common.Models.*;
-import Server.Internal.UserManager;
 import org.postgresql.util.PSQLException;
 
 import java.lang.reflect.Field;
@@ -124,9 +123,8 @@ public class DBOperations {
         for (Field f : fields) {
             String type = name(f.getType(), true);
             String dbType = TYPES.get(type);
-            if (type.equals("CLASS")) {
-                Class<?> x = (Class<?>) f.get(null);
-                String parent = name(x);
+            if (f.isAnnotationPresent(ForeignKey.class)) {
+                String parent = name(f.getType());
                 queryFields.add("%s INTEGER REFERENCES %s ON DELETE CASCADE".formatted(parent + "_id", parent));
                 continue;
             } else if (CustomField.class.isAssignableFrom(f.getType())) {
@@ -149,7 +147,7 @@ public class DBOperations {
         ArrayList<Object> insertValues = new ArrayList<>();
         for (Field f : values.getClass().getDeclaredFields()) {
             Object value = f.get(values);
-            if (name(value.getClass(), true).equals("CLASS")) {
+            if (f.isAnnotationPresent(ForeignKey.class)) {
                 continue;
             }
             if (BaseModel.class.isAssignableFrom(value.getClass())) {
@@ -168,11 +166,6 @@ public class DBOperations {
             if (String.class.isAssignableFrom(v.getClass())) v = "'%s'".formatted(v);
             if (Enum.class.isAssignableFrom(v.getClass())) v = "'%s'".formatted(v).toLowerCase();
             insertValues.add(v);
-        }
-
-        if (Organization.class.isAssignableFrom(t)) {
-            insertFields.add("useraccount_id");
-            insertValues.add(UserManager.getClientId());
         }
 
         query = query.formatted(name(t), formatQuery(insertFields.toArray()), formatQuery(insertValues.toArray()));

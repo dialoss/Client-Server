@@ -1,6 +1,5 @@
 package Server.Internal;
 
-import Client.GUI.UserInfo;
 import Common.Connection.UserClient;
 import Common.Models.MObject;
 import Common.Models.UserAccount;
@@ -35,13 +34,13 @@ public class PasswordManager {
         return sb.toString();
     }
 
-    public static boolean login(UserClient user) throws SQLException {
+    public static UserAccount login(UserClient user) throws SQLException {
         UserAccount account = getUser(user);
-        if (account == null) return false;
-        UserManager.setClient(new UserClient(new UserInfo(account.name, account.login, account.password)).withId(account.id));
+        if (account == null) return null;
         String stored = account.password;
         String provided = encrypt(user.getPassword(), account.salt);
-        return stored.equals(provided) || stored.equals(user.getPassword());
+        if (stored.equals(provided) || stored.equals(user.getPassword())) return account;
+        return null;
     }
 
     public static UserAccount getUser(UserClient user) throws SQLException {

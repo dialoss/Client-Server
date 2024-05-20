@@ -10,7 +10,7 @@
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="397.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.GUI.SceneController">
     <children>
         <Button layoutX="268.0" layoutY="283.0" mnemonicParsing="false" onAction="#auth" text="Подтвердить" />
-      <TabPane prefHeight="282.0" prefWidth="624.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="300" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab onSelectionChanged="#setLogin" text="Вход">
             <content>

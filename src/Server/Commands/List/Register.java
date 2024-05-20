@@ -9,7 +9,6 @@ import Common.Connection.UserClient;
 import Common.Models.MObject;
 import Common.Models.UserAccount;
 import Server.Internal.PasswordManager;
-import Server.Internal.UserManager;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.Database.DBOperations;
 import Server.Storage.StorageConnector;
@@ -28,9 +27,8 @@ public class Register extends Command {
     }
 
     @Override
-    public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
-        UserClient user = UserManager.getClient();
-        if (PasswordManager.getUser(user) != null)
+    public Response execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) throws Exception {
+        if (PasswordManager.getUser(client) != null)
             return new Response("You has already registered.", Status.OK);
         else {
             String login = (String) args.get("login");
@@ -46,8 +44,9 @@ public class Register extends Command {
                     "salt", salt,
                     "name", name
             ))));
-            UserManager.setClient(new UserClient(new UserInfo(name, login, password)).withId(key));
-            return new Response("You are successfully registered.", Status.OK);
+            Response r = new Response("You are successfully registered.", Status.OK);
+            r.setUserClient(new UserClient(new UserInfo(name, login, password)).withId(key));
+            return r;
         }
     }
 }

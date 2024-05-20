@@ -48,6 +48,7 @@ public class CommandManager {
         add(Register.class);
         add(DB.class);
         add(Get.class);
-
+        add(Unload.class);
+        add(Updates.class);
     }
 }

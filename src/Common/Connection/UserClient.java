@@ -9,6 +9,7 @@ public class UserClient implements Serializable {
     private String password = "";
     private String login = "";
     private String name = "";
+    public Integer port = 0;
 
     public UserClient() {
     }

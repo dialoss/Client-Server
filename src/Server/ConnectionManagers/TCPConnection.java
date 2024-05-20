@@ -66,6 +66,7 @@ public class TCPConnection extends ConnectionManager {
 
         executor.execute(() -> {
             try {
+                request.getClient().port = client.socket().getPort();
                 Response response = this.requestCallback.call(request);
                 SelectionKey writeKey = client.register(selector, SelectionKey.OP_WRITE);
 

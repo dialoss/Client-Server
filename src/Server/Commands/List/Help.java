@@ -1,6 +1,7 @@
 package Server.Commands.List;
 
 import Common.Commands.Command;
+import Common.Connection.UserClient;
 import Common.Stringify;
 import Server.Commands.CommandManager;
 import Server.Storage.Collection.CollectionManager;
@@ -14,7 +15,7 @@ public class Help extends Command {
 
 
     @Override
-    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
+    public String execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) {
         return new Stringify(CommandManager.getAll().values().toArray()).get();
     }
 }

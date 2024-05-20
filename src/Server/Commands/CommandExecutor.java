@@ -5,7 +5,7 @@ import Common.Connection.Request;
 import Common.Connection.Response;
 import Common.Connection.Status;
 import Common.Exceptions.CommandNotFound;
-import Server.Internal.UserManager;
+import Common.Exceptions.ForbiddenException;
 import Server.Storage.StorageConnector;
 
 import java.util.ArrayList;
@@ -24,20 +24,21 @@ public class CommandExecutor {
 
         Command command = CommandManager.get(request.getCommandName());
         if (command == null) throw new CommandNotFound();
-
-        UserManager.setClient(request.getClient());
         Response response;
         try {
-            Object result = command.execute(StorageConnector.manager, request.getArguments());
+            Object result = command.execute(StorageConnector.manager, request.getArguments(), request.getClient());
             if (Response.class.isAssignableFrom(result.getClass())) response = (Response) result;
             else {
                 if (result.getClass().isAssignableFrom(String.class)) response = new Response((String) result, Status.OK);
                 else response = new Response(result, Status.OK);
             }
-        } catch (Exception e) {
+        } catch (ForbiddenException e) {
+            response = new Response(e.getMessage(), Status.FORBIDDEN);
+        }
+        catch (Exception e) {
             response = new Response(e.getMessage(), Status.SERVER_ERROR);
         }
-        response.setUserClient(UserManager.getClient());
+
         history.add(new HistoryEntry(request, response));
         System.out.println(request.getCommandName());
         return response;

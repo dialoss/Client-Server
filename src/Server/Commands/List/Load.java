@@ -4,6 +4,7 @@ import Common.Commands.Command;
 import Common.Commands.CommandArgument;
 import Common.Connection.Response;
 import Common.Connection.Status;
+import Common.Connection.UserClient;
 import Server.Storage.Collection.CollectionManager;
 import Server.Storage.StorageConnector;
 
@@ -19,7 +20,7 @@ public class Load extends Command {
     }
 
     @Override
-    public Response execute(CollectionManager collectionManager, Map<String, Object> args) throws Exception {
+    public Response execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) throws Exception {
         if (args != null) {
             String filename = (String) args.get("filename");
             Integer amount = (Integer) args.get("amount");

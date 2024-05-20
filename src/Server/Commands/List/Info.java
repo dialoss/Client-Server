@@ -1,6 +1,7 @@
 package Server.Commands.List;
 
 import Common.Commands.Command;
+import Common.Connection.UserClient;
 import Server.Storage.Collection.CollectionManager;
 
 import java.util.Map;
@@ -11,7 +12,7 @@ public class Info extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
+    public String execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) {
         return collectionManager.info.getInfo();
     }
 }

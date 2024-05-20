@@ -5,5 +5,6 @@ public class Coordinates extends BaseModel {
     public Double x; //Field cannot be null
     @ModelField
     public Double y; //Field cannot be null
-    public static final Class<?> organization = Organization.class;
+    @ForeignKey
+    public Organization organization;
 }

@@ -2,6 +2,7 @@ package Server.Commands.List;
 
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
+import Common.Connection.UserClient;
 import Common.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 
@@ -14,10 +15,12 @@ public class Fill extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
+    public String execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) {
         Integer amount = (Integer) args.get("amount");
         for (int i = 0; i < amount; i++) {
-            collectionManager.insert((Organization) new Organization().random());
+            Organization el = (Organization) new Organization().random();
+            el.useraccount_id = client.getId();
+            collectionManager.insert(el);
         }
         return String.format("%s elements added", amount);
     }

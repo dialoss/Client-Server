@@ -3,6 +3,7 @@ package Server.Commands.List;
 import Common.Commands.ArgumentPosition;
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
+import Common.Connection.UserClient;
 import Common.Models.Organization;
 import Common.Stringify;
 import Server.Storage.Collection.CollectionManager;
@@ -21,7 +22,7 @@ public class RemoveGreater extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
+    public String execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) {
         Organization organization = (Organization) args.get("element");
         ArrayList<Integer> deleted = new ArrayList<>();
         Stream.of(collectionManager.getAll())

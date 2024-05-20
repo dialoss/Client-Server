@@ -3,6 +3,7 @@ package Server.Commands.List;
 import Common.Commands.ArgumentPosition;
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
+import Common.Connection.UserClient;
 import Common.Models.Organization;
 import Server.Storage.Collection.CollectionManager;
 
@@ -18,8 +19,10 @@ public class Insert extends Command {
     }
 
     @Override
-    public String execute(CollectionManager collectionManager, Map<String, Object> args) {
-        collectionManager.insert((Organization) args.get("element"));
+    public String execute(CollectionManager collectionManager, Map<String, Object> args, UserClient client) {
+        Organization element = (Organization) args.get("element");
+        element.useraccount_id = client.getId();
+        collectionManager.insert(element);
         return "Element added";
     }
 }

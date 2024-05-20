@@ -2,6 +2,7 @@ package Server.Commands.List;
 
 import Common.Commands.Command;
 import Common.Commands.CommandArgument;
+import Common.Connection.UserClient;
 import Common.Stringify;
 import Server.Storage.Collection.CollectionManager;
 
@@ -19,7 +20,7 @@ public class GetField extends Command {
     }
 
     @Override
-    public String execute(CollectionManager manager, Map<String, Object> args) {
+    public String execute(CollectionManager manager, Map<String, Object> args, UserClient client) {
         String fieldName = (String) args.get("field");
         Integer order = (Integer) args.get("order");
 
